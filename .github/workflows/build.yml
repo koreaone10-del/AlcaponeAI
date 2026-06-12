@@ -1,0 +1,29 @@
+name: Build and Deploy Chibani Lotfi AI
+
+on:
+  push:
+    branches:
+      - main  # أو master حسب اسم الفرع الأساسي لديك
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. سحب الكود من المستودع
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. التأكد من أن ملفك في المجلد الرئيسي (أو تغيير المسار إذا كان في مجلد خاص)
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      # 3. رفع ملفات المشروع إلى GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '.'  # هذا يشير إلى المجلد الحالي (حيث يوجد video.html)
+
+      # 4. النشر الفعلي
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
