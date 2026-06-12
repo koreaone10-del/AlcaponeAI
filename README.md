@@ -17,7 +17,16 @@
 * **Integration:** ربط مباشر عبر API Endpoints لمزودي الخدمة.
 
 ---
-## 🖼 معاينة التطبيق
 
-![واجهة المحادثة](images/1000050330.jpg)
-![إدارة مفاتيح API](images/1000050331.jpg)
+لكي يعمل تطبيقك مع كافة النماذج، يجب على المستخدم الحصول على مفتاح خاص من موقع كل مزود. إليك الروابط:
+
+المزود (Provider)الرابط للحصول على المفتاح (English)ملاحظة بالعربية
+OpenRouteropenrouter.ai/keysيجمع معظم النماذج في مكان واحد.
+Groqconsole.groq.comالأسرع في معالجة Llama 3.
+Google Geminiaistudio.google.comمفاتيح مجانية من جوجل.
+DeepSeekplatform.deepseek.comنماذج متخصصة في الكود والبرمجة.
+Mistralconsole.mistral.aiنماذج أوروبية قوية.
+SiliconFlowsiliconflow.cnمنصة صينية تدعم نماذج متنوعة.
+NVIDIA (NIM)build.nvidia.comنماذج NVIDIA عالية الأداء.
+Cerebrascloud.cerebras.aiسرعة استثنائية في الاستنتاج.
+HuggingFacehuggingface.co/settings/tokensمكتبة ضخمة من النماذج المفتوحة.
