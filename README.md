@@ -43,3 +43,10 @@ Cerebrascloud.cerebras.ai   سرعة استثنائية في الاستنتاج.
 
 HuggingFacehuggingface.co/settings/tokens   مكتبة ضخمة من النماذج المفتوحة.
 
+
+
+
+## 🖼 معاينة التطبيق
+
+![واجهة المحادثة](images/1000050330.jpg)
+![إدارة مفاتيح API](images/1000050331.jpg)
