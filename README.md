@@ -13,20 +13,33 @@
 
 ## 🛠 الأدوات المستخدمة
 * **Frontend:** HTML5, CSS3, JavaScript (Vanilla).
+* 
 * **Environment:** يعمل عبر أي متصفح ويب أو كـ WebView (Android).
+* 
 * **Integration:** ربط مباشر عبر API Endpoints لمزودي الخدمة.
+* 
 
 ---
 
 لكي يعمل تطبيقك مع كافة النماذج، يجب على المستخدم الحصول على مفتاح خاص من موقع كل مزود. إليك الروابط:
 
 المزود (Provider)الرابط للحصول على المفتاح (English)ملاحظة بالعربية
-OpenRouteropenrouter.ai/keysيجمع معظم النماذج في مكان واحد.
-Groqconsole.groq.comالأسرع في معالجة Llama 3.
-Google Geminiaistudio.google.comمفاتيح مجانية من جوجل.
-DeepSeekplatform.deepseek.comنماذج متخصصة في الكود والبرمجة.
-Mistralconsole.mistral.aiنماذج أوروبية قوية.
-SiliconFlowsiliconflow.cnمنصة صينية تدعم نماذج متنوعة.
-NVIDIA (NIM)build.nvidia.comنماذج NVIDIA عالية الأداء.
-Cerebrascloud.cerebras.aiسرعة استثنائية في الاستنتاج.
-HuggingFacehuggingface.co/settings/tokensمكتبة ضخمة من النماذج المفتوحة.
+
+OpenRouteropenrouter.ai/keys   يجمع معظم النماذج في مكان واحد.
+
+Groqconsole.groq.com   الأسرع في معالجة Llama 3.
+
+Google Geminiaistudio.google.com   مفاتيح مجانية من جوجل.
+
+DeepSeekplatform.deepseek.com   نماذج متخصصة في الكود والبرمجة.
+
+Mistralconsole.mistral.ai    نماذج أوروبية قوية.
+
+SiliconFlowsiliconflow.cn   منصة صينية تدعم نماذج متنوعة.
+
+NVIDIA (NIM)build.nvidia.com   نماذج NVIDIA عالية الأداء.
+
+Cerebrascloud.cerebras.ai   سرعة استثنائية في الاستنتاج.
+
+HuggingFacehuggingface.co/settings/tokens   مكتبة ضخمة من النماذج المفتوحة.
+
