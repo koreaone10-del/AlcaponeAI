@@ -69,6 +69,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mtag.ar{background:rgba(0,200,255,.06);border:1px solid rgba(0,200,255,.2);color:var(--c)}
 .mtag.code{background:rgba(0,200,255,.05);border:1px solid rgba(0,255,157,.15);color:#7dcfff}
 .mtag.power{background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);color:var(--r)}
+.mtag.auto{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#a0aec0;}
 
 /* STATUS BAR */
 .sbar{flex-shrink:0;padding:2px 10px;display:flex;align-items:center;gap:5px;
@@ -629,7 +630,8 @@ function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
-  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
+  let s=raw.replace(/```(\w*)\n?([\s\S]*?)
+```/g,(_,lang,code)=>{
     const k='\x01B'+ci+'\x01';
     blk[k]=`<pre data-lang="${esc(lang)||'txt'}"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>${esc(code.trim())}</pre>`;
     ci++; return k;
@@ -732,6 +734,56 @@ async function testAllKeys() {
   renderPBar();
 }
 
+// =================== DYNAMIC MODELS FETCHER ===================
+async function fetchDynamicModels(provId) {
+  const p = PROVIDERS.find(x => x.id === provId);
+  if(!p || !p.url || p.dynamicFetched || p.id === 'huggingface') return;
+  
+  const key = getKey(p);
+  if(!key) return; 
+
+  try {
+    let mUrl = p.url.replace('/chat/completions', '/models');
+    if(p.id === 'gemini') mUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
+
+    let headers = { 'Content-Type': 'application/json' };
+    if(p.id !== 'gemini') headers['Authorization'] = `Bearer ${key}`;
+    if(p.headers) Object.assign(headers, p.headers);
+
+    const res = await fetch(mUrl, { headers });
+    if(!res.ok) return; 
+
+    const data = await res.json();
+    let modelsArray = data.data || data.models; 
+
+    if(modelsArray && Array.isArray(modelsArray)) {
+        const existingIds = new Set(p.models.map(x => x.id.replace('models/', '')));
+
+        modelsArray.forEach(m => {
+            let rawId = m.id || m.name;
+            if(!rawId) return;
+            
+            let checkId = rawId.replace('models/', '');
+            
+            if(checkId.includes('embed') || checkId.includes('whisper') || checkId.includes('tts')) return;
+
+            if(!existingIds.has(checkId)) {
+                let shortName = checkId.split('/').pop().toUpperCase();
+                p.models.push({ id: rawId, name: shortName, tags: ['auto'] }); 
+            }
+        });
+
+        p.dynamicFetched = true; 
+        
+        if(G.prov === provId) {
+            renderMBar();
+            updS();
+        }
+    }
+  } catch(e) {
+  }
+}
+
 // =================== UI RENDERING ===================
 function renderPBar(){
   $('pbar').innerHTML=PROVIDERS.filter(p=>p.id!=='huggingface').map(p=>{
@@ -747,15 +799,23 @@ function renderPBar(){
 function renderMBar(){
   const p=getP(); if(!p) return;
   $('mbar').innerHTML=p.models.map(m=>{
-    const tags=m.tags.map(t=>`<span class="mtag ${t}">${t==='fast'?'سريع':t==='think'?'تفكير':t==='new'?'جديد':t==='ar'?'عربي':t==='code'?'كود':t==='power'?'قوي':t}</span>`).join('');
+    const tags=m.tags.map(t=>`<span class="mtag ${t}">${t==='fast'?'سريع':t==='think'?'تفكير':t==='new'?'جديد':t==='ar'?'عربي':t==='code'?'كود':t==='power'?'قوي':t==='auto'?'تلقائي':t}</span>`).join('');
     return `<div class="mc${G.model===m.id?' on':''}" onclick="selModel('${m.id}')">${m.name}${tags}</div>`;
   }).join('');
 }
 function selProv(id){
   if(G.provStatus[id] === 'fail') { toast('هذا المزود متعطل حالياً (مفتاح منتهي)','er'); return; }
-  G.prov=id; G.model=getP().models[0].id;
+  G.prov=id;
+  
+  const p = getP();
+  if(p && p.models && p.models.length > 0) {
+      G.model = p.models[0].id;
+  }
+  
   renderPBar(); renderMBar(); updS();
-  toast(`${getP().icon} ${getP().name}`,'in');
+  if(p) toast(`${p.icon} ${p.name}`,'in');
+
+  fetchDynamicModels(id);
 }
 function selModel(id){
   G.model=id; renderMBar(); updS();
@@ -1104,6 +1164,10 @@ function init(){
   loadSettings(); loadConvs(); updTokUI();
   testAllKeys(); // فحص صامت للمفاتيح عند التشغيل
   renderMBar(); updS();
+  
+  // 🔥 الجلب التلقائي لنماذج المزود الافتراضي عند فتح التطبيق
+  fetchDynamicModels(G.prov); 
+
   document.querySelectorAll('.ov').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('on');}));
   setTimeout(()=>$('ta').focus(),400);
   toast('🚀 V13 ULTRA جاهز!','ok',3500);
