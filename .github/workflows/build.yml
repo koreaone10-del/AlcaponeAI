@@ -1,0 +1,47 @@
+name: Build APK from HTML
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Capacitor CLI
+        run: npm install -g @capacitor/cli
+
+      - name: Prepare web assets
+        run: |
+          mkdir -p www
+          cp index.html www/index.html
+
+      - name: Create Capacitor project
+        run: |
+          npx --yes @capacitor/cli create myApp com.chibani.ai "Chibani Lotfi AI" --web-dir=www
+          cd myApp
+          npm install @capacitor/android
+          npx cap add android
+
+      - name: Sync and build APK
+        run: |
+          cd myApp
+          npx cap sync
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chibani-Lotfi-AI-V13
+          path: myApp/android/app/build/outputs/apk/debug/*.apk
