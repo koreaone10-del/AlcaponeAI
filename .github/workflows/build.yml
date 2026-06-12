@@ -1,0 +1,47 @@
+name: Build APK with Cordova
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Cordova
+        run: |
+          npm install -g cordova
+          # إنشاء المشروع
+          cordova create myapp com.chibani.ai ChibaniAI
+          cd myapp
+          # إضافة منصة أندرويد
+          cordova platform add android
+          # نسخ ملفك إلى المجلد الصحيح
+          cp ../index.html www/index.html
+          
+          # إضافة الإعدادات المطلوبة لفك قيود المتصفح (CORS)
+          sed -i 's|</widget>|    <preference name="AndroidInsecureFileModeEnabled" value="true" />\n    <allow-navigation href="*" />\n    <access origin="*" />\n</widget>|' config.xml
+          
+          # بناء التطبيق
+          cordova build android --debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chibani-AI-V13-APK
+          path: myapp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
