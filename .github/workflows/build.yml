@@ -1,0 +1,55 @@
+name: Build APK from HTML
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-33'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Cordova project
+        run: |
+          cordova create myApp com.chibani.ai "Chibani Lotfi AI"
+          cd myApp
+          cordova platform add android
+
+      - name: Copy web assets
+        run: |
+          cp index.html myApp/www/index.html
+          # إذا كانت هناك أي مجلدات أخرى (css, js, images) انسخها هنا أيضاً
+          # لكن في حالتنا كل شيء داخل index.html، لذلك نكتفي بذلك
+
+      - name: Build APK
+        run: |
+          cd myApp
+          cordova build android --verbose
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chibani-Lotfi-AI-V13
+          path: myApp/platforms/android/app/build/outputs/apk/debug/*.apk
