@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Chibani Lotfi AI — V13 ULTRA FINAL</title>
+<title>Chibani Lotfi AI — V13 ULTRA 🚀</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Tajawal:wght@400;500;700&display=swap');
 :root{
@@ -23,6 +23,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-size:50px 50px;animation:bgm 60s linear infinite}
 @keyframes bgm{to{background-position:50px 50px}}
 
+/* HEADER */
 header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b);
   background:rgba(3,6,12,0.99);display:flex;align-items:center;justify-content:space-between;gap:6px; flex-wrap: wrap;}
 .logo{font-family:'Orbitron';font-size:12px;font-weight:900;color:var(--c);
@@ -38,6 +39,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .live{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pu 2s infinite;flex-shrink:0}
 @keyframes pu{0%,100%{opacity:1}50%{opacity:.25}}
 
+/* PROVIDER BAR */
 .pbar{flex-shrink:0;padding:3px 8px;background:rgba(4,8,16,.99);
   border-bottom:1px solid var(--b);display:flex;gap:3px;overflow-x:auto;min-height:27px;align-items:center}
 .pbar::-webkit-scrollbar{height:0}
@@ -52,6 +54,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .pkeybadge{font-size:6px;background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);
   color:var(--o);padding:0 3px;border-radius:3px}
 
+/* MODEL BAR */
 .mbar{flex-shrink:0;padding:3px 8px;background:rgba(4,8,16,.95);
   border-bottom:1px solid var(--b);display:flex;gap:2px;overflow-x:auto;min-height:27px;align-items:center}
 .mbar::-webkit-scrollbar{height:0}
@@ -68,6 +71,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mtag.power{background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);color:var(--r)}
 .mtag.auto{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#a0aec0;}
 
+/* STATUS BAR */
 .sbar{flex-shrink:0;padding:2px 10px;display:flex;align-items:center;gap:5px;
   font-size:8px;font-family:'Share Tech Mono';border-bottom:1px solid var(--b);
   background:rgba(4,8,16,.6);min-height:18px;overflow-x:auto; white-space:nowrap;}
@@ -82,7 +86,10 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .smeta{color:var(--t2);font-size:7px;flex-shrink:0;}
 .stokens{margin-right:auto; color:var(--y); font-size:7.5px; background:rgba(255,215,0,0.05); padding:1px 5px; border-radius:3px; border:1px solid rgba(255,215,0,0.15); display:flex; gap:6px;}
 
+/* MAIN */
 .main{display:flex;flex:1;overflow:hidden;z-index:1;min-height:0}
+
+/* SIDEBAR */
 .sb{width:150px;flex-shrink:0;border-left:1px solid var(--b);
   background:rgba(4,8,16,.9);display:flex;flex-direction:column;overflow:hidden}
 @media(max-width:520px){.sb{display:none}}
@@ -103,11 +110,13 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .sb-foot{padding:5px;border-top:1px solid var(--b)}
 .sb-ver{font-size:5.5px;color:var(--t2);font-family:'Share Tech Mono';text-align:center;line-height:1.6}
 
+/* CHAT */
 .chat{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
 .msgs::-webkit-scrollbar{width:2px}
 .msgs::-webkit-scrollbar-thumb{background:rgba(0,200,255,.07);border-radius:2px}
 
+/* MESSAGES */
 .msg{display:flex;gap:6px;animation:fi .2s ease-out}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .msg.u{flex-direction:row-reverse}
@@ -118,6 +127,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .bub.ai{background:var(--panel);border:1px solid var(--b);border-top-right-radius:2px}
 .bub.u{background:rgba(0,255,157,.04);border:1px solid rgba(0,255,157,.09);border-top-left-radius:2px;text-align:right}
 
+/* CODE BLOCKS */
 .bub pre{margin:6px 0;padding:8px 8px 8px 26px;background:rgba(0,0,0,.65);
   border:1px solid rgba(0,200,255,.09);border-radius:5px;overflow-x:auto;
   direction:ltr;text-align:left;font-family:'Share Tech Mono';font-size:10.5px;line-height:1.5;color:#88b8e0;position:relative}
@@ -140,12 +150,14 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .bub th{background:rgba(0,200,255,.08);padding:4px 6px;border:1px solid var(--b);color:var(--c)}
 .bub td{padding:3px 6px;border:1px solid var(--b)}
 
+/* THINKING BLOCK */
 .think{margin:4px 0;border:1px solid rgba(168,85,247,.2);border-radius:6px;overflow:hidden}
 .think-h{padding:4px 8px;background:rgba(168,85,247,.07);font-size:8px;color:var(--p);
   font-family:'Share Tech Mono';cursor:pointer;display:flex;align-items:center;gap:4px;justify-content:space-between}
 .think-b{padding:8px;background:rgba(168,85,247,.03);color:var(--t2);font-size:10.5px;line-height:1.6;direction:ltr;text-align:left;display:none}
 .think-b.open{display:block}
 
+/* MSG META */
 .mmeta{font-size:7px;color:var(--t2);margin-top:4px;font-family:'Share Tech Mono';display:flex;gap:5px;align-items:center;flex-wrap:wrap}
 .mprov{color:var(--p)}
 .mbtn{background:transparent;border:1px solid var(--b);color:var(--t2);padding:1px 5px;
@@ -153,21 +165,27 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mbtn:active{color:var(--c);border-color:var(--c)}
 .mfallback{background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);color:var(--o);padding:1px 5px;border-radius:3px;font-size:6.5px}
 
+/* LOADING DOTS */
 .ldots{display:flex;gap:4px;padding:5px 0}
 .ldots span{width:5px;height:5px;border-radius:50%;background:var(--c);animation:bt 1.4s ease-in-out infinite}
 .ldots span:nth-child(2){animation-delay:.22s}.ldots span:nth-child(3){animation-delay:.44s}
 @keyframes bt{0%,80%,100%{transform:scale(0);opacity:.2}40%{transform:scale(1);opacity:1}}
 
+/* STREAM CURSOR */
 .scursor{color:var(--c);animation:pu 0.8s infinite}
 
+/* GEN IMAGE/VIDEO */
 .gimg{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);cursor:pointer;object-fit:contain}
 .gimg:active{transform:scale(.98)}
 .gvid{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);}
 
+/* WELCOME MSG */
 .welcome{padding:12px 14px;border:1px solid rgba(0,200,255,.15);background:rgba(0,200,255,.03);border-radius:8px;font-size:12px;line-height:1.9}
 .wrow{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--t2)}
 .wrow .wi{font-size:14px;flex-shrink:0}
+.wrow strong{color:var(--t)}
 
+/* ADVANCED PANEL */
 .adv{flex-shrink:0;display:none;padding:5px 10px;background:rgba(4,8,16,.98);
   border-top:1px solid var(--b);gap:8px;flex-wrap:wrap;align-items:flex-start}
 .adv.on{display:flex}
@@ -180,6 +198,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
   padding:3px 6px;border-radius:3px;font-size:11px;font-family:'Tajawal';outline:none;width:100%}
 .aval{font-size:8px;color:var(--c);font-family:'Share Tech Mono'}
 
+/* INPUT AREA */
 .inp{flex-shrink:0;padding:5px 8px 6px;background:rgba(3,6,12,.99);border-top:1px solid var(--b);z-index:100;position:relative}
 .fprev{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;max-height:68px;overflow-y:auto}
 .fchip{display:flex;align-items:center;gap:4px;background:rgba(0,200,255,.05);border:1px solid var(--b);border-radius:8px;padding:3px 5px;font-size:8px;max-width:130px;flex-shrink:0;position:relative}
@@ -214,6 +233,7 @@ textarea::placeholder{color:var(--t2)}
 .sbtn.busy{animation:sbp .7s infinite alternate}
 @keyframes sbp{from{box-shadow:0 0 4px rgba(0,200,255,.1)}to{box-shadow:0 0 16px rgba(168,85,247,.5)}}
 
+/* MODALS */
 .ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
   display:none;align-items:center;justify-content:center;padding:12px}
 .ov.on{display:flex}
@@ -260,6 +280,7 @@ textarea::placeholder{color:var(--t2)}
   border:1px solid rgba(168,85,247,.18);border-radius:6px;cursor:pointer;color:var(--p);font-family:'Tajawal'}
 .preset:active{background:rgba(168,85,247,.14)}
 
+/* TOAST */
 .toast{position:fixed;bottom:65px;left:50%;transform:translateX(-50%) translateY(10px);
   padding:5px 14px;border-radius:12px;font-size:10px;font-family:'Share Tech Mono';
   z-index:9999;opacity:0;transition:all .2s;white-space:nowrap;pointer-events:none}
@@ -278,7 +299,7 @@ textarea::placeholder{color:var(--t2)}
   <div class="logo" onclick="newChat()">
     🇩🇿
     <div>Chibani Lotfi <b>AI</b>
-      <span class="logo-sub">V13 ULTRA FINAL — ARENA &amp; MEDIA 🚀</span>
+      <span class="logo-sub">V13 ULTRA — ARENA & MEDIA 🚀</span>
     </div>
   </div>
   <div class="hdr-r">
@@ -309,7 +330,7 @@ textarea::placeholder{color:var(--t2)}
     </div>
     <div class="convlist" id="convlist"></div>
     <div class="sb-foot">
-      <div class="sb-ver">Chibani Lotfi AI V13 FINAL<br>🇩🇿 Algeria — Free LLMs</div>
+      <div class="sb-ver">Chibani Lotfi AI V13 ULTRA<br>🇩🇿 Algeria — Free LLMs</div>
     </div>
   </div>
   <div class="chat">
@@ -318,12 +339,11 @@ textarea::placeholder{color:var(--t2)}
         <div class="av ai">🤖</div>
         <div class="bub ai">
           <div class="welcome">
-            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA FINAL! 🚀</strong>
+            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA! 🚀</strong>
             <br>
             <div class="wrow"><span class="wi">⚔️</span><strong>حلبة التنافس (Arena):</strong> فّعلها من الإعدادات للحصول على أسرع إجابة من عدة نماذج.</div>
             <div class="wrow"><span class="wi">✅</span><strong>الفحص الذاتي (Auto-Test):</strong> الألوان الحمراء بالبار العلوي تعني المفتاح منتهي.</div>
             <div class="wrow"><span class="wi">🎬</span><strong>ميديا سينمائية:</strong> استخدم زر التوليد لصناعة صور وفيديوهات.</div>
-            <div class="wrow"><span class="wi">🔧</span><strong>تم إصلاح:</strong> أخطاء الانهيار، مشكلة الأزرار، وضبط حدود المزودين التلقائية.</div>
             <br>
             <span style="color:var(--t2);font-size:11px">اضغط <strong style="color:var(--c)">🔑</strong> لإضافة مفاتيح API المجانية لتعمل النماذج بشكل ممتاز داخل تطبيقك.</span>
           </div>
@@ -343,7 +363,7 @@ textarea::placeholder{color:var(--t2)}
   </div>
   <div class="afield">
     <label>TEMP</label>
-    <input type="range" min="0" max="1" step="0.05" value="0.7" id="slTemp" oninput="valTemp.textContent=this.value;saveSettings()">
+    <input type="range" min="0" max="2" step="0.05" value="0.7" id="slTemp" oninput="valTemp.textContent=this.value;saveSettings()">
     <span class="aval" id="valTemp">0.7</span>
   </div>
   <div class="afield">
@@ -378,7 +398,7 @@ textarea::placeholder{color:var(--t2)}
       <textarea id="ta" placeholder="اكتب رسالتك... (Enter للإرسال، Shift+Enter لسطر جديد)" rows="1"
         onkeydown="onKey(event)" oninput="resize(this);updateCC()"></textarea>
       <div class="trow">
-        <button class="tbtn" onclick="document.getElementById('fileInp').click()">📎</button>
+        <button class="tbtn" onclick="fileInp.click()">📎</button>
         <button class="tbtn" id="btnWS" onclick="toggleWS()">🔍 بحث</button>
         <button class="tbtn" id="btnST" onclick="toggleST()">⚡ بث</button>
         <button class="tbtn" onclick="clearAll()">🗑️ مسح</button>
@@ -417,7 +437,7 @@ textarea::placeholder{color:var(--t2)}
     <div class="krow"><span class="ki">🟢</span><label>NVIDIA</label><input type="password" id="k_nv" placeholder="nvapi-..."></div>
     <div class="krow"><span class="ki">🧠</span><label>Cerebras</label><input type="password" id="k_cb" placeholder="csk-..."></div>
     <div class="krow"><span class="ki">🤗</span><label>HuggingFace</label><input type="password" id="k_hf" placeholder="hf_..."></div>
-    <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة.</div>
+    <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة (خط أحمر على المتعطلة).</div>
     <div class="mbtns">
       <button class="btn bno" onclick="closeOv('keys')">إلغاء</button>
       <button class="btn bok" onclick="saveKeys()">💾 حفظ وفحص</button>
@@ -466,8 +486,8 @@ textarea::placeholder{color:var(--t2)}
     <div class="mrow">
       <label>نوع التوليد:</label>
       <select id="mediaType">
-        <option value="image">🎨 صورة (Flux عبر HuggingFace)</option>
-        <option value="video">🎞️ فيديو (Minimax عبر AI/ML API)</option>
+        <option value="image">🎨 صورة (Flux / SD عبر HuggingFace)</option>
+        <option value="video">🎞️ فيديو (Minimax / Luma عبر AI/ML API)</option>
       </select>
     </div>
     <div class="mrow">
@@ -486,16 +506,10 @@ textarea::placeholder{color:var(--t2)}
 
 <script>
 // ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA FINAL (ALL BUGS CORRECTED)
+//  CHIBANI LOTFI AI — V13 ULTRA (HARDCODED MODELS + AUTO-FETCH FIX)
 // ================================================================
 
-// تفعيل صائد الأخطاء لاكتشاف أي مشكلة خفية
-window.onerror = function(msg, url, line) {
-    console.error("Syntax Error at line " + line + ": " + msg);
-    return false;
-};
-
-// =================== PROVIDER & MODEL CONFIG (FIXED) ===================
+// =================== PROVIDER & MODEL CONFIG (FIXED & EXPANDED) ===================
 const PROVIDERS = [
   { id:'openrouter', name:'OpenRouter', icon:'🔀', color:'#7c4dff', url:'https://openrouter.ai/api/v1/chat/completions', free:false, keyId:'k_or', stream:true,
     headers:{'HTTP-Referer':'https://chibani-ai.dz','X-Title':'Chibani Lotfi AI V13'},
@@ -507,17 +521,19 @@ const PROVIDERS = [
   },
   { id:'groq', name:'Groq', icon:'⚡', color:'#f59e0b', url:'https://api.groq.com/openai/v1/chat/completions', free:false, keyId:'k_gr', stream:true,
     models:[
-      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power']},
-      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast']},
-      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[]},
-      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think']},
-      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[]},
-      {id:'llama-4-scout-17b-16e-instruct',           name:'Llama 4 Scout',    tags:['new']}
+      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power'],  maxTok:32768},
+      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast'],   maxTok:8192},
+      {id:'llama3-70b-8192',                          name:'Llama 3 70B',      tags:[],         maxTok:8192},
+      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[],         maxTok:8192},
+      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think'],  maxTok:32768},
+      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[],         maxTok:16384},
+      {id:'meta-llama/llama-4-scout-17b-16e-instruct',name:'Llama 4 Scout',    tags:['new'],    maxTok:8192}
     ]
   },
   { id:'gemini', name:'Gemini', icon:'💎', color:'#4285f4', url:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', free:false, keyId:'k_ge', stream:false,
     models:[
-      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['new']},
+      {id:'gemini-2.0-flash',                  name:'Gemini 2.0 Flash',       tags:['fast','new']},
+      {id:'gemini-1.5-flash',                  name:'Gemini 1.5 Flash',       tags:['fast']},
       {id:'gemini-1.5-pro',                    name:'Gemini 1.5 Pro',         tags:['power']}
     ]
   },
@@ -529,12 +545,12 @@ const PROVIDERS = [
   },
   { id:'mistral', name:'Mistral', icon:'🌪️', color:'#ea580c', url:'https://api.mistral.ai/v1/chat/completions', free:false, keyId:'k_ms', stream:true,
     models:[
-      {id:'mistral-large-latest',name:'Mistral Large',tags:['power']},
-      {id:'pixtral-large-latest',name:'Pixtral Large',tags:[]},
-      {id:'codestral-latest',name:'Codestral',tags:['code']},
-      {id:'mistral-small-latest',name:'Mistral Small',tags:['fast']},
-      {id:'ministral-3b-latest',name:'Ministral 3B',tags:['fast']},
-      {id:'mistral-moderation-latest',name:'Moderation',tags:[]}
+      {id:'mistral-large-latest',       name:'Mistral Large',    tags:['power']},
+      {id:'mistral-small-latest',       name:'Mistral Small',    tags:['fast']},
+      {id:'codestral-latest',           name:'Codestral',        tags:['code']},
+      {id:'open-mistral-nemo',          name:'Mistral Nemo',     tags:[]},
+      {id:'ministral-8b-latest',        name:'Ministral 8B',     tags:['fast']},
+      {id:'magistral-small-latest',     name:'Magistral Small',  tags:['think']}
     ]
   },
   { id:'siliconflow', name:'SiliconFlow', icon:'💠', color:'#8b5cf6', url:'https://api.siliconflow.cn/v1/chat/completions', free:false, keyId:'k_sf', stream:true,
@@ -543,32 +559,37 @@ const PROVIDERS = [
       {id:'deepseek-ai/DeepSeek-V3',name:'DeepSeek V3',tags:[]}
     ]
   },
-  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v1/chat/completions', free:false, keyId:'k_am', stream:true,
+  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v2/chat/completions', free:false, keyId:'k_am', stream:false,
     models:[
-      {id:'gpt-4o-mini',name:'GPT-4o Mini',tags:['fast']},
-      {id:'gpt-4o',name:'GPT-4o',tags:['power']},
-      {id:'claude-3-5-sonnet-20241022',name:'Claude 3.5',tags:['power']}
+      {id:'gpt-4o-mini',                            name:'GPT-4o Mini',   tags:['fast']},
+      {id:'meta-llama/Llama-3.2-3B-Instruct-Turbo', name:'Llama 3.2 3B',  tags:[]},
+      {id:'mistralai/Mistral-7B-Instruct-v0.2',     name:'Mistral 7B',    tags:[]}
     ]
   },
-  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:true,
+  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:false,
     models:[
-      {id:'meta/llama-3.1-405b-instruct', name:'Llama 3.1 405B', tags:['power']},
-      {id:'meta/llama-3.1-70b-instruct', name:'Llama 3.1 70B', tags:[]},
-      {id:'meta/llama-3.1-8b-instruct', name:'Llama 3.1 8B', tags:['fast']},
-      {id:'nvidia/nemotron-4-340b-instruct', name:'Nemotron 340B', tags:['power']},
-      {id:'nvidia/llama-3.1-nemotron-70b-instruct', name:'Nemotron 70B', tags:[]},
-      {id:'mistralai/mixtral-8x22b-instruct-v0.1', name:'Mixtral 8x22B', tags:[]},
-      {id:'mistralai/mistral-large', name:'Mistral Large', tags:[]},
-      {id:'google/gemma-2-27b-it', name:'Gemma 2 27B', tags:[]},
-      {id:'microsoft/phi-3-medium-4k-instruct', name:'Phi-3 Medium', tags:['code']}
+      {id:'nvidia/llama-3.1-nemotron-70b-instruct',     name:'Nemotron 70B',   tags:['power'], maxTok:1024},
+      {id:'meta/llama-3.3-70b-instruct',                name:'Llama 3.3 70B',  tags:[],        maxTok:1024},
+      {id:'meta/llama-3.1-8b-instruct',                 name:'Llama 3.1 8B',   tags:['fast'],  maxTok:1024},
+      {id:'microsoft/phi-3-mini-128k-instruct',         name:'Phi-3 Mini',     tags:['code'],  maxTok:1024},
+      {id:'google/gemma-2-9b-it',                       name:'Gemma 2 9B',     tags:[],        maxTok:1024}
     ]
   },
   { id:'cerebras', name:'Cerebras', icon:'🧠', color:'#10b981', url:'https://api.cerebras.ai/v1/chat/completions', free:false, keyId:'k_cb', stream:true,
     models:[
-      {id:'llama3.1-70b',  name:'Llama 3.1 70B', tags:['power']}
+      {id:'llama-3.3-70b',  name:'Llama 3.3 70B', tags:['power','fast']},
+      {id:'llama3.1-8b',    name:'Llama 3.1 8B',  tags:['fast']},
+      {id:'qwen-3-32b',     name:'Qwen 3 32B',    tags:['think']}
     ]
   },
-  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/models/', free:false, keyId:'k_hf', stream:false, models:[] }
+  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/v1/chat/completions', free:false, keyId:'k_hf', stream:true,
+    models:[
+      {id:'microsoft/Phi-3.5-mini-instruct',            name:'Phi-3.5 Mini',   tags:['fast']},
+      {id:'HuggingFaceH4/zephyr-7b-beta',               name:'Zephyr 7B',      tags:[]},
+      {id:'mistralai/Mistral-7B-Instruct-v0.3',         name:'Mistral 7B',     tags:[]},
+      {id:'Qwen/Qwen2.5-7B-Instruct',                   name:'Qwen 2.5 7B',    tags:[]}
+    ]
+  }
 ];
 
 // =================== GLOBAL STATE ===================
@@ -579,48 +600,17 @@ const G = {
   msgs:[], convs:[], cid:null,
   busy:false, streaming:true, autoRouter:true, mode: 'strict',
   temp:0.7, maxTok:2048, sys:'', wsearch:false, files:[],
-  provStatus: {}
+  provStatus: {} // For auto-diagnostic
 };
 
+// =================== TOKEN COUNTER ===================
 let sessionTokens = 0;
 let totalTokens = parseInt(localStorage.getItem('cl_v13_tot_tok')||'0');
 const COST_PER_1K = 0.002;
 
-// =================== UTILS ===================
-const $ = function(id) { return document.getElementById(id); };
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
-
-let _toastT;
-function toast(msg,type,dur){
-  type = type || 'in';
-  dur = dur || 2500;
-  const t=$('toast'); 
-  if(!t) return;
-  t.textContent=msg;
-  t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
-  t.classList.add('on'); 
-  clearTimeout(_toastT);
-  _toastT=setTimeout(function(){t.classList.remove('on');},dur);
-}
-
-function setS(txt,type){
-  type = type || 'ok';
-  if($('stxt')) $('stxt').textContent=txt;
-  const b=$('sbadge');
-  if(b) {
-      b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
-      b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
-  }
-}
-
-function scrollB(){ const m=$('msgs'); if(m) m.scrollTop=m.scrollHeight; }
-function getP(){ return PROVIDERS.find(function(p){return p.id===G.prov;}); }
-function getM(p){ const prov = p || getP(); return prov.models.find(function(m){return m.id===G.model;}); }
-function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
-
+function estTok(txt){ return Math.ceil(String(txt||'').length / 4); }
 function addTok(txt){
-  const t = Math.ceil(String(txt||'').length / 4);
+  const t = estTok(txt);
   sessionTokens += t;
   totalTokens += t;
   localStorage.setItem('cl_v13_tot_tok', totalTokens);
@@ -629,8 +619,30 @@ function addTok(txt){
 function updTokUI(){
   const cost = ((totalTokens/1000) * COST_PER_1K).toFixed(4);
   const el = $('tokCount');
-  if(el) el.innerHTML = '🪙 جلسة: ' + sessionTokens + ' | كلي: ' + totalTokens + ' | $' + cost;
+  if(el) el.innerHTML = `🪙 جلسة: ${sessionTokens} | كلي: ${totalTokens} | $${cost}`;
 }
+
+// =================== UTILS ===================
+const $ = id => document.getElementById(id);
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+let _toastT;
+function toast(msg,type='in',dur=2500){
+  const t=$('toast'); t.textContent=msg;
+  t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
+  t.classList.add('on'); clearTimeout(_toastT);
+  _toastT=setTimeout(()=>t.classList.remove('on'),dur);
+}
+function setS(txt,type='ok'){
+  $('stxt').textContent=txt;
+  const b=$('sbadge');
+  b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
+  b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
+}
+function scrollB(){ const m=$('msgs'); m.scrollTop=m.scrollHeight; }
+function getP(){ return PROVIDERS.find(p=>p.id===G.prov); }
+function getM(p){ return (p||getP()).models.find(m=>m.id===G.model); }
+function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
 
 function copyUSDT(){
   const w=$('usdtWallet'); w.select(); w.setSelectionRange(0,99999);
@@ -638,786 +650,652 @@ function copyUSDT(){
   toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
 }
 
-// =================== MARKDOWN RENDERER (FIXED) ===================
+// =================== MARKDOWN RENDERER (ORIGINAL) ===================
 function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
-  
-  // حماية الأكواد البرمجية
-  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,function(_,lang,code){
-    const k='B'+ci+'';
-    blk[k]='<pre data-lang="'+esc(lang||'txt')+'"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>'+esc(code.trim())+'</pre>';
+  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
+    const k='\x01B'+ci+'\x01';
+    blk[k]=`<pre data-lang="${esc(lang)||'txt'}"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>${esc(code.trim())}</pre>`;
     ci++; return k;
   });
-  
-  s=s.replace(/`([^`]+)`/g,function(_,t){
-    const k='T'+ti+'';
-    tblk[k]='<code>'+esc(t)+'</code>';
+  s=s.replace(/<think>([\s\S]*?)<\/think>/g,(_,c)=>{
+    const k='\x01T'+ti+'\x01';
+    tblk[k]=`<div class="think"><div class="think-h" onclick="tglThink(this)">💭 تفكير <span>▼</span></div><div class="think-b">${esc(c.trim())}</div></div>`;
     ti++; return k;
   });
-  
-  s=esc(s);
-  s=s.replace(/\*\*\*([^*]+)\*\*\*/g,'<strong><em>$1</em></strong>')
-   .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
-   .replace(/\*([^*]+)\*/g,'<em>$1</em>')
-   .replace(/__([^_]+)__/g,'<strong>$1</strong>')
-   .replace(/_([^_]+)_/g,'<em>$1</em>')
-   .replace(/~~([^~]+)~~/g,'<del>$1</del>')
-   .replace(/#{3}\s+([^\n]+)/g,'<h3>$1</h3>')
-   .replace(/#{2}\s+([^\n]+)/g,'<h2>$1</h2>')
-   .replace(/#\s+([^\n]+)/g,'<h1>$1</h1>')
-   .replace(/\n\n/g,'</p><p>')
-   .replace(/\n/g,'<br>');
-   
-  s='<p>'+s+'</p>';
-  s=s.replace(/<p>\s*<\/p>/g,'')
-   .replace(/<p>(<h[123][^>]*>.*?<\/h[123]>)<\/p>/g,'$1')
-   .replace(/<p>(<pre[^>]*>.*?<\/pre>)<\/p>/g,'$1')
-   .replace(/<br><\/p>/g,'</p>');
-   
-  Object.keys(blk).forEach(function(k){ s=s.replace(k,blk[k]); });
-  Object.keys(tblk).forEach(function(k){ s=s.replace(k,tblk[k]); });
-  return s;
-}
-
-function cpCode(btn){
-  const pre=btn.parentElement;
-  const txt=pre.textContent.replace('نسخ','').trim();
-  navigator.clipboard.writeText(txt);
-  btn.textContent='تم!';
-  setTimeout(function(){btn.textContent='نسخ';},1200);
-}
-
-// =================== PROVIDER / MODEL BARS ===================
-function renderPBar(){
-  const el=$('pbar');
-  if(!el) return;
-  el.innerHTML='';
-  PROVIDERS.forEach(function(p){
-    const hasKey = !!getKey(p);
-    const isFailed = G.provStatus[p.id] === 'failed';
-    const div=document.createElement('div');
-    div.className='pc'+(G.prov===p.id?' on':'')+(isFailed?' failed':'');
-    div.style.setProperty('--pc',p.color);
-    div.innerHTML='<span class="pdot" style="background:'+(isFailed?'var(--r)':hasKey?p.color:'var(--t2)')+'"></span>'+p.icon+' '+p.name+(p.free?'<span class="pfree">FREE</span>':'')+(hasKey?'<span class="pkeybadge">KEY</span>':'');
-    div.onclick=function(){selProv(p.id);};
-    el.appendChild(div);
+  s=s.replace(/(\|[^\n]+\|\n\|[-| :]+\|\n(?:\|[^\n]+\|\n?)+)/g,tblMatch=>{
+    const rows=tblMatch.trim().split('\n');
+    const hdrs=rows[0].split('|').filter(x=>x.trim()).map(x=>`<th>${mdi(x.trim())}</th>`).join('');
+    const body=rows.slice(2).map(r=>`<tr>${r.split('|').filter(x=>x.trim()).map(c=>`<td>${mdi(c.trim())}</td>`).join('')}</tr>`).join('');
+    return `<table><thead><tr>${hdrs}</tr></thead><tbody>${body}</tbody></table>`;
   });
-}
-
-function renderMBar(){
-  const p=getP(), el=$('mbar');
-  if(!el || !p) return;
-  el.innerHTML='';
-  p.models.forEach(function(m){
-    const div=document.createElement('div');
-    div.className='mc'+(G.model===m.id?' on':'');
-    let tags='';
-    m.tags.forEach(function(t){ tags+='<span class="mtag '+t+'">'+t+'</span>'; });
-    div.innerHTML=tags+m.name;
-    div.onclick=function(){selModel(m.id);};
-    el.appendChild(div);
-  });
-}
-
-function selProv(id){
-  G.prov=id;
-  const p=getP();
-  if(p && p.models.length > 0) G.model=p.models[0].id;
-  renderPBar(); renderMBar();
-  if(p) setS('المزود: '+p.name);
-}
-
-function selModel(id){ G.model=id; renderMBar(); setS('النموذج: '+getM().name); }
-
-// =================== KEY TESTING ===================
-async function testKey(p){
-  const key=getKey(p);
-  if(!key) return 'nokey';
-  try{
-    const testModel = p.models[0] ? p.models[0].id : 'gpt-4o-mini';
-    const body = {
-      model: testModel,
-      messages: [{role:'user',content:'Hi'}],
-      max_tokens: 5,
-      temperature: 0.1
-    };
-    if(p.id==='groq') body.max_tokens = 5;
-    if(p.id==='mistral') body.temperature = 0.1;
-
-    const hdr={'Content-Type':'application/json'};
-    hdr.Authorization='Bearer '+key;
-    Object.assign(hdr, p.headers || {});
-
-    let url = p.url;
-    if(p.id==='gemini') url += '?key='+key;
-
-    const resp=await fetch(url,{ method:'POST', headers:hdr, body:JSON.stringify(body) });
-    if(resp.ok) return 'ok';
-    return 'err: '+resp.status;
-  }catch(e){ return 'err: '+e.message; }
-}
-
-async function testAllKeys(){
-  setS('جارٍ فحص المفاتيح...','busy');
-  G.provStatus = {};
-  for(let i=0; i<PROVIDERS.length; i++){
-    const p = PROVIDERS[i];
-    if(!p.keyId || p.id === 'huggingface') continue;
-    const res = await testKey(p);
-    if(res === 'ok') G.provStatus[p.id] = 'ok';
-    else if(res === 'nokey') G.provStatus[p.id] = 'nokey';
-    else G.provStatus[p.id] = 'failed';
-  }
-  renderPBar();
-  setS('✅ تم التحديث','ok');
-}
-
-// =================== SEND MESSAGE (API ENGINE) ===================
-async function doSend(){
-  if(G.busy) return;
-  const ta=$('ta'), txt=ta.value.trim();
-  if(!txt && G.files.length===0) return;
-
-  // 1. حظر النماذج التجريبية مباشرة
-  if(G.model.toLowerCase().includes('labs')) {
-      toast('❌ نموذج Labs محظور (يحتاج تفعيل مسؤول)', 'er', 3000);
-      return;
-  }
-
-  G.busy=true;
-  if($('sbtn')) { $('sbtn').disabled=true; $('sbtn').classList.add('busy'); }
-  setS('جارٍ الإرسال...','busy');
-
-  const userMsg = {role:'user', content:txt, id:uid(), files:G.files.slice()};
-  G.msgs.push(userMsg);
-  addMsgUI(userMsg, 'u');
-  ta.value=''; resize(ta); updateCC();
-  G.files=[]; renderFiles();
-
-  if(G.mode==='arena'){
-    await doArena(txt);
-    return;
-  }
-
-  const p=getP();
-  const key=getKey(p);
-  if(!key){
-    toast('❌ لا يوجد مفتاح API لهذا المزود! اضغط 🔑','er',3000);
-    finish();
-    return;
-  }
-
-  const sys = G.sys || DEFAULT_SYS_PROMPT;
-  const messages = [{role:'system',content:sys}];
-  G.msgs.forEach(function(m){
-    if(m.role==='user') messages.push({role:'user',content:m.content});
-    else if(m.role==='assistant') messages.push({role:'assistant',content:m.content});
-  });
-
-  const body = {
-    model: G.model,
-    messages: messages,
-    temperature: G.temp,
-    max_tokens: G.maxTok
-  };
-
-  // 🔥 إصلاحات المزودين المركزية
-  if(G.prov==='groq') body.max_tokens = Math.min(G.maxTok, 512); // Groq Limit
-  if(G.prov==='mistral') body.temperature = Math.max(0, Math.min(G.temp, 1.0)); // Mistral Limit
-  if(G.prov==='nvidia') body.max_tokens = Math.min(G.maxTok, 1024); // Nvidia Limit
-
-  if(G.streaming && p.stream) body.stream=true;
-
-  const hdr={'Content-Type':'application/json'};
-  hdr.Authorization='Bearer '+key;
-  Object.assign(hdr, p.headers || {});
-
-  let url = p.url;
-  if(G.prov==='gemini') url += '?key='+key;
-
-  try{
-    if(G.streaming && p.stream){
-      await doStream(url, body, hdr, p);
-    } else {
-      await doNormal(url, body, hdr, p);
+  const lines=s.split('\n');
+  let out='',inUL=false,inOL=false;
+  for(let i=0;i<lines.length;i++){
+    const l=lines[i];
+    if(blk[l]||tblk[l]){
+      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
+      out+=(blk[l]||tblk[l]);continue;
     }
-  }catch(e){
-    console.error(e);
-    toast('❌ خطأ: '+e.message,'er',4000);
-    // Fallback if failed
-    await doFallback(txt);
+    let hm;
+    if(hm=l.match(/^(#{1,3}) (.+)/)){
+      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
+      out+=`<h${hm[1].length}>${mdi(hm[2])}</h${hm[1].length}>`;continue;
+    }
+    if(l.match(/^---+$|^\*\*\*+$/)){out+='<hr>';continue;}
+    if(l.match(/^> /)){
+      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
+      out+=`<blockquote>${mdi(l.slice(2))}</blockquote>`;continue;
+    }
+    if(l.match(/^[-*] /)){
+      if(inOL){out+='</ol>';inOL=false}
+      if(!inUL){out+='<ul>';inUL=true}
+      out+=`<li>${mdi(l.slice(2))}</li>`;continue;
+    }
+    if(l.match(/^\d+\. /)){
+      if(inUL){out+='</ul>';inUL=false}
+      if(!inOL){out+='<ol>';inOL=true}
+      out+=`<li>${mdi(l.replace(/^\d+\. /,''))}</li>`;continue;
+    }
+    if(inUL&&!l.match(/^[-*] /)){out+='</ul>';inUL=false}
+    if(inOL&&!l.match(/^\d+\. /)){out+='</ol>';inOL=false}
+    if(!l.trim()){out+='<br>';continue;}
+    let t2=l;
+    for(const k in blk) t2=t2.replace(k,blk[k]);
+    for(const k in tblk) t2=t2.replace(k,tblk[k]);
+    out+=mdi(t2)+'\n';
   }
+  if(inUL) out+='</ul>';
+  if(inOL) out+='</ol>';
+  for(const k in blk) out=out.split(k).join(blk[k]);
+  for(const k in tblk) out=out.split(k).join(tblk[k]);
+  return out;
+}
+function mdi(t){
+  t=t.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/__(.+?)__/g,'<strong>$1</strong>');
+  t=t.replace(/\*([^*]+)\*/g,'<em>$1</em>');
+  t=t.replace(/_([^_]+)_/g,'<em>$1</em>');
+  t=t.replace(/~~(.+?)~~/g,'<del>$1</del>');
+  t=t.replace(/`([^`]+)`/g,'<code>$1</code>');
+  t=t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1" class="gimg" onclick="window.open(this.src)">');
+  t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return t;
+}
+function tglThink(h){ const b=h.nextElementSibling; b.classList.toggle('open'); h.querySelector('span').textContent=b.classList.contains('open')?'▲':'▼'; }
+function cpCode(btn){ const code=btn.closest('pre').textContent.replace('نسخ','').trim(); navigator.clipboard?.writeText(code).catch(()=>{}); toast('✓ تم نسخ الكود','ok'); }
 
-  finish();
+// =================== AUTO-DIAGNOSTIC ===================
+// =================== SMART KEY DIAGNOSTIC ===================
+// يعمل بالتوازي في الخلفية — لا يحجب أي مزود بسبب خطأ شبكة أو CORS
+// فقط HTTP 401/403 = مفتاح خاطئ فعلاً
+async function testAllKeys() {
+  $('stxt') && ($('stxt').textContent = '🔄 جاري فحص المفاتيح في الخلفية...');
+
+  const results = await Promise.allSettled(
+    PROVIDERS.map(async p => {
+      const key = p.keyId ? localStorage.getItem(p.keyId) : null;
+
+      if (!key) {
+        G.provStatus[p.id] = 'no_key';
+        renderPBar();
+        return;
+      }
+
+      // بناء الطلب التجريبي لكل مزود
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 9000);
+
+      try {
+        const h = { 'Content-Type': 'application/json' };
+        let testUrl = p.url;
+
+        if (p.id === 'gemini') {
+          testUrl = p.url + `?key=${key}`;
+        } else {
+          h['Authorization'] = `Bearer ${key}`;
+        }
+        if (p.headers) Object.assign(h, p.headers);
+
+        // استخدام أدنى معاملات ممكنة لتجنب أخطاء المعاملات
+        const tBody = {
+          model: p.models[0].id,
+          messages: [{ role: 'user', content: 'hi' }],
+          max_tokens: 1,
+          temperature: 0.1,
+          stream: false
+        };
+
+        const res = await fetch(testUrl, {
+          method: 'POST',
+          headers: h,
+          body: JSON.stringify(tBody),
+          signal: ctrl.signal
+        });
+        clearTimeout(timer);
+
+        // ✅ القاعدة الذهبية: فقط 401 و 403 = مفتاح خاطئ فعلاً
+        // 400, 422, 429, 500 = المفتاح وصل لكن طلب التجربة به مشكلة
+        if (res.status === 401 || res.status === 403) {
+          G.provStatus[p.id] = 'fail';
+        } else {
+          G.provStatus[p.id] = 'ok';
+        }
+
+      } catch (e) {
+        clearTimeout(timer);
+        // خطأ شبكة (CORS / timeout / DNS) — المفتاح قد يكون صحيحاً
+        // APK Capacitor لا يعاني من CORS — نفترض صالح
+        G.provStatus[p.id] = 'ok';
+      }
+
+      renderPBar(); // تحديث فوري لكل مزود
+    })
+  );
+
+  renderPBar();
+  const ok  = PROVIDERS.filter(p => G.provStatus[p.id] === 'ok').length;
+  const fail = PROVIDERS.filter(p => G.provStatus[p.id] === 'fail').length;
+  const nok  = PROVIDERS.filter(p => G.provStatus[p.id] === 'no_key').length;
+  toast(`✅ ${ok} مزود جاهز · ❌ ${fail} مفتاح خاطئ · 🔑 ${nok} بدون مفتاح`, 'in', 4000);
+  if($('stxt')) $('stxt').textContent = `✅ ${ok} مزود جاهز — ${fail} مفتاح خاطئ`;
 }
 
-async function doNormal(url, body, hdr, p){
-  const resp=await fetch(url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
-  if(!resp.ok){
-    const txt=await resp.text();
-    throw new Error(resp.status+' '+txt.substring(0,100));
+// =================== DYNAMIC MODELS FETCHER ===================
+async function fetchDynamicModels(provId) {
+  const p = PROVIDERS.find(x => x.id === provId);
+  if(!p || !p.url || p.dynamicFetched || p.id === 'huggingface') return;
+  
+  const key = getKey(p);
+  if(!key) return; 
+
+  try {
+    let mUrl = p.url.replace('/chat/completions', '/models');
+    if(p.id === 'gemini') mUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
+
+    let headers = { 'Content-Type': 'application/json' };
+    if(p.id !== 'gemini') headers['Authorization'] = `Bearer ${key}`;
+    if(p.headers) Object.assign(headers, p.headers);
+
+    const res = await fetch(mUrl, { headers });
+    if(!res.ok) return; 
+
+    const data = await res.json();
+    let modelsArray = data.data || data.models; 
+
+    if(modelsArray && Array.isArray(modelsArray)) {
+        const existingIds = new Set(p.models.map(x => x.id.replace('models/', '')));
+
+        modelsArray.forEach(m => {
+            let rawId = m.id || m.name;
+            if(!rawId) return;
+            
+            let checkId = rawId.replace('models/', '');
+
+            // Skip non-chat / restricted / problematic models
+            const skipWords = [
+              'embed','whisper','tts','audio','vision',
+              'labs-','leanstral',            // Mistral Labs (need admin)
+              'moderation','ocr','transcribe', // Special-purpose
+              'compound-beta-mini',            // Groq: max_tokens=512
+              'voxtral','realtime','rerank',   // Voice / reranking
+              'guard','nemo-guardrail'         // Safety-only
+            ];
+            if(skipWords.some(w => checkId.toLowerCase().includes(w))) return;
+
+            if(!existingIds.has(checkId)) {
+                let shortName = checkId.split('/').pop().toUpperCase();
+                p.models.push({ id: rawId, name: shortName, tags: ['auto'] }); 
+            }
+        });
+
+        p.dynamicFetched = true; 
+        
+        if(G.prov === provId) {
+            renderMBar();
+            updS();
+        }
+    }
+  } catch(e) {
   }
-  const data=await resp.json();
-  const content=data.choices[0].message.content;
-  const aiMsg={role:'assistant',content:content,id:uid(),prov:G.prov,model:G.model};
-  G.msgs.push(aiMsg);
-  addMsgUI(aiMsg,'ai');
-  addTok(content);
 }
 
-async function doStream(url, body, hdr, p){
-  const resp=await fetch(url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
-  if(!resp.ok){
-    const txt=await resp.text();
-    throw new Error(resp.status+' '+txt.substring(0,100));
+// =================== UI RENDERING ===================
+function renderPBar(){
+  $('pbar').innerHTML=PROVIDERS.map(p=>{
+    const st = G.provStatus[p.id];
+    // حالة البادج
+    let badge, badgeCls;
+    if(st === 'ok')     { badge='مفعّل'; badgeCls='pfree'; }
+    else if(st==='fail'){ badge='خاطئ';  badgeCls='pfail'; }
+    else if(st==='no_key'){ badge=p.free?'مجاني':'مفتاح'; badgeCls=p.free?'pfree':'pkeybadge'; }
+    else                { badge=p.free?'مجاني':'API';    badgeCls=p.free?'pfree':'pkeybadge'; }
+
+    // خط أحمر فقط على المفاتيح الخاطئة فعلاً (401/403)
+    const failClass = st === 'fail' ? ' failed' : '';
+    return `<div class="pc${G.prov===p.id?' on':''}${failClass}" style="--pc:${p.color}" onclick="selProv('${p.id}')">
+      <span class="pdot" style="background:${st==='ok'?'#00ff9d':st==='fail'?'#ff3366':p.color}"></span>
+      ${p.icon} ${p.name}
+      <span class="${badgeCls}">${badge}</span>
+    </div>`;
+  }).join('');
+}
+function renderMBar(){
+  const p=getP(); if(!p) return;
+  $('mbar').innerHTML=p.models.map(m=>{
+    const tags=m.tags.map(t=>`<span class="mtag ${t}">${t==='fast'?'سريع':t==='think'?'تفكير':t==='new'?'جديد':t==='ar'?'عربي':t==='code'?'كود':t==='power'?'قوي':t==='auto'?'تلقائي':t}</span>`).join('');
+    return `<div class="mc${G.model===m.id?' on':''}" onclick="selModel('${m.id}')">${m.name}${tags}</div>`;
+  }).join('');
+}
+function selProv(id){
+  // ✅ لا حجب أبداً — فقط تحذير ناعم إذا كان المفتاح مشكوك فيه
+  const st = G.provStatus[id];
+  if(st === 'fail') toast('⚠️ المفتاح قد يكون غير صالح — سنجرّب على أي حال','er');
+  else if(st === 'no_key') {
+    const p2 = PROVIDERS.find(x=>x.id===id);
+    if(p2 && !p2.free) toast('🔑 أضف مفتاح API عبر زر 🔑','in');
   }
 
-  const reader=resp.body.getReader();
-  const decoder=new TextDecoder();
-  let buf='', text='';
-  const aiMsg={role:'assistant',content:'',id:uid(),prov:G.prov,model:G.model};
-  G.msgs.push(aiMsg);
-  const msgEl=addMsgUI(aiMsg,'ai',true);
+  G.prov = id;
+  const p = getP();
+  if(p && p.models && p.models.length > 0) G.model = p.models[0].id;
 
-  setS('بث مباشر...','stream');
+  renderPBar(); renderMBar(); updS();
+  if(p && st !== 'fail') toast(`${p.icon} ${p.name}`,'in');
 
+  // جلب نماذج إضافية في الخلفية
+  fetchDynamicModels(id);
+}
+function selModel(id){
+  G.model=id; renderMBar(); updS();
+  const m=getM(); toast(`▶ ${m?.name||id}`,'in');
+}
+function updS(){
+  const p=getP(), m=getM();
+  const c=G.msgs.filter(x=>x.role==='user').length;
+  setS(`${p?.icon||''} ${p?.name||G.prov} — ${m?.name||G.model}`);
+  $('smeta').textContent=c+' رسالة';
+}
+
+// =================== API ENGINE ===================
+async function streamSSE(resp, onChunk){
+  const reader=resp.body.getReader(), dec=new TextDecoder();
+  let buf='', full='';
   while(true){
     const {done,value}=await reader.read();
     if(done) break;
-    buf+=decoder.decode(value,{stream:true});
-    const lines=buf.split('\n');
-    buf=lines.pop();
-    for(let i=0; i<lines.length; i++){
-      const line = lines[i];
-      if(!line.trim() || !line.startsWith('data:')) continue;
-      const json=line.slice(5).trim();
-      if(json==='[DONE]') continue;
+    buf+=dec.decode(value,{stream:true});
+    const lines=buf.split('\n'); buf=lines.pop();
+    for(const line of lines){
+      const t=line.trim();
+      if(!t.startsWith('data: ')) continue;
+      const d=t.slice(6);
+      if(d==='[DONE]') return full;
       try{
-        const chunk=JSON.parse(json);
-        const delta=chunk.choices[0].delta;
-        if(delta&&delta.content){
-          text+=delta.content;
-          aiMsg.content=text;
-          updateMsgUI(msgEl, text, true);
-        }
-      }catch(e){}
+        const j=JSON.parse(d);
+        const delta=j.choices?.[0]?.delta?.content||'';
+        if(delta){ full+=delta; onChunk(full); }
+      }catch{}
     }
   }
-
-  updateMsgUI(msgEl, text, false);
-  addTok(text);
+  return full;
 }
 
-async function doFallback(txt){
-  const fallback = PROVIDERS.find(function(p){return p.id==='openrouter';});
-  if(!fallback) return;
-  const key=getKey(fallback);
-  if(!key) return;
+async function callAPI(prov, model, msgs, onStream){
+  const p=PROVIDERS.find(x=>x.id===prov);
+  if(!p) throw new Error('مزود غير معروف');
+  const key=getKey(p);
+  if(!p.free&&!key) throw new Error(`${p.icon} ${p.name} يحتاج مفتاح API — اضغط 🔑`);
 
-  toast('🔄 المحاولة بـ OpenRouter (fallback)...','in',2000);
+  const sysMsgs=[{role:'system',content:G.sys||DEFAULT_SYS_PROMPT}];
+  const allMsgs=[...sysMsgs,...msgs];
+  const useStream=G.streaming&&p.stream&&!!onStream;
+  const headers={'Content-Type':'application/json'};
 
-  const body={
-    model:'meta-llama/llama-3.3-70b-instruct:free',
-    messages:[{role:'user',content:txt}],
-    temperature:0.7,
-    max_tokens:1024
-  };
-  const hdr={'Content-Type':'application/json','Authorization':'Bearer '+key};
-  Object.assign(hdr, fallback.headers || {});
-
-  try{
-    const resp=await fetch(fallback.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
-    if(!resp.ok) throw new Error('Fallback failed');
-    const data=await resp.json();
-    const content=data.choices[0].message.content;
-    const aiMsg={role:'assistant',content:content,id:uid(),prov:'openrouter',model:'meta-llama/llama-3.3-70b-instruct:free',fallback:true};
-    G.msgs.push(aiMsg);
-    addMsgUI(aiMsg,'ai');
-    addTok(content);
-  }catch(e){
-    toast('❌ فشل النظام البديل أيضاً','er',2000);
+  // ✅ استخدام متغير محلي — لا تعديل على كائن p
+  let apiUrl;
+  if(p.id==='gemini'){
+    apiUrl = p.url + `?key=${key}`;
+  } else {
+    headers['Authorization'] = `Bearer ${key}`;
+    apiUrl = p.url;
   }
+  if(p.headers) Object.assign(headers,p.headers);
+
+  // حدود آمنة لكل مزود
+  let safeTemp = G.temp;
+  if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
+  const mCfg = p.models.find(x=>x.id===model);
+  let safeTok = G.maxTok;
+  if(mCfg?.maxTok)       safeTok = Math.min(safeTok, mCfg.maxTok);
+  else if(prov==='nvidia') safeTok = Math.min(safeTok, 1024);
+  else if(prov==='groq')   safeTok = Math.min(safeTok, 8192);
+
+  const body={model,messages:allMsgs,temperature:safeTemp,stream:useStream,max_tokens:safeTok};
+
+  let resp;
+  try {
+    resp = await fetch(apiUrl, {method:'POST', headers, body:JSON.stringify(body)});
+  } catch(netErr) {
+    // خطأ شبكة (CORS في المتصفح) — لا نعاقب المزود
+    throw new Error(`${p.name}: خطأ شبكة — ${netErr.message.slice(0,80)}`);
+  }
+
+  if(!resp.ok){
+    // ✅ تحديث حالة المزود بناءً على الاستجابة الفعلية
+    if(resp.status===401||resp.status===403){
+      G.provStatus[prov]='fail';
+      renderPBar();
+    }
+    let e='';
+    try{const j=await resp.json(); e=j.error?.message||j.message||JSON.stringify(j).slice(0,120);}
+    catch{e=await resp.text().catch(()=>resp.statusText);}
+    throw new Error(`${p.name} ${resp.status}: ${String(e).slice(0,120)}`);
+  }
+
+  // ✅ نجاح حقيقي → تحديث الحالة للأخضر
+  if(G.provStatus[prov]!=='ok'){ G.provStatus[prov]='ok'; renderPBar(); }
+
+  if(useStream) return streamSSE(resp,onStream);
+  const data=await resp.json();
+  return data.choices?.[0]?.message?.content||data.choices?.[0]?.text||'';
 }
 
-async function doArena(txt){
-  const providers = PROVIDERS.filter(function(p){return !!getKey(p) && p.models.length>0 && p.id!=='huggingface';}).slice(0,3);
-  if(providers.length===0){
-    toast('❌ لا توجد مفاتيح صالحة للتنافس','er',3000);
-    finish();
-    return;
-  }
-
-  setS('⚔️ حلبة التنافس: جارٍ الإرسال...','busy');
-
-  const promises = providers.map(function(p){
-    return new Promise(function(resolve){
-      const start = Date.now();
-      const body={ model:p.models[0].id, messages:[{role:'user',content:txt}], temperature:0.7, max_tokens:512 };
-      if(p.id==='groq') body.max_tokens=256;
-      if(p.id==='mistral') body.temperature=0.7;
-
-      const hdr={'Content-Type':'application/json','Authorization':'Bearer '+getKey(p)};
-      Object.assign(hdr, p.headers || {});
-
-      fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)})
-        .then(function(r){return r.json();})
-        .then(function(d){
-          const content = d.choices && d.choices[0] && d.choices[0].message ? d.choices[0].message.content : null;
-          resolve({p:p,content:content,time:Date.now()-start,ok:!!content});
-        })
-        .catch(function(e){resolve({p:p,content:null,time:99999,ok:false,err:e.message});});
+async function callWithFallback(msgs, onStream){
+  if(G.mode==='arena'){
+    toast('⚔️ حلبة التنافس: إطلاق الطلب للجميع...','in',3000);
+    // يشمل كل من عنده مفتاح أو مجاني — ليس فقط 'ok'
+    const activeProvs = PROVIDERS.filter(p => {
+      const st = G.provStatus[p.id];
+      if(st === 'fail') return false;          // مرفوض فعلاً (401/403)
+      if(p.free) return true;
+      return !!localStorage.getItem(p.keyId);  // عنده مفتاح
     });
-  });
-
-  const results = await Promise.all(promises);
-  const winner = results.filter(function(r){return r.ok;}).sort(function(a,b){return a.time-b.time;})[0];
-
-  if(!winner){
-    toast('❌ فشل جميع المزودين','er',3000);
-    finish();
-    return;
+    if(activeProvs.length===0) throw new Error('لا توجد مفاتيح — اضغط 🔑 لإضافتها');
+    const promises=activeProvs.map(p=>
+      callAPI(p.id,p.models[0].id,msgs,null)
+        .then(res=>({text:res,prov:p.id,model:p.models[0].id,fb:false}))
+    );
+    return await Promise.any(promises);
   }
-
-  const aiMsg={role:'assistant',content:winner.content,id:uid(),prov:winner.p.id,model:winner.p.models[0].id,arena:true,arenaTime:winner.time};
-  G.msgs.push(aiMsg);
-  addMsgUI(aiMsg,'ai');
-  addTok(winner.content);
-  setS('⚔️ الفائز: '+winner.p.name+' ('+winner.time+'ms)','ok');
-
-  finish();
+  // الوضع العادي
+  const text=await callAPI(G.prov,G.model,msgs,onStream);
+  return {text,prov:G.prov,model:G.model,fb:false};
 }
 
-function finish(){
-  G.busy=false;
-  if($('sbtn')){ $('sbtn').disabled=false; $('sbtn').classList.remove('busy'); }
-  setS('جاهز','ok');
-  if($('smeta')) $('smeta').textContent=G.msgs.length+' رسالة';
-  saveConv();
+// =================== CHAT UI ===================
+function appendUser(txt){
+  const el=document.createElement('div'); el.className='msg u';
+  el.innerHTML=`<div class="av u">👤</div><div class="bub u">${esc(txt)}<div class="mmeta"><span>${new Date().toLocaleTimeString('ar')}</span></div></div>`;
+  $('msgs').appendChild(el); scrollB();
+}
+function appendLoad(id){
+  const el=document.createElement('div'); el.className='msg'; el.id='msg_'+id;
+  el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai" id="bub_${id}"><div class="ldots"><span></span><span></span><span></span></div></div>`;
+  $('msgs').appendChild(el); scrollB();
+}
+function updLoad(id,txt){
+  const b=$('bub_'+id);
+  if(b){ b.innerHTML=md(txt)+'<span class="scursor">▋</span>'; scrollB(); }
+}
+function finalMsg(id,txt,prov,model,fb,reason){
+  const b=$('bub_'+id); if(!b) return;
+  const p=PROVIDERS.find(x=>x.id===prov); const m=p?.models.find(x=>x.id===model);
+  const fbBadge=G.mode==='arena'?`<span class="mfallback">⚔️ الفائز بالتنافس</span>`:'';
+  b.innerHTML=md(txt)+`<div class="mmeta">${fbBadge}
+    <span class="mprov">${p?.icon||''} ${m?.name||model}</span>
+    <span>${new Date().toLocaleTimeString('ar')}</span>
+    <button class="mbtn" onclick="cpText(this)" data-txt="${esc(txt).replace(/"/g,'&quot;')}">نسخ</button>
+  </div>`; scrollB();
+}
+function rmLoad(id){ $('msg_'+id)?.remove(); }
+function appendErr(txt){
+  const el=document.createElement('div'); el.className='msg';
+  el.innerHTML=`<div class="av ai" style="color:var(--r)">⚠️</div>
+    <div class="bub ai" style="border-color:rgba(255,51,102,.18)"><strong style="color:var(--r)">خطأ</strong><br>
+      <small style="color:var(--t2);font-family:'Share Tech Mono';font-size:9px;">${esc(txt)}</small>
+      <div class="mmeta"><button class="mbtn" onclick="retryLast()">↩ إعادة المحاولة</button></div>
+    </div>`;
+  $('msgs').appendChild(el); scrollB();
+}
+function cpText(btn){
+  const t=btn.getAttribute('data-txt');
+  navigator.clipboard?.writeText(t).catch(()=>{}); toast('✓ تم النسخ','ok');
 }
 
-// =================== UI HELPERS ===================
-function addMsgUI(msg, who, streaming){
-  const div=document.createElement('div');
-  div.className='msg '+(who==='u'?'u':'');
-  div.id='msg-'+msg.id;
+// =================== SEND ===================
+let lastUserIdx=-1;
+async function doSend(){
+  if(G.busy){ stopBusy(); return; }
+  let txt=$('ta').value.trim();
 
-  const av=document.createElement('div');
-  av.className='av '+(who==='u'?'u':'ai');
-  av.textContent=who==='u'?'👤':'🤖';
+  if(!txt&&!G.files.length) return;
+  
+  $('ta').value=''; resize($('ta')); updateCC();
+  addTok(txt);
 
-  const bub=document.createElement('div');
-  bub.className='bub '+(who==='u'?'u':'ai');
-
-  if(who==='ai'){
-    if(streaming){
-      bub.innerHTML='<div class="ai-content"></div><span class="scursor">▋</span>';
-    } else {
-      bub.innerHTML=md(msg.content);
-    }
-  } else {
-    bub.textContent=msg.content;
-  }
-
-  div.appendChild(av);
-  div.appendChild(bub);
-
-  if(who==='ai'){
-    const meta=document.createElement('div');
-    meta.className='mmeta';
-    let metaHtml='';
-    if(msg.prov) metaHtml+='<span class="mprov">'+msg.prov+'</span>';
-    if(msg.model) metaHtml+='<span>'+msg.model+'</span>';
-    if(msg.fallback) metaHtml+='<span class="mfallback">fallback</span>';
-    
-    // 🔥 إصلاح خطأ الانهيار في الأزرار باستخدام سلاسل نصية آمنة (Safe String literals)
-    metaHtml += `<button class="mbtn" onclick="copyMsg('${msg.id}')">📋</button>`;
-    metaHtml += `<button class="mbtn" onclick="regenMsg('${msg.id}')">🔄</button>`;
-    
-    meta.innerHTML=metaHtml;
-    div.appendChild(meta);
-  }
-
-  const msgsContainer = $('msgs');
-  if(msgsContainer) msgsContainer.appendChild(div);
-  scrollB();
-  return div;
+  let content;
+  if(G.files.length){
+    content=[{type:'text',text:txt||'صف هذه الصورة بالتفصيل'}];
+    G.files.forEach(f=>content.push({type:'image_url',image_url:{url:`data:${f.type};base64,${f.b64}`}}));
+    G.files=[]; renderFP();
+  } else { content=txt; }
+  
+  G.msgs.push({role:'user',content});
+  lastUserIdx=G.msgs.length-1;
+  appendUser(typeof content==='string'?content:'[صورة مرفقة] '+txt);
+  setBusy(true);
+  
+  const lid=uid(); appendLoad(lid);
+  setS('جارٍ التوليد...','busy');
+  try{
+    const {text,prov,model,fb,reason}=await callWithFallback(G.msgs,(partial)=>{ updLoad(lid,partial); setS('بث الرد...','stream'); });
+    finalMsg(lid,text,prov,model,fb,reason);
+    G.msgs.push({role:'assistant',content:text});
+    addTok(text);
+    saveConv(); updS(); setS('جاهز','ok');
+  }catch(e){
+    rmLoad(lid); appendErr(e.message);
+    setS('خطأ: '+e.message.slice(0,50),'err');
+  } finally { setBusy(false); }
 }
 
-function updateMsgUI(el, text, streaming){
-  const bub=el.querySelector('.bub.ai');
-  if(!bub) return;
-  if(streaming){
-    bub.innerHTML='<div class="ai-content">'+md(text)+'</div><span class="scursor">▋</span>';
-  } else {
-    bub.innerHTML=md(text);
-  }
-  scrollB();
+function retryLast(){
+  if(G.busy||lastUserIdx<0) return;
+  if(G.msgs[G.msgs.length-1]?.role==='assistant') G.msgs.pop();
+  setBusy(false);
+  const lastMsg=G.msgs[lastUserIdx]; if(!lastMsg) return;
+  G.msgs=G.msgs.slice(0,lastUserIdx);
+  $('ta').value=typeof lastMsg.content==='string'?lastMsg.content:lastMsg.content[0]?.text||'';
+  resize($('ta')); updateCC(); doSend();
 }
 
-function copyMsg(id){
-  const msg=G.msgs.find(function(m){return m.id===id;});
-  if(msg){
-    navigator.clipboard.writeText(msg.content);
-    toast('✅ تم النسخ','ok',1500);
+let _stopFlag=false;
+function stopBusy(){ _stopFlag=true; setBusy(false); toast('⬛ تم الإيقاف','in'); }
+function setBusy(b){
+  G.busy=b; $('sbtn').classList.toggle('busy',b); $('sbtn').textContent=b?'⬛':'➤';
+}
+
+// =================== IMAGE & VIDEO GEN ===================
+async function doGenMedia(){
+  const prm=$('imgPrm').value.trim();
+  const type=$('mediaType').value;
+  if(!prm){toast('أدخل وصفاً للميديا','er'); return;}
+  
+  const prev=$('imgPrev'), btn=$('imgBtn');
+  btn.disabled=true; btn.textContent='⏳';
+  
+  try {
+      if(type === 'image') {
+          const hfKey = localStorage.getItem('k_hf');
+          if(!hfKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح HuggingFace أولاً 🔑'); }
+          
+          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الصورة (10-30 ثانية)...</span>';
+          
+          const response = await fetch("https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell", {
+              headers: { Authorization: `Bearer ${hfKey}`, "Content-Type": "application/json" },
+              method: "POST", body: JSON.stringify({ inputs: prm }),
+          });
+          
+          if(!response.ok) throw new Error('فشل التوليد، تأكد من المفتاح.');
+          
+          const blob = await response.blob();
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = function() {
+              prev.innerHTML=`<img src="${reader.result}" class="gimg">`;
+              appendUser('[توليد صورة] '+prm);
+              const el=document.createElement('div'); el.className='msg'; 
+              el.innerHTML=`<div class="av ai">🎨</div><div class="bub ai"><img src="${reader.result}" class="gimg" onclick="window.open(this.src)"><div class="mmeta">🤗 FLUX Image</div></div>`;
+              $('msgs').appendChild(el); scrollB();
+              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
+          }
+      } else {
+          const amKey = localStorage.getItem('k_am');
+          if(!amKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح AI/ML API للفيديو 🔑'); }
+          
+          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الفيديو السينمائي (قد يستغرق دقائق)...</span>';
+          
+          const response = await fetch("https://api.aimlapi.com/v1/images/generations", {
+              headers: { Authorization: `Bearer ${amKey}`, "Content-Type": "application/json" },
+              method: "POST", 
+              body: JSON.stringify({ prompt: prm, model: "minimax/video-01" })
+          });
+          
+          const data = await response.json();
+          if(data.data && data.data[0].url) {
+              prev.innerHTML=`<video src="${data.data[0].url}" class="gvid" controls autoplay></video>`;
+              appendUser('[توليد فيديو] '+prm);
+              const el=document.createElement('div'); el.className='msg'; 
+              el.innerHTML=`<div class="av ai">🎬</div><div class="bub ai"><video src="${data.data[0].url}" class="gvid" controls loop></video><div class="mmeta">🎬 Minimax Video</div></div>`;
+              $('msgs').appendChild(el); scrollB();
+              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
+          } else {
+              throw new Error('فشل توليد الفيديو.');
+          }
+      }
+  } catch(e) {
+      prev.innerHTML=`<span style="color:var(--r);font-size:10px">❌ ${e.message}</span>`;
+      btn.disabled=false; btn.textContent='🎬 توليد';
   }
 }
 
-function regenMsg(id){
-  const idx=G.msgs.findIndex(function(m){return m.id===id;});
-  if(idx<1) return;
-  G.msgs=G.msgs.slice(0,idx);
-  const msgEl=$('msg-'+id);
-  if(msgEl){
-    let next=msgEl.nextElementSibling;
-    while(next){
-      const toRemove=next;
-      next=next.nextElementSibling;
-      toRemove.remove();
-    }
-    msgEl.remove();
-  }
-  const lastUser=G.msgs.filter(function(m){return m.role==='user';}).pop();
-  if(lastUser){
-    $('ta').value=lastUser.content;
-    doSend();
-  }
-}
-
-// =================== FILE HANDLING ===================
+// =================== FILE ATTACHMENT ===================
 function onFile(e){
-  const f=e.target.files[0];
-  if(!f) return;
+  const file=e.target.files[0]; if(!file) return;
+  if(!file.type.startsWith('image/')){ toast('يدعم الصور فقط','er'); return; }
   const reader=new FileReader();
-  reader.onload=function(ev){
-    G.files.push({name:f.name,data:ev.target.result,type:f.type});
-    renderFiles();
-  };
-  reader.readAsDataURL(f);
-  e.target.value='';
+  reader.onload=ev=>{ G.files.push({name:file.name,type:file.type,b64:ev.target.result.split(',')[1]}); renderFP(); toast('✓ صورة مرفقة','ok'); };
+  reader.readAsDataURL(file); e.target.value='';
+}
+function renderFP(){
+  $('fprev').innerHTML=G.files.map((f,i)=>`
+    <div class="fchip"><img src="data:${f.type};base64,${f.b64}" alt=""><span class="fn">${esc(f.name)}</span>
+      <button class="frm" onclick="G.files.splice(${i},1);renderFP()">✕</button></div>`).join('');
 }
 
-function renderFiles(){
-  const el=$('fprev');
-  if(!el) return;
-  el.innerHTML='';
-  G.files.forEach(function(f,idx){
-    const chip=document.createElement('div');
-    chip.className='fchip';
-    if(f.type.startsWith('image/')){
-      chip.innerHTML='<img src="'+f.data+'"><span class="fn">'+f.name+'</span><button class="frm" onclick="remFile('+idx+')">×</button>';
-    } else {
-      chip.innerHTML='<span class="fn">'+f.name+'</span><button class="frm" onclick="remFile('+idx+')">×</button>';
-    }
-    el.appendChild(chip);
-  });
-}
-
-function remFile(idx){ G.files.splice(idx,1); renderFiles(); }
-
-// =================== INPUT ===================
-function onKey(e){
-  if(e.key==='Enter' && !e.shiftKey){
-    e.preventDefault();
-    doSend();
-  }
-}
-
-function resize(ta){
-  ta.style.height='auto';
-  ta.style.height=Math.min(ta.scrollHeight,110)+'px';
-}
-
-function updateCC(){
-  const ta=$('ta');
-  if(!ta) return;
-  const len=ta.value.length;
-  if($('tcc')) $('tcc').textContent=len>0?len+' حرف':'';
-}
-
-function qpSet(prefix){ if($('ta')) { $('ta').value=prefix; $('ta').focus(); } }
-
-function toggleWS(){
-  G.wsearch=!G.wsearch;
-  if($('btnWS')) $('btnWS').classList.toggle('on',G.wsearch);
-  toast(G.wsearch?'🔍 البحث مفعل':'🔍 البحث معطل','in',1500);
-}
-
-function toggleST(){
-  G.streaming=!G.streaming;
-  if($('btnST')) $('btnST').classList.toggle('on',G.streaming);
-  toast(G.streaming?'⚡ البث مفعل':'⚡ البث معطل','in',1500);
-}
-
-function clearAll(){
-  G.msgs=[];
-  if($('msgs')) $('msgs').innerHTML='';
-  if($('smeta')) $('smeta').textContent='0 رسالة';
-  toast('🗑️ تم مسح المحادثة','ok',1500);
-}
+// =================== INPUT CONTROLS ===================
+function onKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); doSend(); } }
+function resize(ta){ ta.style.height='auto'; ta.style.height=Math.min(ta.scrollHeight,110)+'px'; }
+function updateCC(){ const l=$('ta').value.length; $('tcc').textContent=l?l+' ح':''; }
+function qpSet(t){ $('ta').value=t; $('ta').focus(); resize($('ta')); updateCC(); }
+function toggleWS(){ G.wsearch=!G.wsearch; $('btnWS').classList.toggle('on',G.wsearch); toast(G.wsearch?'🔍 بحث مفعّل':'بحث معطّل','in'); }
+function toggleST(){ G.streaming=!G.streaming; $('btnST').classList.toggle('on',!G.streaming); $('selStream').value=G.streaming?'1':'0'; toast(G.streaming?'⚡ البث مفعّل':'البث معطّل','in'); saveSettings(); }
+function toggleAdv(){ $('advPanel').classList.toggle('on'); $('advBtn').classList.toggle('adv-on'); }
+function clearAll(){ if(G.busy) return; G.msgs=[]; $('msgs').innerHTML=''; updS(); toast('تم مسح المحادثة','in'); }
 
 // =================== CONVERSATIONS ===================
-function newChat(){
-  if(G.msgs.length>0) saveConv();
-  G.msgs=[]; G.cid=null;
-  if($('msgs')) $('msgs').innerHTML='';
-  if($('smeta')) $('smeta').textContent='0 رسالة';
-  toast('➕ محادثة جديدة','ok',1500);
-  renderConvList();
-}
-
 function saveConv(){
-  if(G.msgs.length===0) return;
-  let firstUser = G.msgs.find(function(m){return m.role==='user';});
-  const title=firstUser && firstUser.content ? firstUser.content.substring(0,30) : 'محادثة';
+  if(!G.msgs.length) return;
   if(!G.cid) G.cid=uid();
-  const existing=G.convs.findIndex(function(c){return c.id===G.cid;});
-  const conv={id:G.cid,title:title,msgs:G.msgs.slice(),date:Date.now()};
-  if(existing>=0) G.convs[existing]=conv;
-  else G.convs.unshift(conv);
-  localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));
-  renderConvList();
+  const fu=G.msgs.find(m=>m.role==='user');
+  const title=typeof fu?.content==='string'?fu.content.slice(0,45):'محادثة';
+  const idx=G.convs.findIndex(c=>c.id===G.cid);
+  const conv={id:G.cid,title,msgs:G.msgs,prov:G.prov,model:G.model,t:Date.now()};
+  if(idx>=0) G.convs[idx]=conv; else G.convs.unshift(conv);
+  if(G.convs.length>60) G.convs.length=60;
+  try{localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));}catch{}
+  renderCL();
 }
-
 function loadConv(id){
-  const conv=G.convs.find(function(c){return c.id===id;});
-  if(!conv) return;
-  G.cid=id; G.msgs=conv.msgs.slice();
-  if($('msgs')) $('msgs').innerHTML='';
-  G.msgs.forEach(function(m){addMsgUI(m,m.role==='user'?'u':'ai');});
-  if($('smeta')) $('smeta').textContent=G.msgs.length+' رسالة';
+  const c=G.convs.find(x=>x.id===id); if(!c) return;
+  G.cid=id; G.msgs=c.msgs; G.prov=c.prov||G.prov; G.model=c.model||G.model;
+  renderPBar(); renderMBar();
+  const msgsEl=$('msgs'); msgsEl.innerHTML='';
+  c.msgs.forEach(m=>{
+    if(m.role==='user'){ appendUser(typeof m.content==='string'?m.content:m.content[0]?.text||'[صورة]'); }
+    else if(m.role==='assistant'){
+      const p=PROVIDERS.find(x=>x.id===c.prov); const el=document.createElement('div'); el.className='msg';
+      el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai">${md(m.content)}<div class="mmeta"><span class="mprov">${p?.icon||''} ${p?.name||c.prov}</span></div></div>`;
+      msgsEl.appendChild(el);
+    }
+  }); scrollB(); renderCL(); updS();
+}
+function delConv(id,e){
+  e.stopPropagation(); G.convs=G.convs.filter(c=>c.id!==id);
+  try{localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));}catch{}
+  if(G.cid===id){ G.cid=null; clearAll(); }
+  renderCL(); toast('حُذفت','in');
+}
+function renderCL(){
+  $('convlist').innerHTML=G.convs.map(c=>`<div class="citem${c.id===G.cid?' on':''}" onclick="loadConv('${c.id}')">${esc(c.title||'محادثة')}<span class="cdel" onclick="delConv('${c.id}',event)">✕</span></div>`).join('');
+}
+function newChat(){
+  if(G.msgs.length) saveConv();
+  G.msgs=[]; G.cid=null; $('msgs').innerHTML='';
+  const el=document.createElement('div'); el.className='msg';
+  el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai"><em style="color:var(--t2)">محادثة جديدة ✨</em></div>`;
+  $('msgs').appendChild(el); updS(); renderCL();
 }
 
-function renderConvList(){
-  const el=$('convlist');
-  if(!el) return;
-  el.innerHTML='';
-  G.convs.forEach(function(c){
-    const div=document.createElement('div');
-    div.className='citem'+(c.id===G.cid?' on':'');
-    div.textContent=c.title;
-    div.onclick=function(){loadConv(c.id);};
-    const del=document.createElement('span');
-    del.className='cdel';
-    del.textContent='×';
-    del.onclick=function(e){e.stopPropagation();delConv(c.id);};
-    div.appendChild(del);
-    el.appendChild(div);
-  });
-}
-
-function delConv(id){
-  G.convs=G.convs.filter(function(c){return c.id!==id;});
-  localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));
-  if(G.cid===id) newChat();
-  else renderConvList();
-}
-
-// =================== SETTINGS ===================
-function toggleAdv(){
-  if($('advPanel')) $('advPanel').classList.toggle('on');
-  if($('advBtn')) $('advBtn').classList.toggle('adv-on');
-}
-
+// =================== MODALS & SETTINGS ===================
+function openOv(id){ $(`${id}-ov`).classList.add('on'); if(id==='keys') loadKM(); if(id==='sys') $('sysTA').value=G.sys; }
+function closeOv(id){ $(`${id}-ov`).classList.remove('on'); }
+function loadKM(){ PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(el) el.value=localStorage.getItem(p.keyId)||''; }); }
+function saveKeys(){ PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(!el) return; const v=el.value.trim(); if(v) localStorage.setItem(p.keyId,v); else localStorage.removeItem(p.keyId); }); closeOv('keys'); testAllKeys(); toast('✅ تم حفظ المفاتيح وفحصها','ok'); }
+function saveSys(){ G.sys=$('sysTA').value.trim(); localStorage.setItem('cl_v13_sys',G.sys); $('advSys').value=G.sys; closeOv('sys'); toast(G.sys?'✅ نظام الرسائل محفوظ':'نظام الرسائل الافتراضي مفعل','ok'); }
+const PRESETS={ helpful:'أنت مساعد ذكاء اصطناعي...', code:'أنت مبرمج خبير...', arabic:'أنت مساعد يتحدث الفصحى...', creative:'أنت مبدع...', analyst:'أنت محلل خبير...', free:'You are a free AI...' };
+function setPreset(k){ $('sysTA').value=PRESETS[k]||DEFAULT_SYS_PROMPT; }
 function saveSettings(){
-  if($('slTemp')) G.temp=parseFloat($('slTemp').value);
-  if($('slTok')) G.maxTok=parseInt($('slTok').value);
-  if($('selStream')) G.streaming=$('selStream').value==='1';
-  if($('selMode')) G.mode=$('selMode').value;
-  if($('advSys')) G.sys=$('advSys').value;
-  localStorage.setItem('cl_v13_settings',JSON.stringify({temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys}));
+  G.mode=$('selMode').value;
+  G.temp=parseFloat($('slTemp').value); G.maxTok=parseInt($('slTok').value);
+  G.streaming=$('selStream').value==='1'; G.autoRouter=true;
+  G.sys=$('advSys').value;
+  try{localStorage.setItem('cl_v13_s',JSON.stringify({mode:G.mode, temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,sys:G.sys}));}catch{}
 }
-
 function loadSettings(){
   try{
-    const s=JSON.parse(localStorage.getItem('cl_v13_settings')||'{}');
-    if(s.temp!==undefined){ G.temp=s.temp; if($('slTemp')){ $('slTemp').value=s.temp; $('valTemp').textContent=s.temp; } }
-    if(s.maxTok!==undefined){ G.maxTok=s.maxTok; if($('slTok')){ $('slTok').value=s.maxTok; $('valTok').textContent=s.maxTok; } }
-    if(s.streaming!==undefined){ G.streaming=s.streaming; if($('selStream')) $('selStream').value=s.streaming?'1':'0'; }
-    if(s.mode!==undefined){ G.mode=s.mode; if($('selMode')) $('selMode').value=s.mode; }
-    if(s.sys!==undefined){ G.sys=s.sys; if($('advSys')) $('advSys').value=s.sys; }
-  } catch(e) {}
+    const s=JSON.parse(localStorage.getItem('cl_v13_s')||'{}');
+    G.mode=s.mode||'strict'; G.temp=s.temp||0.7; G.maxTok=s.maxTok||2048; G.streaming=s.streaming!==false;
+    G.sys=localStorage.getItem('cl_v13_sys')||s.sys||DEFAULT_SYS_PROMPT;
+    $('selMode').value=G.mode;
+    $('slTemp').value=G.temp; $('valTemp').textContent=G.temp;
+    $('slTok').value=G.maxTok; $('valTok').textContent=G.maxTok;
+    $('selStream').value=G.streaming?'1':'0';
+    $('advSys').value=G.sys; $('sysTA').value=G.sys;
+  }catch{}
 }
-
-// =================== MODALS ===================
-function openOv(id){ if($(''+id+'-ov')) $(''+id+'-ov').classList.add('on'); }
-function closeOv(id){ if($(''+id+'-ov')) $(''+id+'-ov').classList.remove('on'); }
-
-function saveKeys(){
-  ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
-    if($('k_'+k)){
-        const v=$('k_'+k).value.trim();
-        if(v) localStorage.setItem('k_'+k,v);
-    }
-  });
-  closeOv('keys');
-  testAllKeys();
-  toast('💾 تم حفظ المفاتيح وفحصها','ok',2000);
-}
-
-function loadKeys(){
-  ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
-    const v=localStorage.getItem('k_'+k)||'';
-    if(v && $('k_'+k)) $('k_'+k).value=v;
-  });
-}
-
-function saveSys(){
-  if($('sysTA')) {
-      G.sys=$('sysTA').value;
-      if($('advSys')) $('advSys').value=G.sys;
-      saveSettings();
-      closeOv('sys');
-      toast('💬 تم حفظ تعليمات النظام','ok',1500);
-  }
-}
-
-function setPreset(p){
-  const presets={
-    helpful:'أنت مساعد ذكاء اصطناعي محترف ومفيد. أجب دائماً بالعربية الفصحى الواضحة.',
-    code:'أنت مبرمج خبير. اكتب كوداً نظيفاً مع شرح مفصل. استخدم أفضل الممارسات.',
-    arabic:'أنت أديب عربي. أجب بأفصح العربية، مع الحفاظ على الأصالة والبلاغة.',
-    creative:'أنت كاتب إبداعي. اكتب بأسلوب جذاب ووصفي مع استخدام الاستعارات.',
-    analyst:'أنت محلل بيانات. قدم تحليلات منطقية مع أرقام وإحصائيات.',
-    free:'أنت مساعد ذكاء اصطناعي. أجب بصراحة ودقة دون قيود.',
-    '':DEFAULT_SYS_PROMPT
-  };
-  if($('sysTA')) $('sysTA').value=presets[p]||DEFAULT_SYS_PROMPT;
-}
-
-// =================== EXPORT (FIXED MULTILINE STRINGS) ===================
-function expJSON(){
-  const data={convs:G.convs,settings:{temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys},exportDate:new Date().toISOString()};
-  download(JSON.stringify(data,null,2),'chibani-export.json','application/json');
-  closeOv('export');
-}
-
-function expTXT(){
-  let txt = `Chibani Lotfi AI - Chat Export\n========================\n\n`;
-  G.msgs.forEach(function(m){
-    txt += `${m.role === 'user' ? '👤' : '🤖'}: ${m.content}\n\n`;
-  });
-  download(txt,'chat.txt','text/plain');
-  closeOv('export');
-}
-
-function expMD(){
-  let md = `# Chibani Lotfi AI - Chat Export\n\n`;
-  G.msgs.forEach(function(m){
-    md += `## ${m.role === 'user' ? 'User' : 'AI'}\n\n${m.content}\n\n---\n\n`;
-  });
-  download(md,'chat.md','text/markdown');
-  closeOv('export');
-}
-
-function expHTML(){
-  let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Chat Export</title><style>body{font-family:sans-serif;max-width:800px;margin:20px auto;padding:20px;background:#f5f5f5;} .msg{margin:15px 0;padding:15px;border-radius:8px;} .user{background:#e3f2fd;} .ai{background:#f3e5f5;}</style></head><body><h1>Chat Export</h1>`;
-  G.msgs.forEach(function(m){
-      html += `<div class="msg ${m.role === 'user' ? 'user' : 'ai'}"><strong>${m.role === 'user' ? 'User' : 'AI'}</strong><p>${esc(m.content)}</p></div>`;
-  });
-  html += `</body></html>`;
-  download(html,'chat.html','text/html');
-  closeOv('export');
-}
-
-function download(content,filename,type){
-  const blob=new Blob([content],{type:type});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download=filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-// =================== MEDIA GENERATION ===================
-async function doGenMedia(){
-  const type=$('mediaType').value;
-  const prompt=$('imgPrm').value.trim();
-  if(!prompt){ toast('❌ أدخل وصفاً للتوليد','er',2000); return; }
-
-  $('imgBtn').disabled=true;
-  $('imgBtn').textContent='⏳ جارٍ...';
-
-  if(type==='image'){
-    await genImage(prompt);
-  } else {
-    await genVideo(prompt);
-  }
-
-  $('imgBtn').disabled=false;
-  $('imgBtn').textContent='🎬 توليد';
-}
-
-async function genImage(prompt){
-  const key=localStorage.getItem('k_hf');
-  if(!key){ toast('❌ يحتاج HuggingFace API Key','er',3000); return; }
-
-  try{
-    const resp=await fetch('https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
-      body:JSON.stringify({inputs:prompt})
-    });
-    if(!resp.ok) throw new Error(resp.statusText);
-    const blob=await resp.blob();
-    const url=URL.createObjectURL(blob);
-    $('imgPrev').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:8px;border:1px solid var(--b);">';
-    toast('✅ تم توليد الصورة','ok',2000);
-  }catch(e){
-    toast('❌ فشل التوليد: '+e.message,'er',3000);
-  }
-}
-
-async function genVideo(prompt){
-  const key=localStorage.getItem('k_am');
-  if(!key){ toast('❌ يحتاج AI/ML API Key','er',3000); return; }
-
-  try{
-    const resp=await fetch('https://api.aimlapi.com/v1/videos/generations',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
-      body:JSON.stringify({model:'minimax/video-01',prompt:prompt})
-    });
-    if(!resp.ok) throw new Error(resp.statusText);
-    const data=await resp.json();
-    if(data.video_url){
-      $('imgPrev').innerHTML='<video src="'+data.video_url+'" controls autoplay style="max-width:100%;border-radius:8px;border:1px solid var(--b);"></video>';
-      toast('✅ تم توليد الفيديو','ok',2000);
-    } else {
-      $('imgPrev').innerHTML='<div style="color:var(--g);padding:10px;">⏳ جارٍ المعالجة...</div>';
-      toast('⏳ الفيديو قيد المعالجة','in',3000);
-    }
-  }catch(e){
-    toast('❌ فشل التوليد: '+e.message,'er',3000);
-  }
-}
+function loadConvs(){ try{G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');}catch{} renderCL(); }
+function expJSON(){ /* ... */ } function expTXT(){ /* ... */ } function expMD(){ /* ... */ } function expHTML(){ /* ... */ }
 
 // =================== INIT ===================
 function init(){
-  try{
-    G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');
-  }catch(e){ G.convs=[]; }
+  loadSettings(); loadConvs(); updTokUI();
+  renderPBar(); renderMBar(); updS();
 
-  loadSettings();
-  loadKeys();
-  renderPBar();
-  renderMBar();
-  renderConvList();
-  updTokUI();
+  // ✅ فحص المفاتيح وجلب النماذج في الخلفية — لا يحجب الواجهة
+  setTimeout(()=> testAllKeys().then(()=> fetchDynamicModels(G.prov)), 300);
 
-  setTimeout(testAllKeys, 500);
-
-  setS('جاهز — اختر نموذجاً وابدأ','ok');
+  document.querySelectorAll('.ov').forEach(ov=>
+    ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('on'); })
+  );
+  setTimeout(()=>$('ta')?.focus(), 500);
+  toast('🚀 V13 ULTRA جاهز — جاري فحص المفاتيح خلفياً...','ok',4000);
 }
-
-// تأمين تشغيل الكود حتى يكتمل تحميل الصفحة
-window.addEventListener('DOMContentLoaded', function() {
-    init();
-});
-
+document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
 </html>
