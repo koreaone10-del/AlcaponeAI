@@ -651,8 +651,7 @@ function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
-  let s=raw.replace(/```(\w*)
-?([\s\S]*?)```/g,function(_,lang,code){
+  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,function(_,lang,code){
     const k='B'+ci+'';
     blk[k]='<pre data-lang="'+esc(lang||'txt')+'"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>'+esc(code.trim())+'</pre>';
     ci++; return k;
@@ -669,17 +668,11 @@ function md(raw){
    .replace(/__([^_]+)__/g,'<strong>$1</strong>')
    .replace(/_([^_]+)_/g,'<em>$1</em>')
    .replace(/~~([^~]+)~~/g,'<del>$1</del>')
-   .replace(/#{3}\s+([^
-]+)/g,'<h3>$1</h3>')
-   .replace(/#{2}\s+([^
-]+)/g,'<h2>$1</h2>')
-   .replace(/#\s+([^
-]+)/g,'<h1>$1</h1>')
-   .replace(/
-
-/g,'</p><p>')
-   .replace(/
-/g,'<br>');
+   .replace(/#{3}\s+([^\n]+)/g,'<h3>$1</h3>')
+   .replace(/#{2}\s+([^\n]+)/g,'<h2>$1</h2>')
+   .replace(/#\s+([^\n]+)/g,'<h1>$1</h1>')
+   .replace(/\n\n/g,'</p><p>')
+   .replace(/\n/g,'<br>');
   s='<p>'+s+'</p>';
   s=s.replace(/<p>\s*<\/p>/g,'')
    .replace(/<p>(<h[123][^>]*>.*?<\/h[123]>)<\/p>/g,'$1')
@@ -757,9 +750,7 @@ async function testKey(p){
       max_tokens: 5,
       temperature: 0.1
     };
-    // FIX: Groq max_tokens must be <= 512
     if(p.id==='groq') body.max_tokens = 5;
-    // FIX: Mistral temperature must be <= 1
     if(p.id==='mistral') body.temperature = 0.1;
 
     const hdr={'Content-Type':'application/json'};
@@ -822,7 +813,6 @@ async function doSend(){
   ta.value=''; resize(ta); updateCC();
   G.files=[]; renderFiles();
 
-  // Arena mode
   if(G.mode==='arena'){
     await doArena(txt);
     return;
@@ -850,21 +840,14 @@ async function doSend(){
     max_tokens: G.maxTok
   };
 
-  // FIX 1: Groq max_tokens must be <= 512
   if(G.prov==='groq'){
     body.max_tokens = Math.min(G.maxTok, 512);
   }
-  // FIX 2: Mistral temperature must be <= 1
   if(G.prov==='mistral'){
     body.temperature = Math.min(G.temp, 1.0);
   }
-  // FIX 3: NVIDIA needs specific handling
   if(G.prov==='nvidia'){
     body.max_tokens = Math.min(G.maxTok, 1024);
-  }
-  // FIX 4: AI/ML API uses different model names
-  if(G.prov==='aimlapi'){
-    // Models already corrected in config
   }
 
   if(G.streaming && p.stream) body.stream=true;
@@ -886,7 +869,6 @@ async function doSend(){
   }catch(e){
     console.error(e);
     toast('❌ خطأ: '+e.message,'er',3000);
-    // Try fallback
     await doFallback(txt);
   }
 
@@ -927,8 +909,7 @@ async function doStream(p, body, hdr){
     const {done,value}=await reader.read();
     if(done) break;
     buf+=decoder.decode(value,{stream:true});
-    const lines=buf.split('
-');
+    const lines=buf.split('\n');
     buf=lines.pop();
     for(const line of lines){
       if(!line.trim() || !line.startsWith('data:')) continue;
@@ -951,7 +932,6 @@ async function doStream(p, body, hdr){
 }
 
 async function doFallback(txt){
-  // Try OpenRouter free models as fallback
   const fallback = PROVIDERS.find(function(p){return p.id==='openrouter';});
   if(!fallback) return;
   const key=getKey(fallback);
@@ -983,7 +963,6 @@ async function doFallback(txt){
 }
 
 async function doArena(txt){
-  // Send to multiple providers and show fastest
   const providers = PROVIDERS.filter(function(p){return !!getKey(p) && p.models.length>0 && p.id!=='huggingface';}).slice(0,3);
   if(providers.length===0){
     toast('❌ لا توجد مفاتيح لمزودين متاحين','er',3000);
@@ -1033,7 +1012,6 @@ async function doArena(txt){
   addTok(winner.content);
   setS('⚔️ الفائز: '+winner.p.name+' ('+winner.time+'ms)','ok');
 
-  // Show other results
   results.filter(function(r){return r.ok && r.p.id!==winner.p.id;}).forEach(function(r){
     const meta = document.createElement('div');
     meta.className='mmeta';
@@ -1089,7 +1067,6 @@ function addMsgUI(msg, who, streaming){
     });
   }
 
-  // Meta
   if(who==='ai'){
     const meta=document.createElement('div');
     meta.className='mmeta';
@@ -1098,8 +1075,11 @@ function addMsgUI(msg, who, streaming){
     if(msg.model) metaHtml+='<span>'+msg.model+'</span>';
     if(msg.fallback) metaHtml+='<span class="mfallback">fallback</span>';
     if(msg.arena) metaHtml+='<span style="color:var(--g)">⚔️ '+msg.arenaTime+'ms</span>';
-    metaHtml+='<button class="mbtn" onclick="copyMsg(''+msg.id+'')">📋</button>';
-    metaHtml+='<button class="mbtn" onclick="regenMsg(''+msg.id+'')">🔄</button>';
+    
+    // إصلاح أزرار النسخ والتحديث لتجنب خطأ التفسير
+    metaHtml+='<button class="mbtn" onclick="copyMsg(\''+msg.id+'\')">📋</button>';
+    metaHtml+='<button class="mbtn" onclick="regenMsg(\''+msg.id+'\')">🔄</button>';
+    
     meta.innerHTML=metaHtml;
     div.appendChild(meta);
   }
@@ -1131,9 +1111,7 @@ function copyMsg(id){
 function regenMsg(id){
   const idx=G.msgs.findIndex(function(m){return m.id===id;});
   if(idx<1) return;
-  // Remove this and all after
   G.msgs=G.msgs.slice(0,idx);
-  // Remove from UI
   const msgEl=$('msg-'+id);
   if(msgEl){
     let next=msgEl.nextElementSibling;
@@ -1144,7 +1122,6 @@ function regenMsg(id){
     }
     msgEl.remove();
   }
-  // Resend last user message
   const lastUser=G.msgs.filter(function(m){return m.role==='user';}).pop();
   if(lastUser){
     $('ta').value=lastUser.content;
@@ -1353,28 +1330,15 @@ function expJSON(){
 }
 
 function expTXT(){
-  let txt='Chibani Lotfi AI - Chat Export
-========================
-
-';
-  G.msgs.forEach(function(m){txt+=(m.role==='user'?'👤':'🤖')+': '+m.content+'
-
-';});
+  let txt='Chibani Lotfi AI - Chat Export\n========================\n\n';
+  G.msgs.forEach(function(m){txt+=(m.role==='user'?'👤':'🤖')+': '+m.content+'\n\n';});
   download(txt,'chat.txt','text/plain');
   closeOv('export');
 }
 
 function expMD(){
-  let md='# Chibani Lotfi AI - Chat Export
-
-';
-  G.msgs.forEach(function(m){md+='## '+(m.role==='user'?'User':'AI')+'
-
-'+m.content+'
-
----
-
-';});
+  let md='# Chibani Lotfi AI - Chat Export\n\n';
+  G.msgs.forEach(function(m){md+='## '+(m.role==='user'?'User':'AI')+'\n\n'+m.content+'\n\n---\n\n';});
   download(md,'chat.md','text/markdown');
   closeOv('export');
 }
@@ -1442,7 +1406,6 @@ async function genVideo(prompt){
   if(!key){ toast('❌ يحتاج AI/ML API Key','er',3000); return; }
 
   try{
-    // Use AI/ML API for video generation (Minimax)
     const resp=await fetch('https://api.aimlapi.com/v1/videos/generations',{
       method:'POST',
       headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
@@ -1455,34 +1418,4 @@ async function genVideo(prompt){
       toast('✅ تم توليد الفيديو','ok',2000);
     } else {
       $('imgPrev').innerHTML='<div style="color:var(--g);padding:10px;">⏳ جارٍ المعالجة... تحقق لاحقاً</div>';
-      toast('⏳ الفيديو قيد المعالجة','in',3000);
-    }
-  }catch(e){
-    toast('❌ فشل التوليد: '+e.message,'er',3000);
-  }
-}
-
-// =================== INIT ===================
-function init(){
-  // Load conversations
-  try{
-    G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');
-  }catch(e){ G.convs=[]; }
-
-  loadSettings();
-  loadKeys();
-  renderPBar();
-  renderMBar();
-  renderConvList();
-  updTokUI();
-
-  // Auto-test keys after short delay
-  setTimeout(testAllKeys, 1000);
-
-  setS('جاهز — اختر نموذجاً وابدأ','ok');
-}
-
-init();
-</script>
-</body>
-</html>
+      toast('⏳ الفيديو ق
