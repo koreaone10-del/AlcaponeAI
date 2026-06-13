@@ -47,6 +47,11 @@ https://www.facebook.com/share/17rf3Zo76x/
 ![CHIBANILOTFIAI](YouCut_20260611_204317308(1).gif)
 
 ## 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/koreaone10-del/AlcaponeAI/main/Screenshot_20260613_204727_ChibaniAI.jpg" alt="لقطة شاشة 1" width="250">
+  <img src="https://raw.githubusercontent.com/koreaone10-del/AlcaponeAI/main/Screenshot_20260613_204851_ChibaniAI.jpg" alt="لقطة شاشة 2" width="250">
+  <img src="https://raw.githubusercontent.com/koreaone10-del/AlcaponeAI/main/Screenshot_20260613_204949_ChibaniAI.jpg" alt="لقطة شاشة 3" width="250">
+</div>
 
 PROMPT SYSTEM 
 
