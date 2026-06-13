@@ -52,6 +52,12 @@ https://www.facebook.com/share/17rf3Zo76x/
   <img src="https://raw.githubusercontent.com/koreaone10-del/AlcaponeAI/main/Screenshot_20260613_204851_ChibaniAI.jpg" alt="لقطة شاشة 2" width="250">
   <img src="https://raw.githubusercontent.com/koreaone10-del/AlcaponeAI/main/Screenshot_20260613_204949_ChibaniAI.jpg" alt="لقطة شاشة 3" width="250">
 </div>
+<div align="center">
+  <img src="https://media1.tenor.com/m/-_f1qA6NLekAAAAC/ai-artificial-intelligence.gif" alt="تطور الذكاء الاصطناعي" width="500">
+</div>
+
+## لقطات التطبيق
+<!-- ثم صورك الثلاث -->
 
 PROMPT SYSTEM 
 
