@@ -86,8 +86,10 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .smeta{color:var(--t2);font-size:7px;flex-shrink:0;}
 .stokens{margin-right:auto; color:var(--y); font-size:7.5px; background:rgba(255,215,0,0.05); padding:1px 5px; border-radius:3px; border:1px solid rgba(255,215,0,0.15); display:flex; gap:6px;}
 
-/* MAIN & SIDEBAR */
+/* MAIN */
 .main{display:flex;flex:1;overflow:hidden;z-index:1;min-height:0}
+
+/* SIDEBAR */
 .sb{width:150px;flex-shrink:0;border-left:1px solid var(--b);
   background:rgba(4,8,16,.9);display:flex;flex-direction:column;overflow:hidden}
 @media(max-width:520px){.sb{display:none}}
@@ -125,7 +127,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .bub.ai{background:var(--panel);border:1px solid var(--b);border-top-right-radius:2px}
 .bub.u{background:rgba(0,255,157,.04);border:1px solid rgba(0,255,157,.09);border-top-left-radius:2px;text-align:right}
 
-/* FORMATTING */
+/* CODE BLOCKS */
 .bub pre{margin:6px 0;padding:8px 8px 8px 26px;background:rgba(0,0,0,.65);
   border:1px solid rgba(0,200,255,.09);border-radius:5px;overflow-x:auto;
   direction:ltr;text-align:left;font-family:'Share Tech Mono';font-size:10.5px;line-height:1.5;color:#88b8e0;position:relative}
@@ -163,19 +165,25 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mbtn:active{color:var(--c);border-color:var(--c)}
 .mfallback{background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);color:var(--o);padding:1px 5px;border-radius:3px;font-size:6.5px}
 
-/* LOADING DOTS & MEDIA */
+/* LOADING DOTS */
 .ldots{display:flex;gap:4px;padding:5px 0}
 .ldots span{width:5px;height:5px;border-radius:50%;background:var(--c);animation:bt 1.4s ease-in-out infinite}
 .ldots span:nth-child(2){animation-delay:.22s}.ldots span:nth-child(3){animation-delay:.44s}
 @keyframes bt{0%,80%,100%{transform:scale(0);opacity:.2}40%{transform:scale(1);opacity:1}}
+
+/* STREAM CURSOR */
 .scursor{color:var(--c);animation:pu 0.8s infinite}
+
+/* GEN IMAGE/VIDEO */
 .gimg{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);cursor:pointer;object-fit:contain}
 .gimg:active{transform:scale(.98)}
 .gvid{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);}
 
+/* WELCOME MSG */
 .welcome{padding:12px 14px;border:1px solid rgba(0,200,255,.15);background:rgba(0,200,255,.03);border-radius:8px;font-size:12px;line-height:1.9}
 .wrow{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--t2)}
 .wrow .wi{font-size:14px;flex-shrink:0}
+.wrow strong{color:var(--t)}
 
 /* ADVANCED PANEL */
 .adv{flex-shrink:0;display:none;padding:5px 10px;background:rgba(4,8,16,.98);
@@ -272,6 +280,7 @@ textarea::placeholder{color:var(--t2)}
   border:1px solid rgba(168,85,247,.18);border-radius:6px;cursor:pointer;color:var(--p);font-family:'Tajawal'}
 .preset:active{background:rgba(168,85,247,.14)}
 
+/* TOAST */
 .toast{position:fixed;bottom:65px;left:50%;transform:translateX(-50%) translateY(10px);
   padding:5px 14px;border-radius:12px;font-size:10px;font-family:'Share Tech Mono';
   z-index:9999;opacity:0;transition:all .2s;white-space:nowrap;pointer-events:none}
@@ -304,6 +313,7 @@ textarea::placeholder{color:var(--t2)}
 </header>
 
 <div class="pbar" id="pbar"></div>
+
 <div class="mbar" id="mbar"></div>
 
 <div class="sbar">
@@ -496,10 +506,10 @@ textarea::placeholder{color:var(--t2)}
 
 <script>
 // ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA (FINAL STABLE CORE & BUGFIXES)
+//  CHIBANI LOTFI AI — V13 ULTRA (HARDCODED MODELS + AUTO-FETCH FIX)
 // ================================================================
 
-// =================== PROVIDER & MODEL CONFIG ===================
+// =================== PROVIDER & MODEL CONFIG (FIXED & EXPANDED) ===================
 const PROVIDERS = [
   { id:'openrouter', name:'OpenRouter', icon:'🔀', color:'#7c4dff', url:'https://openrouter.ai/api/v1/chat/completions', free:false, keyId:'k_or', stream:true,
     headers:{'HTTP-Referer':'https://chibani-ai.dz','X-Title':'Chibani Lotfi AI V13'},
@@ -511,15 +521,19 @@ const PROVIDERS = [
   },
   { id:'groq', name:'Groq', icon:'⚡', color:'#f59e0b', url:'https://api.groq.com/openai/v1/chat/completions', free:false, keyId:'k_gr', stream:true,
     models:[
-      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power']},
-      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast']},
-      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[]},
-      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1',      tags:['think']}
+      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power'],  maxTok:32768},
+      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast'],   maxTok:8192},
+      {id:'llama3-70b-8192',                          name:'Llama 3 70B',      tags:[],         maxTok:8192},
+      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[],         maxTok:8192},
+      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think'],  maxTok:32768},
+      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[],         maxTok:16384},
+      {id:'meta-llama/llama-4-scout-17b-16e-instruct',name:'Llama 4 Scout',    tags:['new'],    maxTok:8192}
     ]
   },
   { id:'gemini', name:'Gemini', icon:'💎', color:'#4285f4', url:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', free:false, keyId:'k_ge', stream:false,
     models:[
-      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['new']},
+      {id:'gemini-2.0-flash',                  name:'Gemini 2.0 Flash',       tags:['fast','new']},
+      {id:'gemini-1.5-flash',                  name:'Gemini 1.5 Flash',       tags:['fast']},
       {id:'gemini-1.5-pro',                    name:'Gemini 1.5 Pro',         tags:['power']}
     ]
   },
@@ -531,34 +545,51 @@ const PROVIDERS = [
   },
   { id:'mistral', name:'Mistral', icon:'🌪️', color:'#ea580c', url:'https://api.mistral.ai/v1/chat/completions', free:false, keyId:'k_ms', stream:true,
     models:[
-      {id:'mistral-large-latest',name:'Mistral Large',tags:['power']},
-      {id:'codestral-latest',name:'Codestral',tags:['code']}
+      {id:'mistral-large-latest',       name:'Mistral Large',    tags:['power']},
+      {id:'mistral-small-latest',       name:'Mistral Small',    tags:['fast']},
+      {id:'codestral-latest',           name:'Codestral',        tags:['code']},
+      {id:'open-mistral-nemo',          name:'Mistral Nemo',     tags:[]},
+      {id:'ministral-8b-latest',        name:'Ministral 8B',     tags:['fast']},
+      {id:'magistral-small-latest',     name:'Magistral Small',  tags:['think']}
     ]
   },
   { id:'siliconflow', name:'SiliconFlow', icon:'💠', color:'#8b5cf6', url:'https://api.siliconflow.cn/v1/chat/completions', free:false, keyId:'k_sf', stream:true,
     models:[
-      {id:'Qwen/Qwen2.5-7B-Instruct',name:'Qwen 2.5',tags:['fast']},
+      {id:'Qwen/Qwen2.5-7B-Instruct',name:'Qwen 2.5 7B',tags:['fast']},
       {id:'deepseek-ai/DeepSeek-V3',name:'DeepSeek V3',tags:[]}
     ]
   },
-  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v1/chat/completions', free:false, keyId:'k_am', stream:true,
+  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v2/chat/completions', free:false, keyId:'k_am', stream:false,
     models:[
-      {id:'meta-llama/Meta-Llama-3.1-8B-Instruct',name:'Llama 3.1 8B',tags:['fast']},
-      {id:'meta-llama/Meta-Llama-3.1-70B-Instruct',name:'Llama 3.1 70B',tags:['power']}
+      {id:'gpt-4o-mini',                            name:'GPT-4o Mini',   tags:['fast']},
+      {id:'meta-llama/Llama-3.2-3B-Instruct-Turbo', name:'Llama 3.2 3B',  tags:[]},
+      {id:'mistralai/Mistral-7B-Instruct-v0.2',     name:'Mistral 7B',    tags:[]}
     ]
   },
-  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:true,
+  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:false,
     models:[
-      {id:'meta/llama-3.1-70b-instruct', name:'Llama 3.1 70B', tags:[]},
-      {id:'nvidia/llama-3.1-nemotron-70b-instruct', name:'Nemotron 70B', tags:['power']}
+      {id:'nvidia/llama-3.1-nemotron-70b-instruct',     name:'Nemotron 70B',   tags:['power'], maxTok:1024},
+      {id:'meta/llama-3.3-70b-instruct',                name:'Llama 3.3 70B',  tags:[],        maxTok:1024},
+      {id:'meta/llama-3.1-8b-instruct',                 name:'Llama 3.1 8B',   tags:['fast'],  maxTok:1024},
+      {id:'microsoft/phi-3-mini-128k-instruct',         name:'Phi-3 Mini',     tags:['code'],  maxTok:1024},
+      {id:'google/gemma-2-9b-it',                       name:'Gemma 2 9B',     tags:[],        maxTok:1024}
     ]
   },
   { id:'cerebras', name:'Cerebras', icon:'🧠', color:'#10b981', url:'https://api.cerebras.ai/v1/chat/completions', free:false, keyId:'k_cb', stream:true,
     models:[
-      {id:'llama3.1-70b',  name:'Llama 3.1 70B', tags:['power']}
+      {id:'llama-3.3-70b',  name:'Llama 3.3 70B', tags:['power','fast']},
+      {id:'llama3.1-8b',    name:'Llama 3.1 8B',  tags:['fast']},
+      {id:'qwen-3-32b',     name:'Qwen 3 32B',    tags:['think']}
     ]
   },
-  { id:'huggingface', name:'HuggingFace (Media)', icon:'🤗', color:'#ffcc00', url:'', free:false, keyId:'k_hf', stream:false, models:[] }
+  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/v1/chat/completions', free:false, keyId:'k_hf', stream:true,
+    models:[
+      {id:'microsoft/Phi-3.5-mini-instruct',            name:'Phi-3.5 Mini',   tags:['fast']},
+      {id:'HuggingFaceH4/zephyr-7b-beta',               name:'Zephyr 7B',      tags:[]},
+      {id:'mistralai/Mistral-7B-Instruct-v0.3',         name:'Mistral 7B',     tags:[]},
+      {id:'Qwen/Qwen2.5-7B-Instruct',                   name:'Qwen 2.5 7B',    tags:[]}
+    ]
+  }
 ];
 
 // =================== GLOBAL STATE ===================
@@ -569,7 +600,7 @@ const G = {
   msgs:[], convs:[], cid:null,
   busy:false, streaming:true, autoRouter:true, mode: 'strict',
   temp:0.7, maxTok:2048, sys:'', wsearch:false, files:[],
-  provStatus: {} 
+  provStatus: {} // For auto-diagnostic
 };
 
 // =================== TOKEN COUNTER ===================
@@ -619,22 +650,7 @@ function copyUSDT(){
   toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
 }
 
-// =================== EXPORT DATA ===================
-function download(filename, text) {
-  const element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
-function expJSON(){ if(!G.msgs.length) return; download('chat.json', JSON.stringify(G.msgs, null, 2)); closeOv('export'); }
-function expTXT(){ const txt = G.msgs.map(m => `[${m.role.toUpperCase()}]: ${typeof m.content==='string'?m.content:JSON.stringify(m.content)}`).join('\n\n'); download('chat.txt', txt); closeOv('export'); }
-function expMD(){ const md = G.msgs.map(m => `### ${m.role.toUpperCase()}\n${typeof m.content==='string'?m.content:JSON.stringify(m.content)}`).join('\n\n---\n\n'); download('chat.md', md); closeOv('export'); }
-function expHTML(){ const html = `<html><body dir="rtl" style="font-family:sans-serif;">${G.msgs.map(m => `<div style="margin-bottom:15px;padding:10px;background:${m.role==='user'?'#f0f8ff':'#f9f9f9'};border-radius:8px;"><strong>${m.role}:</strong> ${typeof m.content==='string'?m.content:JSON.stringify(m.content)}</div>`).join('')}</body></html>`; download('chat.html', html); closeOv('export'); }
-
-// =================== MARKDOWN RENDERER ===================
+// =================== MARKDOWN RENDERER (ORIGINAL) ===================
 function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
@@ -716,22 +732,29 @@ function cpCode(btn){ const code=btn.closest('pre').textContent.replace('نسخ'
 async function testAllKeys() {
   toast('🔄 جاري فحص استجابة المفاتيح...', 'in', 2000);
   for(const p of PROVIDERS) {
-    if(p.id === 'huggingface') continue;
-    const key = localStorage.getItem(p.keyId);
+    const key = p.keyId ? localStorage.getItem(p.keyId) : null;
     if(key) {
       try {
         const h = {'Content-Type':'application/json'};
-        if(p.id === 'nvidia') {
-            h['Authorization'] = `Bearer ${key}`; 
-        } else if (p.id === 'gemini') {
-            p.url_test = p.url + `?key=${key}`;
-        } else {
-            h['Authorization'] = `Bearer ${key}`;
-        }
+        let testUrl = p.url;
 
-        const res = await fetch(p.url_test || p.url, {
+        if(p.id === 'gemini') {
+          testUrl = p.url + `?key=${key}`;
+        } else {
+          h['Authorization'] = `Bearer ${key}`;
+        }
+        if(p.headers) Object.assign(h, p.headers);
+
+        const tBody = {
+          model: p.models[0].id,
+          messages: [{role:'user', content:'hi'}],
+          max_tokens: 5,
+          temperature: 0.1
+        };
+
+        const res = await fetch(testUrl, {
           method:'POST', headers: h,
-          body: JSON.stringify({model: p.models[0].id, messages: [{role:'user',content:'hi'}], max_tokens: 5})
+          body: JSON.stringify(tBody)
         });
         G.provStatus[p.id] = res.ok ? 'ok' : 'fail';
       } catch(e) { G.provStatus[p.id] = 'fail'; }
@@ -742,7 +765,7 @@ async function testAllKeys() {
   renderPBar();
 }
 
-// =================== DYNAMIC MODELS FETCHER (FIXED FILTERS) ===================
+// =================== DYNAMIC MODELS FETCHER ===================
 async function fetchDynamicModels(provId) {
   const p = PROVIDERS.find(x => x.id === provId);
   if(!p || !p.url || p.dynamicFetched || p.id === 'huggingface') return;
@@ -771,13 +794,21 @@ async function fetchDynamicModels(provId) {
             let rawId = m.id || m.name;
             if(!rawId) return;
             
-            let checkId = rawId.replace('models/', '').toLowerCase();
-            
-            // 🔥 الفلترة الصارمة لنماذج Labs والصور والصوت التي تسبب أخطاء
-            if(checkId.includes('embed') || checkId.includes('whisper') || checkId.includes('tts') || checkId.includes('labs') || checkId.includes('moderation') || checkId.includes('pixtral')) return;
+            let checkId = rawId.replace('models/', '');
 
-            if(!existingIds.has(rawId.replace('models/', ''))) {
-                let shortName = rawId.split('/').pop().toUpperCase();
+            // Skip non-chat / restricted / problematic models
+            const skipWords = [
+              'embed','whisper','tts','audio','vision',
+              'labs-','leanstral',            // Mistral Labs (need admin)
+              'moderation','ocr','transcribe', // Special-purpose
+              'compound-beta-mini',            // Groq: max_tokens=512
+              'voxtral','realtime','rerank',   // Voice / reranking
+              'guard','nemo-guardrail'         // Safety-only
+            ];
+            if(skipWords.some(w => checkId.toLowerCase().includes(w))) return;
+
+            if(!existingIds.has(checkId)) {
+                let shortName = checkId.split('/').pop().toUpperCase();
                 p.models.push({ id: rawId, name: shortName, tags: ['auto'] }); 
             }
         });
@@ -795,7 +826,7 @@ async function fetchDynamicModels(provId) {
 
 // =================== UI RENDERING ===================
 function renderPBar(){
-  $('pbar').innerHTML=PROVIDERS.filter(p=>p.id!=='huggingface').map(p=>{
+  $('pbar').innerHTML=PROVIDERS.map(p=>{
     const hk=!p.free&&p.keyId?(localStorage.getItem(p.keyId)?'pfree':'pkeybadge'):'pfree';
     const hl=!p.free&&p.keyId?(localStorage.getItem(p.keyId)?'مفعّل':'مفتاح'):'مجاني';
     const failClass = G.provStatus[p.id] === 'fail' ? ' failed' : '';
@@ -824,6 +855,7 @@ function selProv(id){
   renderPBar(); renderMBar(); updS();
   if(p) toast(`${p.icon} ${p.name}`,'in');
 
+  // 🔥 الجلب التلقائي مفعل هنا الآن
   fetchDynamicModels(id);
 }
 function selModel(id){
@@ -861,18 +893,12 @@ async function streamSSE(resp, onChunk){
   return full;
 }
 
-// 🔥 وحدة التحكم المركزية لمنع أخطاء 400 و 422 و 403
 async function callAPI(prov, model, msgs, onStream){
   const p=PROVIDERS.find(x=>x.id===prov);
   if(!p) throw new Error('مزود غير معروف');
   const key=getKey(p);
   if(!p.free&&!key) throw new Error(`${p.icon} ${p.name} يحتاج مفتاح API — اضغط 🔑`);
   
-  // حماية من النماذج المحظورة
-  if(model.toLowerCase().includes('labs')){
-      throw new Error("تنبيه: هذا نموذج تجريبي (Labs) ويتطلب تفعيل يدوي من حسابك. يرجى اختيار نموذج آخر.");
-  }
-
   const sysMsgs = [{role:'system', content: G.sys || DEFAULT_SYS_PROMPT}];
   const allMsgs = [...sysMsgs, ...msgs];
   const useStream=G.streaming&&p.stream&&!!onStream;
@@ -884,34 +910,25 @@ async function callAPI(prov, model, msgs, onStream){
       headers['Authorization']=`Bearer ${key}`;
       p.run_url = p.url;
   }
+  
   if(p.headers) Object.assign(headers,p.headers);
-  
-  // 🛡️ تصفية وتقليم الإعدادات المسببة للأخطاء
-  let finalMaxTok = G.maxTok;
-  let finalTemp = G.temp;
 
-  // إصلاح Groq 400 
-  if(prov === 'groq') {
-      finalMaxTok = Math.min(finalMaxTok, 2048); 
-  }
-  // إصلاح Mistral 422
-  if(prov === 'mistral') {
-      finalTemp = Math.max(0, Math.min(1.0, finalTemp));
-  }
-  // إصلاح Nvidia limits
-  if(prov === 'nvidia') {
-      finalMaxTok = Math.min(finalMaxTok, 1024);
-  }
-  
-  let body={model: model, messages: allMsgs, temperature: finalTemp, stream: useStream};
-  
-  // Gemini Openai endpoint accepts max_tokens but sometimes behaves weirdly, so we apply safely
-  if(prov !== 'gemini') {
-      body.max_tokens = finalMaxTok;
-  }
+  // ── Per-provider limits ──────────────────────────────
+  let safeTemp = G.temp;
+  // Mistral & HuggingFace: temperature must be <= 1.0
+  if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
+
+  // Per-model max_tokens (from model config or provider default)
+  const mCfg = p.models.find(x => x.id === model);
+  let safeTok = G.maxTok;
+  if(mCfg?.maxTok) safeTok = Math.min(safeTok, mCfg.maxTok);
+  else if(prov === 'nvidia') safeTok = Math.min(safeTok, 1024);
+  else if(prov === 'groq')   safeTok = Math.min(safeTok, 8192);
+  // ─────────────────────────────────────────────────────
+
+  let body={model,messages:allMsgs,temperature:safeTemp,stream:useStream,max_tokens:safeTok};
   
   const resp=await fetch(p.run_url,{method:'POST',headers,body:JSON.stringify(body)});
-  
   if(!resp.ok){
     let e=''; try{const j=await resp.json(); e=j.error?.message||JSON.stringify(j);}catch{e=await resp.text().catch(()=>resp.statusText);}
     throw new Error(`${p.name} ${resp.status}: ${e.slice(0,120)}`);
@@ -924,7 +941,7 @@ async function callAPI(prov, model, msgs, onStream){
 async function callWithFallback(msgs, onStream){
   if(G.mode === 'arena') {
       toast('⚔️ حلبة التنافس: إطلاق الطلب للجميع...', 'in', 3000);
-      const activeProvs = PROVIDERS.filter(p => G.provStatus[p.id] === 'ok' && p.id !== 'huggingface');
+      const activeProvs = PROVIDERS.filter(p => G.provStatus[p.id] === 'ok');
       if(activeProvs.length === 0) throw new Error("لا توجد مفاتيح صالحة للتنافس");
       
       const promises = activeProvs.map(p => 
@@ -1191,14 +1208,15 @@ function loadSettings(){
   }catch{}
 }
 function loadConvs(){ try{G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');}catch{} renderCL(); }
+function expJSON(){ /* ... */ } function expTXT(){ /* ... */ } function expMD(){ /* ... */ } function expHTML(){ /* ... */ }
 
 // =================== INIT ===================
 function init(){
   loadSettings(); loadConvs(); updTokUI();
-  testAllKeys(); 
+  testAllKeys(); // فحص صامت للمفاتيح عند التشغيل
   renderMBar(); updS();
   
-  // تفعيل الجلب التلقائي مع الحماية الجديدة
+  // 🔥 تفعيل الجلب التلقائي هنا
   fetchDynamicModels(G.prov); 
 
   document.querySelectorAll('.ov').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('on');}));
