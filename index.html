@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Chibani Lotfi AI — V13 ULTRA FIX</title>
+<title>Chibani Lotfi AI — V13 ULTRA FINAL</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Tajawal:wght@400;500;700&display=swap');
 :root{
@@ -23,7 +23,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-size:50px 50px;animation:bgm 60s linear infinite}
 @keyframes bgm{to{background-position:50px 50px}}
 
-/* HEADER */
 header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b);
   background:rgba(3,6,12,0.99);display:flex;align-items:center;justify-content:space-between;gap:6px; flex-wrap: wrap;}
 .logo{font-family:'Orbitron';font-size:12px;font-weight:900;color:var(--c);
@@ -39,7 +38,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .live{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pu 2s infinite;flex-shrink:0}
 @keyframes pu{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* PROVIDER BAR */
 .pbar{flex-shrink:0;padding:3px 8px;background:rgba(4,8,16,.99);
   border-bottom:1px solid var(--b);display:flex;gap:3px;overflow-x:auto;min-height:27px;align-items:center}
 .pbar::-webkit-scrollbar{height:0}
@@ -54,7 +52,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .pkeybadge{font-size:6px;background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);
   color:var(--o);padding:0 3px;border-radius:3px}
 
-/* MODEL BAR */
 .mbar{flex-shrink:0;padding:3px 8px;background:rgba(4,8,16,.95);
   border-bottom:1px solid var(--b);display:flex;gap:2px;overflow-x:auto;min-height:27px;align-items:center}
 .mbar::-webkit-scrollbar{height:0}
@@ -71,7 +68,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mtag.power{background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);color:var(--r)}
 .mtag.auto{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#a0aec0;}
 
-/* STATUS BAR */
 .sbar{flex-shrink:0;padding:2px 10px;display:flex;align-items:center;gap:5px;
   font-size:8px;font-family:'Share Tech Mono';border-bottom:1px solid var(--b);
   background:rgba(4,8,16,.6);min-height:18px;overflow-x:auto; white-space:nowrap;}
@@ -86,10 +82,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .smeta{color:var(--t2);font-size:7px;flex-shrink:0;}
 .stokens{margin-right:auto; color:var(--y); font-size:7.5px; background:rgba(255,215,0,0.05); padding:1px 5px; border-radius:3px; border:1px solid rgba(255,215,0,0.15); display:flex; gap:6px;}
 
-/* MAIN */
 .main{display:flex;flex:1;overflow:hidden;z-index:1;min-height:0}
-
-/* SIDEBAR */
 .sb{width:150px;flex-shrink:0;border-left:1px solid var(--b);
   background:rgba(4,8,16,.9);display:flex;flex-direction:column;overflow:hidden}
 @media(max-width:520px){.sb{display:none}}
@@ -110,13 +103,11 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .sb-foot{padding:5px;border-top:1px solid var(--b)}
 .sb-ver{font-size:5.5px;color:var(--t2);font-family:'Share Tech Mono';text-align:center;line-height:1.6}
 
-/* CHAT */
 .chat{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
 .msgs::-webkit-scrollbar{width:2px}
 .msgs::-webkit-scrollbar-thumb{background:rgba(0,200,255,.07);border-radius:2px}
 
-/* MESSAGES */
 .msg{display:flex;gap:6px;animation:fi .2s ease-out}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .msg.u{flex-direction:row-reverse}
@@ -127,7 +118,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .bub.ai{background:var(--panel);border:1px solid var(--b);border-top-right-radius:2px}
 .bub.u{background:rgba(0,255,157,.04);border:1px solid rgba(0,255,157,.09);border-top-left-radius:2px;text-align:right}
 
-/* CODE BLOCKS */
 .bub pre{margin:6px 0;padding:8px 8px 8px 26px;background:rgba(0,0,0,.65);
   border:1px solid rgba(0,200,255,.09);border-radius:5px;overflow-x:auto;
   direction:ltr;text-align:left;font-family:'Share Tech Mono';font-size:10.5px;line-height:1.5;color:#88b8e0;position:relative}
@@ -150,14 +140,12 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .bub th{background:rgba(0,200,255,.08);padding:4px 6px;border:1px solid var(--b);color:var(--c)}
 .bub td{padding:3px 6px;border:1px solid var(--b)}
 
-/* THINKING BLOCK */
 .think{margin:4px 0;border:1px solid rgba(168,85,247,.2);border-radius:6px;overflow:hidden}
 .think-h{padding:4px 8px;background:rgba(168,85,247,.07);font-size:8px;color:var(--p);
   font-family:'Share Tech Mono';cursor:pointer;display:flex;align-items:center;gap:4px;justify-content:space-between}
 .think-b{padding:8px;background:rgba(168,85,247,.03);color:var(--t2);font-size:10.5px;line-height:1.6;direction:ltr;text-align:left;display:none}
 .think-b.open{display:block}
 
-/* MSG META */
 .mmeta{font-size:7px;color:var(--t2);margin-top:4px;font-family:'Share Tech Mono';display:flex;gap:5px;align-items:center;flex-wrap:wrap}
 .mprov{color:var(--p)}
 .mbtn{background:transparent;border:1px solid var(--b);color:var(--t2);padding:1px 5px;
@@ -165,27 +153,21 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mbtn:active{color:var(--c);border-color:var(--c)}
 .mfallback{background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);color:var(--o);padding:1px 5px;border-radius:3px;font-size:6.5px}
 
-/* LOADING DOTS */
 .ldots{display:flex;gap:4px;padding:5px 0}
 .ldots span{width:5px;height:5px;border-radius:50%;background:var(--c);animation:bt 1.4s ease-in-out infinite}
 .ldots span:nth-child(2){animation-delay:.22s}.ldots span:nth-child(3){animation-delay:.44s}
 @keyframes bt{0%,80%,100%{transform:scale(0);opacity:.2}40%{transform:scale(1);opacity:1}}
 
-/* STREAM CURSOR */
 .scursor{color:var(--c);animation:pu 0.8s infinite}
 
-/* GEN IMAGE/VIDEO */
 .gimg{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);cursor:pointer;object-fit:contain}
 .gimg:active{transform:scale(.98)}
 .gvid{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);}
 
-/* WELCOME MSG */
 .welcome{padding:12px 14px;border:1px solid rgba(0,200,255,.15);background:rgba(0,200,255,.03);border-radius:8px;font-size:12px;line-height:1.9}
 .wrow{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--t2)}
 .wrow .wi{font-size:14px;flex-shrink:0}
-.wrow strong{color:var(--t)}
 
-/* ADVANCED PANEL */
 .adv{flex-shrink:0;display:none;padding:5px 10px;background:rgba(4,8,16,.98);
   border-top:1px solid var(--b);gap:8px;flex-wrap:wrap;align-items:flex-start}
 .adv.on{display:flex}
@@ -198,7 +180,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
   padding:3px 6px;border-radius:3px;font-size:11px;font-family:'Tajawal';outline:none;width:100%}
 .aval{font-size:8px;color:var(--c);font-family:'Share Tech Mono'}
 
-/* INPUT AREA */
 .inp{flex-shrink:0;padding:5px 8px 6px;background:rgba(3,6,12,.99);border-top:1px solid var(--b);z-index:100;position:relative}
 .fprev{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;max-height:68px;overflow-y:auto}
 .fchip{display:flex;align-items:center;gap:4px;background:rgba(0,200,255,.05);border:1px solid var(--b);border-radius:8px;padding:3px 5px;font-size:8px;max-width:130px;flex-shrink:0;position:relative}
@@ -233,7 +214,6 @@ textarea::placeholder{color:var(--t2)}
 .sbtn.busy{animation:sbp .7s infinite alternate}
 @keyframes sbp{from{box-shadow:0 0 4px rgba(0,200,255,.1)}to{box-shadow:0 0 16px rgba(168,85,247,.5)}}
 
-/* MODALS */
 .ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
   display:none;align-items:center;justify-content:center;padding:12px}
 .ov.on{display:flex}
@@ -280,7 +260,6 @@ textarea::placeholder{color:var(--t2)}
   border:1px solid rgba(168,85,247,.18);border-radius:6px;cursor:pointer;color:var(--p);font-family:'Tajawal'}
 .preset:active{background:rgba(168,85,247,.14)}
 
-/* TOAST */
 .toast{position:fixed;bottom:65px;left:50%;transform:translateX(-50%) translateY(10px);
   padding:5px 14px;border-radius:12px;font-size:10px;font-family:'Share Tech Mono';
   z-index:9999;opacity:0;transition:all .2s;white-space:nowrap;pointer-events:none}
@@ -299,7 +278,7 @@ textarea::placeholder{color:var(--t2)}
   <div class="logo" onclick="newChat()">
     🇩🇿
     <div>Chibani Lotfi <b>AI</b>
-      <span class="logo-sub">V13 ULTRA FIX — ARENA &amp; MEDIA 🚀</span>
+      <span class="logo-sub">V13 ULTRA FINAL — ARENA &amp; MEDIA 🚀</span>
     </div>
   </div>
   <div class="hdr-r">
@@ -330,7 +309,7 @@ textarea::placeholder{color:var(--t2)}
     </div>
     <div class="convlist" id="convlist"></div>
     <div class="sb-foot">
-      <div class="sb-ver">Chibani Lotfi AI V13 ULTRA FIX<br>🇩🇿 Algeria — Free LLMs</div>
+      <div class="sb-ver">Chibani Lotfi AI V13 FINAL<br>🇩🇿 Algeria — Free LLMs</div>
     </div>
   </div>
   <div class="chat">
@@ -339,12 +318,12 @@ textarea::placeholder{color:var(--t2)}
         <div class="av ai">🤖</div>
         <div class="bub ai">
           <div class="welcome">
-            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA FIX! 🚀</strong>
+            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA FINAL! 🚀</strong>
             <br>
             <div class="wrow"><span class="wi">⚔️</span><strong>حلبة التنافس (Arena):</strong> فّعلها من الإعدادات للحصول على أسرع إجابة من عدة نماذج.</div>
             <div class="wrow"><span class="wi">✅</span><strong>الفحص الذاتي (Auto-Test):</strong> الألوان الحمراء بالبار العلوي تعني المفتاح منتهي.</div>
             <div class="wrow"><span class="wi">🎬</span><strong>ميديا سينمائية:</strong> استخدم زر التوليد لصناعة صور وفيديوهات.</div>
-            <div class="wrow"><span class="wi">🔧</span><strong>تم إصلاح:</strong> Groq (max_tokens), Mistral (temperature), NVIDIA, AI/ML API, HuggingFace</div>
+            <div class="wrow"><span class="wi">🔧</span><strong>تم إصلاح:</strong> أخطاء الانهيار، مشكلة الأزرار، وضبط حدود المزودين التلقائية.</div>
             <br>
             <span style="color:var(--t2);font-size:11px">اضغط <strong style="color:var(--c)">🔑</strong> لإضافة مفاتيح API المجانية لتعمل النماذج بشكل ممتاز داخل تطبيقك.</span>
           </div>
@@ -399,7 +378,7 @@ textarea::placeholder{color:var(--t2)}
       <textarea id="ta" placeholder="اكتب رسالتك... (Enter للإرسال، Shift+Enter لسطر جديد)" rows="1"
         onkeydown="onKey(event)" oninput="resize(this);updateCC()"></textarea>
       <div class="trow">
-        <button class="tbtn" onclick="fileInp.click()">📎</button>
+        <button class="tbtn" onclick="document.getElementById('fileInp').click()">📎</button>
         <button class="tbtn" id="btnWS" onclick="toggleWS()">🔍 بحث</button>
         <button class="tbtn" id="btnST" onclick="toggleST()">⚡ بث</button>
         <button class="tbtn" onclick="clearAll()">🗑️ مسح</button>
@@ -438,7 +417,7 @@ textarea::placeholder{color:var(--t2)}
     <div class="krow"><span class="ki">🟢</span><label>NVIDIA</label><input type="password" id="k_nv" placeholder="nvapi-..."></div>
     <div class="krow"><span class="ki">🧠</span><label>Cerebras</label><input type="password" id="k_cb" placeholder="csk-..."></div>
     <div class="krow"><span class="ki">🤗</span><label>HuggingFace</label><input type="password" id="k_hf" placeholder="hf_..."></div>
-    <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة (خط أحمر على المتعطلة).</div>
+    <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة.</div>
     <div class="mbtns">
       <button class="btn bno" onclick="closeOv('keys')">إلغاء</button>
       <button class="btn bok" onclick="saveKeys()">💾 حفظ وفحص</button>
@@ -504,10 +483,17 @@ textarea::placeholder{color:var(--t2)}
 </div>
 
 <div class="toast" id="toast"></div>
+
 <script>
 // ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA FIX (ALL BUGS CORRECTED)
+//  CHIBANI LOTFI AI — V13 ULTRA FINAL (ALL BUGS CORRECTED)
 // ================================================================
+
+// تفعيل صائد الأخطاء لاكتشاف أي مشكلة خفية
+window.onerror = function(msg, url, line) {
+    console.error("Syntax Error at line " + line + ": " + msg);
+    return false;
+};
 
 // =================== PROVIDER & MODEL CONFIG (FIXED) ===================
 const PROVIDERS = [
@@ -596,14 +582,45 @@ const G = {
   provStatus: {}
 };
 
-// =================== TOKEN COUNTER ===================
 let sessionTokens = 0;
 let totalTokens = parseInt(localStorage.getItem('cl_v13_tot_tok')||'0');
 const COST_PER_1K = 0.002;
 
-function estTok(txt){ return Math.ceil(String(txt||'').length / 4); }
+// =================== UTILS ===================
+const $ = function(id) { return document.getElementById(id); };
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+let _toastT;
+function toast(msg,type,dur){
+  type = type || 'in';
+  dur = dur || 2500;
+  const t=$('toast'); 
+  if(!t) return;
+  t.textContent=msg;
+  t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
+  t.classList.add('on'); 
+  clearTimeout(_toastT);
+  _toastT=setTimeout(function(){t.classList.remove('on');},dur);
+}
+
+function setS(txt,type){
+  type = type || 'ok';
+  if($('stxt')) $('stxt').textContent=txt;
+  const b=$('sbadge');
+  if(b) {
+      b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
+      b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
+  }
+}
+
+function scrollB(){ const m=$('msgs'); if(m) m.scrollTop=m.scrollHeight; }
+function getP(){ return PROVIDERS.find(function(p){return p.id===G.prov;}); }
+function getM(p){ const prov = p || getP(); return prov.models.find(function(m){return m.id===G.model;}); }
+function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
+
 function addTok(txt){
-  const t = estTok(txt);
+  const t = Math.ceil(String(txt||'').length / 4);
   sessionTokens += t;
   totalTokens += t;
   localStorage.setItem('cl_v13_tot_tok', totalTokens);
@@ -615,52 +632,31 @@ function updTokUI(){
   if(el) el.innerHTML = '🪙 جلسة: ' + sessionTokens + ' | كلي: ' + totalTokens + ' | $' + cost;
 }
 
-// =================== UTILS ===================
-const $ = id => document.getElementById(id);
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
-let _toastT;
-function toast(msg,type,dur){
-  type = type || 'in';
-  dur = dur || 2500;
-  const t=$('toast'); t.textContent=msg;
-  t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
-  t.classList.add('on'); clearTimeout(_toastT);
-  _toastT=setTimeout(function(){t.classList.remove('on');},dur);
-}
-function setS(txt,type){
-  type = type || 'ok';
-  $('stxt').textContent=txt;
-  const b=$('sbadge');
-  b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
-  b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
-}
-function scrollB(){ const m=$('msgs'); m.scrollTop=m.scrollHeight; }
-function getP(){ return PROVIDERS.find(function(p){return p.id===G.prov;}); }
-function getM(p){ const prov = p || getP(); return prov.models.find(function(m){return m.id===G.model;}); }
-function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
-
 function copyUSDT(){
   const w=$('usdtWallet'); w.select(); w.setSelectionRange(0,99999);
   navigator.clipboard.writeText(w.value);
   toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
 }
 
-// =================== MARKDOWN RENDERER ===================
+// =================== MARKDOWN RENDERER (FIXED) ===================
 function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
+  
+  // حماية الأكواد البرمجية
   let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,function(_,lang,code){
     const k='B'+ci+'';
     blk[k]='<pre data-lang="'+esc(lang||'txt')+'"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>'+esc(code.trim())+'</pre>';
     ci++; return k;
   });
+  
   s=s.replace(/`([^`]+)`/g,function(_,t){
     const k='T'+ti+'';
     tblk[k]='<code>'+esc(t)+'</code>';
     ti++; return k;
   });
+  
   s=esc(s);
   s=s.replace(/\*\*\*([^*]+)\*\*\*/g,'<strong><em>$1</em></strong>')
    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
@@ -673,16 +669,13 @@ function md(raw){
    .replace(/#\s+([^\n]+)/g,'<h1>$1</h1>')
    .replace(/\n\n/g,'</p><p>')
    .replace(/\n/g,'<br>');
+   
   s='<p>'+s+'</p>';
   s=s.replace(/<p>\s*<\/p>/g,'')
    .replace(/<p>(<h[123][^>]*>.*?<\/h[123]>)<\/p>/g,'$1')
    .replace(/<p>(<pre[^>]*>.*?<\/pre>)<\/p>/g,'$1')
-   .replace(/<p>(<blockquote>.*?<\/blockquote>)<\/p>/g,'$1')
-   .replace(/<p>(<ul>.*?<\/ul>)<\/p>/g,'$1')
-   .replace(/<p>(<ol>.*?<\/ol>)<\/p>/g,'$1')
-   .replace(/<p>(<table>.*?<\/table>)<\/p>/g,'$1')
-   .replace(/<p>(<hr\/?>)<\/p>/g,'$1')
    .replace(/<br><\/p>/g,'</p>');
+   
   Object.keys(blk).forEach(function(k){ s=s.replace(k,blk[k]); });
   Object.keys(tblk).forEach(function(k){ s=s.replace(k,tblk[k]); });
   return s;
@@ -731,14 +724,14 @@ function renderMBar(){
 function selProv(id){
   G.prov=id;
   const p=getP();
-  G.model=p.models[0].id;
+  if(p && p.models.length > 0) G.model=p.models[0].id;
   renderPBar(); renderMBar();
-  setS('المزود: '+p.name+' — '+p.models[0].name);
+  if(p) setS('المزود: '+p.name);
 }
 
 function selModel(id){ G.model=id; renderMBar(); setS('النموذج: '+getM().name); }
 
-// =================== KEY TESTING (AUTO-TEST) ===================
+// =================== KEY TESTING ===================
 async function testKey(p){
   const key=getKey(p);
   if(!key) return 'nokey';
@@ -754,20 +747,14 @@ async function testKey(p){
     if(p.id==='mistral') body.temperature = 0.1;
 
     const hdr={'Content-Type':'application/json'};
-    if(p.id==='gemini') hdr.Authorization='Bearer '+key;
-    else hdr.Authorization='Bearer '+key;
+    hdr.Authorization='Bearer '+key;
     Object.assign(hdr, p.headers || {});
 
-    const resp=await fetch(p.url,{
-      method:'POST',
-      headers:hdr,
-      body:JSON.stringify(body)
-    });
+    let url = p.url;
+    if(p.id==='gemini') url += '?key='+key;
+
+    const resp=await fetch(url,{ method:'POST', headers:hdr, body:JSON.stringify(body) });
     if(resp.ok) return 'ok';
-    const txt=await resp.text();
-    if(txt.includes('max_tokens') && txt.includes('512')) return 'fix_groq';
-    if(txt.includes('temperature') && txt.includes('1')) return 'fix_mistral';
-    if(txt.includes('Labs') || txt.includes('admin')) return 'labs_admin';
     return 'err: '+resp.status;
   }catch(e){ return 'err: '+e.message; }
 }
@@ -775,36 +762,32 @@ async function testKey(p){
 async function testAllKeys(){
   setS('جارٍ فحص المفاتيح...','busy');
   G.provStatus = {};
-  for(const p of PROVIDERS){
-    if(!p.keyId) continue;
+  for(let i=0; i<PROVIDERS.length; i++){
+    const p = PROVIDERS[i];
+    if(!p.keyId || p.id === 'huggingface') continue;
     const res = await testKey(p);
-    if(res === 'ok'){
-      G.provStatus[p.id] = 'ok';
-    } else if(res === 'nokey'){
-      G.provStatus[p.id] = 'nokey';
-    } else {
-      G.provStatus[p.id] = 'failed';
-      console.log('Key test failed for '+p.id+': '+res);
-    }
+    if(res === 'ok') G.provStatus[p.id] = 'ok';
+    else if(res === 'nokey') G.provStatus[p.id] = 'nokey';
+    else G.provStatus[p.id] = 'failed';
   }
   renderPBar();
-  const failed = Object.keys(G.provStatus).filter(function(k){return G.provStatus[k]==='failed';});
-  if(failed.length>0){
-    setS('⚠️ '+failed.length+' مفاتيح معطلة (خط أحمر بالبار)','err');
-  } else {
-    setS('✅ جميع المفاتيح تعمل بشكل صحيح','ok');
-  }
+  setS('✅ تم التحديث','ok');
 }
 
-// =================== SEND MESSAGE (FIXED) ===================
+// =================== SEND MESSAGE (API ENGINE) ===================
 async function doSend(){
   if(G.busy) return;
   const ta=$('ta'), txt=ta.value.trim();
   if(!txt && G.files.length===0) return;
 
+  // 1. حظر النماذج التجريبية مباشرة
+  if(G.model.toLowerCase().includes('labs')) {
+      toast('❌ نموذج Labs محظور (يحتاج تفعيل مسؤول)', 'er', 3000);
+      return;
+  }
+
   G.busy=true;
-  $('sbtn').disabled=true;
-  $('sbtn').classList.add('busy');
+  if($('sbtn')) { $('sbtn').disabled=true; $('sbtn').classList.add('busy'); }
   setS('جارٍ الإرسال...','busy');
 
   const userMsg = {role:'user', content:txt, id:uid(), files:G.files.slice()};
@@ -840,43 +823,38 @@ async function doSend(){
     max_tokens: G.maxTok
   };
 
-  if(G.prov==='groq'){
-    body.max_tokens = Math.min(G.maxTok, 512);
-  }
-  if(G.prov==='mistral'){
-    body.temperature = Math.min(G.temp, 1.0);
-  }
-  if(G.prov==='nvidia'){
-    body.max_tokens = Math.min(G.maxTok, 1024);
-  }
+  // 🔥 إصلاحات المزودين المركزية
+  if(G.prov==='groq') body.max_tokens = Math.min(G.maxTok, 512); // Groq Limit
+  if(G.prov==='mistral') body.temperature = Math.max(0, Math.min(G.temp, 1.0)); // Mistral Limit
+  if(G.prov==='nvidia') body.max_tokens = Math.min(G.maxTok, 1024); // Nvidia Limit
 
   if(G.streaming && p.stream) body.stream=true;
 
   const hdr={'Content-Type':'application/json'};
-  if(G.prov==='gemini'){
-    hdr.Authorization='Bearer '+key;
-  } else {
-    hdr.Authorization='Bearer '+key;
-  }
+  hdr.Authorization='Bearer '+key;
   Object.assign(hdr, p.headers || {});
+
+  let url = p.url;
+  if(G.prov==='gemini') url += '?key='+key;
 
   try{
     if(G.streaming && p.stream){
-      await doStream(p, body, hdr);
+      await doStream(url, body, hdr, p);
     } else {
-      await doNormal(p, body, hdr);
+      await doNormal(url, body, hdr, p);
     }
   }catch(e){
     console.error(e);
-    toast('❌ خطأ: '+e.message,'er',3000);
+    toast('❌ خطأ: '+e.message,'er',4000);
+    // Fallback if failed
     await doFallback(txt);
   }
 
   finish();
 }
 
-async function doNormal(p, body, hdr){
-  const resp=await fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
+async function doNormal(url, body, hdr, p){
+  const resp=await fetch(url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
   if(!resp.ok){
     const txt=await resp.text();
     throw new Error(resp.status+' '+txt.substring(0,100));
@@ -889,8 +867,8 @@ async function doNormal(p, body, hdr){
   addTok(content);
 }
 
-async function doStream(p, body, hdr){
-  const resp=await fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
+async function doStream(url, body, hdr, p){
+  const resp=await fetch(url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
   if(!resp.ok){
     const txt=await resp.text();
     throw new Error(resp.status+' '+txt.substring(0,100));
@@ -911,7 +889,8 @@ async function doStream(p, body, hdr){
     buf+=decoder.decode(value,{stream:true});
     const lines=buf.split('\n');
     buf=lines.pop();
-    for(const line of lines){
+    for(let i=0; i<lines.length; i++){
+      const line = lines[i];
       if(!line.trim() || !line.startsWith('data:')) continue;
       const json=line.slice(5).trim();
       if(json==='[DONE]') continue;
@@ -958,29 +937,24 @@ async function doFallback(txt){
     addMsgUI(aiMsg,'ai');
     addTok(content);
   }catch(e){
-    toast('❌ Fallback also failed','er',2000);
+    toast('❌ فشل النظام البديل أيضاً','er',2000);
   }
 }
 
 async function doArena(txt){
   const providers = PROVIDERS.filter(function(p){return !!getKey(p) && p.models.length>0 && p.id!=='huggingface';}).slice(0,3);
   if(providers.length===0){
-    toast('❌ لا توجد مفاتيح لمزودين متاحين','er',3000);
+    toast('❌ لا توجد مفاتيح صالحة للتنافس','er',3000);
     finish();
     return;
   }
 
-  setS('⚔️ حلبة التنافس: جارٍ إرسال لـ '+providers.length+' مزودين...','busy');
+  setS('⚔️ حلبة التنافس: جارٍ الإرسال...','busy');
 
   const promises = providers.map(function(p){
     return new Promise(function(resolve){
       const start = Date.now();
-      const body={
-        model:p.models[0].id,
-        messages:[{role:'user',content:txt}],
-        temperature:0.7,
-        max_tokens:512
-      };
+      const body={ model:p.models[0].id, messages:[{role:'user',content:txt}], temperature:0.7, max_tokens:512 };
       if(p.id==='groq') body.max_tokens=256;
       if(p.id==='mistral') body.temperature=0.7;
 
@@ -1001,7 +975,7 @@ async function doArena(txt){
   const winner = results.filter(function(r){return r.ok;}).sort(function(a,b){return a.time-b.time;})[0];
 
   if(!winner){
-    toast('❌ جميع المزودين فشلوا في الرد','er',3000);
+    toast('❌ فشل جميع المزودين','er',3000);
     finish();
     return;
   }
@@ -1012,22 +986,14 @@ async function doArena(txt){
   addTok(winner.content);
   setS('⚔️ الفائز: '+winner.p.name+' ('+winner.time+'ms)','ok');
 
-  results.filter(function(r){return r.ok && r.p.id!==winner.p.id;}).forEach(function(r){
-    const meta = document.createElement('div');
-    meta.className='mmeta';
-    meta.innerHTML = '<span style="color:var(--t2)">🥈 '+r.p.name+': '+r.time+'ms</span>';
-    $('msgs').appendChild(meta);
-  });
-
   finish();
 }
 
 function finish(){
   G.busy=false;
-  $('sbtn').disabled=false;
-  $('sbtn').classList.remove('busy');
+  if($('sbtn')){ $('sbtn').disabled=false; $('sbtn').classList.remove('busy'); }
   setS('جاهز','ok');
-  $('smeta').textContent=G.msgs.length+' رسالة';
+  if($('smeta')) $('smeta').textContent=G.msgs.length+' رسالة';
   saveConv();
 }
 
@@ -1057,16 +1023,6 @@ function addMsgUI(msg, who, streaming){
   div.appendChild(av);
   div.appendChild(bub);
 
-  if(msg.files && msg.files.length>0){
-    msg.files.forEach(function(f){
-      const img=document.createElement('img');
-      img.src=f.data;
-      img.className='gimg';
-      img.style.maxWidth='200px';
-      bub.appendChild(img);
-    });
-  }
-
   if(who==='ai'){
     const meta=document.createElement('div');
     meta.className='mmeta';
@@ -1074,17 +1030,17 @@ function addMsgUI(msg, who, streaming){
     if(msg.prov) metaHtml+='<span class="mprov">'+msg.prov+'</span>';
     if(msg.model) metaHtml+='<span>'+msg.model+'</span>';
     if(msg.fallback) metaHtml+='<span class="mfallback">fallback</span>';
-    if(msg.arena) metaHtml+='<span style="color:var(--g)">⚔️ '+msg.arenaTime+'ms</span>';
     
-    // إصلاح أزرار النسخ والتحديث لتجنب خطأ التفسير
-    metaHtml+='<button class="mbtn" onclick="copyMsg(\''+msg.id+'\')">📋</button>';
-    metaHtml+='<button class="mbtn" onclick="regenMsg(\''+msg.id+'\')">🔄</button>';
+    // 🔥 إصلاح خطأ الانهيار في الأزرار باستخدام سلاسل نصية آمنة (Safe String literals)
+    metaHtml += `<button class="mbtn" onclick="copyMsg('${msg.id}')">📋</button>`;
+    metaHtml += `<button class="mbtn" onclick="regenMsg('${msg.id}')">🔄</button>`;
     
     meta.innerHTML=metaHtml;
     div.appendChild(meta);
   }
 
-  $('msgs').appendChild(div);
+  const msgsContainer = $('msgs');
+  if(msgsContainer) msgsContainer.appendChild(div);
   scrollB();
   return div;
 }
@@ -1175,28 +1131,29 @@ function resize(ta){
 
 function updateCC(){
   const ta=$('ta');
+  if(!ta) return;
   const len=ta.value.length;
-  $('tcc').textContent=len>0?len+' حرف':'';
+  if($('tcc')) $('tcc').textContent=len>0?len+' حرف':'';
 }
 
-function qpSet(prefix){ $('ta').value=prefix; $('ta').focus(); }
+function qpSet(prefix){ if($('ta')) { $('ta').value=prefix; $('ta').focus(); } }
 
 function toggleWS(){
   G.wsearch=!G.wsearch;
-  $('btnWS').classList.toggle('on',G.wsearch);
+  if($('btnWS')) $('btnWS').classList.toggle('on',G.wsearch);
   toast(G.wsearch?'🔍 البحث مفعل':'🔍 البحث معطل','in',1500);
 }
 
 function toggleST(){
   G.streaming=!G.streaming;
-  $('btnST').classList.toggle('on',G.streaming);
+  if($('btnST')) $('btnST').classList.toggle('on',G.streaming);
   toast(G.streaming?'⚡ البث مفعل':'⚡ البث معطل','in',1500);
 }
 
 function clearAll(){
   G.msgs=[];
-  $('msgs').innerHTML='';
-  $('smeta').textContent='0 رسالة';
+  if($('msgs')) $('msgs').innerHTML='';
+  if($('smeta')) $('smeta').textContent='0 رسالة';
   toast('🗑️ تم مسح المحادثة','ok',1500);
 }
 
@@ -1204,15 +1161,16 @@ function clearAll(){
 function newChat(){
   if(G.msgs.length>0) saveConv();
   G.msgs=[]; G.cid=null;
-  $('msgs').innerHTML='';
-  $('smeta').textContent='0 رسالة';
+  if($('msgs')) $('msgs').innerHTML='';
+  if($('smeta')) $('smeta').textContent='0 رسالة';
   toast('➕ محادثة جديدة','ok',1500);
   renderConvList();
 }
 
 function saveConv(){
   if(G.msgs.length===0) return;
-  const title=G.msgs.find(function(m){return m.role==='user';})?.content?.substring(0,30)||'محادثة';
+  let firstUser = G.msgs.find(function(m){return m.role==='user';});
+  const title=firstUser && firstUser.content ? firstUser.content.substring(0,30) : 'محادثة';
   if(!G.cid) G.cid=uid();
   const existing=G.convs.findIndex(function(c){return c.id===G.cid;});
   const conv={id:G.cid,title:title,msgs:G.msgs.slice(),date:Date.now()};
@@ -1226,9 +1184,9 @@ function loadConv(id){
   const conv=G.convs.find(function(c){return c.id===id;});
   if(!conv) return;
   G.cid=id; G.msgs=conv.msgs.slice();
-  $('msgs').innerHTML='';
+  if($('msgs')) $('msgs').innerHTML='';
   G.msgs.forEach(function(m){addMsgUI(m,m.role==='user'?'u':'ai');});
-  $('smeta').textContent=G.msgs.length+' رسالة';
+  if($('smeta')) $('smeta').textContent=G.msgs.length+' رسالة';
 }
 
 function renderConvList(){
@@ -1258,36 +1216,40 @@ function delConv(id){
 
 // =================== SETTINGS ===================
 function toggleAdv(){
-  $('advPanel').classList.toggle('on');
-  $('advBtn').classList.toggle('adv-on');
+  if($('advPanel')) $('advPanel').classList.toggle('on');
+  if($('advBtn')) $('advBtn').classList.toggle('adv-on');
 }
 
 function saveSettings(){
-  G.temp=parseFloat($('slTemp').value);
-  G.maxTok=parseInt($('slTok').value);
-  G.streaming=$('selStream').value==='1';
-  G.mode=$('selMode').value;
-  G.sys=$('advSys').value;
+  if($('slTemp')) G.temp=parseFloat($('slTemp').value);
+  if($('slTok')) G.maxTok=parseInt($('slTok').value);
+  if($('selStream')) G.streaming=$('selStream').value==='1';
+  if($('selMode')) G.mode=$('selMode').value;
+  if($('advSys')) G.sys=$('advSys').value;
   localStorage.setItem('cl_v13_settings',JSON.stringify({temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys}));
 }
 
 function loadSettings(){
-  const s=JSON.parse(localStorage.getItem('cl_v13_settings')||'{}');
-  if(s.temp!==undefined){ G.temp=s.temp; $('slTemp').value=s.temp; $('valTemp').textContent=s.temp; }
-  if(s.maxTok!==undefined){ G.maxTok=s.maxTok; $('slTok').value=s.maxTok; $('valTok').textContent=s.maxTok; }
-  if(s.streaming!==undefined){ G.streaming=s.streaming; $('selStream').value=s.streaming?'1':'0'; }
-  if(s.mode!==undefined){ G.mode=s.mode; $('selMode').value=s.mode; }
-  if(s.sys!==undefined){ G.sys=s.sys; $('advSys').value=s.sys; }
+  try{
+    const s=JSON.parse(localStorage.getItem('cl_v13_settings')||'{}');
+    if(s.temp!==undefined){ G.temp=s.temp; if($('slTemp')){ $('slTemp').value=s.temp; $('valTemp').textContent=s.temp; } }
+    if(s.maxTok!==undefined){ G.maxTok=s.maxTok; if($('slTok')){ $('slTok').value=s.maxTok; $('valTok').textContent=s.maxTok; } }
+    if(s.streaming!==undefined){ G.streaming=s.streaming; if($('selStream')) $('selStream').value=s.streaming?'1':'0'; }
+    if(s.mode!==undefined){ G.mode=s.mode; if($('selMode')) $('selMode').value=s.mode; }
+    if(s.sys!==undefined){ G.sys=s.sys; if($('advSys')) $('advSys').value=s.sys; }
+  } catch(e) {}
 }
 
 // =================== MODALS ===================
-function openOv(id){ $(''+id+'-ov').classList.add('on'); }
-function closeOv(id){ $(''+id+'-ov').classList.remove('on'); }
+function openOv(id){ if($(''+id+'-ov')) $(''+id+'-ov').classList.add('on'); }
+function closeOv(id){ if($(''+id+'-ov')) $(''+id+'-ov').classList.remove('on'); }
 
 function saveKeys(){
   ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
-    const v=$('k_'+k).value.trim();
-    if(v) localStorage.setItem('k_'+k,v);
+    if($('k_'+k)){
+        const v=$('k_'+k).value.trim();
+        if(v) localStorage.setItem('k_'+k,v);
+    }
   });
   closeOv('keys');
   testAllKeys();
@@ -1297,16 +1259,18 @@ function saveKeys(){
 function loadKeys(){
   ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
     const v=localStorage.getItem('k_'+k)||'';
-    if(v) $('k_'+k).value=v;
+    if(v && $('k_'+k)) $('k_'+k).value=v;
   });
 }
 
 function saveSys(){
-  G.sys=$('sysTA').value;
-  $('advSys').value=G.sys;
-  saveSettings();
-  closeOv('sys');
-  toast('💬 تم حفظ تعليمات النظام','ok',1500);
+  if($('sysTA')) {
+      G.sys=$('sysTA').value;
+      if($('advSys')) $('advSys').value=G.sys;
+      saveSettings();
+      closeOv('sys');
+      toast('💬 تم حفظ تعليمات النظام','ok',1500);
+  }
 }
 
 function setPreset(p){
@@ -1319,10 +1283,10 @@ function setPreset(p){
     free:'أنت مساعد ذكاء اصطناعي. أجب بصراحة ودقة دون قيود.',
     '':DEFAULT_SYS_PROMPT
   };
-  $('sysTA').value=presets[p]||DEFAULT_SYS_PROMPT;
+  if($('sysTA')) $('sysTA').value=presets[p]||DEFAULT_SYS_PROMPT;
 }
 
-// =================== EXPORT ===================
+// =================== EXPORT (FIXED MULTILINE STRINGS) ===================
 function expJSON(){
   const data={convs:G.convs,settings:{temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys},exportDate:new Date().toISOString()};
   download(JSON.stringify(data,null,2),'chibani-export.json','application/json');
@@ -1330,23 +1294,29 @@ function expJSON(){
 }
 
 function expTXT(){
-  let txt='Chibani Lotfi AI - Chat Export\n========================\n\n';
-  G.msgs.forEach(function(m){txt+=(m.role==='user'?'👤':'🤖')+': '+m.content+'\n\n';});
+  let txt = `Chibani Lotfi AI - Chat Export\n========================\n\n`;
+  G.msgs.forEach(function(m){
+    txt += `${m.role === 'user' ? '👤' : '🤖'}: ${m.content}\n\n`;
+  });
   download(txt,'chat.txt','text/plain');
   closeOv('export');
 }
 
 function expMD(){
-  let md='# Chibani Lotfi AI - Chat Export\n\n';
-  G.msgs.forEach(function(m){md+='## '+(m.role==='user'?'User':'AI')+'\n\n'+m.content+'\n\n---\n\n';});
+  let md = `# Chibani Lotfi AI - Chat Export\n\n`;
+  G.msgs.forEach(function(m){
+    md += `## ${m.role === 'user' ? 'User' : 'AI'}\n\n${m.content}\n\n---\n\n`;
+  });
   download(md,'chat.md','text/markdown');
   closeOv('export');
 }
 
 function expHTML(){
-  let html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Chat Export</title><style>body{font-family:sans-serif;max-width:800px;margin:20px auto;padding:20px;background:#f5f5f5;} .msg{margin:15px 0;padding:15px;border-radius:8px;} .user{background:#e3f2fd;} .ai{background:#f3e5f5;}</style></head><body><h1>Chat Export</h1>';
-  G.msgs.forEach(function(m){html+='<div class="msg '+(m.role==='user'?'user':'ai')+'"><strong>'+(m.role==='user'?'User':'AI')+'</strong><p>'+esc(m.content)+'</p></div>';});
-  html+='</body></html>';
+  let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Chat Export</title><style>body{font-family:sans-serif;max-width:800px;margin:20px auto;padding:20px;background:#f5f5f5;} .msg{margin:15px 0;padding:15px;border-radius:8px;} .user{background:#e3f2fd;} .ai{background:#f3e5f5;}</style></head><body><h1>Chat Export</h1>`;
+  G.msgs.forEach(function(m){
+      html += `<div class="msg ${m.role === 'user' ? 'user' : 'ai'}"><strong>${m.role === 'user' ? 'User' : 'AI'}</strong><p>${esc(m.content)}</p></div>`;
+  });
+  html += `</body></html>`;
   download(html,'chat.html','text/html');
   closeOv('export');
 }
@@ -1386,7 +1356,7 @@ async function genImage(prompt){
   if(!key){ toast('❌ يحتاج HuggingFace API Key','er',3000); return; }
 
   try{
-    const resp=await fetch('https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev',{
+    const resp=await fetch('https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell',{
       method:'POST',
       headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
       body:JSON.stringify({inputs:prompt})
@@ -1414,8 +1384,40 @@ async function genVideo(prompt){
     if(!resp.ok) throw new Error(resp.statusText);
     const data=await resp.json();
     if(data.video_url){
-      $('imgPrev').innerHTML='<video src="'+data.video_url+'" controls style="max-width:100%;border-radius:8px;border:1px solid var(--b);"></video>';
+      $('imgPrev').innerHTML='<video src="'+data.video_url+'" controls autoplay style="max-width:100%;border-radius:8px;border:1px solid var(--b);"></video>';
       toast('✅ تم توليد الفيديو','ok',2000);
     } else {
-      $('imgPrev').innerHTML='<div style="color:var(--g);padding:10px;">⏳ جارٍ المعالجة... تحقق لاحقاً</div>';
-      toast('⏳ الفيديو ق
+      $('imgPrev').innerHTML='<div style="color:var(--g);padding:10px;">⏳ جارٍ المعالجة...</div>';
+      toast('⏳ الفيديو قيد المعالجة','in',3000);
+    }
+  }catch(e){
+    toast('❌ فشل التوليد: '+e.message,'er',3000);
+  }
+}
+
+// =================== INIT ===================
+function init(){
+  try{
+    G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');
+  }catch(e){ G.convs=[]; }
+
+  loadSettings();
+  loadKeys();
+  renderPBar();
+  renderMBar();
+  renderConvList();
+  updTokUI();
+
+  setTimeout(testAllKeys, 500);
+
+  setS('جاهز — اختر نموذجاً وابدأ','ok');
+}
+
+// تأمين تشغيل الكود حتى يكتمل تحميل الصفحة
+window.addEventListener('DOMContentLoaded', function() {
+    init();
+});
+
+</script>
+</body>
+</html>
