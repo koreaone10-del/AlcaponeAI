@@ -506,10 +506,10 @@ textarea::placeholder{color:var(--t2)}
 
 <script>
 // ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA (FULL ORIGINAL CODE + APK/ARENA FIX)
+//  CHIBANI LOTFI AI — V13 ULTRA (HARDCODED MODELS + AUTO-FETCH FIX)
 // ================================================================
 
-// =================== PROVIDER & MODEL CONFIG (UPDATED) ===================
+// =================== PROVIDER & MODEL CONFIG (FIXED & EXPANDED) ===================
 const PROVIDERS = [
   { id:'openrouter', name:'OpenRouter', icon:'🔀', color:'#7c4dff', url:'https://openrouter.ai/api/v1/chat/completions', free:false, keyId:'k_or', stream:true,
     headers:{'HTTP-Referer':'https://chibani-ai.dz','X-Title':'Chibani Lotfi AI V13'},
@@ -521,14 +521,18 @@ const PROVIDERS = [
   },
   { id:'groq', name:'Groq', icon:'⚡', color:'#f59e0b', url:'https://api.groq.com/openai/v1/chat/completions', free:false, keyId:'k_gr', stream:true,
     models:[
-      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:[]},
-      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[]},
-      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast']}
+      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power']},
+      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast']},
+      {id:'mixtral-8x7b-32768',                       name:'Mixtral 8x7B',     tags:[]},
+      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[]},
+      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think']},
+      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[]}
     ]
   },
   { id:'gemini', name:'Gemini', icon:'💎', color:'#4285f4', url:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', free:false, keyId:'k_ge', stream:false,
     models:[
-      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['new']}
+      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['new']},
+      {id:'gemini-1.5-pro',                    name:'Gemini 1.5 Pro',         tags:['power']}
     ]
   },
   { id:'deepseek', name:'DeepSeek', icon:'🐋', color:'#1d4ed8', url:'https://api.deepseek.com/chat/completions', free:false, keyId:'k_ds', stream:true,
@@ -540,6 +544,7 @@ const PROVIDERS = [
   { id:'mistral', name:'Mistral', icon:'🌪️', color:'#ea580c', url:'https://api.mistral.ai/v1/chat/completions', free:false, keyId:'k_ms', stream:true,
     models:[
       {id:'mistral-large-latest',name:'Mistral Large',tags:['power']},
+      {id:'pixtral-large-latest',name:'Pixtral Large',tags:[]},
       {id:'codestral-latest',name:'Codestral',tags:['code']}
     ]
   },
@@ -551,12 +556,22 @@ const PROVIDERS = [
   },
   { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v1/chat/completions', free:false, keyId:'k_am', stream:true,
     models:[
-      {id:'meta-llama/Meta-Llama-3-8B-Instruct',name:'Llama 3 8B',tags:['fast']}
+      {id:'meta-llama/Meta-Llama-3.1-8B-Instruct',name:'Llama 3.1 8B',tags:['fast']},
+      {id:'meta-llama/Meta-Llama-3.1-70B-Instruct',name:'Llama 3.1 70B',tags:['power']},
+      {id:'mistralai/Mistral-7B-Instruct-v0.2',name:'Mistral 7B',tags:[]}
     ]
   },
   { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:true,
     models:[
-      {id:'meta/llama-3.1-70b-instruct', name:'Llama 3.1 70B', tags:[]}
+      {id:'meta/llama-3.1-405b-instruct', name:'Llama 3.1 405B', tags:['power']},
+      {id:'meta/llama-3.1-70b-instruct', name:'Llama 3.1 70B', tags:[]},
+      {id:'meta/llama-3.1-8b-instruct', name:'Llama 3.1 8B', tags:['fast']},
+      {id:'nvidia/nemotron-4-340b-instruct', name:'Nemotron 340B', tags:['power']},
+      {id:'nvidia/llama-3.1-nemotron-70b-instruct', name:'Nemotron 70B', tags:[]},
+      {id:'mistralai/mixtral-8x22b-instruct-v0.1', name:'Mixtral 8x22B', tags:[]},
+      {id:'mistralai/mistral-large', name:'Mistral Large', tags:[]},
+      {id:'google/gemma-2-27b-it', name:'Gemma 2 27B', tags:[]},
+      {id:'microsoft/phi-3-medium-4k-instruct', name:'Phi-3 Medium', tags:['code']}
     ]
   },
   { id:'cerebras', name:'Cerebras', icon:'🧠', color:'#10b981', url:'https://api.cerebras.ai/v1/chat/completions', free:false, keyId:'k_cb', stream:true,
@@ -630,8 +645,7 @@ function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
-  let s=raw.replace(/```(\w*)\n?([\s\S]*?)
-```/g,(_,lang,code)=>{
+  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
     const k='\x01B'+ci+'\x01';
     blk[k]=`<pre data-lang="${esc(lang)||'txt'}"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>${esc(code.trim())}</pre>`;
     ci++; return k;
@@ -704,7 +718,7 @@ function mdi(t){
 function tglThink(h){ const b=h.nextElementSibling; b.classList.toggle('open'); h.querySelector('span').textContent=b.classList.contains('open')?'▲':'▼'; }
 function cpCode(btn){ const code=btn.closest('pre').textContent.replace('نسخ','').trim(); navigator.clipboard?.writeText(code).catch(()=>{}); toast('✓ تم نسخ الكود','ok'); }
 
-// =================== AUTO-DIAGNOSTIC (NEW) ===================
+// =================== AUTO-DIAGNOSTIC ===================
 async function testAllKeys() {
   toast('🔄 جاري فحص استجابة المفاتيح...', 'in', 2000);
   for(const p of PROVIDERS) {
@@ -714,7 +728,7 @@ async function testAllKeys() {
       try {
         const h = {'Content-Type':'application/json'};
         if(p.id === 'nvidia') {
-            h['Authorization'] = `Bearer ${key}`; // Fix Nvidia
+            h['Authorization'] = `Bearer ${key}`; 
         } else if (p.id === 'gemini') {
             p.url_test = p.url + `?key=${key}`;
         } else {
@@ -805,7 +819,7 @@ function renderMBar(){
 }
 function selProv(id){
   if(G.provStatus[id] === 'fail') { toast('هذا المزود متعطل حالياً (مفتاح منتهي)','er'); return; }
-  G.prov=id;
+  G.prov=id; 
   
   const p = getP();
   if(p && p.models && p.models.length > 0) {
@@ -815,6 +829,7 @@ function selProv(id){
   renderPBar(); renderMBar(); updS();
   if(p) toast(`${p.icon} ${p.name}`,'in');
 
+  // 🔥 الجلب التلقائي مفعل هنا الآن
   fetchDynamicModels(id);
 }
 function selModel(id){
@@ -873,7 +888,7 @@ async function callAPI(prov, model, msgs, onStream){
   if(p.headers) Object.assign(headers,p.headers);
   
   let body={model,messages:allMsgs,temperature:G.temp,stream:useStream};
-  if(prov === 'nvidia') body.max_tokens = Math.min(G.maxTok, 1024); // Fix Nvidia
+  if(prov === 'nvidia') body.max_tokens = Math.min(G.maxTok, 1024); // Fix Nvidia limits
   else body.max_tokens = G.maxTok;
   
   const resp=await fetch(p.run_url,{method:'POST',headers,body:JSON.stringify(body)});
@@ -893,10 +908,10 @@ async function callWithFallback(msgs, onStream){
       if(activeProvs.length === 0) throw new Error("لا توجد مفاتيح صالحة للتنافس");
       
       const promises = activeProvs.map(p => 
-          callAPI(p.id, p.models[0].id, msgs, null) // Disable streaming in arena for stability
+          callAPI(p.id, p.models[0].id, msgs, null) 
           .then(res => ({text: res, prov: p.id, model: p.models[0].id, fb: false}))
       );
-      return await Promise.any(promises); // الأسرع يربح!
+      return await Promise.any(promises); 
   } else {
       const text=await callAPI(G.prov,G.model,msgs,onStream);
       return {text,prov:G.prov,model:G.model,fb:false};
@@ -996,7 +1011,7 @@ function setBusy(b){
   G.busy=b; $('sbtn').classList.toggle('busy',b); $('sbtn').textContent=b?'⬛':'➤';
 }
 
-// =================== IMAGE & VIDEO GEN (NEW) ===================
+// =================== IMAGE & VIDEO GEN ===================
 async function doGenMedia(){
   const prm=$('imgPrm').value.trim();
   const type=$('mediaType').value;
@@ -1031,7 +1046,6 @@ async function doGenMedia(){
               closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
           }
       } else {
-          // Video Generation via AI/ML API (Minimax/Luma)
           const amKey = localStorage.getItem('k_am');
           if(!amKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح AI/ML API للفيديو 🔑'); }
           
@@ -1040,7 +1054,7 @@ async function doGenMedia(){
           const response = await fetch("https://api.aimlapi.com/v1/images/generations", {
               headers: { Authorization: `Bearer ${amKey}`, "Content-Type": "application/json" },
               method: "POST", 
-              body: JSON.stringify({ prompt: prm, model: "minimax/video-01" }) // Standard AI/ML API video call
+              body: JSON.stringify({ prompt: prm, model: "minimax/video-01" })
           });
           
           const data = await response.json();
@@ -1165,7 +1179,7 @@ function init(){
   testAllKeys(); // فحص صامت للمفاتيح عند التشغيل
   renderMBar(); updS();
   
-  // 🔥 الجلب التلقائي لنماذج المزود الافتراضي عند فتح التطبيق
+  // 🔥 تفعيل الجلب التلقائي هنا
   fetchDynamicModels(G.prov); 
 
   document.querySelectorAll('.ov').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('on');}));
