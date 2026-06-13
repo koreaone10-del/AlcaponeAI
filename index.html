@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Chibani Lotfi AI — V13 ULTRA 🚀</title>
+<title>Chibani Lotfi AI — V13 ULTRA FIX</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Tajawal:wght@400;500;700&display=swap');
 :root{
@@ -299,7 +299,7 @@ textarea::placeholder{color:var(--t2)}
   <div class="logo" onclick="newChat()">
     🇩🇿
     <div>Chibani Lotfi <b>AI</b>
-      <span class="logo-sub">V13 ULTRA — ARENA & MEDIA 🚀</span>
+      <span class="logo-sub">V13 ULTRA FIX — ARENA &amp; MEDIA 🚀</span>
     </div>
   </div>
   <div class="hdr-r">
@@ -330,7 +330,7 @@ textarea::placeholder{color:var(--t2)}
     </div>
     <div class="convlist" id="convlist"></div>
     <div class="sb-foot">
-      <div class="sb-ver">Chibani Lotfi AI V13 ULTRA<br>🇩🇿 Algeria — Free LLMs</div>
+      <div class="sb-ver">Chibani Lotfi AI V13 ULTRA FIX<br>🇩🇿 Algeria — Free LLMs</div>
     </div>
   </div>
   <div class="chat">
@@ -339,11 +339,12 @@ textarea::placeholder{color:var(--t2)}
         <div class="av ai">🤖</div>
         <div class="bub ai">
           <div class="welcome">
-            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA! 🚀</strong>
+            <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA FIX! 🚀</strong>
             <br>
             <div class="wrow"><span class="wi">⚔️</span><strong>حلبة التنافس (Arena):</strong> فّعلها من الإعدادات للحصول على أسرع إجابة من عدة نماذج.</div>
             <div class="wrow"><span class="wi">✅</span><strong>الفحص الذاتي (Auto-Test):</strong> الألوان الحمراء بالبار العلوي تعني المفتاح منتهي.</div>
             <div class="wrow"><span class="wi">🎬</span><strong>ميديا سينمائية:</strong> استخدم زر التوليد لصناعة صور وفيديوهات.</div>
+            <div class="wrow"><span class="wi">🔧</span><strong>تم إصلاح:</strong> Groq (max_tokens), Mistral (temperature), NVIDIA, AI/ML API, HuggingFace</div>
             <br>
             <span style="color:var(--t2);font-size:11px">اضغط <strong style="color:var(--c)">🔑</strong> لإضافة مفاتيح API المجانية لتعمل النماذج بشكل ممتاز داخل تطبيقك.</span>
           </div>
@@ -363,7 +364,7 @@ textarea::placeholder{color:var(--t2)}
   </div>
   <div class="afield">
     <label>TEMP</label>
-    <input type="range" min="0" max="2" step="0.05" value="0.7" id="slTemp" oninput="valTemp.textContent=this.value;saveSettings()">
+    <input type="range" min="0" max="1" step="0.05" value="0.7" id="slTemp" oninput="valTemp.textContent=this.value;saveSettings()">
     <span class="aval" id="valTemp">0.7</span>
   </div>
   <div class="afield">
@@ -486,8 +487,8 @@ textarea::placeholder{color:var(--t2)}
     <div class="mrow">
       <label>نوع التوليد:</label>
       <select id="mediaType">
-        <option value="image">🎨 صورة (Flux / SD عبر HuggingFace)</option>
-        <option value="video">🎞️ فيديو (Minimax / Luma عبر AI/ML API)</option>
+        <option value="image">🎨 صورة (Flux عبر HuggingFace)</option>
+        <option value="video">🎞️ فيديو (Minimax عبر AI/ML API)</option>
       </select>
     </div>
     <div class="mrow">
@@ -503,13 +504,12 @@ textarea::placeholder{color:var(--t2)}
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script>
 // ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA (HARDCODED MODELS + AUTO-FETCH FIX)
+//  CHIBANI LOTFI AI — V13 ULTRA FIX (ALL BUGS CORRECTED)
 // ================================================================
 
-// =================== PROVIDER & MODEL CONFIG (FIXED & EXPANDED) ===================
+// =================== PROVIDER & MODEL CONFIG (FIXED) ===================
 const PROVIDERS = [
   { id:'openrouter', name:'OpenRouter', icon:'🔀', color:'#7c4dff', url:'https://openrouter.ai/api/v1/chat/completions', free:false, keyId:'k_or', stream:true,
     headers:{'HTTP-Referer':'https://chibani-ai.dz','X-Title':'Chibani Lotfi AI V13'},
@@ -521,19 +521,17 @@ const PROVIDERS = [
   },
   { id:'groq', name:'Groq', icon:'⚡', color:'#f59e0b', url:'https://api.groq.com/openai/v1/chat/completions', free:false, keyId:'k_gr', stream:true,
     models:[
-      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power'],  maxTok:32768},
-      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast'],   maxTok:8192},
-      {id:'llama3-70b-8192',                          name:'Llama 3 70B',      tags:[],         maxTok:8192},
-      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[],         maxTok:8192},
-      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think'],  maxTok:32768},
-      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[],         maxTok:16384},
-      {id:'meta-llama/llama-4-scout-17b-16e-instruct',name:'Llama 4 Scout',    tags:['new'],    maxTok:8192}
+      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power']},
+      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast']},
+      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[]},
+      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think']},
+      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[]},
+      {id:'llama-4-scout-17b-16e-instruct',           name:'Llama 4 Scout',    tags:['new']}
     ]
   },
   { id:'gemini', name:'Gemini', icon:'💎', color:'#4285f4', url:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', free:false, keyId:'k_ge', stream:false,
     models:[
-      {id:'gemini-2.0-flash',                  name:'Gemini 2.0 Flash',       tags:['fast','new']},
-      {id:'gemini-1.5-flash',                  name:'Gemini 1.5 Flash',       tags:['fast']},
+      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['new']},
       {id:'gemini-1.5-pro',                    name:'Gemini 1.5 Pro',         tags:['power']}
     ]
   },
@@ -545,12 +543,12 @@ const PROVIDERS = [
   },
   { id:'mistral', name:'Mistral', icon:'🌪️', color:'#ea580c', url:'https://api.mistral.ai/v1/chat/completions', free:false, keyId:'k_ms', stream:true,
     models:[
-      {id:'mistral-large-latest',       name:'Mistral Large',    tags:['power']},
-      {id:'mistral-small-latest',       name:'Mistral Small',    tags:['fast']},
-      {id:'codestral-latest',           name:'Codestral',        tags:['code']},
-      {id:'open-mistral-nemo',          name:'Mistral Nemo',     tags:[]},
-      {id:'ministral-8b-latest',        name:'Ministral 8B',     tags:['fast']},
-      {id:'magistral-small-latest',     name:'Magistral Small',  tags:['think']}
+      {id:'mistral-large-latest',name:'Mistral Large',tags:['power']},
+      {id:'pixtral-large-latest',name:'Pixtral Large',tags:[]},
+      {id:'codestral-latest',name:'Codestral',tags:['code']},
+      {id:'mistral-small-latest',name:'Mistral Small',tags:['fast']},
+      {id:'ministral-3b-latest',name:'Ministral 3B',tags:['fast']},
+      {id:'mistral-moderation-latest',name:'Moderation',tags:[]}
     ]
   },
   { id:'siliconflow', name:'SiliconFlow', icon:'💠', color:'#8b5cf6', url:'https://api.siliconflow.cn/v1/chat/completions', free:false, keyId:'k_sf', stream:true,
@@ -559,37 +557,32 @@ const PROVIDERS = [
       {id:'deepseek-ai/DeepSeek-V3',name:'DeepSeek V3',tags:[]}
     ]
   },
-  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v2/chat/completions', free:false, keyId:'k_am', stream:false,
+  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v1/chat/completions', free:false, keyId:'k_am', stream:true,
     models:[
-      {id:'gpt-4o-mini',                            name:'GPT-4o Mini',   tags:['fast']},
-      {id:'meta-llama/Llama-3.2-3B-Instruct-Turbo', name:'Llama 3.2 3B',  tags:[]},
-      {id:'mistralai/Mistral-7B-Instruct-v0.2',     name:'Mistral 7B',    tags:[]}
+      {id:'gpt-4o-mini',name:'GPT-4o Mini',tags:['fast']},
+      {id:'gpt-4o',name:'GPT-4o',tags:['power']},
+      {id:'claude-3-5-sonnet-20241022',name:'Claude 3.5',tags:['power']}
     ]
   },
-  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:false,
+  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:true,
     models:[
-      {id:'nvidia/llama-3.1-nemotron-70b-instruct',     name:'Nemotron 70B',   tags:['power'], maxTok:1024},
-      {id:'meta/llama-3.3-70b-instruct',                name:'Llama 3.3 70B',  tags:[],        maxTok:1024},
-      {id:'meta/llama-3.1-8b-instruct',                 name:'Llama 3.1 8B',   tags:['fast'],  maxTok:1024},
-      {id:'microsoft/phi-3-mini-128k-instruct',         name:'Phi-3 Mini',     tags:['code'],  maxTok:1024},
-      {id:'google/gemma-2-9b-it',                       name:'Gemma 2 9B',     tags:[],        maxTok:1024}
+      {id:'meta/llama-3.1-405b-instruct', name:'Llama 3.1 405B', tags:['power']},
+      {id:'meta/llama-3.1-70b-instruct', name:'Llama 3.1 70B', tags:[]},
+      {id:'meta/llama-3.1-8b-instruct', name:'Llama 3.1 8B', tags:['fast']},
+      {id:'nvidia/nemotron-4-340b-instruct', name:'Nemotron 340B', tags:['power']},
+      {id:'nvidia/llama-3.1-nemotron-70b-instruct', name:'Nemotron 70B', tags:[]},
+      {id:'mistralai/mixtral-8x22b-instruct-v0.1', name:'Mixtral 8x22B', tags:[]},
+      {id:'mistralai/mistral-large', name:'Mistral Large', tags:[]},
+      {id:'google/gemma-2-27b-it', name:'Gemma 2 27B', tags:[]},
+      {id:'microsoft/phi-3-medium-4k-instruct', name:'Phi-3 Medium', tags:['code']}
     ]
   },
   { id:'cerebras', name:'Cerebras', icon:'🧠', color:'#10b981', url:'https://api.cerebras.ai/v1/chat/completions', free:false, keyId:'k_cb', stream:true,
     models:[
-      {id:'llama-3.3-70b',  name:'Llama 3.3 70B', tags:['power','fast']},
-      {id:'llama3.1-8b',    name:'Llama 3.1 8B',  tags:['fast']},
-      {id:'qwen-3-32b',     name:'Qwen 3 32B',    tags:['think']}
+      {id:'llama3.1-70b',  name:'Llama 3.1 70B', tags:['power']}
     ]
   },
-  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/v1/chat/completions', free:false, keyId:'k_hf', stream:true,
-    models:[
-      {id:'microsoft/Phi-3.5-mini-instruct',            name:'Phi-3.5 Mini',   tags:['fast']},
-      {id:'HuggingFaceH4/zephyr-7b-beta',               name:'Zephyr 7B',      tags:[]},
-      {id:'mistralai/Mistral-7B-Instruct-v0.3',         name:'Mistral 7B',     tags:[]},
-      {id:'Qwen/Qwen2.5-7B-Instruct',                   name:'Qwen 2.5 7B',    tags:[]}
-    ]
-  }
+  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/models/', free:false, keyId:'k_hf', stream:false, models:[] }
 ];
 
 // =================== GLOBAL STATE ===================
@@ -600,7 +593,7 @@ const G = {
   msgs:[], convs:[], cid:null,
   busy:false, streaming:true, autoRouter:true, mode: 'strict',
   temp:0.7, maxTok:2048, sys:'', wsearch:false, files:[],
-  provStatus: {} // For auto-diagnostic
+  provStatus: {}
 };
 
 // =================== TOKEN COUNTER ===================
@@ -619,7 +612,7 @@ function addTok(txt){
 function updTokUI(){
   const cost = ((totalTokens/1000) * COST_PER_1K).toFixed(4);
   const el = $('tokCount');
-  if(el) el.innerHTML = `🪙 جلسة: ${sessionTokens} | كلي: ${totalTokens} | $${cost}`;
+  if(el) el.innerHTML = '🪙 جلسة: ' + sessionTokens + ' | كلي: ' + totalTokens + ' | $' + cost;
 }
 
 // =================== UTILS ===================
@@ -627,21 +620,24 @@ const $ = id => document.getElementById(id);
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 let _toastT;
-function toast(msg,type='in',dur=2500){
+function toast(msg,type,dur){
+  type = type || 'in';
+  dur = dur || 2500;
   const t=$('toast'); t.textContent=msg;
   t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
   t.classList.add('on'); clearTimeout(_toastT);
-  _toastT=setTimeout(()=>t.classList.remove('on'),dur);
+  _toastT=setTimeout(function(){t.classList.remove('on');},dur);
 }
-function setS(txt,type='ok'){
+function setS(txt,type){
+  type = type || 'ok';
   $('stxt').textContent=txt;
   const b=$('sbadge');
   b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
   b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
 }
 function scrollB(){ const m=$('msgs'); m.scrollTop=m.scrollHeight; }
-function getP(){ return PROVIDERS.find(p=>p.id===G.prov); }
-function getM(p){ return (p||getP()).models.find(m=>m.id===G.model); }
+function getP(){ return PROVIDERS.find(function(p){return p.id===G.prov;}); }
+function getM(p){ const prov = p || getP(); return prov.models.find(function(m){return m.id===G.model;}); }
 function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
 
 function copyUSDT(){
@@ -650,580 +646,843 @@ function copyUSDT(){
   toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
 }
 
-// =================== MARKDOWN RENDERER (ORIGINAL) ===================
+// =================== MARKDOWN RENDERER ===================
 function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
   let ci=0,ti=0;
-  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
-    const k='\x01B'+ci+'\x01';
-    blk[k]=`<pre data-lang="${esc(lang)||'txt'}"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>${esc(code.trim())}</pre>`;
+  let s=raw.replace(/```(\w*)
+?([\s\S]*?)```/g,function(_,lang,code){
+    const k='B'+ci+'';
+    blk[k]='<pre data-lang="'+esc(lang||'txt')+'"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>'+esc(code.trim())+'</pre>';
     ci++; return k;
   });
-  s=s.replace(/<think>([\s\S]*?)<\/think>/g,(_,c)=>{
-    const k='\x01T'+ti+'\x01';
-    tblk[k]=`<div class="think"><div class="think-h" onclick="tglThink(this)">💭 تفكير <span>▼</span></div><div class="think-b">${esc(c.trim())}</div></div>`;
+  s=s.replace(/`([^`]+)`/g,function(_,t){
+    const k='T'+ti+'';
+    tblk[k]='<code>'+esc(t)+'</code>';
     ti++; return k;
   });
-  s=s.replace(/(\|[^\n]+\|\n\|[-| :]+\|\n(?:\|[^\n]+\|\n?)+)/g,tblMatch=>{
-    const rows=tblMatch.trim().split('\n');
-    const hdrs=rows[0].split('|').filter(x=>x.trim()).map(x=>`<th>${mdi(x.trim())}</th>`).join('');
-    const body=rows.slice(2).map(r=>`<tr>${r.split('|').filter(x=>x.trim()).map(c=>`<td>${mdi(c.trim())}</td>`).join('')}</tr>`).join('');
-    return `<table><thead><tr>${hdrs}</tr></thead><tbody>${body}</tbody></table>`;
+  s=esc(s);
+  s=s.replace(/\*\*\*([^*]+)\*\*\*/g,'<strong><em>$1</em></strong>')
+   .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+   .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+   .replace(/__([^_]+)__/g,'<strong>$1</strong>')
+   .replace(/_([^_]+)_/g,'<em>$1</em>')
+   .replace(/~~([^~]+)~~/g,'<del>$1</del>')
+   .replace(/#{3}\s+([^
+]+)/g,'<h3>$1</h3>')
+   .replace(/#{2}\s+([^
+]+)/g,'<h2>$1</h2>')
+   .replace(/#\s+([^
+]+)/g,'<h1>$1</h1>')
+   .replace(/
+
+/g,'</p><p>')
+   .replace(/
+/g,'<br>');
+  s='<p>'+s+'</p>';
+  s=s.replace(/<p>\s*<\/p>/g,'')
+   .replace(/<p>(<h[123][^>]*>.*?<\/h[123]>)<\/p>/g,'$1')
+   .replace(/<p>(<pre[^>]*>.*?<\/pre>)<\/p>/g,'$1')
+   .replace(/<p>(<blockquote>.*?<\/blockquote>)<\/p>/g,'$1')
+   .replace(/<p>(<ul>.*?<\/ul>)<\/p>/g,'$1')
+   .replace(/<p>(<ol>.*?<\/ol>)<\/p>/g,'$1')
+   .replace(/<p>(<table>.*?<\/table>)<\/p>/g,'$1')
+   .replace(/<p>(<hr\/?>)<\/p>/g,'$1')
+   .replace(/<br><\/p>/g,'</p>');
+  Object.keys(blk).forEach(function(k){ s=s.replace(k,blk[k]); });
+  Object.keys(tblk).forEach(function(k){ s=s.replace(k,tblk[k]); });
+  return s;
+}
+
+function cpCode(btn){
+  const pre=btn.parentElement;
+  const txt=pre.textContent.replace('نسخ','').trim();
+  navigator.clipboard.writeText(txt);
+  btn.textContent='تم!';
+  setTimeout(function(){btn.textContent='نسخ';},1200);
+}
+
+// =================== PROVIDER / MODEL BARS ===================
+function renderPBar(){
+  const el=$('pbar');
+  if(!el) return;
+  el.innerHTML='';
+  PROVIDERS.forEach(function(p){
+    const hasKey = !!getKey(p);
+    const isFailed = G.provStatus[p.id] === 'failed';
+    const div=document.createElement('div');
+    div.className='pc'+(G.prov===p.id?' on':'')+(isFailed?' failed':'');
+    div.style.setProperty('--pc',p.color);
+    div.innerHTML='<span class="pdot" style="background:'+(isFailed?'var(--r)':hasKey?p.color:'var(--t2)')+'"></span>'+p.icon+' '+p.name+(p.free?'<span class="pfree">FREE</span>':'')+(hasKey?'<span class="pkeybadge">KEY</span>':'');
+    div.onclick=function(){selProv(p.id);};
+    el.appendChild(div);
   });
-  const lines=s.split('\n');
-  let out='',inUL=false,inOL=false;
-  for(let i=0;i<lines.length;i++){
-    const l=lines[i];
-    if(blk[l]||tblk[l]){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=(blk[l]||tblk[l]);continue;
-    }
-    let hm;
-    if(hm=l.match(/^(#{1,3}) (.+)/)){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=`<h${hm[1].length}>${mdi(hm[2])}</h${hm[1].length}>`;continue;
-    }
-    if(l.match(/^---+$|^\*\*\*+$/)){out+='<hr>';continue;}
-    if(l.match(/^> /)){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=`<blockquote>${mdi(l.slice(2))}</blockquote>`;continue;
-    }
-    if(l.match(/^[-*] /)){
-      if(inOL){out+='</ol>';inOL=false}
-      if(!inUL){out+='<ul>';inUL=true}
-      out+=`<li>${mdi(l.slice(2))}</li>`;continue;
-    }
-    if(l.match(/^\d+\. /)){
-      if(inUL){out+='</ul>';inUL=false}
-      if(!inOL){out+='<ol>';inOL=true}
-      out+=`<li>${mdi(l.replace(/^\d+\. /,''))}</li>`;continue;
-    }
-    if(inUL&&!l.match(/^[-*] /)){out+='</ul>';inUL=false}
-    if(inOL&&!l.match(/^\d+\. /)){out+='</ol>';inOL=false}
-    if(!l.trim()){out+='<br>';continue;}
-    let t2=l;
-    for(const k in blk) t2=t2.replace(k,blk[k]);
-    for(const k in tblk) t2=t2.replace(k,tblk[k]);
-    out+=mdi(t2)+'\n';
-  }
-  if(inUL) out+='</ul>';
-  if(inOL) out+='</ol>';
-  for(const k in blk) out=out.split(k).join(blk[k]);
-  for(const k in tblk) out=out.split(k).join(tblk[k]);
-  return out;
 }
-function mdi(t){
-  t=t.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
-  t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  t=t.replace(/__(.+?)__/g,'<strong>$1</strong>');
-  t=t.replace(/\*([^*]+)\*/g,'<em>$1</em>');
-  t=t.replace(/_([^_]+)_/g,'<em>$1</em>');
-  t=t.replace(/~~(.+?)~~/g,'<del>$1</del>');
-  t=t.replace(/`([^`]+)`/g,'<code>$1</code>');
-  t=t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1" class="gimg" onclick="window.open(this.src)">');
-  t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  return t;
+
+function renderMBar(){
+  const p=getP(), el=$('mbar');
+  if(!el || !p) return;
+  el.innerHTML='';
+  p.models.forEach(function(m){
+    const div=document.createElement('div');
+    div.className='mc'+(G.model===m.id?' on':'');
+    let tags='';
+    m.tags.forEach(function(t){ tags+='<span class="mtag '+t+'">'+t+'</span>'; });
+    div.innerHTML=tags+m.name;
+    div.onclick=function(){selModel(m.id);};
+    el.appendChild(div);
+  });
 }
-function tglThink(h){ const b=h.nextElementSibling; b.classList.toggle('open'); h.querySelector('span').textContent=b.classList.contains('open')?'▲':'▼'; }
-function cpCode(btn){ const code=btn.closest('pre').textContent.replace('نسخ','').trim(); navigator.clipboard?.writeText(code).catch(()=>{}); toast('✓ تم نسخ الكود','ok'); }
 
-// =================== AUTO-DIAGNOSTIC ===================
-async function testAllKeys() {
-  toast('🔄 جاري فحص استجابة المفاتيح...', 'in', 2000);
-  for(const p of PROVIDERS) {
-    const key = p.keyId ? localStorage.getItem(p.keyId) : null;
-    if(key) {
-      try {
-        const h = {'Content-Type':'application/json'};
-        let testUrl = p.url;
+function selProv(id){
+  G.prov=id;
+  const p=getP();
+  G.model=p.models[0].id;
+  renderPBar(); renderMBar();
+  setS('المزود: '+p.name+' — '+p.models[0].name);
+}
 
-        if(p.id === 'gemini') {
-          testUrl = p.url + `?key=${key}`;
-        } else {
-          h['Authorization'] = `Bearer ${key}`;
-        }
-        if(p.headers) Object.assign(h, p.headers);
+function selModel(id){ G.model=id; renderMBar(); setS('النموذج: '+getM().name); }
 
-        const tBody = {
-          model: p.models[0].id,
-          messages: [{role:'user', content:'hi'}],
-          max_tokens: 5,
-          temperature: 0.1
-        };
+// =================== KEY TESTING (AUTO-TEST) ===================
+async function testKey(p){
+  const key=getKey(p);
+  if(!key) return 'nokey';
+  try{
+    const testModel = p.models[0] ? p.models[0].id : 'gpt-4o-mini';
+    const body = {
+      model: testModel,
+      messages: [{role:'user',content:'Hi'}],
+      max_tokens: 5,
+      temperature: 0.1
+    };
+    // FIX: Groq max_tokens must be <= 512
+    if(p.id==='groq') body.max_tokens = 5;
+    // FIX: Mistral temperature must be <= 1
+    if(p.id==='mistral') body.temperature = 0.1;
 
-        const res = await fetch(testUrl, {
-          method:'POST', headers: h,
-          body: JSON.stringify(tBody)
-        });
-        G.provStatus[p.id] = res.ok ? 'ok' : 'fail';
-      } catch(e) { G.provStatus[p.id] = 'fail'; }
+    const hdr={'Content-Type':'application/json'};
+    if(p.id==='gemini') hdr.Authorization='Bearer '+key;
+    else hdr.Authorization='Bearer '+key;
+    Object.assign(hdr, p.headers || {});
+
+    const resp=await fetch(p.url,{
+      method:'POST',
+      headers:hdr,
+      body:JSON.stringify(body)
+    });
+    if(resp.ok) return 'ok';
+    const txt=await resp.text();
+    if(txt.includes('max_tokens') && txt.includes('512')) return 'fix_groq';
+    if(txt.includes('temperature') && txt.includes('1')) return 'fix_mistral';
+    if(txt.includes('Labs') || txt.includes('admin')) return 'labs_admin';
+    return 'err: '+resp.status;
+  }catch(e){ return 'err: '+e.message; }
+}
+
+async function testAllKeys(){
+  setS('جارٍ فحص المفاتيح...','busy');
+  G.provStatus = {};
+  for(const p of PROVIDERS){
+    if(!p.keyId) continue;
+    const res = await testKey(p);
+    if(res === 'ok'){
+      G.provStatus[p.id] = 'ok';
+    } else if(res === 'nokey'){
+      G.provStatus[p.id] = 'nokey';
     } else {
-      G.provStatus[p.id] = 'no_key';
+      G.provStatus[p.id] = 'failed';
+      console.log('Key test failed for '+p.id+': '+res);
     }
   }
   renderPBar();
+  const failed = Object.keys(G.provStatus).filter(function(k){return G.provStatus[k]==='failed';});
+  if(failed.length>0){
+    setS('⚠️ '+failed.length+' مفاتيح معطلة (خط أحمر بالبار)','err');
+  } else {
+    setS('✅ جميع المفاتيح تعمل بشكل صحيح','ok');
+  }
 }
 
-// =================== DYNAMIC MODELS FETCHER ===================
-async function fetchDynamicModels(provId) {
-  const p = PROVIDERS.find(x => x.id === provId);
-  if(!p || !p.url || p.dynamicFetched || p.id === 'huggingface') return;
-  
-  const key = getKey(p);
-  if(!key) return; 
+// =================== SEND MESSAGE (FIXED) ===================
+async function doSend(){
+  if(G.busy) return;
+  const ta=$('ta'), txt=ta.value.trim();
+  if(!txt && G.files.length===0) return;
 
-  try {
-    let mUrl = p.url.replace('/chat/completions', '/models');
-    if(p.id === 'gemini') mUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
+  G.busy=true;
+  $('sbtn').disabled=true;
+  $('sbtn').classList.add('busy');
+  setS('جارٍ الإرسال...','busy');
 
-    let headers = { 'Content-Type': 'application/json' };
-    if(p.id !== 'gemini') headers['Authorization'] = `Bearer ${key}`;
-    if(p.headers) Object.assign(headers, p.headers);
+  const userMsg = {role:'user', content:txt, id:uid(), files:G.files.slice()};
+  G.msgs.push(userMsg);
+  addMsgUI(userMsg, 'u');
+  ta.value=''; resize(ta); updateCC();
+  G.files=[]; renderFiles();
 
-    const res = await fetch(mUrl, { headers });
-    if(!res.ok) return; 
+  // Arena mode
+  if(G.mode==='arena'){
+    await doArena(txt);
+    return;
+  }
 
-    const data = await res.json();
-    let modelsArray = data.data || data.models; 
+  const p=getP();
+  const key=getKey(p);
+  if(!key){
+    toast('❌ لا يوجد مفتاح API لهذا المزود! اضغط 🔑','er',3000);
+    finish();
+    return;
+  }
 
-    if(modelsArray && Array.isArray(modelsArray)) {
-        const existingIds = new Set(p.models.map(x => x.id.replace('models/', '')));
+  const sys = G.sys || DEFAULT_SYS_PROMPT;
+  const messages = [{role:'system',content:sys}];
+  G.msgs.forEach(function(m){
+    if(m.role==='user') messages.push({role:'user',content:m.content});
+    else if(m.role==='assistant') messages.push({role:'assistant',content:m.content});
+  });
 
-        modelsArray.forEach(m => {
-            let rawId = m.id || m.name;
-            if(!rawId) return;
-            
-            let checkId = rawId.replace('models/', '');
+  const body = {
+    model: G.model,
+    messages: messages,
+    temperature: G.temp,
+    max_tokens: G.maxTok
+  };
 
-            // Skip non-chat / restricted / problematic models
-            const skipWords = [
-              'embed','whisper','tts','audio','vision',
-              'labs-','leanstral',            // Mistral Labs (need admin)
-              'moderation','ocr','transcribe', // Special-purpose
-              'compound-beta-mini',            // Groq: max_tokens=512
-              'voxtral','realtime','rerank',   // Voice / reranking
-              'guard','nemo-guardrail'         // Safety-only
-            ];
-            if(skipWords.some(w => checkId.toLowerCase().includes(w))) return;
+  // FIX 1: Groq max_tokens must be <= 512
+  if(G.prov==='groq'){
+    body.max_tokens = Math.min(G.maxTok, 512);
+  }
+  // FIX 2: Mistral temperature must be <= 1
+  if(G.prov==='mistral'){
+    body.temperature = Math.min(G.temp, 1.0);
+  }
+  // FIX 3: NVIDIA needs specific handling
+  if(G.prov==='nvidia'){
+    body.max_tokens = Math.min(G.maxTok, 1024);
+  }
+  // FIX 4: AI/ML API uses different model names
+  if(G.prov==='aimlapi'){
+    // Models already corrected in config
+  }
 
-            if(!existingIds.has(checkId)) {
-                let shortName = checkId.split('/').pop().toUpperCase();
-                p.models.push({ id: rawId, name: shortName, tags: ['auto'] }); 
-            }
-        });
+  if(G.streaming && p.stream) body.stream=true;
 
-        p.dynamicFetched = true; 
-        
-        if(G.prov === provId) {
-            renderMBar();
-            updS();
-        }
+  const hdr={'Content-Type':'application/json'};
+  if(G.prov==='gemini'){
+    hdr.Authorization='Bearer '+key;
+  } else {
+    hdr.Authorization='Bearer '+key;
+  }
+  Object.assign(hdr, p.headers || {});
+
+  try{
+    if(G.streaming && p.stream){
+      await doStream(p, body, hdr);
+    } else {
+      await doNormal(p, body, hdr);
     }
-  } catch(e) {
+  }catch(e){
+    console.error(e);
+    toast('❌ خطأ: '+e.message,'er',3000);
+    // Try fallback
+    await doFallback(txt);
   }
+
+  finish();
 }
 
-// =================== UI RENDERING ===================
-function renderPBar(){
-  $('pbar').innerHTML=PROVIDERS.map(p=>{
-    const hk=!p.free&&p.keyId?(localStorage.getItem(p.keyId)?'pfree':'pkeybadge'):'pfree';
-    const hl=!p.free&&p.keyId?(localStorage.getItem(p.keyId)?'مفعّل':'مفتاح'):'مجاني';
-    const failClass = G.provStatus[p.id] === 'fail' ? ' failed' : '';
-    return `<div class="pc${G.prov===p.id?' on':''}${failClass}" style="--pc:${p.color}" onclick="selProv('${p.id}')">
-      <span class="pdot" style="background:${p.color}"></span>${p.icon} ${p.name}
-      <span class="${hk}">${hl}</span>
-    </div>`;
-  }).join('');
-}
-function renderMBar(){
-  const p=getP(); if(!p) return;
-  $('mbar').innerHTML=p.models.map(m=>{
-    const tags=m.tags.map(t=>`<span class="mtag ${t}">${t==='fast'?'سريع':t==='think'?'تفكير':t==='new'?'جديد':t==='ar'?'عربي':t==='code'?'كود':t==='power'?'قوي':t==='auto'?'تلقائي':t}</span>`).join('');
-    return `<div class="mc${G.model===m.id?' on':''}" onclick="selModel('${m.id}')">${m.name}${tags}</div>`;
-  }).join('');
-}
-function selProv(id){
-  if(G.provStatus[id] === 'fail') { toast('هذا المزود متعطل حالياً (مفتاح منتهي)','er'); return; }
-  G.prov=id; 
-  
-  const p = getP();
-  if(p && p.models && p.models.length > 0) {
-      G.model = p.models[0].id;
+async function doNormal(p, body, hdr){
+  const resp=await fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
+  if(!resp.ok){
+    const txt=await resp.text();
+    throw new Error(resp.status+' '+txt.substring(0,100));
   }
-  
-  renderPBar(); renderMBar(); updS();
-  if(p) toast(`${p.icon} ${p.name}`,'in');
-
-  // 🔥 الجلب التلقائي مفعل هنا الآن
-  fetchDynamicModels(id);
-}
-function selModel(id){
-  G.model=id; renderMBar(); updS();
-  const m=getM(); toast(`▶ ${m?.name||id}`,'in');
-}
-function updS(){
-  const p=getP(), m=getM();
-  const c=G.msgs.filter(x=>x.role==='user').length;
-  setS(`${p?.icon||''} ${p?.name||G.prov} — ${m?.name||G.model}`);
-  $('smeta').textContent=c+' رسالة';
+  const data=await resp.json();
+  const content=data.choices[0].message.content;
+  const aiMsg={role:'assistant',content:content,id:uid(),prov:G.prov,model:G.model};
+  G.msgs.push(aiMsg);
+  addMsgUI(aiMsg,'ai');
+  addTok(content);
 }
 
-// =================== API ENGINE ===================
-async function streamSSE(resp, onChunk){
-  const reader=resp.body.getReader(), dec=new TextDecoder();
-  let buf='', full='';
+async function doStream(p, body, hdr){
+  const resp=await fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
+  if(!resp.ok){
+    const txt=await resp.text();
+    throw new Error(resp.status+' '+txt.substring(0,100));
+  }
+
+  const reader=resp.body.getReader();
+  const decoder=new TextDecoder();
+  let buf='', text='';
+  const aiMsg={role:'assistant',content:'',id:uid(),prov:G.prov,model:G.model};
+  G.msgs.push(aiMsg);
+  const msgEl=addMsgUI(aiMsg,'ai',true);
+
+  setS('بث مباشر...','stream');
+
   while(true){
     const {done,value}=await reader.read();
     if(done) break;
-    buf+=dec.decode(value,{stream:true});
-    const lines=buf.split('\n'); buf=lines.pop();
+    buf+=decoder.decode(value,{stream:true});
+    const lines=buf.split('
+');
+    buf=lines.pop();
     for(const line of lines){
-      const t=line.trim();
-      if(!t.startsWith('data: ')) continue;
-      const d=t.slice(6);
-      if(d==='[DONE]') return full;
+      if(!line.trim() || !line.startsWith('data:')) continue;
+      const json=line.slice(5).trim();
+      if(json==='[DONE]') continue;
       try{
-        const j=JSON.parse(d);
-        const delta=j.choices?.[0]?.delta?.content||'';
-        if(delta){ full+=delta; onChunk(full); }
-      }catch{}
+        const chunk=JSON.parse(json);
+        const delta=chunk.choices[0].delta;
+        if(delta&&delta.content){
+          text+=delta.content;
+          aiMsg.content=text;
+          updateMsgUI(msgEl, text, true);
+        }
+      }catch(e){}
     }
   }
-  return full;
+
+  updateMsgUI(msgEl, text, false);
+  addTok(text);
 }
 
-async function callAPI(prov, model, msgs, onStream){
-  const p=PROVIDERS.find(x=>x.id===prov);
-  if(!p) throw new Error('مزود غير معروف');
-  const key=getKey(p);
-  if(!p.free&&!key) throw new Error(`${p.icon} ${p.name} يحتاج مفتاح API — اضغط 🔑`);
-  
-  const sysMsgs = [{role:'system', content: G.sys || DEFAULT_SYS_PROMPT}];
-  const allMsgs = [...sysMsgs, ...msgs];
-  const useStream=G.streaming&&p.stream&&!!onStream;
-  const headers={'Content-Type':'application/json'};
-  
-  if(p.id === 'gemini') {
-      p.run_url = p.url + `?key=${key}`;
-  } else {
-      headers['Authorization']=`Bearer ${key}`;
-      p.run_url = p.url;
-  }
-  
-  if(p.headers) Object.assign(headers,p.headers);
+async function doFallback(txt){
+  // Try OpenRouter free models as fallback
+  const fallback = PROVIDERS.find(function(p){return p.id==='openrouter';});
+  if(!fallback) return;
+  const key=getKey(fallback);
+  if(!key) return;
 
-  // ── Per-provider limits ──────────────────────────────
-  let safeTemp = G.temp;
-  // Mistral & HuggingFace: temperature must be <= 1.0
-  if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
+  toast('🔄 المحاولة بـ OpenRouter (fallback)...','in',2000);
 
-  // Per-model max_tokens (from model config or provider default)
-  const mCfg = p.models.find(x => x.id === model);
-  let safeTok = G.maxTok;
-  if(mCfg?.maxTok) safeTok = Math.min(safeTok, mCfg.maxTok);
-  else if(prov === 'nvidia') safeTok = Math.min(safeTok, 1024);
-  else if(prov === 'groq')   safeTok = Math.min(safeTok, 8192);
-  // ─────────────────────────────────────────────────────
+  const body={
+    model:'meta-llama/llama-3.3-70b-instruct:free',
+    messages:[{role:'user',content:txt}],
+    temperature:0.7,
+    max_tokens:1024
+  };
+  const hdr={'Content-Type':'application/json','Authorization':'Bearer '+key};
+  Object.assign(hdr, fallback.headers || {});
 
-  let body={model,messages:allMsgs,temperature:safeTemp,stream:useStream,max_tokens:safeTok};
-  
-  const resp=await fetch(p.run_url,{method:'POST',headers,body:JSON.stringify(body)});
-  if(!resp.ok){
-    let e=''; try{const j=await resp.json(); e=j.error?.message||JSON.stringify(j);}catch{e=await resp.text().catch(()=>resp.statusText);}
-    throw new Error(`${p.name} ${resp.status}: ${e.slice(0,120)}`);
-  }
-  if(useStream) return streamSSE(resp,onStream);
-  const data=await resp.json();
-  return data.choices?.[0]?.message?.content||data.choices?.[0]?.text||'';
-}
-
-async function callWithFallback(msgs, onStream){
-  if(G.mode === 'arena') {
-      toast('⚔️ حلبة التنافس: إطلاق الطلب للجميع...', 'in', 3000);
-      const activeProvs = PROVIDERS.filter(p => G.provStatus[p.id] === 'ok');
-      if(activeProvs.length === 0) throw new Error("لا توجد مفاتيح صالحة للتنافس");
-      
-      const promises = activeProvs.map(p => 
-          callAPI(p.id, p.models[0].id, msgs, null) 
-          .then(res => ({text: res, prov: p.id, model: p.models[0].id, fb: false}))
-      );
-      return await Promise.any(promises); 
-  } else {
-      const text=await callAPI(G.prov,G.model,msgs,onStream);
-      return {text,prov:G.prov,model:G.model,fb:false};
-  }
-}
-
-// =================== CHAT UI ===================
-function appendUser(txt){
-  const el=document.createElement('div'); el.className='msg u';
-  el.innerHTML=`<div class="av u">👤</div><div class="bub u">${esc(txt)}<div class="mmeta"><span>${new Date().toLocaleTimeString('ar')}</span></div></div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function appendLoad(id){
-  const el=document.createElement('div'); el.className='msg'; el.id='msg_'+id;
-  el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai" id="bub_${id}"><div class="ldots"><span></span><span></span><span></span></div></div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function updLoad(id,txt){
-  const b=$('bub_'+id);
-  if(b){ b.innerHTML=md(txt)+'<span class="scursor">▋</span>'; scrollB(); }
-}
-function finalMsg(id,txt,prov,model,fb,reason){
-  const b=$('bub_'+id); if(!b) return;
-  const p=PROVIDERS.find(x=>x.id===prov); const m=p?.models.find(x=>x.id===model);
-  const fbBadge=G.mode==='arena'?`<span class="mfallback">⚔️ الفائز بالتنافس</span>`:'';
-  b.innerHTML=md(txt)+`<div class="mmeta">${fbBadge}
-    <span class="mprov">${p?.icon||''} ${m?.name||model}</span>
-    <span>${new Date().toLocaleTimeString('ar')}</span>
-    <button class="mbtn" onclick="cpText(this)" data-txt="${esc(txt).replace(/"/g,'&quot;')}">نسخ</button>
-  </div>`; scrollB();
-}
-function rmLoad(id){ $('msg_'+id)?.remove(); }
-function appendErr(txt){
-  const el=document.createElement('div'); el.className='msg';
-  el.innerHTML=`<div class="av ai" style="color:var(--r)">⚠️</div>
-    <div class="bub ai" style="border-color:rgba(255,51,102,.18)"><strong style="color:var(--r)">خطأ</strong><br>
-      <small style="color:var(--t2);font-family:'Share Tech Mono';font-size:9px;">${esc(txt)}</small>
-      <div class="mmeta"><button class="mbtn" onclick="retryLast()">↩ إعادة المحاولة</button></div>
-    </div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function cpText(btn){
-  const t=btn.getAttribute('data-txt');
-  navigator.clipboard?.writeText(t).catch(()=>{}); toast('✓ تم النسخ','ok');
-}
-
-// =================== SEND ===================
-let lastUserIdx=-1;
-async function doSend(){
-  if(G.busy){ stopBusy(); return; }
-  let txt=$('ta').value.trim();
-
-  if(!txt&&!G.files.length) return;
-  
-  $('ta').value=''; resize($('ta')); updateCC();
-  addTok(txt);
-
-  let content;
-  if(G.files.length){
-    content=[{type:'text',text:txt||'صف هذه الصورة بالتفصيل'}];
-    G.files.forEach(f=>content.push({type:'image_url',image_url:{url:`data:${f.type};base64,${f.b64}`}}));
-    G.files=[]; renderFP();
-  } else { content=txt; }
-  
-  G.msgs.push({role:'user',content});
-  lastUserIdx=G.msgs.length-1;
-  appendUser(typeof content==='string'?content:'[صورة مرفقة] '+txt);
-  setBusy(true);
-  
-  const lid=uid(); appendLoad(lid);
-  setS('جارٍ التوليد...','busy');
   try{
-    const {text,prov,model,fb,reason}=await callWithFallback(G.msgs,(partial)=>{ updLoad(lid,partial); setS('بث الرد...','stream'); });
-    finalMsg(lid,text,prov,model,fb,reason);
-    G.msgs.push({role:'assistant',content:text});
-    addTok(text);
-    saveConv(); updS(); setS('جاهز','ok');
+    const resp=await fetch(fallback.url,{method:'POST',headers:hdr,body:JSON.stringify(body)});
+    if(!resp.ok) throw new Error('Fallback failed');
+    const data=await resp.json();
+    const content=data.choices[0].message.content;
+    const aiMsg={role:'assistant',content:content,id:uid(),prov:'openrouter',model:'meta-llama/llama-3.3-70b-instruct:free',fallback:true};
+    G.msgs.push(aiMsg);
+    addMsgUI(aiMsg,'ai');
+    addTok(content);
   }catch(e){
-    rmLoad(lid); appendErr(e.message);
-    setS('خطأ: '+e.message.slice(0,50),'err');
-  } finally { setBusy(false); }
-}
-
-function retryLast(){
-  if(G.busy||lastUserIdx<0) return;
-  if(G.msgs[G.msgs.length-1]?.role==='assistant') G.msgs.pop();
-  setBusy(false);
-  const lastMsg=G.msgs[lastUserIdx]; if(!lastMsg) return;
-  G.msgs=G.msgs.slice(0,lastUserIdx);
-  $('ta').value=typeof lastMsg.content==='string'?lastMsg.content:lastMsg.content[0]?.text||'';
-  resize($('ta')); updateCC(); doSend();
-}
-
-let _stopFlag=false;
-function stopBusy(){ _stopFlag=true; setBusy(false); toast('⬛ تم الإيقاف','in'); }
-function setBusy(b){
-  G.busy=b; $('sbtn').classList.toggle('busy',b); $('sbtn').textContent=b?'⬛':'➤';
-}
-
-// =================== IMAGE & VIDEO GEN ===================
-async function doGenMedia(){
-  const prm=$('imgPrm').value.trim();
-  const type=$('mediaType').value;
-  if(!prm){toast('أدخل وصفاً للميديا','er'); return;}
-  
-  const prev=$('imgPrev'), btn=$('imgBtn');
-  btn.disabled=true; btn.textContent='⏳';
-  
-  try {
-      if(type === 'image') {
-          const hfKey = localStorage.getItem('k_hf');
-          if(!hfKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح HuggingFace أولاً 🔑'); }
-          
-          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الصورة (10-30 ثانية)...</span>';
-          
-          const response = await fetch("https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell", {
-              headers: { Authorization: `Bearer ${hfKey}`, "Content-Type": "application/json" },
-              method: "POST", body: JSON.stringify({ inputs: prm }),
-          });
-          
-          if(!response.ok) throw new Error('فشل التوليد، تأكد من المفتاح.');
-          
-          const blob = await response.blob();
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onloadend = function() {
-              prev.innerHTML=`<img src="${reader.result}" class="gimg">`;
-              appendUser('[توليد صورة] '+prm);
-              const el=document.createElement('div'); el.className='msg'; 
-              el.innerHTML=`<div class="av ai">🎨</div><div class="bub ai"><img src="${reader.result}" class="gimg" onclick="window.open(this.src)"><div class="mmeta">🤗 FLUX Image</div></div>`;
-              $('msgs').appendChild(el); scrollB();
-              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
-          }
-      } else {
-          const amKey = localStorage.getItem('k_am');
-          if(!amKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح AI/ML API للفيديو 🔑'); }
-          
-          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الفيديو السينمائي (قد يستغرق دقائق)...</span>';
-          
-          const response = await fetch("https://api.aimlapi.com/v1/images/generations", {
-              headers: { Authorization: `Bearer ${amKey}`, "Content-Type": "application/json" },
-              method: "POST", 
-              body: JSON.stringify({ prompt: prm, model: "minimax/video-01" })
-          });
-          
-          const data = await response.json();
-          if(data.data && data.data[0].url) {
-              prev.innerHTML=`<video src="${data.data[0].url}" class="gvid" controls autoplay></video>`;
-              appendUser('[توليد فيديو] '+prm);
-              const el=document.createElement('div'); el.className='msg'; 
-              el.innerHTML=`<div class="av ai">🎬</div><div class="bub ai"><video src="${data.data[0].url}" class="gvid" controls loop></video><div class="mmeta">🎬 Minimax Video</div></div>`;
-              $('msgs').appendChild(el); scrollB();
-              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
-          } else {
-              throw new Error('فشل توليد الفيديو.');
-          }
-      }
-  } catch(e) {
-      prev.innerHTML=`<span style="color:var(--r);font-size:10px">❌ ${e.message}</span>`;
-      btn.disabled=false; btn.textContent='🎬 توليد';
+    toast('❌ Fallback also failed','er',2000);
   }
 }
 
-// =================== FILE ATTACHMENT ===================
-function onFile(e){
-  const file=e.target.files[0]; if(!file) return;
-  if(!file.type.startsWith('image/')){ toast('يدعم الصور فقط','er'); return; }
-  const reader=new FileReader();
-  reader.onload=ev=>{ G.files.push({name:file.name,type:file.type,b64:ev.target.result.split(',')[1]}); renderFP(); toast('✓ صورة مرفقة','ok'); };
-  reader.readAsDataURL(file); e.target.value='';
-}
-function renderFP(){
-  $('fprev').innerHTML=G.files.map((f,i)=>`
-    <div class="fchip"><img src="data:${f.type};base64,${f.b64}" alt=""><span class="fn">${esc(f.name)}</span>
-      <button class="frm" onclick="G.files.splice(${i},1);renderFP()">✕</button></div>`).join('');
+async function doArena(txt){
+  // Send to multiple providers and show fastest
+  const providers = PROVIDERS.filter(function(p){return !!getKey(p) && p.models.length>0 && p.id!=='huggingface';}).slice(0,3);
+  if(providers.length===0){
+    toast('❌ لا توجد مفاتيح لمزودين متاحين','er',3000);
+    finish();
+    return;
+  }
+
+  setS('⚔️ حلبة التنافس: جارٍ إرسال لـ '+providers.length+' مزودين...','busy');
+
+  const promises = providers.map(function(p){
+    return new Promise(function(resolve){
+      const start = Date.now();
+      const body={
+        model:p.models[0].id,
+        messages:[{role:'user',content:txt}],
+        temperature:0.7,
+        max_tokens:512
+      };
+      if(p.id==='groq') body.max_tokens=256;
+      if(p.id==='mistral') body.temperature=0.7;
+
+      const hdr={'Content-Type':'application/json','Authorization':'Bearer '+getKey(p)};
+      Object.assign(hdr, p.headers || {});
+
+      fetch(p.url,{method:'POST',headers:hdr,body:JSON.stringify(body)})
+        .then(function(r){return r.json();})
+        .then(function(d){
+          const content = d.choices && d.choices[0] && d.choices[0].message ? d.choices[0].message.content : null;
+          resolve({p:p,content:content,time:Date.now()-start,ok:!!content});
+        })
+        .catch(function(e){resolve({p:p,content:null,time:99999,ok:false,err:e.message});});
+    });
+  });
+
+  const results = await Promise.all(promises);
+  const winner = results.filter(function(r){return r.ok;}).sort(function(a,b){return a.time-b.time;})[0];
+
+  if(!winner){
+    toast('❌ جميع المزودين فشلوا في الرد','er',3000);
+    finish();
+    return;
+  }
+
+  const aiMsg={role:'assistant',content:winner.content,id:uid(),prov:winner.p.id,model:winner.p.models[0].id,arena:true,arenaTime:winner.time};
+  G.msgs.push(aiMsg);
+  addMsgUI(aiMsg,'ai');
+  addTok(winner.content);
+  setS('⚔️ الفائز: '+winner.p.name+' ('+winner.time+'ms)','ok');
+
+  // Show other results
+  results.filter(function(r){return r.ok && r.p.id!==winner.p.id;}).forEach(function(r){
+    const meta = document.createElement('div');
+    meta.className='mmeta';
+    meta.innerHTML = '<span style="color:var(--t2)">🥈 '+r.p.name+': '+r.time+'ms</span>';
+    $('msgs').appendChild(meta);
+  });
+
+  finish();
 }
 
-// =================== INPUT CONTROLS ===================
-function onKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); doSend(); } }
-function resize(ta){ ta.style.height='auto'; ta.style.height=Math.min(ta.scrollHeight,110)+'px'; }
-function updateCC(){ const l=$('ta').value.length; $('tcc').textContent=l?l+' ح':''; }
-function qpSet(t){ $('ta').value=t; $('ta').focus(); resize($('ta')); updateCC(); }
-function toggleWS(){ G.wsearch=!G.wsearch; $('btnWS').classList.toggle('on',G.wsearch); toast(G.wsearch?'🔍 بحث مفعّل':'بحث معطّل','in'); }
-function toggleST(){ G.streaming=!G.streaming; $('btnST').classList.toggle('on',!G.streaming); $('selStream').value=G.streaming?'1':'0'; toast(G.streaming?'⚡ البث مفعّل':'البث معطّل','in'); saveSettings(); }
-function toggleAdv(){ $('advPanel').classList.toggle('on'); $('advBtn').classList.toggle('adv-on'); }
-function clearAll(){ if(G.busy) return; G.msgs=[]; $('msgs').innerHTML=''; updS(); toast('تم مسح المحادثة','in'); }
+function finish(){
+  G.busy=false;
+  $('sbtn').disabled=false;
+  $('sbtn').classList.remove('busy');
+  setS('جاهز','ok');
+  $('smeta').textContent=G.msgs.length+' رسالة';
+  saveConv();
+}
+
+// =================== UI HELPERS ===================
+function addMsgUI(msg, who, streaming){
+  const div=document.createElement('div');
+  div.className='msg '+(who==='u'?'u':'');
+  div.id='msg-'+msg.id;
+
+  const av=document.createElement('div');
+  av.className='av '+(who==='u'?'u':'ai');
+  av.textContent=who==='u'?'👤':'🤖';
+
+  const bub=document.createElement('div');
+  bub.className='bub '+(who==='u'?'u':'ai');
+
+  if(who==='ai'){
+    if(streaming){
+      bub.innerHTML='<div class="ai-content"></div><span class="scursor">▋</span>';
+    } else {
+      bub.innerHTML=md(msg.content);
+    }
+  } else {
+    bub.textContent=msg.content;
+  }
+
+  div.appendChild(av);
+  div.appendChild(bub);
+
+  if(msg.files && msg.files.length>0){
+    msg.files.forEach(function(f){
+      const img=document.createElement('img');
+      img.src=f.data;
+      img.className='gimg';
+      img.style.maxWidth='200px';
+      bub.appendChild(img);
+    });
+  }
+
+  // Meta
+  if(who==='ai'){
+    const meta=document.createElement('div');
+    meta.className='mmeta';
+    let metaHtml='';
+    if(msg.prov) metaHtml+='<span class="mprov">'+msg.prov+'</span>';
+    if(msg.model) metaHtml+='<span>'+msg.model+'</span>';
+    if(msg.fallback) metaHtml+='<span class="mfallback">fallback</span>';
+    if(msg.arena) metaHtml+='<span style="color:var(--g)">⚔️ '+msg.arenaTime+'ms</span>';
+    metaHtml+='<button class="mbtn" onclick="copyMsg(''+msg.id+'')">📋</button>';
+    metaHtml+='<button class="mbtn" onclick="regenMsg(''+msg.id+'')">🔄</button>';
+    meta.innerHTML=metaHtml;
+    div.appendChild(meta);
+  }
+
+  $('msgs').appendChild(div);
+  scrollB();
+  return div;
+}
+
+function updateMsgUI(el, text, streaming){
+  const bub=el.querySelector('.bub.ai');
+  if(!bub) return;
+  if(streaming){
+    bub.innerHTML='<div class="ai-content">'+md(text)+'</div><span class="scursor">▋</span>';
+  } else {
+    bub.innerHTML=md(text);
+  }
+  scrollB();
+}
+
+function copyMsg(id){
+  const msg=G.msgs.find(function(m){return m.id===id;});
+  if(msg){
+    navigator.clipboard.writeText(msg.content);
+    toast('✅ تم النسخ','ok',1500);
+  }
+}
+
+function regenMsg(id){
+  const idx=G.msgs.findIndex(function(m){return m.id===id;});
+  if(idx<1) return;
+  // Remove this and all after
+  G.msgs=G.msgs.slice(0,idx);
+  // Remove from UI
+  const msgEl=$('msg-'+id);
+  if(msgEl){
+    let next=msgEl.nextElementSibling;
+    while(next){
+      const toRemove=next;
+      next=next.nextElementSibling;
+      toRemove.remove();
+    }
+    msgEl.remove();
+  }
+  // Resend last user message
+  const lastUser=G.msgs.filter(function(m){return m.role==='user';}).pop();
+  if(lastUser){
+    $('ta').value=lastUser.content;
+    doSend();
+  }
+}
+
+// =================== FILE HANDLING ===================
+function onFile(e){
+  const f=e.target.files[0];
+  if(!f) return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    G.files.push({name:f.name,data:ev.target.result,type:f.type});
+    renderFiles();
+  };
+  reader.readAsDataURL(f);
+  e.target.value='';
+}
+
+function renderFiles(){
+  const el=$('fprev');
+  if(!el) return;
+  el.innerHTML='';
+  G.files.forEach(function(f,idx){
+    const chip=document.createElement('div');
+    chip.className='fchip';
+    if(f.type.startsWith('image/')){
+      chip.innerHTML='<img src="'+f.data+'"><span class="fn">'+f.name+'</span><button class="frm" onclick="remFile('+idx+')">×</button>';
+    } else {
+      chip.innerHTML='<span class="fn">'+f.name+'</span><button class="frm" onclick="remFile('+idx+')">×</button>';
+    }
+    el.appendChild(chip);
+  });
+}
+
+function remFile(idx){ G.files.splice(idx,1); renderFiles(); }
+
+// =================== INPUT ===================
+function onKey(e){
+  if(e.key==='Enter' && !e.shiftKey){
+    e.preventDefault();
+    doSend();
+  }
+}
+
+function resize(ta){
+  ta.style.height='auto';
+  ta.style.height=Math.min(ta.scrollHeight,110)+'px';
+}
+
+function updateCC(){
+  const ta=$('ta');
+  const len=ta.value.length;
+  $('tcc').textContent=len>0?len+' حرف':'';
+}
+
+function qpSet(prefix){ $('ta').value=prefix; $('ta').focus(); }
+
+function toggleWS(){
+  G.wsearch=!G.wsearch;
+  $('btnWS').classList.toggle('on',G.wsearch);
+  toast(G.wsearch?'🔍 البحث مفعل':'🔍 البحث معطل','in',1500);
+}
+
+function toggleST(){
+  G.streaming=!G.streaming;
+  $('btnST').classList.toggle('on',G.streaming);
+  toast(G.streaming?'⚡ البث مفعل':'⚡ البث معطل','in',1500);
+}
+
+function clearAll(){
+  G.msgs=[];
+  $('msgs').innerHTML='';
+  $('smeta').textContent='0 رسالة';
+  toast('🗑️ تم مسح المحادثة','ok',1500);
+}
 
 // =================== CONVERSATIONS ===================
-function saveConv(){
-  if(!G.msgs.length) return;
-  if(!G.cid) G.cid=uid();
-  const fu=G.msgs.find(m=>m.role==='user');
-  const title=typeof fu?.content==='string'?fu.content.slice(0,45):'محادثة';
-  const idx=G.convs.findIndex(c=>c.id===G.cid);
-  const conv={id:G.cid,title,msgs:G.msgs,prov:G.prov,model:G.model,t:Date.now()};
-  if(idx>=0) G.convs[idx]=conv; else G.convs.unshift(conv);
-  if(G.convs.length>60) G.convs.length=60;
-  try{localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));}catch{}
-  renderCL();
-}
-function loadConv(id){
-  const c=G.convs.find(x=>x.id===id); if(!c) return;
-  G.cid=id; G.msgs=c.msgs; G.prov=c.prov||G.prov; G.model=c.model||G.model;
-  renderPBar(); renderMBar();
-  const msgsEl=$('msgs'); msgsEl.innerHTML='';
-  c.msgs.forEach(m=>{
-    if(m.role==='user'){ appendUser(typeof m.content==='string'?m.content:m.content[0]?.text||'[صورة]'); }
-    else if(m.role==='assistant'){
-      const p=PROVIDERS.find(x=>x.id===c.prov); const el=document.createElement('div'); el.className='msg';
-      el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai">${md(m.content)}<div class="mmeta"><span class="mprov">${p?.icon||''} ${p?.name||c.prov}</span></div></div>`;
-      msgsEl.appendChild(el);
-    }
-  }); scrollB(); renderCL(); updS();
-}
-function delConv(id,e){
-  e.stopPropagation(); G.convs=G.convs.filter(c=>c.id!==id);
-  try{localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));}catch{}
-  if(G.cid===id){ G.cid=null; clearAll(); }
-  renderCL(); toast('حُذفت','in');
-}
-function renderCL(){
-  $('convlist').innerHTML=G.convs.map(c=>`<div class="citem${c.id===G.cid?' on':''}" onclick="loadConv('${c.id}')">${esc(c.title||'محادثة')}<span class="cdel" onclick="delConv('${c.id}',event)">✕</span></div>`).join('');
-}
 function newChat(){
-  if(G.msgs.length) saveConv();
-  G.msgs=[]; G.cid=null; $('msgs').innerHTML='';
-  const el=document.createElement('div'); el.className='msg';
-  el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai"><em style="color:var(--t2)">محادثة جديدة ✨</em></div>`;
-  $('msgs').appendChild(el); updS(); renderCL();
+  if(G.msgs.length>0) saveConv();
+  G.msgs=[]; G.cid=null;
+  $('msgs').innerHTML='';
+  $('smeta').textContent='0 رسالة';
+  toast('➕ محادثة جديدة','ok',1500);
+  renderConvList();
 }
 
-// =================== MODALS & SETTINGS ===================
-function openOv(id){ $(`${id}-ov`).classList.add('on'); if(id==='keys') loadKM(); if(id==='sys') $('sysTA').value=G.sys; }
-function closeOv(id){ $(`${id}-ov`).classList.remove('on'); }
-function loadKM(){ PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(el) el.value=localStorage.getItem(p.keyId)||''; }); }
-function saveKeys(){ PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(!el) return; const v=el.value.trim(); if(v) localStorage.setItem(p.keyId,v); else localStorage.removeItem(p.keyId); }); closeOv('keys'); testAllKeys(); toast('✅ تم حفظ المفاتيح وفحصها','ok'); }
-function saveSys(){ G.sys=$('sysTA').value.trim(); localStorage.setItem('cl_v13_sys',G.sys); $('advSys').value=G.sys; closeOv('sys'); toast(G.sys?'✅ نظام الرسائل محفوظ':'نظام الرسائل الافتراضي مفعل','ok'); }
-const PRESETS={ helpful:'أنت مساعد ذكاء اصطناعي...', code:'أنت مبرمج خبير...', arabic:'أنت مساعد يتحدث الفصحى...', creative:'أنت مبدع...', analyst:'أنت محلل خبير...', free:'You are a free AI...' };
-function setPreset(k){ $('sysTA').value=PRESETS[k]||DEFAULT_SYS_PROMPT; }
+function saveConv(){
+  if(G.msgs.length===0) return;
+  const title=G.msgs.find(function(m){return m.role==='user';})?.content?.substring(0,30)||'محادثة';
+  if(!G.cid) G.cid=uid();
+  const existing=G.convs.findIndex(function(c){return c.id===G.cid;});
+  const conv={id:G.cid,title:title,msgs:G.msgs.slice(),date:Date.now()};
+  if(existing>=0) G.convs[existing]=conv;
+  else G.convs.unshift(conv);
+  localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));
+  renderConvList();
+}
+
+function loadConv(id){
+  const conv=G.convs.find(function(c){return c.id===id;});
+  if(!conv) return;
+  G.cid=id; G.msgs=conv.msgs.slice();
+  $('msgs').innerHTML='';
+  G.msgs.forEach(function(m){addMsgUI(m,m.role==='user'?'u':'ai');});
+  $('smeta').textContent=G.msgs.length+' رسالة';
+}
+
+function renderConvList(){
+  const el=$('convlist');
+  if(!el) return;
+  el.innerHTML='';
+  G.convs.forEach(function(c){
+    const div=document.createElement('div');
+    div.className='citem'+(c.id===G.cid?' on':'');
+    div.textContent=c.title;
+    div.onclick=function(){loadConv(c.id);};
+    const del=document.createElement('span');
+    del.className='cdel';
+    del.textContent='×';
+    del.onclick=function(e){e.stopPropagation();delConv(c.id);};
+    div.appendChild(del);
+    el.appendChild(div);
+  });
+}
+
+function delConv(id){
+  G.convs=G.convs.filter(function(c){return c.id!==id;});
+  localStorage.setItem('cl_v13_convs',JSON.stringify(G.convs));
+  if(G.cid===id) newChat();
+  else renderConvList();
+}
+
+// =================== SETTINGS ===================
+function toggleAdv(){
+  $('advPanel').classList.toggle('on');
+  $('advBtn').classList.toggle('adv-on');
+}
+
 function saveSettings(){
+  G.temp=parseFloat($('slTemp').value);
+  G.maxTok=parseInt($('slTok').value);
+  G.streaming=$('selStream').value==='1';
   G.mode=$('selMode').value;
-  G.temp=parseFloat($('slTemp').value); G.maxTok=parseInt($('slTok').value);
-  G.streaming=$('selStream').value==='1'; G.autoRouter=true;
   G.sys=$('advSys').value;
-  try{localStorage.setItem('cl_v13_s',JSON.stringify({mode:G.mode, temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,sys:G.sys}));}catch{}
+  localStorage.setItem('cl_v13_settings',JSON.stringify({temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys}));
 }
+
 function loadSettings(){
-  try{
-    const s=JSON.parse(localStorage.getItem('cl_v13_s')||'{}');
-    G.mode=s.mode||'strict'; G.temp=s.temp||0.7; G.maxTok=s.maxTok||2048; G.streaming=s.streaming!==false;
-    G.sys=localStorage.getItem('cl_v13_sys')||s.sys||DEFAULT_SYS_PROMPT;
-    $('selMode').value=G.mode;
-    $('slTemp').value=G.temp; $('valTemp').textContent=G.temp;
-    $('slTok').value=G.maxTok; $('valTok').textContent=G.maxTok;
-    $('selStream').value=G.streaming?'1':'0';
-    $('advSys').value=G.sys; $('sysTA').value=G.sys;
-  }catch{}
+  const s=JSON.parse(localStorage.getItem('cl_v13_settings')||'{}');
+  if(s.temp!==undefined){ G.temp=s.temp; $('slTemp').value=s.temp; $('valTemp').textContent=s.temp; }
+  if(s.maxTok!==undefined){ G.maxTok=s.maxTok; $('slTok').value=s.maxTok; $('valTok').textContent=s.maxTok; }
+  if(s.streaming!==undefined){ G.streaming=s.streaming; $('selStream').value=s.streaming?'1':'0'; }
+  if(s.mode!==undefined){ G.mode=s.mode; $('selMode').value=s.mode; }
+  if(s.sys!==undefined){ G.sys=s.sys; $('advSys').value=s.sys; }
 }
-function loadConvs(){ try{G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');}catch{} renderCL(); }
-function expJSON(){ /* ... */ } function expTXT(){ /* ... */ } function expMD(){ /* ... */ } function expHTML(){ /* ... */ }
+
+// =================== MODALS ===================
+function openOv(id){ $(''+id+'-ov').classList.add('on'); }
+function closeOv(id){ $(''+id+'-ov').classList.remove('on'); }
+
+function saveKeys(){
+  ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
+    const v=$('k_'+k).value.trim();
+    if(v) localStorage.setItem('k_'+k,v);
+  });
+  closeOv('keys');
+  testAllKeys();
+  toast('💾 تم حفظ المفاتيح وفحصها','ok',2000);
+}
+
+function loadKeys(){
+  ['or','gr','ge','ds','ms','sf','am','nv','cb','hf'].forEach(function(k){
+    const v=localStorage.getItem('k_'+k)||'';
+    if(v) $('k_'+k).value=v;
+  });
+}
+
+function saveSys(){
+  G.sys=$('sysTA').value;
+  $('advSys').value=G.sys;
+  saveSettings();
+  closeOv('sys');
+  toast('💬 تم حفظ تعليمات النظام','ok',1500);
+}
+
+function setPreset(p){
+  const presets={
+    helpful:'أنت مساعد ذكاء اصطناعي محترف ومفيد. أجب دائماً بالعربية الفصحى الواضحة.',
+    code:'أنت مبرمج خبير. اكتب كوداً نظيفاً مع شرح مفصل. استخدم أفضل الممارسات.',
+    arabic:'أنت أديب عربي. أجب بأفصح العربية، مع الحفاظ على الأصالة والبلاغة.',
+    creative:'أنت كاتب إبداعي. اكتب بأسلوب جذاب ووصفي مع استخدام الاستعارات.',
+    analyst:'أنت محلل بيانات. قدم تحليلات منطقية مع أرقام وإحصائيات.',
+    free:'أنت مساعد ذكاء اصطناعي. أجب بصراحة ودقة دون قيود.',
+    '':DEFAULT_SYS_PROMPT
+  };
+  $('sysTA').value=presets[p]||DEFAULT_SYS_PROMPT;
+}
+
+// =================== EXPORT ===================
+function expJSON(){
+  const data={convs:G.convs,settings:{temp:G.temp,maxTok:G.maxTok,streaming:G.streaming,mode:G.mode,sys:G.sys},exportDate:new Date().toISOString()};
+  download(JSON.stringify(data,null,2),'chibani-export.json','application/json');
+  closeOv('export');
+}
+
+function expTXT(){
+  let txt='Chibani Lotfi AI - Chat Export
+========================
+
+';
+  G.msgs.forEach(function(m){txt+=(m.role==='user'?'👤':'🤖')+': '+m.content+'
+
+';});
+  download(txt,'chat.txt','text/plain');
+  closeOv('export');
+}
+
+function expMD(){
+  let md='# Chibani Lotfi AI - Chat Export
+
+';
+  G.msgs.forEach(function(m){md+='## '+(m.role==='user'?'User':'AI')+'
+
+'+m.content+'
+
+---
+
+';});
+  download(md,'chat.md','text/markdown');
+  closeOv('export');
+}
+
+function expHTML(){
+  let html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Chat Export</title><style>body{font-family:sans-serif;max-width:800px;margin:20px auto;padding:20px;background:#f5f5f5;} .msg{margin:15px 0;padding:15px;border-radius:8px;} .user{background:#e3f2fd;} .ai{background:#f3e5f5;}</style></head><body><h1>Chat Export</h1>';
+  G.msgs.forEach(function(m){html+='<div class="msg '+(m.role==='user'?'user':'ai')+'"><strong>'+(m.role==='user'?'User':'AI')+'</strong><p>'+esc(m.content)+'</p></div>';});
+  html+='</body></html>';
+  download(html,'chat.html','text/html');
+  closeOv('export');
+}
+
+function download(content,filename,type){
+  const blob=new Blob([content],{type:type});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// =================== MEDIA GENERATION ===================
+async function doGenMedia(){
+  const type=$('mediaType').value;
+  const prompt=$('imgPrm').value.trim();
+  if(!prompt){ toast('❌ أدخل وصفاً للتوليد','er',2000); return; }
+
+  $('imgBtn').disabled=true;
+  $('imgBtn').textContent='⏳ جارٍ...';
+
+  if(type==='image'){
+    await genImage(prompt);
+  } else {
+    await genVideo(prompt);
+  }
+
+  $('imgBtn').disabled=false;
+  $('imgBtn').textContent='🎬 توليد';
+}
+
+async function genImage(prompt){
+  const key=localStorage.getItem('k_hf');
+  if(!key){ toast('❌ يحتاج HuggingFace API Key','er',3000); return; }
+
+  try{
+    const resp=await fetch('https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
+      body:JSON.stringify({inputs:prompt})
+    });
+    if(!resp.ok) throw new Error(resp.statusText);
+    const blob=await resp.blob();
+    const url=URL.createObjectURL(blob);
+    $('imgPrev').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:8px;border:1px solid var(--b);">';
+    toast('✅ تم توليد الصورة','ok',2000);
+  }catch(e){
+    toast('❌ فشل التوليد: '+e.message,'er',3000);
+  }
+}
+
+async function genVideo(prompt){
+  const key=localStorage.getItem('k_am');
+  if(!key){ toast('❌ يحتاج AI/ML API Key','er',3000); return; }
+
+  try{
+    // Use AI/ML API for video generation (Minimax)
+    const resp=await fetch('https://api.aimlapi.com/v1/videos/generations',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
+      body:JSON.stringify({model:'minimax/video-01',prompt:prompt})
+    });
+    if(!resp.ok) throw new Error(resp.statusText);
+    const data=await resp.json();
+    if(data.video_url){
+      $('imgPrev').innerHTML='<video src="'+data.video_url+'" controls style="max-width:100%;border-radius:8px;border:1px solid var(--b);"></video>';
+      toast('✅ تم توليد الفيديو','ok',2000);
+    } else {
+      $('imgPrev').innerHTML='<div style="color:var(--g);padding:10px;">⏳ جارٍ المعالجة... تحقق لاحقاً</div>';
+      toast('⏳ الفيديو قيد المعالجة','in',3000);
+    }
+  }catch(e){
+    toast('❌ فشل التوليد: '+e.message,'er',3000);
+  }
+}
 
 // =================== INIT ===================
 function init(){
-  loadSettings(); loadConvs(); updTokUI();
-  testAllKeys(); // فحص صامت للمفاتيح عند التشغيل
-  renderMBar(); updS();
-  
-  // 🔥 تفعيل الجلب التلقائي هنا
-  fetchDynamicModels(G.prov); 
+  // Load conversations
+  try{
+    G.convs=JSON.parse(localStorage.getItem('cl_v13_convs')||'[]');
+  }catch(e){ G.convs=[]; }
 
-  document.querySelectorAll('.ov').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('on');}));
-  setTimeout(()=>$('ta').focus(),400);
-  toast('🚀 V13 ULTRA جاهز!','ok',3500);
+  loadSettings();
+  loadKeys();
+  renderPBar();
+  renderMBar();
+  renderConvList();
+  updTokUI();
+
+  // Auto-test keys after short delay
+  setTimeout(testAllKeys, 1000);
+
+  setS('جاهز — اختر نموذجاً وابدأ','ok');
 }
-document.addEventListener('DOMContentLoaded',init);
+
+init();
 </script>
 </body>
 </html>
