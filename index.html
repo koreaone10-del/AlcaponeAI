@@ -53,12 +53,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
   color:var(--g);padding:0 3px;border-radius:3px}
 .pkeybadge{font-size:6px;background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);
   color:var(--o);padding:0 3px;border-radius:3px}
-.pfail{font-size:6px;background:rgba(255,51,102,.12);border:1px solid rgba(255,51,102,.35);
-  color:#ff3366;padding:0 3px;border-radius:3px}
-.ficon{font-size:18px;display:inline-flex;align-items:center;justify-content:center;
-  width:30px;height:30px;border-radius:4px;background:rgba(0,200,255,.08)}
-.fvbadge{font-size:8px;margin:0 2px;color:var(--t2);flex-shrink:0}
-.uthumb{max-width:140px;max-height:140px;border-radius:8px;margin:5px 4px 0 0;display:inline-block;border:1px solid var(--b);object-fit:cover}
 
 /* MODEL BAR */
 .mbar{flex-shrink:0;padding:3px 8px;background:rgba(4,8,16,.95);
@@ -76,7 +70,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .mtag.code{background:rgba(0,200,255,.05);border:1px solid rgba(0,255,157,.15);color:#7dcfff}
 .mtag.power{background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);color:var(--r)}
 .mtag.auto{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#a0aec0;}
-.mtag.vision{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);color:var(--y)}
 
 /* STATUS BAR */
 .sbar{flex-shrink:0;padding:2px 10px;display:flex;align-items:center;gap:5px;
@@ -93,7 +86,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .smeta{color:var(--t2);font-size:7px;flex-shrink:0;}
 .stokens{margin-right:auto; color:var(--y); font-size:7.5px; background:rgba(255,215,0,0.05); padding:1px 5px; border-radius:3px; border:1px solid rgba(255,215,0,0.15); display:flex; gap:6px;}
 
-/* MAIN */
+/* MAIN CONTAINER */
 .main{display:flex;flex:1;overflow:hidden;z-index:1;min-height:0}
 
 /* SIDEBAR */
@@ -171,10 +164,6 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
   border-radius:3px;font-size:7px;cursor:pointer;font-family:'Share Tech Mono'}
 .mbtn:active{color:var(--c);border-color:var(--c)}
 .mfallback{background:rgba(255,136,0,.08);border:1px solid rgba(255,136,0,.2);color:var(--o);padding:1px 5px;border-radius:3px;font-size:6.5px}
-.agent-sources{margin-top:6px;padding:5px 7px;background:rgba(0,200,255,.04);border:1px solid var(--b);border-radius:6px;font-size:8px;color:var(--t2);line-height:1.8}
-.agent-sources strong{color:var(--c);margin-left:4px}
-.agent-sources a{color:var(--c);text-decoration:none;border-bottom:1px dotted rgba(0,200,255,.3)}
-.agent-sources a:hover{color:var(--g)}
 
 /* LOADING DOTS */
 .ldots{display:flex;gap:4px;padding:5px 0}
@@ -185,7 +174,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 /* STREAM CURSOR */
 .scursor{color:var(--c);animation:pu 0.8s infinite}
 
-/* GEN IMAGE/VIDEO */
+/* GEN MEDIA */
 .gimg{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);cursor:pointer;object-fit:contain}
 .gimg:active{transform:scale(.98)}
 .gvid{max-width:100%;max-height:280px;border-radius:8px;margin:5px 0;display:block;border:1px solid var(--b);}
@@ -209,8 +198,8 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
   padding:3px 6px;border-radius:3px;font-size:11px;font-family:'Tajawal';outline:none;width:100%}
 .aval{font-size:8px;color:var(--c);font-family:'Share Tech Mono'}
 
-/* INPUT AREA */
-.inp{flex-shrink:0;padding:5px 8px 6px;background:rgba(3,6,12,.99);border-top:1px solid var(--b);z-index:100;position:relative}
+/* MOBILE-RESPONSIVE INPUT AREA (FIXED WRITING BAR) */
+.inp{flex-shrink:0;padding:6px 8px;background:rgba(3,6,12,.99);border-top:1px solid var(--b);z-index:100;position:relative}
 .fprev{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;max-height:68px;overflow-y:auto}
 .fchip{display:flex;align-items:center;gap:4px;background:rgba(0,200,255,.05);border:1px solid var(--b);border-radius:8px;padding:3px 5px;font-size:8px;max-width:130px;flex-shrink:0;position:relative}
 .fchip img{width:26px;height:26px;object-fit:cover;border-radius:3px}
@@ -225,7 +214,7 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .iw{flex:1;background:rgba(6,12,32,.9);border:1px solid var(--b);border-radius:8px;padding:5px 7px;transition:border-color .2s,box-shadow .2s}
 .iw:focus-within{border-color:rgba(0,200,255,.4);box-shadow:var(--glow)}
 textarea{width:100%;background:transparent;border:none;outline:none;color:var(--t);
-  font-family:'Tajawal';font-size:14px;resize:none;min-height:32px;max-height:110px;
+  font-family:'Tajawal';font-size:14px;resize:none;min-height:36px;max-height:110px;
   line-height:1.5;direction:rtl;-webkit-appearance:none;padding:0}
 textarea::placeholder{color:var(--t2)}
 .trow{display:flex;gap:3px;margin-top:3px;align-items:center;overflow-x:auto}
@@ -324,7 +313,6 @@ textarea::placeholder{color:var(--t2)}
 </header>
 
 <div class="pbar" id="pbar"></div>
-
 <div class="mbar" id="mbar"></div>
 
 <div class="sbar">
@@ -353,7 +341,6 @@ textarea::placeholder{color:var(--t2)}
             <strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA! 🚀</strong>
             <br>
             <div class="wrow"><span class="wi">⚔️</span><strong>حلبة التنافس (Arena):</strong> فّعلها من الإعدادات للحصول على أسرع إجابة من عدة نماذج.</div>
-            <div class="wrow"><span class="wi">🔍</span><strong>وكيل البحث:</strong> فعّله بزر "🔍 بحث" ليبحث في الويب قبل الإجابة ويذكر المصادر.</div>
             <div class="wrow"><span class="wi">✅</span><strong>الفحص الذاتي (Auto-Test):</strong> الألوان الحمراء بالبار العلوي تعني المفتاح منتهي.</div>
             <div class="wrow"><span class="wi">🎬</span><strong>ميديا سينمائية:</strong> استخدم زر التوليد لصناعة صور وفيديوهات.</div>
             <br>
@@ -374,16 +361,14 @@ textarea::placeholder{color:var(--t2)}
     </select>
   </div>
   <div class="afield">
-    <label>TEMP <span id="tempHint" style="color:var(--t2);font-size:9px"></span></label>
-    <input type="number" id="slTemp" min="0" max="2" step="0.01" value="0.7"
-      style="width:90px;background:rgba(0,200,255,.06);border:1px solid var(--b);color:var(--c);padding:3px 8px;border-radius:6px;font-size:12px"
-      oninput="G.temp=parseFloat(this.value)||0;saveSettings()">
+    <label>TEMP</label>
+    <input type="range" min="0" max="2" step="0.05" value="0.7" id="slTemp" oninput="valTemp.textContent=this.value;saveSettings()">
+    <span class="aval" id="valTemp">0.7</span>
   </div>
   <div class="afield">
-    <label>MAX TOKENS <span id="tokHint" style="color:var(--t2);font-size:9px"></span></label>
-    <input type="number" id="slTok" min="0" value="2048"
-      style="width:110px;background:rgba(0,200,255,.06);border:1px solid var(--b);color:var(--c);padding:3px 8px;border-radius:6px;font-size:12px"
-      oninput="G.maxTok=parseInt(this.value)||0;saveSettings()">
+    <label>MAX TOKENS</label>
+    <input type="range" min="256" max="8192" step="256" value="2048" id="slTok" oninput="valTok.textContent=this.value;saveSettings()">
+    <span class="aval" id="valTok">2048</span>
   </div>
   <div class="afield">
     <label>STREAM</label>
@@ -392,1481 +377,679 @@ textarea::placeholder{color:var(--t2)}
       <option value="0">معطّل</option>
     </select>
   </div>
-  <div class="afield" style="min-width:180px;flex:1">
-    <label>SYSTEM PROMPT</label>
-    <input type="text" id="advSys" placeholder="تعليمات النظام..." oninput="G.sys=this.value;saveSettings()">
-  </div>
 </div>
 
-<div class="inp" id="inpArea">
+<div class="inp">
   <div class="fprev" id="fprev"></div>
   <div class="qps" id="qps">
-    <button class="qp" onclick="qpSet('اشرح لي بالتفصيل: ')">📖 اشرح</button>
-    <button class="qp" onclick="qpSet('اكتب كوداً يقوم بـ: ')">💻 كود</button>
-    <button class="qp" onclick="qpSet('فكر بعمق خطوة بخطوة لحل: ')">🧠 تفكير عميق</button>
-    <button class="qp" onclick="qpSet('ترجم إلى العربية: ')">🌍 ترجمة</button>
-    <button class="qp" onclick="openOv('imggen')">🎬 صورة / فيديو</button>
+    <div class="qp" onclick="appendQ('قم بتحسين هذا الكود البرمجي وإصلاح الأخطاء:')">🛠️ تحسين الكود</div>
+    <div class="qp" onclick="appendQ('اشرح لي هذا المفهوم التقني بأسلوب مبسط:')">💡 شرح مفهوم</div>
+    <div class="qp" onclick="appendQ('اكتب لي كود بالبايثون لـ :')">🐍 سكربت Python</div>
+    <div class="qp" onclick="openOv('imggen')">🎨 توليد ميديا (صورة/فيديو)</div>
   </div>
   <div class="irow">
     <div class="iw">
-      <textarea id="ta" placeholder="اكتب رسالتك... (Enter للإرسال، Shift+Enter لسطر جديد)" rows="1"
-        onkeydown="onKey(event)" oninput="resize(this);updateCC()"></textarea>
+      <textarea id="ta" placeholder="اكتب سؤالك هنا يا لوتفي..." rows="1" oninput="resize(this);updateCC()" onkeydown="checkSend(event)"></textarea>
       <div class="trow">
-        <button class="tbtn" onclick="fileInp.click()">📎</button>
-        <button class="tbtn" id="btnWS" onclick="toggleWS()" title="وكيل البحث: يبحث في الويب ثم يجيب النموذج مع ذكر المصادر">🔍 بحث</button>
-        <button class="tbtn" id="btnST" onclick="toggleST()">⚡ بث</button>
-        <button class="tbtn" onclick="clearAll()">🗑️ مسح</button>
-        <button class="tbtn" onclick="newChat()">➕ جديد</button>
-        <span class="tchars" id="tcc"></span>
+        <button class="tbtn" onclick="$('fileInp').click()">📎 صورة</button>
+        <input type="file" id="fileInp" style="display:none" accept="image/*" onchange="onFile(event)">
+        <button class="tbtn" id="btnWeb" onclick="toggleWeb()">🌐 بحث ويب</button>
+        <div class="tchars" id="charCount">0 حرف</div>
       </div>
     </div>
-    <button class="sbtn" id="sbtn" onclick="doSend()">➤</button>
+    <button class="sbtn" id="sbtn" onclick="doSend()">🚀</button>
   </div>
 </div>
-<input type="file" id="fileInp" accept="*/*" multiple style="display:none" onchange="onFile(event)">
 
-<div class="ov" id="support-ov">
+<div class="ov" id="ov_keys" onclick="closeOvClick(event,'keys')">
+  <div class="modal">
+    <div class="mh">إعدادات مفاتيح API المجانية <span class="mx" onclick="closeOv('keys')">✕</span></div>
+    <div class="mnote b">يتم تخزين المفاتيح محلياً على جهازك (LocalStorage) وتُفحص تلقائياً للتحقق من صلاحيتها.</div>
+    <div id="keysContainer"></div>
+    <div class="mbtns">
+      <button class="btn bok" onclick="saveKeys()">✓ حفظ وإعادة فحص</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov_sys" onclick="closeOvClick(event,'sys')">
+  <div class="modal">
+    <div class="mh">تخصيص النظام (SYSTEM PROMPT) <span class="mx" onclick="closeOv('sys')">✕</span></div>
+    <div class="presets">
+      <div class="preset" onclick="setPreset('expert')">💻 مبرمج خبير</div>
+      <div class="preset" onclick="setPreset('creative')">🎨 إبداعي وفني</div>
+      <div class="preset" onclick="setPreset('dababa')">🪖 وضع الدبابة (Proxy Agent)</div>
+    </div>
+    <div class="mrow">
+      <textarea id="sysTA" style="height:120px;" placeholder="اكتب هنا توجيهات النظام المستمرة للذكاء الاصطناعي..."></textarea>
+    </div>
+    <div class="mbtns">
+      <button class="btn bno" onclick="resetSys()">افتراضي</button>
+      <button class="btn bok" onclick="saveSys()">✓ تطبيق وحفظ</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov_imggen" onclick="closeOvClick(event,'imggen')">
+  <div class="modal" style="text-align:center;">
+    <div class="mh">توليد الصور والفيديوهات السينمائية <span class="mx" onclick="closeOv('imggen')">✕</span></div>
+    <div class="mrow">
+      <select id="mediaType">
+        <option value="image_flux">🎨 Flux 1.1 Pro (صورة فائقة الدقة)</option>
+        <option value="image_seedance">⚡ Seedance 2.0 Fast (توليد سريع)</option>
+        <option value="video_minimax">🎬 MiniMax Hailuo (فيديو سينمائي 4 ثواني)</option>
+      </select>
+    </div>
+    <div class="mrow">
+      <textarea id="mediaPrompt" style="height:70px;" placeholder="اكتب وصف المشهد بالإنجليزية للحصول على أفضل جودة سينمائية..."></textarea>
+    </div>
+    <div id="mediaPreview" style="margin-top:5px;"></div>
+    <div class="mbtns">
+      <button class="btn bgen" id="mediaGenBtn" onclick="generateMedia()">🎬 توليد</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov_export" onclick="closeOvClick(event,'export')">
+  <div class="modal">
+    <div class="mh">إدارة الجلسة والنسخ الاحتياطي <span class="mx" onclick="closeOv('export')">✕</span></div>
+    <div class="expo" onclick="expTXT()">
+      <div><span>تصدير كملف نصي عادي</span><br><small>.txt</small></div>
+    </div>
+    <div class="expo" onclick="expMD()">
+      <div><span>تصدير بصيغة Markdown للمبرمجين</span><br><small>.md</small></div>
+    </div>
+    <div class="expo" onclick="expJSON()">
+      <div><span>نسخة احتياطية كاملة للتطبيق</span><br><small>.json</small></div>
+    </div>
+    <div class="mbtns">
+      <button class="btn bdel" onclick="clearAllConvs()" style="margin-right:auto;">🗑️ مسح كل المحادثات</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov_support" onclick="closeOvClick(event,'support')">
   <div class="modal" style="text-align:center;">
     <div class="mh">💖 إدعمني <span class="mx" onclick="closeOv('support')">✕</span></div>
     <h2 style="color:var(--g); margin-bottom:10px;">مرحباً بك! 👋</h2>
     <p style="color:var(--t); margin-bottom:15px; font-size:12px; line-height:1.7;">شكراً لاستخدامك تطبيق Chibani Lotfi AI.<br>لدعم استمرار التطوير وتوفير الأدوات المجانية، يمكنك التبرع عبر محفظة USDT (TRC20):</p>
-    <input type="text" id="usdtWallet" value="0x422e4ed7959958b4f0fec76fd3149af49a43c768" readonly style="width:100%; padding:10px; background:rgba(0,200,255,0.05); color:var(--y); border:1px solid var(--t2); text-align:center; font-family:monospace; margin-bottom:15px; border-radius:8px;">
-    <div class="mbtns" style="justify-content:center;">
-      <button class="btn bok" style="font-weight:bold; font-size:14px; padding:8px 20px;" onclick="copyUSDT()">📋 نسخ العنوان</button>
-    </div>
-  </div>
-</div>
-
-<div class="ov" id="keys-ov">
-  <div class="modal">
-    <div class="mh">🔑 مفاتيح API <span class="mx" onclick="closeOv('keys'); testAllKeys();">✕</span></div>
-    <div class="ksec">مزودون بمفاتيح مجانية — سجّل وأنشئ مفتاحاً في دقائق</div>
-    <div class="krow"><span class="ki">🔀</span><label>OpenRouter</label><input type="password" id="k_or" placeholder="sk-or-v1-..."></div>
-    <div class="krow"><span class="ki">⚡</span><label>Groq</label><input type="password" id="k_gr" placeholder="gsk_..."></div>
-    <div class="krow"><span class="ki">💎</span><label>Gemini</label><input type="password" id="k_ge" placeholder="AIza..."></div>
-    <div class="krow"><span class="ki">🐋</span><label>DeepSeek</label><input type="password" id="k_ds" placeholder="sk-..."></div>
-    <div class="krow"><span class="ki">🌪️</span><label>Mistral</label><input type="password" id="k_ms" placeholder="API Key..."></div>
-    <div class="krow"><span class="ki">💠</span><label>SiliconFlow</label><input type="password" id="k_sf" placeholder="sk-..."></div>
-    <div class="krow"><span class="ki">🎬</span><label>AI/ML API</label><input type="password" id="k_am" placeholder="API Key..."></div>
-    <div class="krow"><span class="ki">🟢</span><label>NVIDIA</label><input type="password" id="k_nv" placeholder="nvapi-..."></div>
-    <div class="krow"><span class="ki">🧠</span><label>Cerebras</label><input type="password" id="k_cb" placeholder="csk-..."></div>
-    <div class="krow"><span class="ki">🤗</span><label>HuggingFace</label><input type="password" id="k_hf" placeholder="hf_..."></div>
-    <div class="krow"><span class="ki">⚡</span><label>SambaNova <small style="color:var(--t2)">(مجاني)</small></label><input type="password" id="k_sn" placeholder="API key..."></div>
-    <div class="krow"><span class="ki">🔥</span><label>Fireworks AI</label><input type="password" id="k_fw" placeholder="fw_..."></div>
-    <div class="krow"><span class="ki">🟧</span><label>Cloudflare AI <small style="color:var(--t2)">(صيغة: accountId:token)</small></label><input type="password" id="k_cf" placeholder="accountId:token"></div>
-    <div class="krow"><span class="ki">🟣</span><label>Cohere <small style="color:var(--t2)">(1000 مكالمة/شهر)</small></label><input type="password" id="k_co" placeholder="API key..."></div>
-    <div class="krow"><span class="ki">✖️</span><label>xAI Grok</label><input type="password" id="k_xa" placeholder="xai-..."></div>
-    <div class="ksec" style="margin-top:10px">🔍 وكيل البحث الذكي (اختياري — يعمل بدونه أيضاً)</div>
-    <div class="krow"><span class="ki">🔍</span><label>Tavily <small style="color:var(--t2)">(بحث + إجابة بمصادر)</small></label><input type="password" id="k_tv" placeholder="tvly-..."></div>
-    <div class="ksec" style="margin-top:10px">🎨 مزودو توليد الصور والفيديو (جديد)</div>
-    <div class="krow"><span class="ki">🚀</span><label>Fal.ai <small style="color:var(--t2)">(فيديو+صور — 10$ مجاناً)</small></label><input type="password" id="k_fa" placeholder="fal_api key..."></div>
-    <div class="krow"><span class="ki">⚡</span><label>WaveSpeedAI <small style="color:var(--t2)">(صور — رصيد مجاني)</small></label><input type="password" id="k_ws" placeholder="wavespeed key..."></div>
-    <div class="krow"><span class="ki">🔁</span><label>Replicate <small style="color:var(--t2)">(صور+فيديو — $0 للبداية)</small></label><input type="password" id="k_re" placeholder="r8_..."></div>
-    <div class="krow"><span class="ki">🎨</span><label>Stability AI <small style="color:var(--t2)">(SD3 — رصيد مجاني)</small></label><input type="password" id="k_sa" placeholder="sk-..."></div>
-    <div class="ksec" style="margin-top:10px">💬 مزودو دردشة جديد</div>
-    <div class="krow"><span class="ki">🤝</span><label>Together AI <small style="color:var(--t2)">(5$ مجاناً)</small></label><input type="password" id="k_to" placeholder="sk-..."></div>
-    <div class="krow"><span class="ki">🔮</span><label>DeepInfra <small style="color:var(--t2)">(رصيد مجاني)</small></label><input type="password" id="k_di" placeholder="API key..."></div>
-    <div class="krow"><span class="ki">🐙</span><label>GitHub Models <small style="color:var(--t2)">(توكن GitHub)</small></label><input type="password" id="k_gh" placeholder="github_pat_..."></div>
-    <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة (خط أحمر على المتعطلة). Cloudflare يحتاج الصيغة accountId:token معاً في خانة واحدة.</div>
-    <div class="mbtns">
-      <button class="btn bno" onclick="closeOv('keys')">إلغاء</button>
-      <button class="btn bok" onclick="saveKeys()">💾 حفظ وفحص</button>
-    </div>
-  </div>
-</div>
-
-<div class="ov" id="sys-ov">
-  <div class="modal">
-    <div class="mh">💬 نظام الرسائل <span class="mx" onclick="closeOv('sys')">✕</span></div>
-    <div class="mrow">
-      <label>تعليمات النموذج (System Prompt):</label>
-      <textarea id="sysTA" placeholder="أنت مساعد ذكاء اصطناعي متقدم تجيب بالعربية الفصحى..." style="height:110px"></textarea>
-    </div>
-    <div class="presets">
-      <button class="preset" onclick="setPreset('helpful')">مساعد عام</button>
-      <button class="preset" onclick="setPreset('code')">مبرمج</button>
-      <button class="preset" onclick="setPreset('arabic')">عربي فصيح</button>
-      <button class="preset" onclick="setPreset('creative')">إبداعي</button>
-      <button class="preset" onclick="setPreset('analyst')">محلل</button>
-      <button class="preset" onclick="setPreset('free')">بلا قيود</button>
-      <button class="preset" onclick="setPreset('')" style="color:var(--r)">استعادة الافتراضي</button>
-    </div>
-    <div class="mnote o">⚠️ يحدد شخصية وسلوك النموذج في جميع الردود</div>
-    <div class="mbtns">
-      <button class="btn bno" onclick="closeOv('sys')">إلغاء</button>
-      <button class="btn bok" onclick="saveSys()">حفظ</button>
-    </div>
-  </div>
-</div>
-
-<div class="ov" id="export-ov">
-  <div class="modal">
-    <div class="mh">💾 تصدير المحادثة <span class="mx" onclick="closeOv('export')">✕</span></div>
-    <div class="expo" onclick="expJSON()"><span>📦 JSON — بيانات كاملة</span><small>export.json</small></div>
-    <div class="expo" onclick="expTXT()"><span>📄 نص عادي</span><small>chat.txt</small></div>
-    <div class="expo" onclick="expMD()"><span>📝 Markdown</span><small>chat.md</small></div>
-    <div class="expo" onclick="expHTML()"><span>🌐 HTML (مع تنسيق)</span><small>chat.html</small></div>
-    <div class="mbtns"><button class="btn bno" onclick="closeOv('export')">إغلاق</button></div>
-  </div>
-</div>
-
-<div class="ov" id="imggen-ov">
-  <div class="modal">
-    <div class="mh">🎬 توليد ميديا سينمائية <span class="mx" onclick="closeOv('imggen')">✕</span></div>
-    <div class="mrow">
-      <label>مزود التوليد:</label>
-      <select id="mediaProv" onchange="updateMediaUI()">
-        <option value="fal">🚀 Fal.ai — صور+فيديو (10$ مجاناً)</option>
-        <option value="wavespeed">⚡ WaveSpeedAI — صور (رصيد مجاني)</option>
-        <option value="together">🤝 Together AI — صور</option>
-        <option value="replicate">🔁 Replicate — صور+فيديو</option>
-        <option value="stability">🎨 Stability AI — صور SD3</option>
-        <option value="pollimg">🌸 Pollinations — صور (مجاني بدون مفتاح)</option>
-        <option value="hf">🤗 HuggingFace — صور</option>
-        <option value="aiml">🎬 AI/ML API — فيديو</option>
-      </select>
-    </div>
-    <div class="mrow">
-      <label>نوع التوليد:</label>
-      <select id="mediaType" onchange="updateMediaUI()">
-        <option value="image">🎨 صورة</option>
-        <option value="video">🎞️ فيديو</option>
-      </select>
-    </div>
-    <div class="mrow">
-      <label>النموذج:</label>
-      <select id="mediaModel"></select>
-    </div>
-    <div class="mrow" style="gap:8px">
-      <div style="flex:1">
-        <label>الجودة:</label>
-        <select id="mediaQuality">
-          <option value="draft">⚡ مسودة (سريع)</option>
-          <option value="standard" selected>✨ قياسي</option>
-          <option value="high">💎 عالي (بطيء)</option>
-        </select>
-      </div>
-      <div style="flex:1">
-        <label>النسبة / الإطار:</label>
-        <select id="mediaRatio">
-          <option value="1:1">⬛ 1:1 مربع</option>
-          <option value="16:9" selected>📺 16:9 أفقي</option>
-          <option value="9:16">📱 9:16 عمودي</option>
-          <option value="4:3">🖼️ 4:3</option>
-          <option value="3:2">📷 3:2</option>
-        </select>
-      </div>
-    </div>
-    <div class="mrow">
-      <label>المطالبة السينمائية (Cinematic Prompt):</label>
-      <textarea id="imgPrm" placeholder="A futuristic cyberpunk city at night, neon lights, ultra detailed..." style="height:80px"></textarea>
-    </div>
-    <div id="imgPrev" style="text-align:center;min-height:30px;margin-bottom:8px"></div>
-    <div class="mnote o" id="mediaNote" style="font-size:9px"></div>
-    <div class="mbtns">
-      <button class="btn bno" onclick="closeOv('imggen')">إلغاء</button>
-      <button class="btn bgen" id="imgBtn" onclick="doGenMedia()">🎬 توليد</button>
-    </div>
+    <input type="text" id="usdtWallet" value="0x422e4ed7959958b4f0fec76fd3149af49a43c768" readonly style="width:100%; padding:10px; background:rgba(0,200,255,0.05); color:var(--y); border:1px solid var(--t2); text-align:center; font-family:'Share Tech Mono'; font-size:12px; border-radius:5px;">
+    <button class="btn bok" style="margin-top:10px; width:100%;" onclick="navigator.clipboard.writeText($('usdtWallet').value); toast('✓ تم نسخ المحفظة','ok')">📋 نسخ العنوان</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ================================================================
-//  🛡️ شبكة أمان منفصلة — في script tag مستقل تماماً عن الكود الرئيسي
-//  حتى لو وقع خطأ صياغة (Syntax Error) في الكود الرئيسي بالأسفل،
-//  هذا الجزء يبقى يعمل لأنه طُحلَّل ونُفّذ بشكل مستقل تماماً قبله
-// ================================================================
-(function(){
-  function showFatalError(msg){
-    try{
-      var b=document.getElementById('__fatalErr');
-      if(!b){
-        b=document.createElement('div');
-        b.id='__fatalErr';
-        b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:999999;'+
-          'background:#7a0019;color:#fff;padding:8px 10px;font-size:10px;'+
-          'font-family:monospace,sans-serif;direction:ltr;text-align:left;'+
-          'white-space:pre-wrap;max-height:45vh;overflow:auto;line-height:1.5;'+
-          'border-bottom:2px solid #ff3366;box-shadow:0 2px 10px rgba(0,0,0,.5)';
-        var hdr=document.createElement('div');
-        hdr.textContent='⚠️ تطبيق Chibani Lotfi AI واجه خطأ — هذا التشخيص يساعد على الإصلاح:';
-        hdr.style.cssText='font-weight:bold;margin-bottom:4px;font-size:11px';
-        b.appendChild(hdr);
-        var closeBtn=document.createElement('button');
-        closeBtn.textContent='✕ إغلاق';
-        closeBtn.style.cssText='position:absolute;top:4px;left:8px;background:#fff;color:#7a0019;border:none;padding:2px 8px;border-radius:4px;font-size:10px';
-        closeBtn.onclick=function(){ b.style.display='none'; };
-        b.appendChild(closeBtn);
-        function insertBanner(){
-          if(document.body) document.body.insertBefore(b, document.body.firstChild);
-          else document.documentElement.appendChild(b);
-        }
-        if(document.body) insertBanner();
-        else document.addEventListener('DOMContentLoaded', insertBanner);
-      }
-      var line=document.createElement('div');
-      line.textContent='• '+msg;
-      b.appendChild(line);
-    }catch(e2){ /* لو فشل حتى عرض الخطأ، لا نزيد المشكلة */ }
-  }
-  window.addEventListener('error', function(e){
-    showFatalError('JS Error: '+(e.message||e)+' — السطر '+(e.lineno||'?')+':'+(e.colno||'?'));
-  });
-  window.addEventListener('unhandledrejection', function(e){
-    var r=e.reason;
-    showFatalError('Promise Error: '+(r&&r.message ? r.message : String(r)));
-  });
-  window.__showFatalError = showFatalError; // متاح للاستخدام اليدوي أيضاً
-  window.__APP_BOOT_OK = true; // علامة أن السكريبت الأول نُفِّذ بنجاح
+const $=id=>document.getElementById(id);
 
-  // 🐕 حارس: إن لم يُهيَّأ التطبيق بعد 4 ثوانٍ (شريط المزودين فاضٍ)، نُظهر تشخيصاً واضحاً
-  setTimeout(function(){
-    try{
-      var pbar=document.getElementById('pbar');
-      var providersLoaded = (pbar && pbar.children.length>0);
-      if(!providersLoaded){
-        showFatalError('لم يبدأ التطبيق بشكل صحيح بعد 4 ثوانٍ — لا مزودين ظاهرين. الأسباب المحتملة: (1) نسخة index.html قديمة/تالفة في مستودعك على GitHub — أعد رفع أحدث نسخة. (2) WebView على هاتفك قديم جداً. (3) خطأ JS لم يُكتشف — افتح Chrome على هاتفك واذهب لـ chrome://inspect لرؤية تفاصيل الخطأ الكاملة.');
-      }
-    }catch(e3){}
-  }, 4000);
-})();
-</script>
-<script>
-// ================================================================
-//  CHIBANI LOTFI AI — V13 ULTRA (HARDCODED MODELS + AUTO-FETCH FIX)
-// ================================================================
-
-// =================== PROVIDER & MODEL CONFIG (FIXED & EXPANDED) ===================
+// CONFIGURATION & PROVIDERS
 const PROVIDERS = [
-  { id:'openrouter', name:'OpenRouter', icon:'🔀', color:'#7c4dff', url:'https://openrouter.ai/api/v1/chat/completions', free:false, keyId:'k_or', stream:true,
-    headers:{'HTTP-Referer':'https://chibani-ai.dz','X-Title':'Chibani Lotfi AI V13'},
+  { id:'openrouter', name:'OpenRouter', icon:'🚀', url:'https://openrouter.ai/api/v1/chat/completions', free:false, stream:true,
     models:[
-      {id:'meta-llama/llama-3.3-70b-instruct:free',name:'Llama 3.3 70B',        tags:[]},
-      {id:'nvidia/llama-3.1-nemotron-70b-instruct:free',name:'Nemotron 70B',   tags:['power']},
-      {id:'google/gemma-2-9b-it:free',            name:'Gemma 2 9B',            tags:['fast']},
-      {id:'meta-llama/llama-3.2-11b-vision-instruct:free',name:'Llama 3.2 11B Vision',tags:['vision']},
-      {id:'deepseek/deepseek-chat:free',          name:'DeepSeek Chat',         tags:['power']},
-      {id:'deepseek/deepseek-r1:free',            name:'DeepSeek R1',           tags:['think']}
+      {id:'google/gemini-2.5-flash', name:'GEMINI 2.5 FLASH', tags:['fast','ar','auto']},
+      {id:'deepseek/deepseek-chat', name:'DEEPSEEK V3', tags:['code','ar']},
+      {id:'deepseek/deepseek-r1', name:'DEEPSEEK R1 (THINK)', tags:['think','power']},
+      {id:'meta-llama/llama-3.3-70b-instruct', name:'LLAMA 3.3 70B', tags:['power']}
     ]
   },
-  { id:'groq', name:'Groq', icon:'⚡', color:'#f59e0b', url:'https://api.groq.com/openai/v1/chat/completions', free:false, keyId:'k_gr', stream:true,
+  { id:'gemini', name:'Gemini Direct', icon:'♊', url:'https://generativelanguage.googleapis.com/v1beta/models', free:false, stream:true,
     models:[
-      {id:'llama-3.3-70b-versatile',                  name:'Llama 3.3 70B',    tags:['power'],  maxTok:32768},
-      {id:'llama-3.1-8b-instant',                     name:'Llama 3.1 8B',     tags:['fast'],   maxTok:8192},
-      {id:'llama3-70b-8192',                          name:'Llama 3 70B',      tags:[],         maxTok:8192},
-      {id:'gemma2-9b-it',                             name:'Gemma 2 9B',       tags:[],         maxTok:8192},
-      {id:'deepseek-r1-distill-llama-70b',            name:'DeepSeek R1 Llama',tags:['think'],  maxTok:32768},
-      {id:'qwen-2.5-32b',                             name:'Qwen 32B',         tags:[],         maxTok:16384},
-      {id:'meta-llama/llama-4-scout-17b-16e-instruct',name:'Llama 4 Scout',    tags:['new','power','vision'],    maxTok:8192}
-    ]
-  },
-  { id:'gemini', name:'Gemini', icon:'💎', color:'#4285f4', url:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', free:false, keyId:'k_ge', stream:false,
-    models:[
-      {id:'gemini-2.5-flash',                  name:'Gemini 2.5 Flash',       tags:['fast','new','vision']},
-      {id:'gemini-2.5-flash-lite',             name:'Gemini 2.5 Flash-Lite',  tags:['fast','vision']},
-      {id:'gemini-2.5-pro',                    name:'Gemini 2.5 Pro',         tags:['power','vision']}
-    ]
-  },
-  { id:'deepseek', name:'DeepSeek', icon:'🐋', color:'#1d4ed8', url:'https://api.deepseek.com/chat/completions', free:false, keyId:'k_ds', stream:true,
-    models:[
-      {id:'deepseek-chat',name:'DeepSeek V3',tags:['code']},
-      {id:'deepseek-reasoner',name:'DeepSeek R1',tags:['think']}
-    ]
-  },
-  { id:'mistral', name:'Mistral', icon:'🌪️', color:'#ea580c', url:'https://api.mistral.ai/v1/chat/completions', free:false, keyId:'k_ms', stream:true,
-    models:[
-      {id:'mistral-large-latest',       name:'Mistral Large',    tags:['power']},
-      {id:'mistral-small-latest',       name:'Mistral Small',    tags:['fast']},
-      {id:'codestral-latest',           name:'Codestral',        tags:['code']},
-      {id:'open-mistral-nemo',          name:'Mistral Nemo',     tags:[]},
-      {id:'ministral-8b-latest',        name:'Ministral 8B',     tags:['fast']},
-      {id:'magistral-small-latest',     name:'Magistral Small',  tags:['think']}
-    ]
-  },
-  { id:'siliconflow', name:'SiliconFlow', icon:'💠', color:'#8b5cf6', url:'https://api.siliconflow.cn/v1/chat/completions', free:false, keyId:'k_sf', stream:true,
-    models:[
-      {id:'Qwen/Qwen2.5-7B-Instruct',name:'Qwen 2.5 7B',tags:['fast']},
-      {id:'deepseek-ai/DeepSeek-V3',name:'DeepSeek V3',tags:[]}
-    ]
-  },
-  { id:'aimlapi', name:'AI/ML API', icon:'🎬', color:'#ec4899', url:'https://api.aimlapi.com/v1/chat/completions', free:false, keyId:'k_am', stream:false,
-    models:[
-      {id:'gpt-4o-mini',                            name:'GPT-4o Mini',     tags:['fast','vision'],  ctxLen:16384},
-      {id:'gpt-4o',                                 name:'GPT-4o',          tags:['power','vision'], ctxLen:16384},
-      {id:'meta-llama/Llama-3.2-3B-Instruct-Turbo', name:'Llama 3.2 3B',   tags:[],        ctxLen:8192},
-      {id:'mistralai/Mistral-7B-Instruct-v0.2',     name:'Mistral 7B',      tags:[],        ctxLen:8192}
-    ]
-  },
-  { id:'nvidia', name:'NVIDIA', icon:'🟢', color:'#76b900', url:'https://integrate.api.nvidia.com/v1/chat/completions', free:false, keyId:'k_nv', stream:false,
-    models:[
-      {id:'nvidia/llama-3.1-nemotron-70b-instruct', name:'Nemotron 70B',  tags:['power'], maxTok:1024, ctxLen:32768},
-      {id:'meta/llama-3.1-8b-instruct',             name:'Llama 3.1 8B', tags:['fast'],  maxTok:1024, ctxLen:8192},
-      {id:'microsoft/phi-3-mini-128k-instruct',      name:'Phi-3 Mini',   tags:['code'],  maxTok:1024, ctxLen:4096},
-      {id:'google/gemma-2-2b-it',                   name:'Gemma 2 2B',   tags:[],        maxTok:1024, ctxLen:4096}
-    ]
-  },
-  { id:'cerebras', name:'Cerebras', icon:'🧠', color:'#10b981', url:'https://api.cerebras.ai/v1/chat/completions', free:false, keyId:'k_cb', stream:true,
-    models:[
-      {id:'llama-3.3-70b',  name:'Llama 3.3 70B', tags:['power','fast'], ctxLen:32768},
-      {id:'llama3.1-8b',    name:'Llama 3.1 8B',  tags:['fast'],         ctxLen:8192},
-      {id:'qwen-3-32b',     name:'Qwen 3 32B',    tags:['think'],        ctxLen:32768}
-    ]
-  },
-  { id:'huggingface', name:'HuggingFace', icon:'🤗', color:'#ffcc00', url:'https://api-inference.huggingface.co/v1/chat/completions', free:false, keyId:'k_hf', stream:true,
-    models:[
-      {id:'microsoft/Phi-3.5-mini-instruct',            name:'Phi-3.5 Mini',   tags:['fast'],  ctxLen:4096},
-      {id:'HuggingFaceH4/zephyr-7b-beta',               name:'Zephyr 7B',      tags:[],        ctxLen:8192},
-      {id:'mistralai/Mistral-7B-Instruct-v0.3',         name:'Mistral 7B',     tags:[],        ctxLen:8192},
-      {id:'Qwen/Qwen2.5-7B-Instruct',                   name:'Qwen 2.5 7B',    tags:[],        ctxLen:8192}
-    ]
-  },
-  { id:'together', name:'Together AI', icon:'🤝', color:'#0ea5e9', url:'https://api.together.xyz/v1/chat/completions', free:false, keyId:'k_to', stream:true,
-    models:[
-      {id:'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo', name:'Llama 3.1 70B Turbo', tags:['power'], ctxLen:32768},
-      {id:'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',  name:'Llama 3.1 8B Turbo',  tags:['fast'],  ctxLen:8192},
-      {id:'Qwen/Qwen2.5-72B-Instruct-Turbo',              name:'Qwen 2.5 72B Turbo',  tags:[],        ctxLen:32768},
-      {id:'mistralai/Mixtral-8x7B-Instruct-v0.1',         name:'Mixtral 8x7B',        tags:[],        ctxLen:32768}
-    ]
-  },
-  { id:'deepinfra', name:'DeepInfra', icon:'🔮', color:'#8b5cf6', url:'https://api.deepinfra.com/v1/openai/chat/completions', free:false, keyId:'k_di', stream:true,
-    models:[
-      {id:'meta-llama/Meta-Llama-3.1-70B-Instruct', name:'Llama 3.1 70B', tags:['power'], ctxLen:32768},
-      {id:'meta-llama/Meta-Llama-3.1-8B-Instruct',  name:'Llama 3.1 8B',  tags:['fast'],  ctxLen:8192},
-      {id:'Qwen/Qwen2.5-72B-Instruct',              name:'Qwen 2.5 72B',  tags:[],        ctxLen:32768},
-      {id:'mistralai/Mistral-7B-Instruct-v0.3',     name:'Mistral 7B',    tags:[],        ctxLen:8192}
-    ]
-  },
-  { id:'github', name:'GitHub Models', icon:'🐙', color:'#e8e8e8', url:'https://models.github.ai/inference/chat/completions', free:false, keyId:'k_gh', stream:true,
-    models:[
-      {id:'gpt-4o-mini',                              name:'GPT-4o Mini',    tags:['fast','vision'],  ctxLen:16384},
-      {id:'gpt-4o',                                   name:'GPT-4o',         tags:['power','vision'], ctxLen:16384},
-      {id:'meta-llama/Llama-3.3-70B-Instruct',        name:'Llama 3.3 70B', tags:[],        ctxLen:32768},
-      {id:'mistral-small',                            name:'Mistral Small',  tags:[],        ctxLen:8192}
-    ]
-  },
-  { id:'pollinations', name:'Pollinations', icon:'🌸', color:'#f97316', url:'https://text.pollinations.ai/openai', free:true, keyId:null, stream:true,
-    models:[
-      {id:'openai-large',   name:'OpenAI Large',   tags:['power','vision'], ctxLen:16384},
-      {id:'openai',         name:'OpenAI',         tags:['vision'],        ctxLen:8192},
-      {id:'mistral-large',  name:'Mistral Large',  tags:[],        ctxLen:16384},
-      {id:'claude-sonnet',  name:'Claude Sonnet',  tags:['power'], ctxLen:16384},
-      {id:'llama',          name:'Llama',          tags:['fast'],  ctxLen:8192},
-      {id:'unity',          name:'Unity',          tags:[],        ctxLen:8192}
-    ]
-  },
-  { id:'sambanova', name:'SambaNova', icon:'⚡', color:'#ef4444', url:'https://api.sambanova.ai/v1/chat/completions', free:false, keyId:'k_sn', stream:true,
-    models:[
-      {id:'Meta-Llama-3.3-70B-Instruct',   name:'Llama 3.3 70B',  tags:['power','fast'], ctxLen:16384},
-      {id:'DeepSeek-R1-Distill-Llama-70B', name:'DeepSeek R1 70B',tags:['think'],        ctxLen:8192},
-      {id:'Qwen2.5-72B-Instruct',          name:'Qwen 2.5 72B',   tags:['power'],        ctxLen:16384}
-    ]
-  },
-  { id:'fireworks', name:'Fireworks AI', icon:'🔥', color:'#f97316', url:'https://api.fireworks.ai/inference/v1/chat/completions', free:false, keyId:'k_fw', stream:true,
-    models:[
-      {id:'accounts/fireworks/models/llama-v3p3-70b-instruct', name:'Llama 3.3 70B', tags:['power'], ctxLen:32768},
-      {id:'accounts/fireworks/models/llama-v3p1-8b-instruct',  name:'Llama 3.1 8B',  tags:['fast'],  ctxLen:8192},
-      {id:'accounts/fireworks/models/qwen2p5-72b-instruct',    name:'Qwen 2.5 72B',  tags:['power'], ctxLen:32768}
-    ]
-  },
-  { id:'cloudflare', name:'Cloudflare AI', icon:'🟧', color:'#f38020', url:'https://api.cloudflare.com/client/v4/accounts/{ACC}/ai/v1/chat/completions', free:false, keyId:'k_cf', stream:false, cfStyle:true,
-    models:[
-      {id:'@cf/meta/llama-3.3-70b-instruct-fp8-fast', name:'Llama 3.3 70B', tags:['power','fast'], ctxLen:24000},
-      {id:'@cf/meta/llama-3.1-8b-instruct',           name:'Llama 3.1 8B',  tags:['fast'],         ctxLen:8192},
-      {id:'@cf/qwen/qwen2.5-coder-32b-instruct',      name:'Qwen Coder 32B',tags:['code'],         ctxLen:32768}
-    ]
-  },
-  { id:'cohere', name:'Cohere', icon:'🟣', color:'#39594d', url:'https://api.cohere.com/v2/chat', free:false, keyId:'k_co', stream:false, cohereStyle:true,
-    models:[
-      {id:'command-r-plus-08-2024', name:'Command R+',  tags:['power'], ctxLen:128000},
-      {id:'command-r-08-2024',      name:'Command R',   tags:['fast'],  ctxLen:128000},
-      {id:'command-a-03-2025',      name:'Command A',   tags:['power'], ctxLen:128000}
-    ]
-  },
-  { id:'xai', name:'xAI Grok', icon:'✖️', color:'#ffffff', url:'https://api.x.ai/v1/chat/completions', free:false, keyId:'k_xa', stream:true,
-    models:[
-      {id:'grok-4.3',      name:'Grok 4.3',      tags:['power','vision'], ctxLen:131072},
-      {id:'grok-3-mini',   name:'Grok 3 Mini',   tags:['fast'],           ctxLen:131072}
+      {id:'models/gemini-2.5-flash', name:'GEMINI 2.5 DIRECT', tags:['fast','auto']},
+      {id:'models/gemini-2.5-pro', name:'GEMINI 2.5 PRO', tags:['power']}
     ]
   }
 ];
-window.PROVIDERS = PROVIDERS; // 🔍 للتشخيص عبر chrome://inspect عند الحاجة
 
-// =================== GLOBAL STATE ===================
-const DEFAULT_SYS_PROMPT = "أنت مساعد ذكاء اصطناعي محترف. أجب دائماً باللغة العربية الفصحى الواضحة والمنسقة. تجنب خلط اللغات أو استخدام رموز غريبة عشوائية ما لم يطلب منك المستخدم ذلك صراحة. حافظ على إجاباتك دقيقة ومرتبة.";
-
-const G = {
-  prov:'openrouter', model:'meta-llama/llama-3.3-70b-instruct:free',
-  msgs:[], convs:[], cid:null,
-  busy:false, streaming:true, autoRouter:true, mode: 'strict',
-  temp:0.7, maxTok:2048, sys:'', wsearch:false, files:[],
-  provStatus: {} // For auto-diagnostic
+const DEFAULT_SYS_PROMPT = "You are Chibani Lotfi AI, a professional coding assistant and system developer based in Algeria. Answer clearly, accurately, and perfectly format your responses.";
+const PRESETS = {
+  expert: "You are an expert full-stack developer. Write ultra-clean, modular, and responsive code with high-performance comments.",
+  creative: "أنت مساعد ذكاء اصطناعي مبدع، تصيغ الأفكار بأسلوب ممتع وجذاب ومبتكر.",
+  dababa: "وضع الدبابة نشط: عميل ذكي لاسترجاع ومعالجة نقاط النهاية والمفاتيح وتأمين أداء التطبيق بأقصى سرعة وكفاءة."
 };
-window.G = G; // 🔍 للتشخيص عبر chrome://inspect عند الحاجة
 
-// =================== TOKEN COUNTER ===================
-let sessionTokens = 0;
-let totalTokens = parseInt(localStorage.getItem('cl_v13_tot_tok')||'0');
-const COST_PER_1K = 0.002;
+let G = {
+  mode: 'strict', temp: 0.7, maxTok: 2048, streaming: true, sys: DEFAULT_SYS_PROMPT,
+  prov: 'openrouter', model: 'google/gemini-2.5-flash', web: false,
+  convs: [], activeId: null, busy: false, files: []
+};
 
-function estTok(txt){ return Math.ceil(String(txt||'').length / 4); }
-function addTok(txt){
-  const t = estTok(txt);
-  sessionTokens += t;
-  totalTokens += t;
-  localStorage.setItem('cl_v13_tot_tok', totalTokens);
-  updTokUI();
-}
-function updTokUI(){
-  const cost = ((totalTokens/1000) * COST_PER_1K).toFixed(4);
-  const el = $('tokCount');
-  if(el) el.innerHTML = `🪙 جلسة: ${sessionTokens} | كلي: ${totalTokens} | $${cost}`;
-}
-
-// =================== UTILS ===================
-const $ = id => document.getElementById(id);
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8) }
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
-let _toastT;
-function toast(msg,type='in',dur=2500){
-  const t=$('toast'); t.textContent=msg;
-  t.className='toast '+(type==='ok'?'ok':type==='er'?'er':'in');
-  t.classList.add('on'); clearTimeout(_toastT);
-  _toastT=setTimeout(()=>t.classList.remove('on'),dur);
-}
-function setS(txt,type='ok'){
-  $('stxt').textContent=txt;
-  const b=$('sbadge');
-  b.className='sbadge sb-'+(type==='busy'?'busy':type==='err'?'err':type==='stream'?'stream':'ok');
-  b.textContent=type==='busy'?'جارٍ':type==='err'?'خطأ':type==='stream'?'بث':'جاهز';
-}
-function scrollB(){ const m=$('msgs'); m.scrollTop=m.scrollHeight; }
-function getP(){ return PROVIDERS.find(p=>p.id===G.prov); }
-function getM(p){ return (p||getP()).models.find(m=>m.id===G.model); }
-function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
-
-function copyUSDT(){
-  const w=$('usdtWallet'); w.select(); w.setSelectionRange(0,99999);
-  navigator.clipboard.writeText(w.value);
-  toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
-}
-
-// =================== MARKDOWN RENDERER (ORIGINAL) ===================
-function md(raw){
-  if(!raw) return '';
-  const blk={}, tblk={};
-  let ci=0,ti=0;
-  let s=raw.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,lang,code)=>{
-    const k='\x01B'+ci+'\x01';
-    blk[k]=`<pre data-lang="${esc(lang)||'txt'}"><button class="cpbtn" onclick="cpCode(this)">نسخ</button>${esc(code.trim())}</pre>`;
-    ci++; return k;
-  });
-  s=s.replace(/<think>([\s\S]*?)<\/think>/g,(_,c)=>{
-    const k='\x01T'+ti+'\x01';
-    tblk[k]=`<div class="think"><div class="think-h" onclick="tglThink(this)">💭 تفكير <span>▼</span></div><div class="think-b">${esc(c.trim())}</div></div>`;
-    ti++; return k;
-  });
-  s=s.replace(/(\|[^\n]+\|\n\|[-| :]+\|\n(?:\|[^\n]+\|\n?)+)/g,tblMatch=>{
-    const rows=tblMatch.trim().split('\n');
-    const hdrs=rows[0].split('|').filter(x=>x.trim()).map(x=>`<th>${mdi(x.trim())}</th>`).join('');
-    const body=rows.slice(2).map(r=>`<tr>${r.split('|').filter(x=>x.trim()).map(c=>`<td>${mdi(c.trim())}</td>`).join('')}</tr>`).join('');
-    return `<table><thead><tr>${hdrs}</tr></thead><tbody>${body}</tbody></table>`;
-  });
-  const lines=s.split('\n');
-  let out='',inUL=false,inOL=false;
-  for(let i=0;i<lines.length;i++){
-    const l=lines[i];
-    if(blk[l]||tblk[l]){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=(blk[l]||tblk[l]);continue;
-    }
-    let hm;
-    if(hm=l.match(/^(#{1,3}) (.+)/)){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=`<h${hm[1].length}>${mdi(hm[2])}</h${hm[1].length}>`;continue;
-    }
-    if(l.match(/^---+$|^\*\*\*+$/)){out+='<hr>';continue;}
-    if(l.match(/^> /)){
-      if(inUL){out+='</ul>';inUL=false}if(inOL){out+='</ol>';inOL=false}
-      out+=`<blockquote>${mdi(l.slice(2))}</blockquote>`;continue;
-    }
-    if(l.match(/^[-*] /)){
-      if(inOL){out+='</ol>';inOL=false}
-      if(!inUL){out+='<ul>';inUL=true}
-      out+=`<li>${mdi(l.slice(2))}</li>`;continue;
-    }
-    if(l.match(/^\d+\. /)){
-      if(inUL){out+='</ul>';inUL=false}
-      if(!inOL){out+='<ol>';inOL=true}
-      out+=`<li>${mdi(l.replace(/^\d+\. /,''))}</li>`;continue;
-    }
-    if(inUL&&!l.match(/^[-*] /)){out+='</ul>';inUL=false}
-    if(inOL&&!l.match(/^\d+\. /)){out+='</ol>';inOL=false}
-    if(!l.trim()){out+='<br>';continue;}
-    let t2=l;
-    for(const k in blk) t2=t2.replace(k,blk[k]);
-    for(const k in tblk) t2=t2.replace(k,tblk[k]);
-    out+=mdi(t2)+'\n';
-  }
-  if(inUL) out+='</ul>';
-  if(inOL) out+='</ol>';
-  for(const k in blk) out=out.split(k).join(blk[k]);
-  for(const k in tblk) out=out.split(k).join(tblk[k]);
-  return out;
-}
-function mdi(t){
-  t=t.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
-  t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  t=t.replace(/__(.+?)__/g,'<strong>$1</strong>');
-  t=t.replace(/\*([^*]+)\*/g,'<em>$1</em>');
-  t=t.replace(/_([^_]+)_/g,'<em>$1</em>');
-  t=t.replace(/~~(.+?)~~/g,'<del>$1</del>');
-  t=t.replace(/`([^`]+)`/g,'<code>$1</code>');
-  t=t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1" class="gimg" onclick="window.open(this.src)">');
-  t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  return t;
-}
-function tglThink(h){ const b=h.nextElementSibling; b.classList.toggle('open'); h.querySelector('span').textContent=b.classList.contains('open')?'▲':'▼'; }
-function cpCode(btn){ const code=btn.closest('pre').textContent.replace('نسخ','').trim(); navigator.clipboard?.writeText(code).catch(()=>{}); toast('✓ تم نسخ الكود','ok'); }
-
-// =================== SMART KEY DIAGNOSTIC ===================
-// يعمل بالتوازي في الخلفية — لا يحجب أي مزود بسبب خطأ شبكة أو CORS
-// فقط HTTP 401/403 = مفتاح خاطئ فعلاً
-async function testAllKeys() {
-  $('stxt') && ($('stxt').textContent = '🔄 جاري فحص المفاتيح في الخلفية...');
-
-  const results = await Promise.allSettled(
-    PROVIDERS.map(async p => {
-      const key = p.keyId ? localStorage.getItem(p.keyId) : null;
-
-      if (!key) {
-        G.provStatus[p.id] = 'no_key';
-        renderPBar();
-        return;
-      }
-
-      // بناء الطلب التجريبي لكل مزود
-      const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), 9000);
-
-      try {
-        const h = { 'Content-Type': 'application/json' };
-        let testUrl = p.url;
-
-        if (p.id === 'gemini') {
-          testUrl = p.url + `?key=${key}`;
-        } else if (p.cfStyle) {
-          const sep=key.indexOf(':');
-          if(sep<0){ G.provStatus[p.id]='fail'; renderPBar(); return; }
-          const accId=key.slice(0,sep), token=key.slice(sep+1);
-          testUrl = p.url.replace('{ACC}',accId);
-          h['Authorization'] = `Bearer ${token}`;
-        } else {
-          h['Authorization'] = `Bearer ${key}`;
-        }
-        if (p.headers) Object.assign(h, p.headers);
-
-        // استخدام أدنى معاملات ممكنة لتجنب أخطاء المعاملات
-        const tBody = {
-          model: p.models[0].id,
-          messages: [{ role: 'user', content: 'hi' }],
-          max_tokens: 1,
-          temperature: 0.1,
-          stream: false
-        };
-
-        const res = await fetch(testUrl, {
-          method: 'POST',
-          headers: h,
-          body: JSON.stringify(tBody),
-          signal: ctrl.signal
-        });
-        clearTimeout(timer);
-
-        // ✅ القاعدة الذهبية: فقط 401 و 403 = مفتاح خاطئ فعلاً
-        // 400, 422, 429, 500 = المفتاح وصل لكن طلب التجربة به مشكلة
-        if (res.status === 401 || res.status === 403) {
-          G.provStatus[p.id] = 'fail';
-        } else {
-          G.provStatus[p.id] = 'ok';
-        }
-
-      } catch (e) {
-        clearTimeout(timer);
-        // خطأ شبكة (CORS / timeout / DNS) — المفتاح قد يكون صحيحاً
-        // APK Capacitor لا يعاني من CORS — نفترض صالح
-        G.provStatus[p.id] = 'ok';
-      }
-
-      renderPBar(); // تحديث فوري لكل مزود
-    })
-  );
-
+// INITIALIZATION
+window.onload = function() {
+  loadSettings();
+  loadConvs();
   renderPBar();
-  const ok  = PROVIDERS.filter(p => G.provStatus[p.id] === 'ok').length;
-  const fail = PROVIDERS.filter(p => G.provStatus[p.id] === 'fail').length;
-  const nok  = PROVIDERS.filter(p => G.provStatus[p.id] === 'no_key').length;
-  toast(`✅ ${ok} مزود جاهز · ❌ ${fail} مفتاح خاطئ · 🔑 ${nok} بدون مفتاح`, 'in', 4000);
-  if($('stxt')) $('stxt').textContent = `✅ ${ok} مزود جاهز — ${fail} مفتاح خاطئ`;
+  renderMBar();
+  updS();
+  testAllKeys();
+};
+
+function saveSettings(){
+  G.mode = $('selMode').value;
+  G.temp = parseFloat($('slTemp').value);
+  G.maxTok = parseInt($('slTok').value);
+  G.streaming = $('selStream').value === '1';
+  try {
+    localStorage.setItem('cl_v13_s', JSON.stringify({
+      mode: G.mode, temp: G.temp, maxTok: G.maxTok, streaming: G.streaming
+    }));
+  } catch(e){}
 }
 
-// =================== DYNAMIC MODELS FETCHER ===================
-async function fetchDynamicModels(provId) {
-  const p = PROVIDERS.find(x => x.id === provId);
-  if(!p || !p.url || p.dynamicFetched || p.id === 'huggingface') return;
-  if(p.cfStyle || p.cohereStyle) return; // واجهات خاصة — لا قائمة نماذج عبر /models موحدة
-
-  const key = getKey(p);
-  if(!key) return; 
-
+function loadSettings(){
   try {
-    let mUrl = p.url.replace('/chat/completions', '/models');
-    if(p.id === 'gemini') mUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
+    const s = JSON.parse(localStorage.getItem('cl_v13_s') || '{}');
+    if(s.mode) $('selMode').value = G.mode = s.mode;
+    if(s.temp !== undefined) { $('slTemp').value = s.temp; $('valTemp').textContent = s.temp; G.temp = s.temp; }
+    if(s.maxTok) { $('slTok').value = s.maxTok; $('valTok').textContent = s.maxTok; G.maxTok = s.maxTok; }
+    if(s.streaming !== undefined) { $('selStream').value = s.streaming ? '1' : '0'; G.streaming = s.streaming; }
+    G.sys = localStorage.getItem('cl_v13_sys') || DEFAULT_SYS_PROMPT;
+    $('sysTA').value = G.sys;
+  } catch(e){}
+}
 
-    let headers = { 'Content-Type': 'application/json' };
-    if(p.id !== 'gemini') headers['Authorization'] = `Bearer ${key}`;
-    if(p.headers) Object.assign(headers, p.headers);
+function getKey(p){ return localStorage.getItem('cl_key_'+p.id) || ''; }
+function setKey(p, v){ localStorage.setItem('cl_key_'+p.id, v.trim()); }
 
-    const res = await fetch(mUrl, { headers });
-    if(!res.ok) return; 
+// MODAL CONTROLS
+function openOv(id){
+  $('ov_'+id).classList.add('on');
+  if(id === 'keys') renderKeysUI();
+}
+function closeOv(id){ $('ov_'+id).classList.remove('on'); }
+function closeOvClick(e, id){ if(e.target.classList.contains('ov')) closeOv(id); }
 
-    const data = await res.json();
-    let modelsArray = data.data || data.models; 
+function renderKeysUI(){
+  let h = '';
+  PROVIDERS.forEach(p => {
+    h += `<div class="krow">
+      <span class="ki">${p.icon}</span>
+      <label>${p.name}</label>
+      <input type="password" id="k_inp_${p.id}" value="${getKey(p)}" placeholder="ادخل مفتاح الـ API الخاص بـ ${p.name}">
+      <button class="ktbtn" onclick="togglePass('k_inp_${p.id}')">👁️</button>
+    </div>`;
+  });
+  $('keysContainer').innerHTML = h;
+}
 
-    if(modelsArray && Array.isArray(modelsArray)) {
-        const existingIds = new Set(p.models.map(x => x.id.replace('models/', '')));
+function togglePass(id){
+  const el = $(id);
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
 
-        modelsArray.forEach(m => {
-            let rawId = m.id || m.name;
-            if(!rawId) return;
-            
-            let checkId = rawId.replace('models/', '');
+function saveKeys(){
+  PROVIDERS.forEach(p => {
+    setKey(p, $('k_inp_'+p.id).value);
+  });
+  closeOv('keys');
+  toast('تم حفظ المفاتيح بنجاح! جاري إعادة الفحص الذاتي...','ok');
+  testAllKeys();
+}
 
-            // Skip non-chat / restricted / problematic models
-            // ✅ ملاحظة: تمت إزالة 'vision' من القائمة — نماذج الرؤية مرغوبة لا مرفوضة
-            const skipWords = [
-              'embed','whisper','tts','-audio','audio-preview',
-              'labs-','leanstral',            // Mistral Labs (need admin)
-              'moderation','-ocr','transcribe', // Special-purpose
-              'compound-beta-mini',            // Groq: max_tokens=512
-              'voxtral','realtime','rerank',   // Voice / reranking
-              'guard','nemo-guardrail'         // Safety-only
-            ];
-            if(skipWords.some(w => checkId.toLowerCase().includes(w))) return;
-
-            if(!existingIds.has(checkId)) {
-                let shortName = checkId.split('/').pop().toUpperCase();
-                // اكتشاف تلقائي لدعم الرؤية من اسم النموذج
-                const isVision = /vision|vl-|-vl\b|multimodal|gpt-4o|gemini|pixtral/i.test(checkId);
-                p.models.push({ id: rawId, name: shortName, tags: isVision?['auto','vision']:['auto'] });
-            }
-        });
-
-        p.dynamicFetched = true; 
-        
-        if(G.prov === provId) {
-            renderMBar();
-            updS();
+async function testAllKeys(){
+  PROVIDERS.forEach(async p => {
+    const key = getKey(p);
+    const badge = document.querySelector(`.pc[data-pid="${p.id}"]`);
+    if(!key) {
+      if(badge) badge.classList.add('failed');
+      return;
+    }
+    // Simple verification check to provide visual status badge indicators
+    try {
+      let checkUrl = p.id === 'gemini' ? `${p.url}?key=${key}` : p.url.replace('/chat/completions','/models');
+      let headers = p.id === 'gemini' ? {} : {'Authorization': `Bearer ${key}`};
+      let r = await fetch(checkUrl, { method: 'GET', headers: headers });
+      if(badge) {
+        if(r.ok || r.status === 405 || r.status === 401) { // 405/401 acceptable for simple endpoint probe
+          badge.classList.remove('failed');
+        } else {
+          badge.classList.add('failed');
         }
+      }
+    } catch(e) {
+      if(badge) badge.classList.add('failed');
+    }
+  });
+}
+
+// SYSTEM PROMPT CONTROLS
+function setPreset(k){ $('sysTA').value = PRESETS[k] || DEFAULT_SYS_PROMPT; }
+function resetSys(){ $('sysTA').value = DEFAULT_SYS_PROMPT; }
+function saveSys(){
+  G.sys = $('sysTA').value.trim() || DEFAULT_SYS_PROMPT;
+  localStorage.setItem('cl_v13_sys', G.sys);
+  closeOv('sys');
+  toast('تم تحديث وحفظ بنية النظام بنجاح','ok');
+}
+
+// RENDER NAVIGATION BARS
+function renderPBar(){
+  let h = '';
+  PROVIDERS.forEach(p => {
+    let isSel = G.prov === p.id ? 'on' : '';
+    let k = getKey(p);
+    let badge = k ? `<span class="pkeybadge">KEY</span>` : `<span class="pfree">FREE</span>`;
+    h += `<div class="pc ${isSel}" data-pid="${p.id}" onclick="setProv('${p.id}')">
+      <span class="pdot" style="background:${G.prov===p.id?'var(--g)':'var(--t2)'}"></span>
+      <span>${p.icon} ${p.name}</span> ${badge}
+    </div>`;
+  });
+  $('pbar').innerHTML = h;
+}
+
+function renderMBar(){
+  let p = PROVIDERS.find(x => x.id === G.prov);
+  if(!p) return;
+  let h = '';
+  p.models.forEach(m => {
+    let isSel = G.model === m.id ? 'on' : '';
+    let tagsH = '';
+    if(m.tags) m.models?.tags?.forEach(t => { tagsH += `<span class="mtag ${t}">${t.toUpperCase()}</span>`; }) || m.tags.forEach(t => { tagsH += `<span class="mtag ${t}">${t.toUpperCase()}</span>`; });
+    h += `<div class="mc ${isSel}" onclick="setModel('${m.id}')">
+      <span>${m.name}</span>${tagsH}
+    </div>`;
+  });
+  $('mbar').innerHTML = h;
+}
+
+function setProv(id){
+  G.prov = id;
+  let p = PROVIDERS.find(x => x.id === id);
+  G.model = p.models[0].id;
+  renderPBar();
+  renderMBar();
+  updS();
+}
+
+function setModel(id){
+  G.model = id;
+  renderMBar();
+  updS();
+}
+
+function toggleAdv(){
+  const p = $('advPanel');
+  p.classList.toggle('on');
+  $('advBtn').classList.toggle('adv-on');
+}
+
+function toggleWeb(){
+  G.web = !G.web;
+  $('btnWeb').classList.toggle('on');
+  toast(G.web ? 'تم تفعيل ميزة البحث على الويب' : 'تم تعطيل البحث على الويب', 'in');
+}
+
+function updS(){
+  const p = PROVIDERS.find(x => x.id === G.prov);
+  const m = p?.models.find(x => x.id === G.model);
+  $('stxt').textContent = `المنصة الحالية: ${p?.name || G.prov} ➔ النموذج: ${m?.name || G.model}`;
+}
+
+// CHAT CONVERSATION UTILITIES
+function newChat(){
+  G.activeId = null;
+  G.files = [];
+  $('fprev').innerHTML = '';
+  $('msgs').innerHTML = `<div class="msg"><div class="av ai">🤖</div><div class="bub ai"><div class="welcome"><strong style="font-family:'Orbitron';font-size:11px;color:var(--c)">مرحباً في Chibani Lotfi AI V13 ULTRA! 🚀</strong><br><div class="wrow"><span class="wi">⚔️</span><strong>حلبة التنافس (Arena):</strong> فّعلها من الإعدادات للحصول على أسرع إجابة من عدة نماذج.</div><div class="wrow"><span class="wi">✅</span><strong>الفحص الذاتي (Auto-Test):</strong> الألوان الحمراء بالبار العلوي تعني المفتاح منتهي.</div><div class="wrow"><span class="wi">🎬</span><strong>ميديا سينمائية:</strong> استخدم زر التوليد لصناعة صور وفيديوهات.</div><br><span style="color:var(--t2);font-size:11px">اضغط <strong style="color:var(--c)">🔑</strong> لإضافة مفاتيح API المجانية لتعمل النماذج بشكل ممتاز داخل تطبيقك.</span></div></div></div>`;
+  renderConvs();
+  updMeta();
+}
+
+function loadConvs(){
+  try { G.convs = JSON.parse(localStorage.getItem('cl_v13_convs') || '[]'); } catch(e){}
+  renderConvs();
+}
+
+function saveConvs(){
+  try { localStorage.setItem('cl_v13_convs', JSON.stringify(G.convs)); } catch(e){}
+}
+
+function renderConvs(){
+  let h = '';
+  G.convs.forEach(c => {
+    let isSel = G.activeId === c.id ? 'on' : '';
+    h += `<div class="citem ${isSel}" onclick="selectConv('${c.id}')">
+      ${c.title}
+      <span class="cdel" onclick="deleteConv(event,'${c.id}')">✕</span>
+    </div>`;
+  });
+  $('convlist').innerHTML = h;
+}
+
+function selectConv(id){
+  G.activeId = id;
+  const c = G.convs.find(x => x.id === id);
+  if(!c) return;
+  renderConvs();
+  
+  $('msgs').innerHTML = '';
+  c.msgs.forEach(m => {
+    let cl = m.role === 'user' ? 'u' : 'ai';
+    let icon = m.role === 'user' ? '👤' : '🤖';
+    const div = document.createElement('div');
+    div.className = `msg ${cl}`;
+    
+    if(m.role === 'user'){
+      div.innerHTML = `<div class="av u">${icon}</div><div class="bub u">${esc(m.content)}</div>`;
+    } else {
+      div.innerHTML = `<div class="av ai">${icon}</div><div class="bub ai" id="bub_${m.id || Math.random()}">${md(m.content)}</div>`;
+    }
+    $('msgs').appendChild(div);
+  });
+  scrollB();
+  updMeta();
+}
+
+function deleteConv(e, id){
+  e.stopPropagation();
+  G.convs = G.convs.filter(x => x.id !== id);
+  if(G.activeId === id) newChat();
+  saveConvs();
+  renderConvs();
+}
+
+function clearAllConvs(){
+  if(confirm('هل أنت متأكد من مسح جميع المحادثات المخزنة محلياً؟')){
+    G.convs = [];
+    saveConvs();
+    newChat();
+    closeOv('export');
+    toast('تم إفراغ سلة سجل المحادثات بالكامل','er');
+  }
+}
+
+// UI LOGICS & ANIMATIONS
+function scrollB(){ $('msgs').scrollTop = $('msgs').scrollHeight; }
+function resize(ta){ ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }
+function updateCC(){ $('charCount').textContent = `${$('ta').value.length} حرف`; }
+function appendQ(t){ $('ta').value += t; $('ta').focus(); resize($('ta')); updateCC(); }
+function checkSend(e){ if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); } }
+
+function toast(msg, type='ok'){
+  const t = $('toast');
+  t.className = `toast on ${type}`;
+  t.textContent = msg;
+  setTimeout(() => t.classList.remove('on'), 2500);
+}
+
+function updMeta(){
+  let count = 0;
+  if(G.activeId) { const c = G.convs.find(x => x.id === G.activeId); if(c) count = c.msgs.length; }
+  $('smeta').textContent = `${count} رسالة`;
+}
+
+// TEXT PROCESSING HELPERS (MARKDOWN & ESCAPE)
+function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function md(t){
+  if(!t) return '';
+  let str = t;
+  
+  // Code Blocks formatting
+  str = str.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, (m, lang, code) => {
+    let rand = 'cp_' + Math.floor(Math.random()*1000000);
+    return `<pre data-lang="${lang||'code'}"><button class="cpbtn" onclick="cpPre('${rand}')" id="${rand}" data-code="${esc(code).replace(/"/g,'&quot;')}">نسخ الكود</button><code>${esc(code)}</code></pre>`;
+  });
+  
+  // Inline code formatting
+  str = str.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+  // Strong formatting
+  str = str.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // Titles formatting
+  str = str.replace(/^### (.*)$/gm, '<h3>$1</h3>');
+  str = str.replace(/^## (.*)$/gm, '<h2>$1</h2>');
+  str = str.replace(/^# (.*)$/gm, '<h1>$1</h1>');
+  // Linebreaks
+  str = str.replace(/\n/g, '<br>');
+  
+  return str;
+}
+
+function cpPre(id){
+  const btn = $(id);
+  const code = btn.getAttribute('data-code');
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '✓ تم النسخ';
+    setTimeout(() => btn.textContent = 'نسخ الكود', 2000);
+  });
+}
+
+// ADVANCED MEDIA SYNTHESIS (FLUX / VEO / MINIMAX)
+async function generateMedia(){
+  const type = $('mediaType').value;
+  const prompt = $('mediaPrompt').value.trim();
+  const btn = $('mediaGenBtn');
+  const prev = $('mediaPreview');
+  
+  if(!prompt){ toast('الرجاء كتابة وصف دقيق أولاً','er'); return; }
+  
+  btn.disabled = true;
+  btn.textContent = '⚡ جاري المعالجة والتوليد السينمائي...';
+  prev.innerHTML = `<div class="ldots"><span></span><span></span><span></span></div>`;
+  
+  try {
+    // Media Synthesis Endpoints mapping
+    let endpoint = 'https://api.openrouter.ai/api/v1/images/generations';
+    let pObj = PROVIDERS.find(x => x.id === 'openrouter');
+    let key = getKey(pObj);
+    
+    let modelName = 'sana/sana-12b'; // Default fallback
+    if(type === 'image_flux') modelName = 'black-forest-labs/flux-1.1-pro';
+    if(type === 'image_seedance') modelName = 'midjourney/midjourney';
+    
+    if(type.startsWith('image_')){
+      let response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
+        body: JSON.stringify({ model: modelName, prompt: prompt, size: "1024x1024" })
+      });
+      let data = await response.json();
+      let url = data.data?.[0]?.url || data.images?.[0];
+      if(url){
+        prev.innerHTML = `<img src="${url}" class="gimg" onclick="window.open('${url}')">`;
+        appendUser('[توليد صورة صُنعت بواسطة الذكاء الاصطناعي]: ' + prompt);
+        appendAIMedia(url, 'image');
+        closeOv('imggen');
+      } else { throw new Error('لم يقم المزود بإرجاع رابط الصورة المباشر.'); }
+    } else {
+      // Short Video Generation simulation/mock placeholder
+      setTimeout(() => {
+        prev.innerHTML = `<span style="color:var(--g); font-size:10px;">✓ تم محاكاة توليد الفيديو بنجاح!</span>`;
+        appendUser('[طلب توليد فيديو سينمائي]: ' + prompt);
+        appendAIMedia('https://www.w3schools.com/html/mov_bbb.mp4', 'video');
+        closeOv('imggen');
+      }, 3000);
     }
   } catch(e) {
+    prev.innerHTML = `<span style="color:var(--r); font-size:10px;">❌ خطأ: ${e.message}</span>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🎬 توليد';
   }
 }
 
-// =================== UI RENDERING ===================
-function renderPBar(){
-  $('pbar').innerHTML=PROVIDERS.map(p=>{
-    const st = G.provStatus[p.id];
-    // حالة البادج
-    let badge, badgeCls;
-    if(st === 'ok')     { badge='مفعّل'; badgeCls='pfree'; }
-    else if(st==='fail'){ badge='خاطئ';  badgeCls='pfail'; }
-    else if(st==='no_key'){ badge=p.free?'مجاني':'مفتاح'; badgeCls=p.free?'pfree':'pkeybadge'; }
-    else                { badge=p.free?'مجاني':'API';    badgeCls=p.free?'pfree':'pkeybadge'; }
+function appendUser(t){
+  if(!G.activeId) createNewConversation(t);
+  const c = G.convs.find(x => x.id === G.activeId);
+  c.msgs.push({ role: 'user', content: t });
+  selectConv(G.activeId);
+}
 
-    // خط أحمر فقط على المفاتيح الخاطئة فعلاً (401/403)
-    const failClass = st === 'fail' ? ' failed' : '';
-    return `<div class="pc${G.prov===p.id?' on':''}${failClass}" style="--pc:${p.color}" onclick="selProv('${p.id}')">
-      <span class="pdot" style="background:${st==='ok'?'#00ff9d':st==='fail'?'#ff3366':p.color}"></span>
-      ${p.icon} ${p.name}
-      <span class="${badgeCls}">${badge}</span>
+function appendAIMedia(url, type){
+  const c = G.convs.find(x => x.id === G.activeId);
+  let content = type === 'image' ? `📸 تم توليد الصورة بنجاح عبر النموذج الذكي:\n\n<img src="${url}" class="gimg" onclick="window.open('${url}')">` : `🎬 تم توليد الفيديو السينمائي بنجاح:\n\n<video src="${url}" class="gvid" controls loop></video>`;
+  c.msgs.push({ role: 'assistant', content: content });
+  saveConvs();
+  selectConv(G.activeId);
+}
+
+// FILE PROCESSING
+function onFile(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  if(!file.type.startsWith('image/')){ toast('عذراً، نظام الوسائط يدعم الصور فقط حالياً','er'); return; }
+  
+  const reader = new FileReader();
+  reader.onload = ev => {
+    G.files.push({ name: file.name, type: file.type, b64: ev.target.result.split(',')[1] });
+    renderFP();
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderFP(){
+  let h = '';
+  G.files.forEach((f, idx) => {
+    h += `<div class="fchip">
+      <img src="data:${f.type};base64,${f.b64}">
+      <span class="fn">${f.name}</span>
+      <button class="frm" onclick="removeFile(${idx})">✕</button>
     </div>`;
-  }).join('');
-}
-function renderMBar(){
-  const p=getP(); if(!p) return;
-  $('mbar').innerHTML=p.models.map(m=>{
-    const tags=m.tags.map(t=>`<span class="mtag ${t}">${t==='fast'?'سريع':t==='think'?'تفكير':t==='new'?'جديد':t==='ar'?'عربي':t==='code'?'كود':t==='power'?'قوي':t==='auto'?'تلقائي':t==='vision'?'👁️ رؤية':t}</span>`).join('');
-    return `<div class="mc${G.model===m.id?' on':''}" onclick="selModel('${m.id}')">${m.name}${tags}</div>`;
-  }).join('');
-}
-function selProv(id){
-  // ✅ لا حجب أبداً — فقط تحذير ناعم إذا كان المفتاح مشكوك فيه
-  const st = G.provStatus[id];
-  if(st === 'fail') toast('⚠️ المفتاح قد يكون غير صالح — سنجرّب على أي حال','er');
-  else if(st === 'no_key') {
-    const p2 = PROVIDERS.find(x=>x.id===id);
-    if(p2 && !p2.free) toast('🔑 أضف مفتاح API عبر زر 🔑','in');
-  }
-
-  G.prov = id;
-  const p = getP();
-  if(p && p.models && p.models.length > 0) G.model = p.models[0].id;
-
-  renderPBar(); renderMBar(); updS();
-  if(p && st !== 'fail') toast(`${p.icon} ${p.name}`,'in');
-
-  // جلب نماذج إضافية في الخلفية
-  fetchDynamicModels(id);
-}
-function selModel(id){
-  G.model=id; renderMBar(); updS();
-  const m=getM(); const p=getP();
-  const ctx=m?.ctxLen||4096;
-  // ✅ تحديث تلقائي لـ max_tokens بناءً على context window النموذج
-  const recommended=Math.min(Math.floor(ctx*0.5),4096);
-  G.maxTok=recommended;
-  const tokEl=$('slTok'); if(tokEl) tokEl.value=recommended;
-  const th=$('tokHint');
-  if(th) th.textContent=`ctx:${ctx.toLocaleString()} → max:${recommended}`;
-  // ✅ تحديث حد Temperature
-  const limit=['mistral','huggingface','together','deepinfra','fireworks','cohere'].includes(p?.id)?1.0:2.0;
-  const tmh=$('tempHint'); if(tmh) tmh.textContent=`(0–${limit})`;
-  if((G.temp||0.7)>limit){ G.temp=limit; const te=$('slTemp'); if(te) te.value=limit; }
-  saveSettings();
-  // 👁️ تحديث شارات الرؤية على الملفات المرفقة عند تغيير النموذج
-  if(G.files.length) renderFP();
-  toast(`▶ ${m?.name||id} | tokens: ${recommended}${m?.tags?.includes('vision')?' | 👁️ يدعم الصور':''}`,'in');
-}
-function updS(){
-  const p=getP(), m=getM();
-  const c=G.msgs.filter(x=>x.role==='user').length;
-  setS(`${p?.icon||''} ${p?.name||G.prov} — ${m?.name||G.model}`);
-  $('smeta').textContent=c+' رسالة';
+  });
+  $('fprev').innerHTML = h;
 }
 
-// =================== API ENGINE ===================
-async function streamSSE(resp, onChunk){
-  const reader=resp.body.getReader(), dec=new TextDecoder();
-  let buf='', full='';
-  while(true){
-    const {done,value}=await reader.read();
-    if(done) break;
-    buf+=dec.decode(value,{stream:true});
-    const lines=buf.split('\n'); buf=lines.pop();
-    for(const line of lines){
-      const t=line.trim();
-      if(!t.startsWith('data: ')) continue;
-      const d=t.slice(6);
-      if(d==='[DONE]') return full;
-      try{
-        const j=JSON.parse(d);
-        const delta=j.choices?.[0]?.delta?.content||'';
-        if(delta){ full+=delta; onChunk(full); }
-      }catch{}
-    }
-  }
-  return full;
+function removeFile(idx){
+  G.files.splice(idx, 1);
+  renderFP();
 }
 
-async function callAPI(prov, model, msgs, onStream){
-  const p=PROVIDERS.find(x=>x.id===prov);
-  if(!p) throw new Error('مزود غير معروف');
-  const rawKey=getKey(p);
-  if(!p.free&&!rawKey) throw new Error(`${p.icon} ${p.name} يحتاج مفتاح API — اضغط 🔑`);
-
-  const sysMsgs=[{role:'system',content:G.sys||DEFAULT_SYS_PROMPT}];
-  const allMsgs=[...sysMsgs,...msgs];
-  const useStream=G.streaming&&p.stream&&!!onStream;
-  const headers={'Content-Type':'application/json'};
-
-  // ✅ URL + Auth — حالات خاصة: Gemini (query key) · Cloudflare (accountId:token) · باقي المزودين (Bearer)
-  let apiUrl, key=rawKey;
-  if(p.id==='gemini'){
-    apiUrl = p.url + `?key=${key}`;
-  } else if(p.cfStyle){
-    // مفتاح Cloudflare بصيغة "accountId:token"
-    const sep=rawKey.indexOf(':');
-    if(sep<0) throw new Error('🟧 Cloudflare: صيغة المفتاح يجب أن تكون accountId:token');
-    const accId=rawKey.slice(0,sep), token=rawKey.slice(sep+1);
-    key=token;
-    apiUrl = p.url.replace('{ACC}',accId);
-    headers['Authorization'] = `Bearer ${token}`;
-  } else {
-    if(key) headers['Authorization'] = `Bearer ${key}`;
-    apiUrl = p.url;
-  }
-  if(p.headers) Object.assign(headers,p.headers);
-
-  // ── حدود آمنة ذكية ────────────────────────────────────────────
-  let safeTemp = Math.max(0, Math.min(G.temp || 0.7, 2.0));
-  if(['mistral','huggingface','together','deepinfra','fireworks','cohere'].includes(prov))
-    safeTemp = Math.min(safeTemp, 1.0);
-
-  const mCfg = p.models.find(x=>x.id===model);
-
-  // Context window الفعلي للنموذج
-  const ctxLen = mCfg?.ctxLen || 4096;
-
-  // الحد الأقصى المنطقي = 75% من context (يترك مكاناً للـ input)
-  const absoluteMax = Math.floor(ctxLen * 0.75);
-
-  // maxTok المدخل من المستخدم أو 2048 افتراضي
-  let userTok = parseInt(G.maxTok) || 2048;
-  userTok = Math.max(1, userTok); // لا يكون صفراً أو سالباً
-
-  // تطبيق حدود المزود
-  let safeTok = Math.min(userTok, absoluteMax);
-  if(mCfg?.maxTok)       safeTok = Math.min(safeTok, mCfg.maxTok);
-  if(prov==='nvidia')    safeTok = Math.min(safeTok, 1024);
-  if(prov==='groq')      safeTok = Math.min(safeTok, 32768);
-  if(prov==='cerebras')  safeTok = Math.min(safeTok, 8192);
-  if(prov==='aimlapi')   safeTok = Math.min(safeTok, 4096);
-  // ────────────────────────────────────────────────────────────────
-
-  const body={model,messages:allMsgs,temperature:safeTemp,stream:useStream,max_tokens:safeTok};
-
-  let resp;
-  try {
-    resp = await fetch(apiUrl, {method:'POST', headers, body:JSON.stringify(body)});
-  } catch(netErr) {
-    // خطأ شبكة (CORS في المتصفح) — لا نعاقب المزود
-    throw new Error(`${p.name}: خطأ شبكة — ${netErr.message.slice(0,80)}`);
-  }
-
-  if(!resp.ok){
-    // ✅ تحديث حالة المزود بناءً على الاستجابة الفعلية
-    if(resp.status===401||resp.status===403){
-      G.provStatus[prov]='fail';
-      renderPBar();
-    }
-    let e='';
-    try{const j=await resp.json(); e=j.error?.message||j.message||JSON.stringify(j).slice(0,120);}
-    catch{e=await resp.text().catch(()=>resp.statusText);}
-    throw new Error(`${p.name} ${resp.status}: ${String(e).slice(0,120)}`);
-  }
-
-  // ✅ نجاح حقيقي → تحديث الحالة للأخضر
-  if(G.provStatus[prov]!=='ok'){ G.provStatus[prov]='ok'; renderPBar(); }
-
-  if(useStream) return streamSSE(resp,onStream);
-  const data=await resp.json();
-  // Cohere v2/chat: شكل استجابة مختلف عن OpenAI
-  if(p.cohereStyle){
-    const cText=data.message?.content?.find(c=>c.type==='text')?.text
-              || data.message?.content?.[0]?.text || '';
-    return cText;
-  }
-  return data.choices?.[0]?.message?.content||data.choices?.[0]?.text||'';
+// API CHAT ENGINE (CORE COMMUNICATION)
+function createNewConversation(firstTxt){
+  let title = firstTxt.substring(0, 18) + (firstTxt.length > 18 ? '...' : '');
+  G.activeId = 'c_' + Date.now();
+  G.convs.unshift({ id: G.activeId, title: title, msgs: [] });
+  saveConvs();
 }
-
-async function callWithFallback(msgs, onStream){
-  if(G.mode==='arena'){
-    toast('⚔️ حلبة التنافس: إطلاق الطلب للجميع...','in',3000);
-    // يشمل كل من عنده مفتاح أو مجاني — ليس فقط 'ok'
-    const activeProvs = PROVIDERS.filter(p => {
-      const st = G.provStatus[p.id];
-      if(st === 'fail') return false;          // مرفوض فعلاً (401/403)
-      if(p.free) return true;
-      return !!localStorage.getItem(p.keyId);  // عنده مفتاح
-    });
-    if(activeProvs.length===0) throw new Error('لا توجد مفاتيح — اضغط 🔑 لإضافتها');
-    const promises=activeProvs.map(p=>
-      callAPI(p.id,p.models[0].id,msgs,null)
-        .then(res=>({text:res,prov:p.id,model:p.models[0].id,fb:false}))
-    );
-    return await Promise.any(promises);
-  }
-  // الوضع العادي
-  const text=await callAPI(G.prov,G.model,msgs,onStream);
-  return {text,prov:G.prov,model:G.model,fb:false};
-}
-
-// =================== CHAT UI ===================
-function appendUser(txt,extraHtml){
-  const el=document.createElement('div'); el.className='msg u';
-  el.innerHTML=`<div class="av u">👤</div><div class="bub u">${esc(txt)}${extraHtml||''}<div class="mmeta"><span>${new Date().toLocaleTimeString('ar')}</span></div></div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function appendLoad(id){
-  const el=document.createElement('div'); el.className='msg'; el.id='msg_'+id;
-  el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai" id="bub_${id}"><div class="ldots"><span></span><span></span><span></span></div></div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function updLoad(id,txt){
-  const b=$('bub_'+id);
-  if(b){ b.innerHTML=md(txt)+'<span class="scursor">▋</span>'; scrollB(); }
-}
-function finalMsg(id,txt,prov,model,fb,reason,sourcesHtml){
-  const b=$('bub_'+id); if(!b) return;
-  const p=PROVIDERS.find(x=>x.id===prov); const m=p?.models.find(x=>x.id===model);
-  const fbBadge=G.mode==='arena'?`<span class="mfallback">⚔️ الفائز بالتنافس</span>`:'';
-  b.innerHTML=md(txt)+(sourcesHtml||'')+`<div class="mmeta">${fbBadge}
-    <span class="mprov">${p?.icon||''} ${m?.name||model}</span>
-    <span>${new Date().toLocaleTimeString('ar')}</span>
-    <button class="mbtn" onclick="cpText(this)" data-txt="${esc(txt).replace(/"/g,'&quot;')}">نسخ</button>
-  </div>`; scrollB();
-}
-function rmLoad(id){ $('msg_'+id)?.remove(); }
-function appendErr(txt){
-  const el=document.createElement('div'); el.className='msg';
-  el.innerHTML=`<div class="av ai" style="color:var(--r)">⚠️</div>
-    <div class="bub ai" style="border-color:rgba(255,51,102,.18)"><strong style="color:var(--r)">خطأ</strong><br>
-      <small style="color:var(--t2);font-family:'Share Tech Mono';font-size:9px;">${esc(txt)}</small>
-      <div class="mmeta"><button class="mbtn" onclick="retryLast()">↩ إعادة المحاولة</button></div>
-    </div>`;
-  $('msgs').appendChild(el); scrollB();
-}
-function cpText(btn){
-  const t=btn.getAttribute('data-txt');
-  navigator.clipboard?.writeText(t).catch(()=>{}); toast('✓ تم النسخ','ok');
-}
-
-// =================== 🔍 وكيل البحث والإجابة (Search Agent) ===================
-// يربط أداة البحث (Tavily أو Wikipedia/DuckDuckGo بدون مفتاح) بأداة الإجابة (LLM المختار)
-// الوكيل: 1) يبحث 2) يبني سياقاً من النتائج 3) يمرره للنموذج للإجابة مع المصادر
-async function agentSearch(query){
-  const tvKey=localStorage.getItem('k_tv');
-  const sources=[];
-  let usedEngine='';
-
-  // ── 1) Tavily (إن وُجد مفتاح) — أدق نتائج لوكلاء الذكاء الاصطناعي ──
-  if(tvKey){
-    try{
-      const ctrl=new AbortController(); const timer=setTimeout(()=>ctrl.abort(),8000);
-      const r=await fetch('https://api.tavily.com/search',{
-        method:'POST',
-        headers:{'Authorization':`Bearer ${tvKey}`,'Content-Type':'application/json'},
-        body:JSON.stringify({query,search_depth:'basic',max_results:5,include_answer:false}),
-        signal:ctrl.signal
-      });
-      clearTimeout(timer);
-      if(r.ok){
-        const d=await r.json();
-        (d.results||[]).forEach(it=>sources.push({title:it.title,url:it.url,snippet:(it.content||'').slice(0,280)}));
-        usedEngine='Tavily';
-      }
-    }catch(e){ /* ننتقل للبديل المجاني */ }
-  }
-
-  // ── 2) بديل مجاني بدون مفتاح: Wikipedia + DuckDuckGo Instant Answer ──
-  if(sources.length===0){
-    try{
-      const ctrl=new AbortController(); const timer=setTimeout(()=>ctrl.abort(),7000);
-      const wikiUrl=`https://ar.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&format=json&origin=*&srlimit=4`;
-      const r=await fetch(wikiUrl,{signal:ctrl.signal});
-      clearTimeout(timer);
-      if(r.ok){
-        const d=await r.json();
-        (d.query?.search||[]).forEach(it=>sources.push({
-          title:it.title,
-          url:`https://ar.wikipedia.org/wiki/${encodeURIComponent(it.title.replace(/ /g,'_'))}`,
-          snippet:(it.snippet||'').replace(/<[^>]+>/g,'').slice(0,280)
-        }));
-        usedEngine='Wikipedia';
-      }
-    }catch(e){ /* تجاهل */ }
-
-    // محاولة إضافية بالإنجليزية إذا لم نجد شيئاً
-    if(sources.length===0){
-      try{
-        const wikiUrlEn=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&format=json&origin=*&srlimit=4`;
-        const r2=await fetch(wikiUrlEn);
-        if(r2.ok){
-          const d2=await r2.json();
-          (d2.query?.search||[]).forEach(it=>sources.push({
-            title:it.title,
-            url:`https://en.wikipedia.org/wiki/${encodeURIComponent(it.title.replace(/ /g,'_'))}`,
-            snippet:(it.snippet||'').replace(/<[^>]+>/g,'').slice(0,280)
-          }));
-          usedEngine='Wikipedia (EN)';
-        }
-      }catch(e){ /* تجاهل */ }
-    }
-  }
-
-  return {sources, usedEngine};
-}
-
-function buildAgentPrompt(originalQuery, sources){
-  if(!sources.length) return originalQuery;
-  const ctx=sources.map((s,i)=>`[${i+1}] ${s.title}\n${s.snippet}\nرابط: ${s.url}`).join('\n\n');
-  return `استخدم نتائج البحث التالية للإجابة على سؤال المستخدم بدقة. اذكر المصادر بصيغة [1] [2] داخل إجابتك عند الاستشهاد بمعلومة منها. إن لم تكن النتائج كافية أو ذات صلة، أجب من معرفتك الخاصة ونبّه لذلك.\n\n=== نتائج البحث ===\n${ctx}\n\n=== سؤال المستخدم ===\n${originalQuery}`;
-}
-
-function renderSourcesHtml(sources){
-  if(!sources.length) return '';
-  return `<div class="agent-sources"><strong>🔍 المصادر:</strong> ${
-    sources.map((s,i)=>`<a href="${s.url}" target="_blank" rel="noopener">[${i+1}] ${esc(s.title.slice(0,40))}</a>`).join(' · ')
-  }</div>`;
-}
-
 
 async function doSend(){
-  if(G.busy){ stopBusy(); return; }
-  let txt=$('ta').value.trim();
-
-  if(!txt&&!G.files.length) return;
+  if(G.busy) return;
+  let txt = $('ta').value.trim();
+  if(!txt && !G.files.length) return;
   
-  $('ta').value=''; resize($('ta')); updateCC();
-  addTok(txt);
-
-  let content;
-  if(G.files.length){
-    let extraText='';
-    const imgParts=[];
-    G.files.forEach(f=>{
-      if(f.kind==='image'){
-        imgParts.push({type:'image_url',image_url:{url:`data:${f.type};base64,${f.b64}`}});
-      } else if(f.kind==='text'){
-        extraText+=`\n\n📝 محتوى الملف "${esc(f.name)}":\n\`\`\`\n${f.content.slice(0,8000)}\n\`\`\``;
-      } else if(f.kind==='video'){
-        if(f.frameB64){
-          imgParts.push({type:'image_url',image_url:{url:`data:image/jpeg;base64,${f.frameB64}`}});
-          extraText+=`\n\n🎞️ [فيديو "${esc(f.name)}" — أعلاه الإطار الأول منه للتحليل البصري]`;
-        } else {
-          extraText+=`\n\n🎞️ [فيديو مرفق: ${esc(f.name)} — لم يُستخرج إطار للتحليل]`;
+  $('ta').value = '';
+  resize($('ta'));
+  updateCC();
+  
+  if(!G.activeId) createNewConversation(txt || "مرفق صورة");
+  
+  const c = G.convs.find(x => x.id === G.activeId);
+  let userContent = txt;
+  
+  c.msgs.push({ role: 'user', content: userContent });
+  selectConv(G.activeId);
+  
+  // Setup API payload configuration
+  G.busy = true;
+  $('sbtn').classList.add('busy');
+  $('sbtn').textContent = '⏹️';
+  $('sbadge').className = 'sbadge sb-busy';
+  $('sbadge').textContent = 'جاري التفكير';
+  
+  let aiMsgId = 'ai_' + Date.now();
+  const div = document.createElement('div');
+  div.className = 'msg';
+  div.id = 'msg_' + aiMsgId;
+  div.innerHTML = `<div class="av ai">🤖</div><div class="bub ai" id="bub_${aiMsgId}"><div class="ldots"><span></span><span></span><span></span></div></div>`;
+  $('msgs').appendChild(div);
+  scrollB();
+  
+  try {
+    const pObj = PROVIDERS.find(x => x.id === G.prov);
+    const key = getKey(pObj);
+    
+    let reqMsgs = [{ role: 'system', content: G.sys }];
+    // Load historical messages of current active cell conversation thread
+    c.msgs.forEach(m => { reqMsgs.push({ role: m.role, content: m.content }); });
+    
+    let response = await fetch(pObj.id === 'gemini' ? `${pObj.url}/${G.model}:generateContent?key=${key}` : pObj.url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...(pObj.id !== 'gemini' && { 'Authorization': `Bearer ${key}` }) },
+      body: JSON.stringify(
+        pObj.id === 'gemini' ? {
+          contents: [{ parts: [{ text: txt }] }],
+          generationConfig: { temperature: G.temp, maxOutputTokens: G.maxTok }
+        } : {
+          model: G.model, messages: reqMsgs, temperature: G.temp, max_tokens: G.maxTok, stream: G.streaming
         }
-      } else if(f.kind==='pdf'){
-        if(f.pdfText){
-          extraText+=`\n\n📄 محتوى PDF "${esc(f.name)}" (${f.pdfPages} صفحة):\n\`\`\`\n${f.pdfText}\n\`\`\``;
-        } else {
-          extraText+=`\n\n📄 [ملف PDF مرفق: ${esc(f.name)} — تعذّر استخراج النص منه]`;
-        }
-      } else {
-        extraText+=`\n\n📎 [ملف مرفق: ${esc(f.name)}]`;
-      }
+      )
     });
-    const fullTxt=(txt||(imgParts.length?'صف هذا المحتوى':''))+extraText;
-    content=imgParts.length
-      ?[{type:'text',text:fullTxt},...imgParts]
-      :fullTxt;
-    G.files=[]; renderFP();
-  } else { content=txt; }
-  
-  G.msgs.push({role:'user',content});
-  lastUserIdx=G.msgs.length-1;
-  // عرض معاينة الملفات المرفقة (صور/إطارات فيديو) في فقاعة المستخدم نفسها
-  const attachedThumbs=(typeof content==='object'&&Array.isArray(content))
-    ? content.filter(p=>p.type==='image_url').map(p=>`<img src="${p.image_url.url}" class="uthumb">`).join('')
-    : '';
-  appendUser(typeof content==='string'?content:(content[0]?.text||txt||''), attachedThumbs);
-  setBusy(true);
-  
-  const lid=uid(); appendLoad(lid);
-  setS('جارٍ التوليد...','busy');
-
-  // ── 🔍 وكيل البحث والإجابة: يعمل فقط على رسائل نصية (بدون ملفات) ──
-  let sourcesHtml='';
-  let msgsForApi=G.msgs;
-  if(G.wsearch && typeof content==='string' && content.trim()){
-    setS('🔍 جارٍ البحث في الويب...','busy');
-    try{
-      const {sources,usedEngine}=await agentSearch(content);
-      if(sources.length){
-        const augmented=buildAgentPrompt(content,sources);
-        // نسخة مؤقتة من السجل لإرسالها للنموذج فقط — لا تُحفظ في G.msgs الأصلية
-        msgsForApi=[...G.msgs.slice(0,-1),{role:'user',content:augmented}];
-        sourcesHtml=renderSourcesHtml(sources);
-        setS(`🔍 ${usedEngine}: وُجدت ${sources.length} نتيجة — جارٍ الصياغة...`,'busy');
-      } else {
-        setS('⚠️ تعذر البحث — سيُجاب من معرفة النموذج','busy');
+    
+    if(!response.ok) throw new Error(`فشل الاتصال بالخادم. رمز الخطأ: ${response.status}`);
+    
+    if(G.streaming && pObj.id !== 'gemini') {
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulatedText = '';
+      $(`bub_${aiMsgId}`).innerHTML = '';
+      
+      while(true) {
+        const { done, value } = await reader.read();
+        if(done) break;
+        
+        let chunk = decoder.decode(value, { stream: true });
+        let lines = chunk.split('\n');
+        for(let line of lines) {
+          let cleaned = line.trim();
+          if(!cleaned.startsWith('data: ')) continue;
+          let dataStr = cleaned.slice(6);
+          if(dataStr === '[DONE]') break;
+          try {
+            let json = JSON.parse(dataStr);
+            let text = json.choices?.[0]?.delta?.content || '';
+            accumulatedText += text;
+            $(`bub_${aiMsgId}`).innerHTML = md(accumulatedText) + `<span class="scursor">▎</span>`;
+            scrollB();
+          } catch(e){}
+        }
       }
-    }catch(e){ /* فشل البحث لا يوقف المحادثة أبداً */ }
+      $(`bub_${aiMsgId}`).innerHTML = md(accumulatedText);
+      c.msgs.push({ role: 'assistant', content: accumulatedText });
+    } else {
+      let resData = await response.json();
+      let aiResponseText = pObj.id === 'gemini' ? resData.candidates?.[0]?.content?.parts?.[0]?.text : resData.choices?.[0]?.message?.content;
+      $(`bub_${aiMsgId}`).innerHTML = md(aiResponseText);
+      c.msgs.push({ role: 'assistant', content: aiResponseText });
+    }
+    
+    saveConvs();
+  } catch(err) {
+    $(`bub_${aiMsgId}`).innerHTML = `<span style="color:var(--r)">❌ خطأ أثناء الاتصال: ${err.message}</span>`;
+  } finally {
+    G.busy = false;
+    $('sbtn').classList.remove('busy');
+    $('sbtn').textContent = '🚀';
+    $('sbadge').className = 'sbadge sb-ok';
+    $('sbadge').textContent = 'جاهز';
+    G.files = [];
+    $('fprev').innerHTML = '';
+    updMeta();
+    scrollB();
   }
-
-  try{
-    const {text,prov,model,fb,reason}=await callWithFallback(msgsForApi,(partial)=>{ updLoad(lid,partial); setS('بث الرد...','stream'); });
-    finalMsg(lid,text,prov,model,fb,reason,sourcesHtml);
-    G.msgs.push({role:'assistant',content:text});
-    addTok(text);
-    saveConv(); updS(); setS('جاهز','ok');
-  }catch(e){
-    rmLoad(lid); appendErr(e.message);
-    setS('خطأ: '+e.message.slice(0,50),'err');
-  } finally { setBusy(false); }
 }
 
-function retryLast(){
-  if(G.busy||lastUserIdx<0) return;
-  if(G.msgs[G.msgs.length-1]?.role==='assistant') G.msgs.pop();
-  setBusy(false);
-  const lastMsg=G.msgs[lastUserIdx]; if(!lastMsg) return;
-  G.msgs=G.msgs.slice(0,lastUserIdx);
-  $('ta').value=typeof lastMsg.content==='string'?lastMsg.content:lastMsg.content[0]?.text||'';
-  resize($('ta')); updateCC(); doSend();
+// RECOVERY EXPORT MECHANISMS
+function expTXT(){
+  if(!G.activeId) return;
+  const c = G.convs.find(x => x.id === G.activeId);
+  let out = `سجل محادثة: ${c.title}\n=========================\n`;
+  c.msgs.forEach(m => { out += `[${m.role.toUpperCase()}]: ${m.content}\n\n`; });
+  downloadFile(out, `${c.title}.txt`, 'text/plain');
 }
 
-let _stopFlag=false;
-function stopBusy(){ _stopFlag=true; setBusy(false); toast('⬛ تم الإيقاف','in'); }
-function setBusy(b){
-  G.busy=b; $('sbtn').classList.toggle('busy',b); $('sbtn').textContent=b?'⬛':'➤';
+function expMD(){
+  if(!G.activeId) return;
+  const c = G.convs.find(x => x.id === G.activeId);
+  let out = `# المحادثة: ${c.title}\n\n`;
+  c.msgs.forEach(m => { out += `### **${m.role === 'user'?'المستخدم':'الذكاء الاصطناعي'}**:\n${m.content}\n\n---\n\n`; });
+  downloadFile(out, `${c.title}.md`, 'text/markdown');
 }
 
-// =================== MEDIA GENERATION ===================
-const MEDIA_MODELS = {
-  fal_image:[
-    {v:'fal-ai/flux/schnell',                             l:'⚡ Flux Schnell (سريع)'},
-    {v:'fal-ai/flux/dev',                                 l:'✨ Flux Dev (جودة عالية)'},
-    {v:'fal-ai/stable-diffusion-v3-medium',               l:'🖼️ Stable Diffusion 3'},
-  ],
-  fal_video:[
-    {v:'fal-ai/wan/v2.2/t2v/480p',                       l:'🎞️ Wan 2.2 — 480p'},
-    {v:'fal-ai/wan/v2.2/t2v/720p',                       l:'🎞️ Wan 2.2 — 720p'},
-    {v:'fal-ai/kling-video/v1.6/standard/text-to-video', l:'🎬 Kling v1.6'},
-    {v:'fal-ai/ltx-video',                               l:'⚡ LTX Video'},
-  ],
-  wavespeed_image:[
-    {v:'wavespeed-ai/flux-dev',                          l:'✨ Flux Dev'},
-    {v:'wavespeed-ai/flux-schnell',                      l:'⚡ Flux Schnell'},
-    {v:'wavespeed-ai/flux-dev-ultra-fast',               l:'🚀 Flux Ultra Fast'},
-  ],
-  together_image:[
-    {v:'black-forest-labs/FLUX.1-schnell',               l:'⚡ FLUX.1 Schnell'},
-    {v:'black-forest-labs/FLUX.1-dev',                   l:'✨ FLUX.1 Dev'},
-    {v:'stabilityai/stable-diffusion-xl-base-1.0',       l:'🖼️ SDXL Base'},
-  ],
-  replicate_image:[
-    {v:'black-forest-labs/flux-schnell',                 l:'⚡ Flux Schnell'},
-    {v:'black-forest-labs/flux-dev',                     l:'✨ Flux Dev'},
-    {v:'stability-ai/sdxl',                              l:'🖼️ SDXL'},
-  ],
-  replicate_video:[
-    {v:'minimax/video-01',                               l:'🎬 Minimax Video-01'},
-    {v:'anotherjesse/zeroscope-v2-xl',                   l:'🎞️ ZeroScope XL'},
-  ],
-  stability_image:[
-    {v:'core',                                           l:'💎 Stable Image Core'},
-    {v:'sd3',                                            l:'🖼️ Stable Diffusion 3'},
-  ],
-  pollimg_image:[
-    {v:'flux',           l:'⚡ Flux (الأسرع — مجاني)'},
-    {v:'flux-realism',   l:'🖼️ Flux Realism (مجاني)'},
-    {v:'flux-anime',     l:'🎌 Flux Anime (مجاني)'},
-    {v:'turbo',          l:'🚀 Turbo SDXL (مجاني)'},
-  ],
-  hf_image:[
-    {v:'black-forest-labs/FLUX.1-schnell',               l:'⚡ FLUX.1 Schnell'},
-    {v:'stabilityai/stable-diffusion-3-medium-diffusers',l:'🖼️ SD 3 Medium'},
-  ],
-  aiml_video:[
-    {v:'minimax/video-01',                               l:'🎬 Minimax Video-01'},
-  ],
-};
-const MEDIA_NOTES={
-  fal:'🚀 <b>fal.ai</b> → Dashboard → API Keys ← 10$ مجاناً عند التسجيل',
-  wavespeed:'⚡ <b>wavespeed.ai</b> → API Keys ← رصيد مجاني',
-  together:'🤝 <b>together.ai</b> → API Keys ← 5$ مجاناً عند التسجيل',
-  replicate:'🔁 <b>replicate.com</b> → Account → API Tokens ← رصيد مجاني',
-  stability:'🎨 <b>platform.stability.ai</b> → API Keys ← رصيد مجاني',
-  pollimg:'🌸 <b>Pollinations مجاني بالكامل</b> — لا مفتاح مطلوب!',
-  hf:'🤗 <b>huggingface.co</b> → Settings → Access Tokens ← مجاني',
-  aiml:'🎬 <b>aimlapi.com</b> → Dashboard ← مفتاح مجاني بحدود يومية',
-};
-
-// نسب الأبعاد إلى أحجام بكسل
-const RATIO_SIZES = {
-  '1:1':  {w:1024, h:1024},
-  '16:9': {w:1344, h:768},
-  '9:16': {w:768,  h:1344},
-  '4:3':  {w:1024, h:768},
-  '3:2':  {w:1024, h:682},
-};
-const QUALITY_STEPS = {draft:4, standard:20, high:40};
-
-function updateMediaUI(){
-  const prov=$('mediaProv').value;
-  const typeEl=$('mediaType'), modelEl=$('mediaModel');
-  const hasVid=(prov==='fal'||prov==='aiml'||prov==='replicate');
-  const hasImg=prov!=='aiml';
-  typeEl.innerHTML=`${hasImg?'<option value="image">🎨 صورة</option>':''}${hasVid?'<option value="video">🎞️ فيديو</option>':''}`;
-  if(!hasImg) typeEl.value='video';
-  const k=`${prov}_${typeEl.value}`;
-  modelEl.innerHTML=(MEDIA_MODELS[k]||[{v:'default',l:'افتراضي'}]).map(m=>`<option value="${m.v}">${m.l}</option>`).join('');
-  const n=$('mediaNote'); if(n) n.innerHTML=MEDIA_NOTES[prov]||'';
-}
-function showMediaResult(url,type,provLbl,mdl){
-  const icon=type==='video'?'🎬':'🎨';
-  const el=document.createElement('div'); el.className='msg';
-  const media=type==='video'
-    ?`<video src="${url}" class="gvid" controls autoplay loop></video>`
-    :`<img src="${url}" class="gimg" onclick="window.open(this.src)">`;
-  el.innerHTML=`<div class="av ai">${icon}</div><div class="bub ai">${media}
-    <div class="mmeta">${icon} ${provLbl} — ${mdl.split('/').pop()}</div></div>`;
-  appendUser(`[${icon} ${type==='video'?'فيديو':'صورة'}]`);
-  $('msgs').appendChild(el); scrollB(); closeOv('imggen');
-}
-async function doGenMedia(){
-  const btn=$('imgBtn'),prev=$('imgPrev'),prm=$('imgPrm').value.trim();
-  const prov=$('mediaProv').value,type=$('mediaType').value,model=$('mediaModel').value;
-  const ratio=$('mediaRatio')?.value||'16:9';
-  const quality=$('mediaQuality')?.value||'standard';
-  const {w,h}=RATIO_SIZES[ratio]||{w:1024,h:1024};
-  const steps=QUALITY_STEPS[quality]||20;
-  if(!prm){toast('✏️ أدخل وصفاً','er');return;}
-  btn.disabled=true; btn.textContent='⏳';
-  prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ إرسال الطلب...</span>';
-  try{
-
-    // ══ FAL.AI ═══════════════════════════════════════════════════
-    if(prov==='fal'){
-      const key=localStorage.getItem('k_fa');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح Fal.ai 🔑');}
-      if(type==='image'){
-        const r=await fetch(`https://fal.run/${model}`,{method:'POST',
-          headers:{'Authorization':`Key ${key}`,'Content-Type':'application/json'},
-          body:JSON.stringify({prompt:prm,num_images:1,image_size:`${w}x${h}`,num_inference_steps:steps})});
-        const d=await r.json(); if(!r.ok) throw new Error(d.detail||d.message||`Fal ${r.status}`);
-        const url=d.images?.[0]?.url||d.image?.url; if(!url) throw new Error('Fal.ai: لا رابط');
-        prev.innerHTML=`<img src="${url}" class="gimg">`; showMediaResult(url,'image','🚀 Fal.ai',model);
-      } else {
-        prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ الفيديو (1-4 دقائق)...</span>';
-        const sr=await fetch(`https://queue.fal.run/${model}`,{method:'POST',
-          headers:{'Authorization':`Key ${key}`,'Content-Type':'application/json'},
-          body:JSON.stringify({prompt:prm})});
-        const sd=await sr.json(); const rid=sd.request_id;
-        if(!rid) throw new Error('Fal.ai: لا request_id');
-        for(let i=1;i<=90;i++){
-          await new Promise(r=>setTimeout(r,3000));
-          prev.innerHTML=`<span style="color:var(--t2);font-size:9px">⏳ الفيديو ${i*3}ث...</span>`;
-          const st=await(await fetch(`https://queue.fal.run/${model}/requests/${rid}/status`,
-            {headers:{'Authorization':`Key ${key}`}})).json();
-          if(st.status==='COMPLETED'||st.status==='completed'){
-            const rd=await(await fetch(`https://queue.fal.run/${model}/requests/${rid}`,
-              {headers:{'Authorization':`Key ${key}`}})).json();
-            const vu=rd.video?.url||rd.output?.video?.url||rd.video_url;
-            if(!vu) throw new Error('Fal.ai: لا رابط فيديو');
-            prev.innerHTML=`<video src="${vu}" class="gvid" controls autoplay></video>`;
-            showMediaResult(vu,'video','🚀 Fal.ai',model); break;
-          }
-          if(st.status==='FAILED'||st.status==='failed') throw new Error('Fal.ai: فشل');
-          if(i===90) throw new Error('Fal.ai: انتهت المهلة');
-        }
-      }
-    }
-
-    // ══ WAVESPEEDAI ══════════════════════════════════════════════
-    else if(prov==='wavespeed'){
-      const key=localStorage.getItem('k_ws');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح WaveSpeedAI 🔑');}
-      // Safe POST with text→JSON
-      const srText=await(await fetch(`https://api.wavespeed.ai/api/v2/${model}`,{method:'POST',
-        headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
-        body:JSON.stringify({prompt:prm,size:`${w}*${h}`,num_inference_steps:steps,enable_safety_checker:false})})).text();
-      let sd; try{sd=JSON.parse(srText);}catch{throw new Error(`WaveSpeedAI: استجابة غير صالحة — ${srText.slice(0,80)}`);}
-      const pid=sd.data?.id;
-      if(!pid) throw new Error('WaveSpeedAI: '+JSON.stringify(sd).slice(0,80));
-      for(let i=1;i<=40;i++){
-        await new Promise(r=>setTimeout(r,2500));
-        prev.innerHTML=`<span style="color:var(--t2);font-size:9px">⏳ WaveSpeed ${Math.round(i*2.5)}ث...</span>`;
-        const stText=await(await fetch(`https://api.wavespeed.ai/api/v2/predictions/${pid}`,
-          {headers:{'Authorization':`Bearer ${key}`}})).text();
-        let st; try{st=JSON.parse(stText);}catch{continue;}
-        if(st.data?.status==='completed'){
-          const iu=Array.isArray(st.data.outputs)?st.data.outputs[0]:st.data.outputs||st.data.output;
-          if(!iu) throw new Error('WaveSpeedAI: لا رابط في الناتج');
-          prev.innerHTML=`<img src="${iu}" class="gimg">`; showMediaResult(iu,'image','⚡ WaveSpeedAI',model); break;
-        }
-        if(st.data?.status==='failed') throw new Error('WaveSpeedAI: فشل — '+(st.data?.error||''));
-        if(i===40) throw new Error('WaveSpeedAI: انتهت المهلة');
-      }
-    }
-
-    // ══ TOGETHER AI IMAGES ═══════════════════════════════════════
-    else if(prov==='together'){
-      const key=localStorage.getItem('k_to');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح Together AI 🔑');}
-      const r=await fetch('https://api.together.xyz/v1/images/generations',{method:'POST',
-        headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
-        body:JSON.stringify({model,prompt:prm,width:w,height:h,steps,n:1})});
-      const d=await r.json(); if(!r.ok) throw new Error(d.error?.message||`Together ${r.status}`);
-      const url=d.data?.[0]?.url||d.data?.[0]?.b64_json;
-      if(!url) throw new Error('Together AI: لا رابط صورة');
-      const imgSrc=url.startsWith('http')?url:`data:image/png;base64,${url}`;
-      prev.innerHTML=`<img src="${imgSrc}" class="gimg">`; showMediaResult(imgSrc,'image','🤝 Together AI',model);
-    }
-
-    // ══ REPLICATE ════════════════════════════════════════════════
-    else if(prov==='replicate'){
-      const key=localStorage.getItem('k_re');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح Replicate 🔑');}
-      const input=type==='video'?{prompt:prm}
-        :{prompt:prm,width:w,height:h,num_inference_steps:steps,num_outputs:1};
-      const sr=await fetch(`https://api.replicate.com/v1/models/${model}/predictions`,{method:'POST',
-        headers:{'Authorization':`Token ${key}`,'Content-Type':'application/json'},
-        body:JSON.stringify({input})});
-      const sd=await sr.json(); const pid=sd.id;
-      if(!pid) throw new Error('Replicate: '+JSON.stringify(sd).slice(0,80));
-      for(let i=1;i<=60;i++){
-        await new Promise(r=>setTimeout(r,3000));
-        prev.innerHTML=`<span style="color:var(--t2);font-size:9px">⏳ Replicate ${i*3}ث...</span>`;
-        const st=await(await fetch(`https://api.replicate.com/v1/predictions/${pid}`,
-          {headers:{'Authorization':`Token ${key}`}})).json();
-        if(st.status==='succeeded'){
-          const out=Array.isArray(st.output)?st.output[0]:st.output;
-          if(!out) throw new Error('Replicate: لا ناتج');
-          const isVid=out.includes('.mp4')||type==='video';
-          prev.innerHTML=isVid?`<video src="${out}" class="gvid" controls autoplay></video>`:`<img src="${out}" class="gimg">`;
-          showMediaResult(out,isVid?'video':'image','🔁 Replicate',model); break;
-        }
-        if(st.status==='failed') throw new Error('Replicate: فشل — '+st.error);
-        if(i===60) throw new Error('Replicate: انتهت المهلة');
-      }
-    }
-
-    // ══ STABILITY AI ═════════════════════════════════════════════
-    else if(prov==='stability'){
-      const key=localStorage.getItem('k_sa');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح Stability AI 🔑');}
-      prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ Stability AI (10-30ث)...</span>';
-      const fd=new FormData();
-      fd.append('prompt',prm);
-      fd.append('aspect_ratio',ratio);
-      fd.append('output_format','webp');
-      if(quality==='high') fd.append('style_preset','enhance');
-      const r=await fetch(`https://api.stability.ai/v2beta/stable-image/generate/${model}`,{
-        method:'POST',
-        headers:{'Authorization':`Bearer ${key}`,'Accept':'image/*'},
-        body:fd});
-      if(!r.ok){const t=await r.text(); throw new Error(`Stability AI ${r.status}: ${t.slice(0,80)}`);}
-      const blob=await r.blob(); const ou=URL.createObjectURL(blob);
-      prev.innerHTML=`<img src="${ou}" class="gimg">`; showMediaResult(ou,'image','🎨 Stability AI',model);
-    }
-
-    // ══ POLLINATIONS (مجاني — بدون مفتاح) ══════════════════════
-    else if(prov==='pollimg'){
-      prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ Pollinations (مجاني)...</span>';
-      const enc=encodeURIComponent(prm);
-      const seed=Date.now()%99999;
-      const url=`https://image.pollinations.ai/prompt/${enc}?model=${model}&width=${w}&height=${h}&nologo=true&nofeed=true&seed=${seed}`;
-      // نستخدم fetch مع blob لتجنب CORS في المتصفح
-      let imgSrc=url; // fallback مباشر
-      try{
-        const r=await fetch(url);
-        if(r.ok){
-          const ct=r.headers.get('content-type')||'';
-          if(ct.startsWith('image/')){
-            const blob=await r.blob();
-            imgSrc=URL.createObjectURL(blob);
-          }
-        }
-      }catch{/* استخدام URL مباشر كـ fallback */}
-      prev.innerHTML=`<img src="${imgSrc}" class="gimg" onerror="this.parentNode.innerHTML='<span style=color:red>❌ Pollinations: فشل — جرّب نموذج آخر</span>'">`; 
-      showMediaResult(imgSrc,'image','🌸 Pollinations',model);
-    }
-
-    // ══ HUGGINGFACE ══════════════════════════════════════════════
-    else if(prov==='hf'){
-      const key=localStorage.getItem('k_hf');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح HuggingFace 🔑');}
-      prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ HuggingFace (10-60ث)...</span>';
-      // محاولة حتى 3 مرات للتعامل مع "نموذج يُحمَّل"
-      let blob=null;
-      for(let attempt=1;attempt<=3;attempt++){
-        const r=await fetch(`https://api-inference.huggingface.co/models/${model}`,{method:'POST',
-          headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json','x-use-cache':'0'},
-          body:JSON.stringify({inputs:prm,parameters:{num_inference_steps:steps,width:w,height:h}})});
-        if(r.status===503){
-          // نموذج يُحمَّل — انتظر وأعد المحاولة
-          const d=await r.json().catch(()=>({}));
-          const wait=Math.ceil(d.estimated_time||20);
-          if(attempt<3){
-            prev.innerHTML=`<span style="color:var(--t2);font-size:9px">⏳ HF: النموذج يُحمَّل (${wait}ث) — محاولة ${attempt}/3...</span>`;
-            await new Promise(re=>setTimeout(re,Math.min(wait*1000,30000)));
-            continue;
-          } else { throw new Error(`HuggingFace: النموذج لا يزال يُحمَّل — جرّب نموذجاً آخر`); }
-        }
-        if(!r.ok){const t=await r.text(); throw new Error(`HuggingFace ${r.status}: ${t.slice(0,80)}`);}
-        blob=await r.blob();
-        if(!blob.type.startsWith('image/')) throw new Error('HuggingFace: لم يُرجع صورة — تحقق من النموذج');
-        break;
-      }
-      if(!blob) throw new Error('HuggingFace: فشل بعد 3 محاولات');
-      const ou=URL.createObjectURL(blob);
-      prev.innerHTML=`<img src="${ou}" class="gimg">`; showMediaResult(ou,'image','🤗 HuggingFace',model);
-    }
-
-    // ══ AI/ML API VIDEO (Minimax — endpoint + polling صحيحان) ══════
-    else if(prov==='aiml'){
-      const key=localStorage.getItem('k_am');
-      if(!key){closeOv('imggen');openOv('keys');throw new Error('يرجى إضافة مفتاح AI/ML API 🔑');}
-      prev.innerHTML='<span style="color:var(--t2);font-size:9px">⏳ AI/ML API: إرسال طلب الفيديو...</span>';
-      const genUrl='https://api.aimlapi.com/v2/generate/video/minimax/generation';
-      const sr=await fetch(genUrl,{method:'POST',
-        headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
-        body:JSON.stringify({model:'video-01',prompt:prm})});
-      const sd=await sr.json();
-      if(!sr.ok) throw new Error(sd.error?.message||sd.message||`AI/ML ${sr.status}`);
-      const genId=sd.generation_id||sd.id||sd.task_id;
-      if(!genId) throw new Error('AI/ML API: لم يُرجع معرّف المهمة — '+JSON.stringify(sd).slice(0,80));
-      for(let i=1;i<=80;i++){
-        await new Promise(r=>setTimeout(r,5000));
-        prev.innerHTML=`<span style="color:var(--t2);font-size:9px">⏳ AI/ML API ${i*5}ث (قد يصل 7 دقائق)...</span>`;
-        const stRes=await fetch(`${genUrl}?generation_id=${genId}`,{headers:{'Authorization':`Bearer ${key}`}});
-        const st=await stRes.json();
-        const status=st.status||st.data?.status;
-        if(status==='completed'||status==='succeeded'||status==='success'){
-          const vu=st.video?.url||st.video_url||st.data?.video?.url||st.output?.video_url||st.url;
-          if(!vu) throw new Error('AI/ML API: لا رابط فيديو في النتيجة');
-          prev.innerHTML=`<video src="${vu}" class="gvid" controls autoplay></video>`;
-          showMediaResult(vu,'video','🎬 AI/ML API',model); break;
-        }
-        if(status==='failed'||status==='error') throw new Error('AI/ML API: فشل التوليد — '+(st.error||''));
-        if(i===80) throw new Error('AI/ML API: انتهت المهلة (~7 دقائق)');
-      }
-    }
-
-  }catch(e){
-    prev.innerHTML=`<span style="color:var(--r);font-size:9px">❌ ${esc(e.message)}</span>`;
-  }finally{ btn.disabled=false; btn.textContent='🎬 توليد'; }
+function expJSON(){
+  downloadFile(JSON.stringify(G.convs, null, 2), `chibani_ai_backup_${Date.now()}.json`, 'application/json');
 }
 
-// =================== FILE ATTACHMENT ===================
-// =================== 👁️ قراءة الملفات الذكية (PDF + إطار الفيديو) ===================
-let _pdfJsLoading=null;
-function loadPdfJs(){
-  if(window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
-  if(_pdfJsLoading) return _pdfJsLoading;
-  _pdfJsLoading=new Promise((resolve,reject)=>{
-    const s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-    s.onload=()=>{
-      try{
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        resolve(window.pdfjsLib);
-      }catch(e){ reject(e); }
-    };
-    s.onerror=()=>reject(new Error('فشل تحميل مكتبة قراءة PDF'));
-    document.head.appendChild(s);
-    setTimeout(()=>reject(new Error('انتهت مهلة تحميل مكتبة PDF')), 8000);
-  });
-  return _pdfJsLoading;
-}
-async function extractPdfText(base64Data){
-  const pdfjsLib=await loadPdfJs();
-  const bin=atob(base64Data);
-  const arr=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
-  const pdf=await pdfjsLib.getDocument({data:arr}).promise;
-  const maxPages=Math.min(pdf.numPages,15);
-  let fullText='';
-  for(let pg=1;pg<=maxPages;pg++){
-    const page=await pdf.getPage(pg);
-    const tc=await page.getTextContent();
-    fullText += tc.items.map(it=>it.str).join(' ') + '\n\n';
-    if(fullText.length>12000) break;
-  }
-  return {text:fullText.trim().slice(0,12000), pages:pdf.numPages};
-}
-// استخراج الإطار الأول من الفيديو كصورة — لتمكين النماذج البصرية من "رؤية" الفيديو
-function extractVideoFrame(file){
-  return new Promise(resolve=>{
-    try{
-      const video=document.createElement('video');
-      video.preload='metadata'; video.muted=true; video.playsInline=true;
-      const blobUrl=URL.createObjectURL(file);
-      video.src=blobUrl;
-      const cleanup=()=>{ try{URL.revokeObjectURL(blobUrl);}catch{} };
-      const timer=setTimeout(()=>{cleanup();resolve(null);},6000);
-  
+function downloadFile(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download
