@@ -1,11 +1,10 @@
 # ╔══════════════════════════════════════════════════════════════════╗
-# ║   🚀 Chibani Lotfi AI — APK Builder v5 (SIGNED + DEBUG-CLEAR)  ║
-# ║   كل خطوة تطبع تشخيصاً واضحاً — لا مفاجآت صامتة                ║
+# ║  🚀 Chibani Lotfi AI — APK Builder v6 (keystore.properties)   ║
+# ║  توقيع موثوق 100% — لا System.getenv() ولا مشاكل تمرير متغيرات ║
 # ╚══════════════════════════════════════════════════════════════════╝
 #
 # 🔑 Secrets المطلوبة في GitHub (Settings → Secrets → Actions):
 #   KEYSTORE_BASE64 · KEY_ALIAS · KEY_PASSWORD · STORE_PASSWORD
-#   (راجع HOWTO_SIGN.md للتفاصيل)
 # ══════════════════════════════════════════════════════════════════
 
 name: 🚀 Build Chibani Lotfi AI — Signed APK
@@ -48,49 +47,75 @@ jobs:
           echo "✅ Android SDK OK"
 
       # ═══════════════════════════════════════════════════════════
-      # 🔑 فحص الـ Secrets — يطبع بوضوح أيها موجود فعلاً
+      # 🔑 فحص الـ Secrets
       # ═══════════════════════════════════════════════════════════
-      - name: 🔑 Check Signing Secrets (تشخيص واضح)
+      - name: 🔑 Check Signing Secrets
         id: sec_check
         run: |
           echo "═══════════════════════════════════════════"
-          echo "🔍 فحص توفر أسرار التوقيع..."
-          echo "═══════════════════════════════════════════"
           HAS_KS="false"; HAS_ALIAS="false"; HAS_KP="false"; HAS_SP="false"
-
-          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
-            HAS_KS="true"; echo "✅ KEYSTORE_BASE64: موجود (طول: ${#KEYSTORE_BASE64} حرف تقريباً)"
-          else
-            echo "❌ KEYSTORE_BASE64: غير موجود!"
-          fi
+          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then HAS_KS="true"; echo "✅ KEYSTORE_BASE64: موجود"; else echo "❌ KEYSTORE_BASE64: غير موجود!"; fi
           if [ -n "${{ secrets.KEY_ALIAS }}" ]; then HAS_ALIAS="true"; echo "✅ KEY_ALIAS: موجود"; else echo "❌ KEY_ALIAS: غير موجود!"; fi
           if [ -n "${{ secrets.KEY_PASSWORD }}" ]; then HAS_KP="true"; echo "✅ KEY_PASSWORD: موجود"; else echo "❌ KEY_PASSWORD: غير موجود!"; fi
           if [ -n "${{ secrets.STORE_PASSWORD }}" ]; then HAS_SP="true"; echo "✅ STORE_PASSWORD: موجود"; else echo "❌ STORE_PASSWORD: غير موجود!"; fi
-
           if [ "$HAS_KS" = "true" ] && [ "$HAS_ALIAS" = "true" ] && [ "$HAS_KP" = "true" ] && [ "$HAS_SP" = "true" ]; then
-            echo "🔏 جميع أسرار التوقيع موجودة → سيُبنى APK RELEASE موقّع"
+            echo "🔏 جميع الأسرار موجودة → بناء RELEASE موقّع"
             echo "will_sign=true" >> "$GITHUB_OUTPUT"
           else
-            echo "⚠️ ينقص سر واحد أو أكثر → سيُبنى APK DEBUG غير موقّع (سيظهر تحذير أمني عند التثبيت)"
+            echo "⚠️ ناقص سر → بناء DEBUG غير موقّع"
             echo "will_sign=false" >> "$GITHUB_OUTPUT"
           fi
           echo "═══════════════════════════════════════════"
+
+      # ═══════════════════════════════════════════════════════════
+      # 🔑 فك Keystore + تحقق فعلي من تطابق كلمة السر قبل أي بناء
+      # ═══════════════════════════════════════════════════════════
+      - name: 🔑 Decode & Verify Keystore
+        if: steps.sec_check.outputs.will_sign == 'true'
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-
-      - name: 🔑 Decode Keystore (إن وُجد)
-        if: steps.sec_check.outputs.will_sign == 'true'
+          STORE_PASSWORD:  ${{ secrets.STORE_PASSWORD }}
+          KEY_ALIAS:       ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD:    ${{ secrets.KEY_PASSWORD }}
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
-          if [ -s keystore.jks ]; then
-            echo "✅ Keystore decoded → $(du -sh keystore.jks | cut -f1)"
-            keytool -list -keystore keystore.jks -storepass "${{ secrets.STORE_PASSWORD }}" -alias "${{ secrets.KEY_ALIAS }}" > /dev/null 2>&1 \
-              && echo "✅ Keystore + alias + password صالحة ومتطابقة" \
-              || echo "❌ تحذير: فشل التحقق من Keystore/alias/password — تأكد من القيم الصحيحة في Secrets"
-          else
-            echo "❌ خطأ: فشل فك تشفير base64 — تأكد أن KEYSTORE_BASE64 صحيح وكامل بدون أسطر مفقودة"
+          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
+          if [ ! -s keystore.jks ]; then
+            echo "❌ فشل فك base64 — الملف فاضٍ. تأكد من نسخ KEYSTORE_BASE64 كاملاً بدون أسطر مفقودة."
             exit 1
           fi
+          echo "✅ Keystore decoded → $(du -sh keystore.jks | cut -f1)"
+
+          # ── تحقق حقيقي من كلمة سر الـ keystore وتطابق الـ alias ──
+          if keytool -list -keystore keystore.jks -storepass "$STORE_PASSWORD" > /tmp/ktlist.txt 2>&1; then
+            echo "✅ STORE_PASSWORD صحيحة ومطابقة لملف الـ keystore"
+          else
+            echo "❌ STORE_PASSWORD خاطئة! لا تتطابق مع الـ keystore المرفوع."
+            echo "── تفاصيل الخطأ ──"; cat /tmp/ktlist.txt
+            echo ""
+            echo "💡 الحل: أعد توليد keystore جديد بكلمة سر بسيطة (حروف وأرقام فقط، بدون @ # \$ % ! أو علامات خاصة)"
+            echo "   مثال: keytool -genkey -v -keystore chibani.jks -keyalg RSA -keysize 2048 -validity 10000 -alias chibani -storepass Chibani2026Pass -keypass Chibani2026Pass -dname \"CN=Chibani,OU=Dev,O=ChibaniAI,L=Annaba,ST=Annaba,C=DZ\""
+            echo "   ثم حدّث الأسرار الـ4 في GitHub بالقيم الجديدة"
+            exit 1
+          fi
+
+          if grep -q "alias name: $KEY_ALIAS" /tmp/ktlist.txt; then
+            echo "✅ KEY_ALIAS ($KEY_ALIAS) موجود في الـ keystore"
+          else
+            echo "❌ KEY_ALIAS ($KEY_ALIAS) غير موجود في هذا الـ keystore!"
+            echo "── الأسماء الموجودة فعلاً ──"
+            grep "alias name:" /tmp/ktlist.txt || echo "(لا شيء)"
+            exit 1
+          fi
+
+          # ── كتابة keystore.properties بدل الاعتماد على System.getenv() في Gradle ──
+          # (هذا يحل خطأ FlatMapProvider/AbstractMinimalProvider الناتج عن قيم env فاضية)
+          {
+            echo "storeFile=../../../keystore.jks"
+            echo "storePassword=$STORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > keystore.properties
+          echo "✅ keystore.properties تم إنشاؤه"
 
       - name: 📦 package.json
         run: |
@@ -102,7 +127,6 @@ jobs:
             dependencies:{'@capacitor/android':'^6.1.2','@capacitor/core':'^6.1.2'},
             devDependencies:{'@capacitor/cli':'^6.1.2'}
           },null,2));
-          console.log('✅ package.json');
           "
 
       - name: ⚙️ capacitor.config.json
@@ -115,18 +139,13 @@ jobs:
             android:{allowMixedContent:true,captureInput:true},
             server:{cleartext:true,allowNavigation:['*']}
           },null,2));
-          console.log('✅ capacitor.config.json');
           "
 
-      - name: 📁 Copy index.html → www/ (مع تأكيد UTF-8)
+      - name: 📁 Copy index.html → www/
         run: |
           mkdir -p www
           cp index.html www/index.html
-          file www/index.html
-          echo "✅ Bytes copied: $(wc -c < www/index.html)"
-          echo "✅ Lines: $(wc -l < www/index.html)"
-          # تأكيد عدم وجود أحرف تالفة في بداية الملف
-          head -c 200 www/index.html
+          echo "✅ $(wc -c < www/index.html) bytes copied"
 
       - name: 📥 npm install
         run: npm install
@@ -142,32 +161,52 @@ jobs:
           M="android/app/src/main/AndroidManifest.xml"
           sed -i 's/android:allowBackup="true"/android:allowBackup="true" android:usesCleartextTraffic="true" android:hardwareAccelerated="true"/' "$M"
           echo "✅ Manifest patched"
-          grep -o 'android:usesCleartextTraffic="[^"]*"' "$M" || echo "⚠️ لم يُطبَّق usesCleartextTraffic!"
 
-      - name: 🔏 Inject Signing Config (إن وُجدت الأسرار)
+      # ═══════════════════════════════════════════════════════════
+      # 🔏 حقن إعدادات التوقيع — يقرأ من keystore.properties (لا env vars)
+      # ═══════════════════════════════════════════════════════════
+      - name: 🔏 Inject Signing Config
         run: |
           GRADLE="android/app/build.gradle"
 
           if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
+            # ينقل keystore.properties إلى مجلد android/ ليقرأه build.gradle بسهولة
+            cp keystore.properties android/keystore.properties
+
+            # متغيرات تحميل الخصائص — تبقى خارج android{} (مسموح، Groovy عادي)
             sed -i '/^android {/i\
+            def keystorePropertiesFile = rootProject.file("keystore.properties")\
+            def keystoreProperties = new Properties()\
+            if (keystorePropertiesFile.exists()) {\
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))\
+            }\
+            ' "$GRADLE"
+
+            # ⚠️ مهم جداً: signingConfigs يجب أن يكون داخل android{} لا قبله!
+            # نستخدم /a\ (إضافة بعد السطر المطابق) بدل /i\ (إضافة قبله)
+            # هذا يضعه كأول سطر داخل android { ... } مباشرة
+            sed -i '/^android {/a\
             signingConfigs {\
                 release {\
-                    storeFile file("../../../keystore.jks")\
-                    storePassword System.getenv("STORE_PASSWORD")\
-                    keyAlias System.getenv("KEY_ALIAS")\
-                    keyPassword System.getenv("KEY_PASSWORD")\
+                    storeFile file(keystoreProperties.getProperty("storeFile", "../../../keystore.jks"))\
+                    storePassword keystoreProperties.getProperty("storePassword", "")\
+                    keyAlias keystoreProperties.getProperty("keyAlias", "")\
+                    keyPassword keystoreProperties.getProperty("keyPassword", "")\
                 }\
             }' "$GRADLE"
+
             sed -i '/buildTypes {/,/}/ s/release {/release {\n                signingConfig signingConfigs.release/' "$GRADLE"
-            echo "✅ Signing config injected into build.gradle"
-            grep -A2 "signingConfigs" "$GRADLE" || true
+            echo "✅ Signing config (keystore.properties) injected"
+
+            # ── تحقق فوري من صحة بنية الملف بعد الحقن ──
+            echo "── معاينة android{} block بعد الحقن ──"
+            sed -n '/^android {/,/^}/p' "$GRADLE" | head -20
           else
-            echo "⚠️ تخطي حقن إعدادات التوقيع — سيُبنى Debug APK"
+            echo "⚠️ تخطي التوقيع — Debug APK"
           fi
 
           sed -i 's/versionCode 1$/versionCode 13/'        "$GRADLE"
           sed -i 's/versionName "1.0"/versionName "13.0"/' "$GRADLE"
-          echo "✅ Version 13.0"
 
       - name: 🏗️ Build APK
         run: |
@@ -178,38 +217,25 @@ jobs:
             ./gradlew assembleRelease --no-daemon --stacktrace \
               -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
           else
-            echo "🔧 Building Debug APK (لا توقيع — أضف الأسرار الـ4 لإصدار موقّع)..."
+            echo "🔧 Building Debug APK..."
             ./gradlew assembleDebug --no-daemon --stacktrace \
               -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
           fi
         env:
           ANDROID_HOME:     ${{ env.ANDROID_HOME }}
           ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
-          STORE_PASSWORD:   ${{ secrets.STORE_PASSWORD }}
-          KEY_ALIAS:        ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD:     ${{ secrets.KEY_PASSWORD }}
 
-      - name: 📋 Collect APK + تقرير نهائي واضح
+      - name: 📋 Collect APK
         run: |
           mkdir -p dist
           APK=$(find android/app/build/outputs/apk -name "*.apk" | head -1)
-          echo "📦 الملف المُنتَج: $APK"
           cp "$APK" dist/ChibaniLotfiAI-V13-ULTRA.apk
           SIZE=$(du -sh dist/ChibaniLotfiAI-V13-ULTRA.apk | cut -f1)
-
-          echo "## 📱 نتيجة البناء" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
           if [[ "$APK" == *"release"* ]]; then
-            echo "### ✅ تم بناء APK **موقّع (Release)** — لن يظهر تحذير فيروس" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ APK موقّع (Release) — $SIZE" >> $GITHUB_STEP_SUMMARY
           else
-            echo "### ⚠️ تم بناء APK **Debug غير موقّع** — سيظهر تحذير أمني عند التثبيت" >> $GITHUB_STEP_SUMMARY
-            echo "أضف الأسرار الـ4 (KEYSTORE_BASE64, KEY_ALIAS, KEY_PASSWORD, STORE_PASSWORD) ثم أعد التشغيل." >> $GITHUB_STEP_SUMMARY
+            echo "### ⚠️ APK Debug غير موقّع — $SIZE" >> $GITHUB_STEP_SUMMARY
           fi
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| المعلومة | القيمة |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| 📦 الملف الأصلي | \`$(basename $APK)\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| 📏 الحجم | $SIZE |" >> $GITHUB_STEP_SUMMARY
 
       - name: 📤 Upload APK
         uses: actions/upload-artifact@v4
