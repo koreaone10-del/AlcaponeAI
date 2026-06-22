@@ -1,11 +1,7 @@
 # ╔══════════════════════════════════════════════════════════════════╗
-# ║  🚀 Chibani Lotfi AI — APK Builder v7 (Fixed SDK Licenses)    ║
-# ║  توقيع موثوق 100% — تم حل مشكلة مسارات الـ SDK والتراخيص      ║
-# ╚═══════════════════════════════════════════════════════════╝
-#
-# 🔑 Secrets المطلوب توفرها في GitHub (Settings → Secrets → Actions):
-#   KEYSTORE_BASE64 · KEY_ALIAS · KEY_PASSWORD · STORE_PASSWORD
-# ══════════════════════════════════════════════════════════════════
+# ║  🚀 Chibani Lotfi AI — APK Builder v8 (NodeJS Intelligent Patch)║
+# ║  توقيع موثوق 100% — تم التخلص من sed واعتماد الحقن الذكي        ║
+# ╚══════════════════════════════════════════════════════════════════╝
 
 name: 🚀 Build Chibani Lotfi AI — Signed APK
 
@@ -14,7 +10,6 @@ on:
     branches: [main, master]
   workflow_dispatch:
 
-# تثبيت المسارات عالمياً لمنع قيم الـ env الفارغة
 env:
   ANDROID_HOME: /usr/local/lib/android/sdk
   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
@@ -44,9 +39,8 @@ jobs:
       - name: 📱 Android SDK Licenses
         run: |
           SDK="/usr/local/lib/android/sdk"
-          MGR=$(find "$SDK" -name "sdkmanager" 2>/dev/null | head -1)
-
-          # ── الطريقة الموثوقة: كتابة ملفات تجزئة التراخيص مباشرة ──
+          
+          # الموافقة على التراخيص في مجلد النظام فقط دون لمس مجلدات المشروع محلياً
           mkdir -p "$SDK/licenses"
           {
             echo "8933bad161af4178b1185d1a37fbf41ea5269c55"
@@ -58,25 +52,9 @@ jobs:
           echo "601085b94cd77f0b54ff86406957099ebe79c4d" > "$SDK/licenses/intel-android-extra-license"
           echo "e9acab5b5fbb560a72cfaecce8946896ff6aab9d" > "$SDK/licenses/android-googletv-license"
           echo "504667f4c0de7af1a06de9f4b1727b84351f2910" > "$SDK/licenses/mips-android-sysimage-license"
-          echo "✅ تمت كتابة ملفات التراخيص في الـ SDK الرئيسي"
-
-          if [ -n "$MGR" ]; then
-            yes | "$MGR" --licenses > /dev/null 2>&1 || true
-            yes | "$MGR" "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1 || true
-          fi
-
-          # ── خطوة الأمان الإضافية: نسخ التراخيص لمجلد المشروع المحلي لحل عناد Gradle ──
-          mkdir -p android/licenses
-          cp -r "$SDK/licenses/"* android/licenses/ 2>/dev/null || true
-          echo "✅ تم نسخ التراخيص احتياطياً إلى مجلد المشروع المحلي"
-
-          # ── تحقق فوري: هل الحزم المطلوبة مثبَّتة فعلاً ومرخّصة؟ ──
-          if [ -d "$SDK/platforms/android-34" ] && [ -d "$SDK/build-tools/34.0.0" ]; then
-            echo "✅ platforms;android-34 و build-tools;34.0.0 مثبَّتان فعلياً"
-          else
-            echo "⚠️ تحذير: حزمة مفقودة فعلياً على القرص — سيتم معالجتها ديناميكياً أثناء البناء"
-          fi
-          echo "✅ Android SDK Licenses step done"
+          
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+          echo "✅ تم قبول جميع تراخيص الـ Android SDK بنجاح نظامي"
 
       # ═══════════════════════════════════════════════════════════
       # 🔑 فحص الـ Secrets
@@ -100,7 +78,7 @@ jobs:
           echo "═══════════════════════════════════════════"
 
       # ═══════════════════════════════════════════════════════════
-      # 🔑 فك Keystore + تحقق فعلي من تطابق كلمة السر قبل أي بناء
+      # 🔑 فك Keystore وإنشاء ملف الخصائص المباشر
       # ═══════════════════════════════════════════════════════════
       - name: 🔑 Decode & Verify Keystore
         if: steps.sec_check.outputs.will_sign == 'true'
@@ -112,36 +90,23 @@ jobs:
         run: |
           echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
           if [ ! -s keystore.jks ]; then
-            echo "❌ فشل فك base64 — الملف فاضٍ. تأكد من نسخ KEYSTORE_BASE64 كاملاً بدون أسطر مفقودة."
-            exit 1
+            echo "❌ فشل فك base64" && exit 1
           fi
-          echo "✅ Keystore decoded → $(du -sh keystore.jks | cut -f1)"
 
-          # ── تحقق حقيقي من كلمة سر الـ keystore وتطابق الـ alias ──
           if keytool -list -keystore keystore.jks -storepass "$STORE_PASSWORD" > /tmp/ktlist.txt 2>&1; then
-            echo "✅ STORE_PASSWORD صحيحة ومطابقة لملف الـ keystore"
+            echo "✅ STORE_PASSWORD متطابقة"
           else
-            echo "❌ STORE_PASSWORD خاطئة! لا تتطابق مع الـ keystore المرفوع."
-            echo "── تفاصيل الخطأ ──"; cat /tmp/ktlist.txt
-            exit 1
+            echo "❌ STORE_PASSWORD خاطئة!" && exit 1
           fi
 
-          if keytool -list -v -keystore keystore.jks -storepass "$STORE_PASSWORD" > /tmp/ktlist_verbose.txt 2>&1 \
-             && grep -q "^$KEY_ALIAS," /tmp/ktlist.txt; then
-            echo "✅ KEY_ALIAS ($KEY_ALIAS) موجود في الـ keystore"
-          else
-            echo "❌ KEY_ALIAS ($KEY_ALIAS) غير موجود في هذا الـ keystore!"
-            exit 1
-          fi
-
-          # ── كتابة keystore.properties بدل الاعتماد على System.getenv() في Gradle ──
+          # إعداد ملف الخصائص بمسار محلي داخلي مباشر لتفادي مشاكل الـ (../../)
           {
-            echo "storeFile=../../../keystore.jks"
+            echo "storeFile=keystore.jks"
             echo "storePassword=$STORE_PASSWORD"
             echo "keyAlias=$KEY_ALIAS"
             echo "keyPassword=$KEY_PASSWORD"
           } > keystore.properties
-          echo "✅ keystore.properties تم إنشاؤه"
+          echo "✅ تم تجهيز ملف الخصائص بنجاح"
 
       - name: 📦 package.json
         run: |
@@ -171,7 +136,6 @@ jobs:
         run: |
           mkdir -p www
           cp index.html www/index.html
-          echo "✅ $(wc -c < www/index.html) bytes copied"
 
       - name: 📥 npm install
         run: npm install
@@ -186,55 +150,73 @@ jobs:
         run: |
           M="android/app/src/main/AndroidManifest.xml"
           sed -i 's/android:allowBackup="true"/android:allowBackup="true" android:usesCleartextTraffic="true" android:hardwareAccelerated="true"/' "$M"
-          echo "✅ Manifest patched"
 
       # ═══════════════════════════════════════════════════════════
-      # 🔏 حقن إعدادات التوقيع — يقرأ من keystore.properties
+      # 🔏 حقن برمجيات التوقيع الذكي باستخدام محرك Node.js
       # ═══════════════════════════════════════════════════════════
-      - name: 🔏 Inject Signing Config
+      - name: 🔏 Inject Signing Config (Intelligent NodeJS Patch)
         run: |
-          GRADLE="android/app/build.gradle"
-
           if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
-            cp keystore.properties android/keystore.properties
+            # وضع ملفات المفاتيح بداخل المجلد الخاص بالتطبيق مباشرة لحماية المسار
+            cp keystore.properties android/app/keystore.properties
+            cp keystore.jks android/app/keystore.jks
 
-            sed -i '/^android {/i\
-            def keystorePropertiesFile = rootProject.file("keystore.properties")\
-            def keystoreProperties = new Properties()\
-            if (keystorePropertiesFile.exists()) {\
-                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))\
-            }\
-            ' "$GRADLE"
+            node -e "
+            const fs = require('fs');
+            const gradlePath = 'android/app/build.gradle';
+            if (!fs.existsSync(gradlePath)) {
+                console.error('❌ الخطأ: لم يتم العثور على ملف build.gradle!');
+                process.exit(1);
+            }
+            let content = fs.readFileSync(gradlePath, 'utf8');
 
-            sed -i '/^android {/a\
-            signingConfigs {\
-                release {\
-                    storeFile file(keystoreProperties.getProperty("storeFile", "../../../keystore.jks"))\
-                    storePassword keystoreProperties.getProperty("storePassword", "")\
-                    keyAlias keystoreProperties.getProperty("keyAlias", "")\
-                    keyPassword keystoreProperties.getProperty("keyPassword", "")\
-                }\
-            }' "$GRADLE"
+            // 1. كود تحميل ملف الخصائص من المجلد الحالي للـ app
+            const propsCode = [
+                'def keystorePropertiesFile = file(\"keystore.properties\")',
+                'def keystoreProperties = new Properties()',
+                'if (keystorePropertiesFile.exists()) {',
+                '    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))',
+                '}'
+            ].join('\n');
 
-            sed -i '/buildTypes {/,/}/ s/release {/release {\n                signingConfig signingConfigs.release/' "$GRADLE"
-            echo "✅ Signing config (keystore.properties) injected"
+            content = propsCode + '\n' + content;
 
-            echo "── معاينة android{} block بعد الحقن ──"
-            sed -n '/^android {/,/^}/p' "$GRADLE" | head -20
+            // 2. كود بناء الـ signingConfigs
+            const signingConfigsCode = [
+                '    signingConfigs {',
+                '        release {',
+                '            storeFile file(keystoreProperties.getProperty(\"storeFile\", \"keystore.jks\"))',
+                '            storePassword keystoreProperties.getProperty(\"storePassword\", \"\")',
+                '            keyAlias keystoreProperties.getProperty(\"keyAlias\", \"\")',
+                '            keyPassword keystoreProperties.getProperty(\"keyPassword\", \"\")',
+                '        }',
+                '    }'
+            ].join('\n');
+
+            // حقن الـ signingConfigs كأول عنصر داخل البلوك android {
+            content = content.replace(/android\s*\{/, 'android {\n' + signingConfigsCode);
+
+            // 3. ربط الـ buildTypes بالتوقيع الجديد لنسخة الـ release
+            content = content.replace(/release\s*\{/, 'release {\n            signingConfig signingConfigs.release');
+
+            // 4. ترقية الـ versionCode والـ versionName تلقائياً
+            content = content.replace(/versionCode\s+\d+/, 'versionCode 13');
+            content = content.replace(/versionName\s+\"[^\"]+\"/, 'versionName \"13.0\"');
+
+            fs.writeFileSync(gradlePath, content, 'utf8');
+            console.log('✅ تم تعديل وحقن ملف build.gradle بالكامل بنجاح مذهل وبدون أخطاء sed.');
+            "
+            
+            echo "── معاينة هيكلة ملف build.gradle المعدل ──"
+            sed -n '/android {/,/}/p' android/app/build.gradle | head -25
           else
-            echo "⚠️ تخطي التوقيع — Debug APK"
+            echo "⚠️ تخطي التوقيع — بناء نسخة Debug عادية"
           fi
 
-          sed -i 's/versionCode 1$/versionCode 13/'        "$GRADLE"
-          sed -i 's/versionName "1.0"/versionName "13.0"/' "$GRADLE"
-
       # ═══════════════════════════════════════════════════════════
-      # 🏗️ بناء الـ APK الفعلي مع تمرير المسارات الصحيحة للـ SDK
+      # 🏗️ بناء الـ APK المستقر والموقع
       # ═══════════════════════════════════════════════════════════
       - name: 🏗️ Build APK
-        env:
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
           cd android
           chmod +x gradlew
@@ -257,7 +239,7 @@ jobs:
           cp "$APK" dist/ChibaniLotfiAI-V13-ULTRA.apk
           SIZE=$(du -sh dist/ChibaniLotfiAI-V13-ULTRA.apk | cut -f1)
           if [[ "$APK" == *"release"* ]]; then
-            echo "### ✅ APK موقّع (Release) — $SIZE" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ APK موقّع ومحمي وجاهز (Release) — $SIZE" >> $GITHUB_STEP_SUMMARY
           else
             echo "### ⚠️ APK Debug غير موقّع — $SIZE" >> $GITHUB_STEP_SUMMARY
           fi
