@@ -1,0 +1,220 @@
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║   🚀 Chibani Lotfi AI — APK Builder v5 (SIGNED + DEBUG-CLEAR)  ║
+# ║   كل خطوة تطبع تشخيصاً واضحاً — لا مفاجآت صامتة                ║
+# ╚══════════════════════════════════════════════════════════════════╝
+#
+# 🔑 Secrets المطلوبة في GitHub (Settings → Secrets → Actions):
+#   KEYSTORE_BASE64 · KEY_ALIAS · KEY_PASSWORD · STORE_PASSWORD
+#   (راجع HOWTO_SIGN.md للتفاصيل)
+# ══════════════════════════════════════════════════════════════════
+
+name: 🚀 Build Chibani Lotfi AI — Signed APK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: 📱 Signed Release APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ☕ Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🟢 Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 📱 Android SDK Licenses
+        run: |
+          SDK="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
+          MGR=$(find "$SDK" -name "sdkmanager" 2>/dev/null | head -1)
+          if [ -n "$MGR" ]; then
+            yes | "$MGR" --licenses > /dev/null 2>&1 || true
+            yes | "$MGR" "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1 || true
+          fi
+          echo "✅ Android SDK OK"
+
+      # ═══════════════════════════════════════════════════════════
+      # 🔑 فحص الـ Secrets — يطبع بوضوح أيها موجود فعلاً
+      # ═══════════════════════════════════════════════════════════
+      - name: 🔑 Check Signing Secrets (تشخيص واضح)
+        id: sec_check
+        run: |
+          echo "═══════════════════════════════════════════"
+          echo "🔍 فحص توفر أسرار التوقيع..."
+          echo "═══════════════════════════════════════════"
+          HAS_KS="false"; HAS_ALIAS="false"; HAS_KP="false"; HAS_SP="false"
+
+          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            HAS_KS="true"; echo "✅ KEYSTORE_BASE64: موجود (طول: ${#KEYSTORE_BASE64} حرف تقريباً)"
+          else
+            echo "❌ KEYSTORE_BASE64: غير موجود!"
+          fi
+          if [ -n "${{ secrets.KEY_ALIAS }}" ]; then HAS_ALIAS="true"; echo "✅ KEY_ALIAS: موجود"; else echo "❌ KEY_ALIAS: غير موجود!"; fi
+          if [ -n "${{ secrets.KEY_PASSWORD }}" ]; then HAS_KP="true"; echo "✅ KEY_PASSWORD: موجود"; else echo "❌ KEY_PASSWORD: غير موجود!"; fi
+          if [ -n "${{ secrets.STORE_PASSWORD }}" ]; then HAS_SP="true"; echo "✅ STORE_PASSWORD: موجود"; else echo "❌ STORE_PASSWORD: غير موجود!"; fi
+
+          if [ "$HAS_KS" = "true" ] && [ "$HAS_ALIAS" = "true" ] && [ "$HAS_KP" = "true" ] && [ "$HAS_SP" = "true" ]; then
+            echo "🔏 جميع أسرار التوقيع موجودة → سيُبنى APK RELEASE موقّع"
+            echo "will_sign=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "⚠️ ينقص سر واحد أو أكثر → سيُبنى APK DEBUG غير موقّع (سيظهر تحذير أمني عند التثبيت)"
+            echo "will_sign=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "═══════════════════════════════════════════"
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+
+      - name: 🔑 Decode Keystore (إن وُجد)
+        if: steps.sec_check.outputs.will_sign == 'true'
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+          if [ -s keystore.jks ]; then
+            echo "✅ Keystore decoded → $(du -sh keystore.jks | cut -f1)"
+            keytool -list -keystore keystore.jks -storepass "${{ secrets.STORE_PASSWORD }}" -alias "${{ secrets.KEY_ALIAS }}" > /dev/null 2>&1 \
+              && echo "✅ Keystore + alias + password صالحة ومتطابقة" \
+              || echo "❌ تحذير: فشل التحقق من Keystore/alias/password — تأكد من القيم الصحيحة في Secrets"
+          else
+            echo "❌ خطأ: فشل فك تشفير base64 — تأكد أن KEYSTORE_BASE64 صحيح وكامل بدون أسطر مفقودة"
+            exit 1
+          fi
+
+      - name: 📦 package.json
+        run: |
+          node -e "
+          require('fs').writeFileSync('package.json', JSON.stringify({
+            name:'chibani-lotfi-ai', version:'13.0.0',
+            description:'Chibani Lotfi AI V13 ULTRA',
+            scripts:{build:'echo ok'},
+            dependencies:{'@capacitor/android':'^6.1.2','@capacitor/core':'^6.1.2'},
+            devDependencies:{'@capacitor/cli':'^6.1.2'}
+          },null,2));
+          console.log('✅ package.json');
+          "
+
+      - name: ⚙️ capacitor.config.json
+        run: |
+          node -e "
+          require('fs').writeFileSync('capacitor.config.json', JSON.stringify({
+            appId:'com.chibani.lotfi.ai',
+            appName:'Chibani Lotfi AI',
+            webDir:'www',
+            android:{allowMixedContent:true,captureInput:true},
+            server:{cleartext:true,allowNavigation:['*']}
+          },null,2));
+          console.log('✅ capacitor.config.json');
+          "
+
+      - name: 📁 Copy index.html → www/ (مع تأكيد UTF-8)
+        run: |
+          mkdir -p www
+          cp index.html www/index.html
+          file www/index.html
+          echo "✅ Bytes copied: $(wc -c < www/index.html)"
+          echo "✅ Lines: $(wc -l < www/index.html)"
+          # تأكيد عدم وجود أحرف تالفة في بداية الملف
+          head -c 200 www/index.html
+
+      - name: 📥 npm install
+        run: npm install
+
+      - name: ➕ cap add android
+        run: npx cap add android
+
+      - name: 🔄 cap sync android
+        run: npx cap sync android
+
+      - name: 🔧 Patch AndroidManifest.xml
+        run: |
+          M="android/app/src/main/AndroidManifest.xml"
+          sed -i 's/android:allowBackup="true"/android:allowBackup="true" android:usesCleartextTraffic="true" android:hardwareAccelerated="true"/' "$M"
+          echo "✅ Manifest patched"
+          grep -o 'android:usesCleartextTraffic="[^"]*"' "$M" || echo "⚠️ لم يُطبَّق usesCleartextTraffic!"
+
+      - name: 🔏 Inject Signing Config (إن وُجدت الأسرار)
+        run: |
+          GRADLE="android/app/build.gradle"
+
+          if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
+            sed -i '/^android {/i\
+            signingConfigs {\
+                release {\
+                    storeFile file("../../../keystore.jks")\
+                    storePassword System.getenv("STORE_PASSWORD")\
+                    keyAlias System.getenv("KEY_ALIAS")\
+                    keyPassword System.getenv("KEY_PASSWORD")\
+                }\
+            }' "$GRADLE"
+            sed -i '/buildTypes {/,/}/ s/release {/release {\n                signingConfig signingConfigs.release/' "$GRADLE"
+            echo "✅ Signing config injected into build.gradle"
+            grep -A2 "signingConfigs" "$GRADLE" || true
+          else
+            echo "⚠️ تخطي حقن إعدادات التوقيع — سيُبنى Debug APK"
+          fi
+
+          sed -i 's/versionCode 1$/versionCode 13/'        "$GRADLE"
+          sed -i 's/versionName "1.0"/versionName "13.0"/' "$GRADLE"
+          echo "✅ Version 13.0"
+
+      - name: 🏗️ Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
+            echo "🔏 Building SIGNED Release APK..."
+            ./gradlew assembleRelease --no-daemon --stacktrace \
+              -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
+          else
+            echo "🔧 Building Debug APK (لا توقيع — أضف الأسرار الـ4 لإصدار موقّع)..."
+            ./gradlew assembleDebug --no-daemon --stacktrace \
+              -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
+          fi
+        env:
+          ANDROID_HOME:     ${{ env.ANDROID_HOME }}
+          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
+          STORE_PASSWORD:   ${{ secrets.STORE_PASSWORD }}
+          KEY_ALIAS:        ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD:     ${{ secrets.KEY_PASSWORD }}
+
+      - name: 📋 Collect APK + تقرير نهائي واضح
+        run: |
+          mkdir -p dist
+          APK=$(find android/app/build/outputs/apk -name "*.apk" | head -1)
+          echo "📦 الملف المُنتَج: $APK"
+          cp "$APK" dist/ChibaniLotfiAI-V13-ULTRA.apk
+          SIZE=$(du -sh dist/ChibaniLotfiAI-V13-ULTRA.apk | cut -f1)
+
+          echo "## 📱 نتيجة البناء" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [[ "$APK" == *"release"* ]]; then
+            echo "### ✅ تم بناء APK **موقّع (Release)** — لن يظهر تحذير فيروس" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ⚠️ تم بناء APK **Debug غير موقّع** — سيظهر تحذير أمني عند التثبيت" >> $GITHUB_STEP_SUMMARY
+            echo "أضف الأسرار الـ4 (KEYSTORE_BASE64, KEY_ALIAS, KEY_PASSWORD, STORE_PASSWORD) ثم أعد التشغيل." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| المعلومة | القيمة |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 📦 الملف الأصلي | \`$(basename $APK)\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📏 الحجم | $SIZE |" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChibaniLotfiAI-V13-ULTRA
+          path: dist/ChibaniLotfiAI-V13-ULTRA.apk
+          retention-days: 30
+          if-no-files-found: error
