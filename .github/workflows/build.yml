@@ -215,7 +215,11 @@ jobs:
           chmod +x gradlew
           if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
             echo "🔏 Building SIGNED Release APK..."
-            ./gradlew assembleRelease --no-daemon --stacktrace \
+            # ⚠️ نستثني lintVital — يحاول تنزيل حزمة SDK غير مرخّصة تلقائياً ويُفشل البناء
+            #    غير ضروري لتطبيق شخصي لا يُنشر على المتجر
+            ./gradlew assembleRelease \
+              -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease \
+              --no-daemon --stacktrace \
               -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
           else
             echo "🔧 Building Debug APK..."
