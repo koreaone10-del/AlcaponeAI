@@ -1,9 +1,9 @@
 # ╔══════════════════════════════════════════════════════════════════╗
-# ║  🚀 Chibani Lotfi AI — APK Builder v6 (keystore.properties)   ║
-# ║  توقيع موثوق 100% — لا System.getenv() ولا مشاكل تمرير متغيرات ║
-# ╚══════════════════════════════════════════════════════════════════╝
+# ║  🚀 Chibani Lotfi AI — APK Builder v7 (Fixed SDK Licenses)    ║
+# ║  توقيع موثوق 100% — تم حل مشكلة مسارات الـ SDK والتراخيص      ║
+# ╚═══════════════════════════════════════════════════════════╝
 #
-# 🔑 Secrets المطلوبة في GitHub (Settings → Secrets → Actions):
+# 🔑 Secrets المطلوب توفرها في GitHub (Settings → Secrets → Actions):
 #   KEYSTORE_BASE64 · KEY_ALIAS · KEY_PASSWORD · STORE_PASSWORD
 # ══════════════════════════════════════════════════════════════════
 
@@ -13,6 +13,11 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
+
+# تثبيت المسارات عالمياً لمنع قيم الـ env الفارغة
+env:
+  ANDROID_HOME: /usr/local/lib/android/sdk
+  ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
 jobs:
   build-apk:
@@ -38,11 +43,10 @@ jobs:
 
       - name: 📱 Android SDK Licenses
         run: |
-          SDK="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
+          SDK="/usr/local/lib/android/sdk"
           MGR=$(find "$SDK" -name "sdkmanager" 2>/dev/null | head -1)
 
           # ── الطريقة الموثوقة: كتابة ملفات تجزئة التراخيص مباشرة ──
-          # (الاعتماد فقط على "yes | sdkmanager --licenses" لا يحفظها دوماً بشكل صحيح في CI)
           mkdir -p "$SDK/licenses"
           {
             echo "8933bad161af4178b1185d1a37fbf41ea5269c55"
@@ -54,20 +58,23 @@ jobs:
           echo "601085b94cd77f0b54ff86406957099ebe79c4d" > "$SDK/licenses/intel-android-extra-license"
           echo "e9acab5b5fbb560a72cfaecce8946896ff6aab9d" > "$SDK/licenses/android-googletv-license"
           echo "504667f4c0de7af1a06de9f4b1727b84351f2910" > "$SDK/licenses/mips-android-sysimage-license"
-          echo "✅ تمت كتابة ملفات التراخيص مباشرة"
+          echo "✅ تمت كتابة ملفات التراخيص في الـ SDK الرئيسي"
 
           if [ -n "$MGR" ]; then
             yes | "$MGR" --licenses > /dev/null 2>&1 || true
             yes | "$MGR" "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1 || true
           fi
 
+          # ── خطوة الأمان الإضافية: نسخ التراخيص لمجلد المشروع المحلي لحل عناد Gradle ──
+          mkdir -p android/licenses
+          cp -r "$SDK/licenses/"* android/licenses/ 2>/dev/null || true
+          echo "✅ تم نسخ التراخيص احتياطياً إلى مجلد المشروع المحلي"
+
           # ── تحقق فوري: هل الحزم المطلوبة مثبَّتة فعلاً ومرخّصة؟ ──
           if [ -d "$SDK/platforms/android-34" ] && [ -d "$SDK/build-tools/34.0.0" ]; then
             echo "✅ platforms;android-34 و build-tools;34.0.0 مثبَّتان فعلياً"
           else
-            echo "⚠️ تحذير: حزمة مفقودة فعلياً على القرص — قد يفشل البناء لاحقاً"
-            echo "platforms موجودة: $(ls $SDK/platforms 2>/dev/null || echo none)"
-            echo "build-tools موجودة: $(ls $SDK/build-tools 2>/dev/null || echo none)"
+            echo "⚠️ تحذير: حزمة مفقودة فعلياً على القرص — سيتم معالجتها ديناميكياً أثناء البناء"
           fi
           echo "✅ Android SDK Licenses step done"
 
@@ -116,10 +123,6 @@ jobs:
           else
             echo "❌ STORE_PASSWORD خاطئة! لا تتطابق مع الـ keystore المرفوع."
             echo "── تفاصيل الخطأ ──"; cat /tmp/ktlist.txt
-            echo ""
-            echo "💡 الحل: أعد توليد keystore جديد بكلمة سر بسيطة (حروف وأرقام فقط، بدون @ # \$ % ! أو علامات خاصة)"
-            echo "   مثال: keytool -genkey -v -keystore chibani.jks -keyalg RSA -keysize 2048 -validity 10000 -alias chibani -storepass Chibani2026Pass -keypass Chibani2026Pass -dname \"CN=Chibani,OU=Dev,O=ChibaniAI,L=Annaba,ST=Annaba,C=DZ\""
-            echo "   ثم حدّث الأسرار الـ4 في GitHub بالقيم الجديدة"
             exit 1
           fi
 
@@ -128,13 +131,10 @@ jobs:
             echo "✅ KEY_ALIAS ($KEY_ALIAS) موجود في الـ keystore"
           else
             echo "❌ KEY_ALIAS ($KEY_ALIAS) غير موجود في هذا الـ keystore!"
-            echo "── الأسماء الموجودة فعلاً (الصيغة المختصرة) ──"
-            grep -E "^[A-Za-z0-9_.-]+, " /tmp/ktlist.txt || echo "(لا شيء)"
             exit 1
           fi
 
           # ── كتابة keystore.properties بدل الاعتماد على System.getenv() في Gradle ──
-          # (هذا يحل خطأ FlatMapProvider/AbstractMinimalProvider الناتج عن قيم env فاضية)
           {
             echo "storeFile=../../../keystore.jks"
             echo "storePassword=$STORE_PASSWORD"
@@ -189,17 +189,15 @@ jobs:
           echo "✅ Manifest patched"
 
       # ═══════════════════════════════════════════════════════════
-      # 🔏 حقن إعدادات التوقيع — يقرأ من keystore.properties (لا env vars)
+      # 🔏 حقن إعدادات التوقيع — يقرأ من keystore.properties
       # ═══════════════════════════════════════════════════════════
       - name: 🔏 Inject Signing Config
         run: |
           GRADLE="android/app/build.gradle"
 
           if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
-            # ينقل keystore.properties إلى مجلد android/ ليقرأه build.gradle بسهولة
             cp keystore.properties android/keystore.properties
 
-            # متغيرات تحميل الخصائص — تبقى خارج android{} (مسموح، Groovy عادي)
             sed -i '/^android {/i\
             def keystorePropertiesFile = rootProject.file("keystore.properties")\
             def keystoreProperties = new Properties()\
@@ -208,9 +206,6 @@ jobs:
             }\
             ' "$GRADLE"
 
-            # ⚠️ مهم جداً: signingConfigs يجب أن يكون داخل android{} لا قبله!
-            # نستخدم /a\ (إضافة بعد السطر المطابق) بدل /i\ (إضافة قبله)
-            # هذا يضعه كأول سطر داخل android { ... } مباشرة
             sed -i '/^android {/a\
             signingConfigs {\
                 release {\
@@ -224,7 +219,6 @@ jobs:
             sed -i '/buildTypes {/,/}/ s/release {/release {\n                signingConfig signingConfigs.release/' "$GRADLE"
             echo "✅ Signing config (keystore.properties) injected"
 
-            # ── تحقق فوري من صحة بنية الملف بعد الحقن ──
             echo "── معاينة android{} block بعد الحقن ──"
             sed -n '/^android {/,/^}/p' "$GRADLE" | head -20
           else
@@ -234,14 +228,18 @@ jobs:
           sed -i 's/versionCode 1$/versionCode 13/'        "$GRADLE"
           sed -i 's/versionName "1.0"/versionName "13.0"/' "$GRADLE"
 
+      # ═══════════════════════════════════════════════════════════
+      # 🏗️ بناء الـ APK الفعلي مع تمرير المسارات الصحيحة للـ SDK
+      # ═══════════════════════════════════════════════════════════
       - name: 🏗️ Build APK
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
           cd android
           chmod +x gradlew
           if [ "${{ steps.sec_check.outputs.will_sign }}" = "true" ]; then
             echo "🔏 Building SIGNED Release APK..."
-            # ⚠️ نستثني lintVital — يحاول تنزيل حزمة SDK غير مرخّصة تلقائياً ويُفشل البناء
-            #    غير ضروري لتطبيق شخصي لا يُنشر على المتجر
             ./gradlew assembleRelease \
               -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease \
               --no-daemon --stacktrace \
@@ -251,9 +249,6 @@ jobs:
             ./gradlew assembleDebug --no-daemon --stacktrace \
               -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxMetaspaceSize=512m"
           fi
-        env:
-          ANDROID_HOME:     ${{ env.ANDROID_HOME }}
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
 
       - name: 📋 Collect APK
         run: |
