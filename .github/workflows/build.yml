@@ -40,11 +40,36 @@ jobs:
         run: |
           SDK="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
           MGR=$(find "$SDK" -name "sdkmanager" 2>/dev/null | head -1)
+
+          # ── الطريقة الموثوقة: كتابة ملفات تجزئة التراخيص مباشرة ──
+          # (الاعتماد فقط على "yes | sdkmanager --licenses" لا يحفظها دوماً بشكل صحيح في CI)
+          mkdir -p "$SDK/licenses"
+          {
+            echo "8933bad161af4178b1185d1a37fbf41ea5269c55"
+            echo "d56f5187479451eabf01fb78af6dfcb131a6481e"
+            echo "24333f8a63b6825ea9c5514f83c2829b004d1fee"
+          } > "$SDK/licenses/android-sdk-license"
+          echo "84831b9409646a918e30573bab4c9c91346d8abd" > "$SDK/licenses/android-sdk-preview-license"
+          echo "33b6a2b64607f11b759f320ef9dff4ae5c47d97a" > "$SDK/licenses/google-gdk-license"
+          echo "601085b94cd77f0b54ff86406957099ebe79c4d" > "$SDK/licenses/intel-android-extra-license"
+          echo "e9acab5b5fbb560a72cfaecce8946896ff6aab9d" > "$SDK/licenses/android-googletv-license"
+          echo "504667f4c0de7af1a06de9f4b1727b84351f2910" > "$SDK/licenses/mips-android-sysimage-license"
+          echo "✅ تمت كتابة ملفات التراخيص مباشرة"
+
           if [ -n "$MGR" ]; then
             yes | "$MGR" --licenses > /dev/null 2>&1 || true
             yes | "$MGR" "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1 || true
           fi
-          echo "✅ Android SDK OK"
+
+          # ── تحقق فوري: هل الحزم المطلوبة مثبَّتة فعلاً ومرخّصة؟ ──
+          if [ -d "$SDK/platforms/android-34" ] && [ -d "$SDK/build-tools/34.0.0" ]; then
+            echo "✅ platforms;android-34 و build-tools;34.0.0 مثبَّتان فعلياً"
+          else
+            echo "⚠️ تحذير: حزمة مفقودة فعلياً على القرص — قد يفشل البناء لاحقاً"
+            echo "platforms موجودة: $(ls $SDK/platforms 2>/dev/null || echo none)"
+            echo "build-tools موجودة: $(ls $SDK/build-tools 2>/dev/null || echo none)"
+          fi
+          echo "✅ Android SDK Licenses step done"
 
       # ═══════════════════════════════════════════════════════════
       # 🔑 فحص الـ Secrets
