@@ -98,12 +98,13 @@ jobs:
             exit 1
           fi
 
-          if grep -q "alias name: $KEY_ALIAS" /tmp/ktlist.txt; then
+          if keytool -list -v -keystore keystore.jks -storepass "$STORE_PASSWORD" > /tmp/ktlist_verbose.txt 2>&1 \
+             && grep -q "^$KEY_ALIAS," /tmp/ktlist.txt; then
             echo "✅ KEY_ALIAS ($KEY_ALIAS) موجود في الـ keystore"
           else
             echo "❌ KEY_ALIAS ($KEY_ALIAS) غير موجود في هذا الـ keystore!"
-            echo "── الأسماء الموجودة فعلاً ──"
-            grep "alias name:" /tmp/ktlist.txt || echo "(لا شيء)"
+            echo "── الأسماء الموجودة فعلاً (الصيغة المختصرة) ──"
+            grep -E "^[A-Za-z0-9_.-]+, " /tmp/ktlist.txt || echo "(لا شيء)"
             exit 1
           fi
 
