@@ -716,6 +716,29 @@ function getP(){ return PROVIDERS.find(p=>p.id===G.prov); }
 function getM(p){ return (p||getP()).models.find(m=>m.id===G.model); }
 function getKey(p){ return p.keyId ? (localStorage.getItem(p.keyId)||'') : ''; }
 
+// =================== LEARNED TOKEN CAPS (تعلّم دائم من أخطاء 402) ===================
+// بعض النماذج (خصوصاً المجانية المكتشفة تلقائياً) لا تُعلن حدها الحقيقي للتوكنز
+// إلا عند حدوث خطأ 402 فعلي. نحفظ هذا الحد هنا حتى يبقى صحيحاً بعد إغلاق التطبيق
+// وإعادة فتحه، بدل تكرار نفس الخطأ في كل مرة.
+function getLearnedCap(prov,model){
+  try{ return (JSON.parse(localStorage.getItem('cl_v13_learnedTok')||'{}'))[`${prov}::${model}`] || null; }
+  catch{ return null; }
+}
+function saveLearnedCap(prov,model,tok){
+  try{
+    const m=JSON.parse(localStorage.getItem('cl_v13_learnedTok')||'{}');
+    m[`${prov}::${model}`]=tok;
+    localStorage.setItem('cl_v13_learnedTok', JSON.stringify(m));
+  }catch{}
+}
+function applyLearnedCaps(p){
+  if(!p) return;
+  p.models.forEach(m=>{
+    const c=getLearnedCap(p.id, m.id);
+    if(c && (!m.maxTok || c<m.maxTok)) m.maxTok=c;
+  });
+}
+
 // =================== AUTO TEMP/TOKENS DETECTION ===================
 // يتعرف تلقائياً على الحرارة (temperature) والحد الأقصى للتوكنز التي تدعمها
 // الأداة/النموذج المختار — سواء تم الاختيار يدوياً (من المستخدم) أو تلقائياً
@@ -728,7 +751,7 @@ function autoDetectParams(p, m){
     : tags.includes('think') ? 0.4
     : tags.includes('fast')  ? 0.6
     : 0.7;
-  const capTok = m.maxTok || (p.id==='nvidia' ? 1024 : 8192);
+  const capTok = m.maxTok || (p.id==='nvidia' ? 1024 : (m.tags||[]).includes('auto') ? 1024 : 8192);
   const maxTok = Math.min(G.maxTok || capTok, capTok);
   return {temp, maxTok, capTok};
 }
@@ -996,7 +1019,8 @@ async function fetchDynamicModels(provId) {
             }
         });
 
-        p.dynamicFetched = true; 
+        p.dynamicFetched = true;
+        applyLearnedCaps(p);
         
         if(G.prov === provId) {
             renderMBar();
@@ -1045,6 +1069,7 @@ function selProv(id){
 
   G.prov = id;
   const p = getP();
+  applyLearnedCaps(p);
   if(p && p.models && p.models.length > 0) G.model = p.models[0].id;
 
   renderPBar(); renderMBar(); updS();
@@ -1111,8 +1136,10 @@ async function callAPI(prov, model, msgs, onStream, _retry){
   }
   if(p.headers) Object.assign(headers,p.headers);
 
-  // ✅ حدود آمنة تلقائية لكل نموذج (تعتمد على الكشف التلقائي للحرارة/التوكنز)
+  // ✅ حدود آمنة تلقائية لكل نموذج (تعتمد على الكشف التلقائي للحرارة/التوكنز + أي حد تعلّمناه سابقاً من أخطاء 402)
   const mCfg = p.models.find(x=>x.id===model);
+  const learnedCap = getLearnedCap(prov, model);
+  if(mCfg && learnedCap && (!mCfg.maxTok || learnedCap < mCfg.maxTok)) mCfg.maxTok = learnedCap;
   const det = autoDetectParams(p, mCfg || {tags:[]});
   let safeTemp = Math.min(G.temp, 2);
   if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
@@ -1144,6 +1171,23 @@ async function callAPI(prov, model, msgs, onStream, _retry){
       return callAPI(prov, model, msgs, onStream, true);
     }
 
+    // ✅ 402 (رصيد/توكنز غير كافٍ) — لا يمكن معرفة هذا الحد مسبقاً من أي مزود،
+    // فنقرأ الحد الحقيقي من رسالة الخطأ نفسها، نحفظه على النموذج بشكل دائم لهذه
+    // الجلسة (ليُستخدم تلقائياً من الآن فصاعداً عبر autoDetectParams)، ثم نعيد
+    // المحاولة فوراً بالحد الصحيح بدل فشل الطلب.
+    if(resp.status===402 && !_retry){
+      let errBody='';
+      try{ const j=await resp.clone().json(); errBody = j.error?.message||j.message||''; }
+      catch{ errBody = await resp.clone().text().catch(()=>''); }
+      const m = errBody.match(/afford\s+(\d+)/i) || errBody.match(/only\s+(\d+)\s+tokens?/i) || errBody.match(/max[_ ]tokens?[^\d]*(\d+)/i);
+      const affordable = m ? Math.max(parseInt(m[1])-8, 32) : Math.max(Math.floor(safeTok/2), 32);
+      if(mCfg) mCfg.maxTok = affordable; // ✅ يُحفظ دائماً على النموذج — يصلح الكشف التلقائي لكل الطلبات القادمة
+      saveLearnedCap(prov, model, affordable); // ✅ يبقى بعد إغلاق التطبيق وإعادة فتحه
+      if(G.prov===prov && G.model===model){ G.maxTok=affordable; applyAutoParams(p, mCfg||{tags:[]}); }
+      toast(`⚠️ ${p.name}: تم ضبط الحد الأقصى لـ ${model} تلقائياً إلى ${affordable} توكن`,'in',3500);
+      return callAPI(prov, model, msgs, onStream, true);
+    }
+
     // ✅ تحديث حالة المزود بناءً على الاستجابة الفعلية
     if(resp.status===401||resp.status===403){
       G.provStatus[prov]='fail';
@@ -1155,6 +1199,7 @@ async function callAPI(prov, model, msgs, onStream, _retry){
 
     let hint='';
     if(resp.status===429) hint=' — تجاوز حد الطلبات (RPM)، جرّب مزوداً آخر أو انتظر قليلاً';
+    else if(resp.status===402) hint=' — رصيد/توكنز غير كافٍ لدى هذا النموذج، جرّب مزوداً آخر أو أضف رصيداً';
     else if(resp.status===400) hint=' — طلب غير صالح (غالباً الحرارة/التوكنز خارج نطاق هذا النموذج، سيُضبط تلقائياً عند اختياره من جديد)';
     else if([500,502,503,504].includes(resp.status)) hint=' — المزود يعاني من ضغط مؤقت، جرّب لاحقاً أو مزوداً آخر';
     else if(resp.status===404) hint=' — النموذج غير موجود لدى المزود، حدّث قائمة النماذج';
@@ -1651,6 +1696,7 @@ function expJSON(){ /* ... */ } function expTXT(){ /* ... */ } function expMD(){
 // =================== INIT ===================
 function init(){
   loadSettings(); loadConvs(); updTokUI();
+  PROVIDERS.forEach(applyLearnedCaps);
   renderPBar(); renderMBar(); updS();
   applyAutoParams(getP(), getM());
   setupPWA();
