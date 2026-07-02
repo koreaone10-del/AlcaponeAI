@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#050810">
+<meta name="description" content="Chibani Lotfi AI — مساعد ذكاء اصطناعي متعدد المزودين">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chibani AI">
+<link id="pwaManifest" rel="manifest">
+<link id="pwaIcon" rel="icon">
+<link id="pwaAppleIcon" rel="apple-touch-icon">
 <title>Chibani Lotfi AI — V13 ULTRA 🚀</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Tajawal:wght@400;500;700&display=swap');
@@ -152,10 +161,14 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 
 /* THINKING BLOCK */
 .think{margin:4px 0;border:1px solid rgba(168,85,247,.2);border-radius:6px;overflow:hidden}
-.think-h{padding:4px 8px;background:rgba(168,85,247,.07);font-size:8px;color:var(--p);
+.think-h{padding:4px 8px;background:rgba(168,85,247,.07);font-size:7.5px;color:var(--p);
   font-family:'Share Tech Mono';cursor:pointer;display:flex;align-items:center;gap:4px;justify-content:space-between}
 .think-b{padding:8px;background:rgba(168,85,247,.03);color:var(--t2);font-size:10.5px;line-height:1.6;direction:ltr;text-align:left;display:none}
 .think-b.open{display:block}
+.think.live{opacity:.6;border-color:rgba(168,85,247,.15)}
+.think.live .think-b{display:block;font-size:9px;max-height:70px;overflow:hidden;mask-image:linear-gradient(to bottom,#000 60%,transparent)}
+.think-live-dot{width:5px;height:5px;border-radius:50%;background:var(--p);display:inline-block;animation:pu .9s infinite}
+.think-ms{color:var(--t2);font-size:6.5px;font-family:'Share Tech Mono';font-weight:normal}
 
 /* MSG META */
 .mmeta{font-size:7px;color:var(--t2);margin-top:4px;font-family:'Share Tech Mono';display:flex;gap:5px;align-items:center;flex-wrap:wrap}
@@ -202,7 +215,8 @@ header{flex-shrink:0;z-index:30;padding:5px 10px;border-bottom:1px solid var(--b
 .inp{flex-shrink:0;padding:5px 8px 6px;background:rgba(3,6,12,.99);border-top:1px solid var(--b);z-index:100;position:relative}
 .fprev{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;max-height:68px;overflow-y:auto}
 .fchip{display:flex;align-items:center;gap:4px;background:rgba(0,200,255,.05);border:1px solid var(--b);border-radius:8px;padding:3px 5px;font-size:8px;max-width:130px;flex-shrink:0;position:relative}
-.fchip img{width:26px;height:26px;object-fit:cover;border-radius:3px}
+.fchip img,.fchip video{width:26px;height:26px;object-fit:cover;border-radius:3px}
+.fchip .fico{width:26px;height:26px;border-radius:3px;background:rgba(0,200,255,.08);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 .fn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t2);max-width:70px;font-size:7px;font-family:'Share Tech Mono'}
 .frm{position:absolute;top:-5px;right:-5px;width:14px;height:14px;border-radius:50%;background:var(--r);color:#fff;border:none;font-size:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .qps{display:flex;gap:3px;margin-bottom:4px;overflow-x:auto;flex-wrap:nowrap}
@@ -304,6 +318,7 @@ textarea::placeholder{color:var(--t2)}
   </div>
   <div class="hdr-r">
     <button class="hbtn sup" onclick="openOv('support')">💖 إدعمني</button>
+    <button class="hbtn" onclick="openOv('sessions')">🗂️ الجلسات</button>
     <button class="hbtn" onclick="openOv('keys')">🔑</button>
     <button class="hbtn" onclick="openOv('sys')">💬</button>
     <button class="hbtn" id="advBtn" onclick="toggleAdv()">⚙️</button>
@@ -413,7 +428,7 @@ textarea::placeholder{color:var(--t2)}
     <button class="sbtn" id="sbtn" onclick="doSend()">➤</button>
   </div>
 </div>
-<input type="file" id="fileInp" accept="image/*" style="display:none" onchange="onFile(event)">
+<input type="file" id="fileInp" accept="*/*" multiple style="display:none" onchange="onFile(event)">
 
 <div class="ov" id="support-ov">
   <div class="modal" style="text-align:center;">
@@ -442,6 +457,9 @@ textarea::placeholder{color:var(--t2)}
     <div class="krow"><span class="ki">🧠</span><label>Cerebras</label><input type="password" id="k_cb" placeholder="csk-..."></div>
     <div class="krow"><span class="ki">🤗</span><label>HuggingFace</label><input type="password" id="k_hf" placeholder="hf_..."></div>
     <div class="krow"><span class="ki">🌀</span><label>BluesMinds</label><input type="password" id="k_bm" placeholder="sk-..."></div>
+    <div class="ksec">🎬 مزودو الصور والفيديو (مجاناً)</div>
+    <div class="krow"><span class="ki">🌸</span><label>Pollinations</label><input type="text" id="k_po" placeholder="🎁 مجاني بالكامل — لا يحتاج مفتاح" disabled style="opacity:.5"></div>
+    <div class="krow"><span class="ki">🔮</span><label>Replicate</label><input type="password" id="k_rp" placeholder="r8_..."></div>
     <div class="mnote o">💡 سيتم فحص المفاتيح تلقائياً عند إغلاق هذه النافذة (خط أحمر على المتعطلة). عند الحفظ سيُحدَّث تلقائياً نماذج المزود الحالي.</div>
     <div class="mnote" style="color:var(--t2);font-size:8px">🌀 BluesMinds: <a href="https://doc.bluesminds.com/" target="_blank" style="color:var(--c)">التوثيق</a> · Base URL: api.bluesminds.com/v1</div>
     <div class="mbtns">
@@ -475,6 +493,15 @@ textarea::placeholder{color:var(--t2)}
   </div>
 </div>
 
+<div class="ov" id="sessions-ov">
+  <div class="modal">
+    <div class="mh">🗂️ الجلسات <span class="mx" onclick="closeOv('sessions')">✕</span></div>
+    <button class="sb-new" style="width:100%;padding:7px;margin-bottom:8px" onclick="newChat();closeOv('sessions');">+ جلسة جديدة</button>
+    <div class="convlist" id="convlistM" style="max-height:55vh;overflow-y:auto"></div>
+    <div class="mnote b" style="margin-top:8px">💡 اضغط على أي جلسة للعودة إليها، أو ✕ لحذفها. العناوين تُؤخذ تلقائياً من أول رسالة بكل جلسة.</div>
+  </div>
+</div>
+
 <div class="ov" id="export-ov">
   <div class="modal">
     <div class="mh">💾 تصدير المحادثة <span class="mx" onclick="closeOv('export')">✕</span></div>
@@ -491,14 +518,26 @@ textarea::placeholder{color:var(--t2)}
     <div class="mh">🎬 توليد ميديا سينمائية <span class="mx" onclick="closeOv('imggen')">✕</span></div>
     <div class="mrow">
       <label>نوع التوليد:</label>
-      <select id="mediaType">
-        <option value="image">🎨 صورة (Flux / SD عبر HuggingFace)</option>
-        <option value="video">🎞️ فيديو (Minimax / Luma عبر AI/ML API)</option>
+      <select id="mediaType" onchange="updateMediaProviderOptions()">
+        <option value="image">🎨 صورة</option>
+        <option value="video">🎞️ فيديو</option>
       </select>
+    </div>
+    <div class="mrow">
+      <label>مزود التوليد:</label>
+      <select id="mediaProvider"></select>
     </div>
     <div class="mrow">
       <label>المطالبة السينمائية (Cinematic Prompt):</label>
       <textarea id="imgPrm" placeholder="A futuristic cyberpunk city at night, neon lights, ultra detailed..." style="height:90px"></textarea>
+    </div>
+    <div id="genProgWrap" style="display:none;margin-bottom:8px">
+      <div style="height:6px;background:rgba(0,200,255,.08);border-radius:4px;overflow:hidden">
+        <div id="genProgBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--c),var(--p));transition:width .2s"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:3px;font-size:8px;font-family:'Share Tech Mono';color:var(--t2)">
+        <span id="genProgPct">0%</span><span id="genProgMs">0ms</span>
+      </div>
     </div>
     <div id="imgPrev" style="text-align:center;min-height:30px;margin-bottom:8px"></div>
     <div class="mbtns">
@@ -608,6 +647,22 @@ const PROVIDERS = [
   }
 ];
 
+// =================== MEDIA (IMAGE/VIDEO) PROVIDERS ===================
+// مزودون مجانيون لتوليد الصور/الفيديو: Pollinations (مجاني كلياً بدون مفتاح)
+// و Replicate (بمفتاح API مجاني عبر التسجيل) — بالإضافة إلى المزودين السابقين.
+const MEDIA_KEY_IDS = ['k_rp'];
+const MEDIA_PROVIDERS = {
+  image: [
+    {id:'pollinations', name:'🌸 Pollinations — مجاني بدون مفتاح', keyId:null},
+    {id:'huggingface',   name:'🤗 HuggingFace FLUX — مفتاح مجاني', keyId:'k_hf'},
+    {id:'replicate',     name:'🔮 Replicate FLUX — مفتاح مجاني', keyId:'k_rp'}
+  ],
+  video: [
+    {id:'replicate', name:'🔮 Replicate Video — مفتاح مجاني', keyId:'k_rp'},
+    {id:'aimlapi',   name:'🎬 AI/ML API Minimax — مفتاح', keyId:'k_am'}
+  ]
+};
+
 // =================== GLOBAL STATE ===================
 const DEFAULT_SYS_PROMPT = "أنت مساعد ذكاء اصطناعي محترف. أجب دائماً باللغة العربية الفصحى الواضحة والمنسقة. تجنب خلط اللغات أو استخدام رموز غريبة عشوائية ما لم يطلب منك المستخدم ذلك صراحة. حافظ على إجاباتك دقيقة ومرتبة.";
 
@@ -616,7 +671,8 @@ const G = {
   msgs:[], convs:[], cid:null,
   busy:false, streaming:true, autoRouter:true, mode: 'strict',
   temp:0.7, maxTok:2048, sys:'', wsearch:false, files:[],
-  provStatus: {} // For auto-diagnostic
+  provStatus: {}, // For auto-diagnostic
+  thinkT:{}, thinkDone:{} // لقياس مدة التفكير بالميلي ثانية لكل رسالة
 };
 
 // =================== TOKEN COUNTER ===================
@@ -695,7 +751,49 @@ function copyUSDT(){
   toast('✅ تم نسخ عنوان المحفظة بنجاح! شكراً لدعمك 🇩🇿','ok',4000);
 }
 
+// =================== PWA INSTALLABILITY (manifest + service worker) ===================
+// يحسّن مصداقية "تثبيت التطبيق" (Add to Home Screen) بتوفير Manifest + أيقونة +
+// Service Worker حقيقيين بدل صفحة عادية — يقلل من تصنيف المتصفح/النظام للتطبيق كمشبوه.
+// ⚠️ ملاحظة: هذا يحسّن تثبيت الـ PWA من المتصفح فقط. تحذير Play Protect عند تثبيت
+// ملف APK غير موقّع من Google Play هو تحذير نظامي خاص بمصدر APK غير معروف، ولا يمكن
+// إزالته من كود HTML/JS — يتطلب حل ذلك توقيعاً رسمياً ثابتاً للتطبيق أو نشره عبر متجر معتمد.
+function setupPWA(){
+  try{
+    const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="34" fill="#050810"/><text x="96" y="130" font-size="110" text-anchor="middle" font-family="Arial">🇩🇿</text></svg>`;
+    const iconURL = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(iconSVG)));
+    if($('pwaIcon')) $('pwaIcon').href = iconURL;
+    if($('pwaAppleIcon')) $('pwaAppleIcon').href = iconURL;
+
+    const manifest = {
+      name: 'Chibani Lotfi AI — V13 ULTRA',
+      short_name: 'Chibani AI',
+      description: 'مساعد ذكاء اصطناعي متعدد المزودين — تطوير Chibani Lotfi 🇩🇿',
+      start_url: location.href.split('#')[0],
+      scope: location.href.split('#')[0],
+      display: 'standalone',
+      background_color: '#050810',
+      theme_color: '#050810',
+      orientation: 'portrait',
+      icons: [
+        {src: iconURL, sizes:'192x192', type:'image/svg+xml', purpose:'any maskable'},
+        {src: iconURL, sizes:'512x512', type:'image/svg+xml', purpose:'any maskable'}
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifest)], {type:'application/manifest+json'});
+    if($('pwaManifest')) $('pwaManifest').href = URL.createObjectURL(manifestBlob);
+
+    if('serviceWorker' in navigator){
+      const swCode = `self.addEventListener('install',e=>self.skipWaiting());
+self.addEventListener('activate',e=>self.clients.claim());
+self.addEventListener('fetch',e=>{ e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))); });`;
+      const swURL = URL.createObjectURL(new Blob([swCode], {type:'application/javascript'}));
+      navigator.serviceWorker.register(swURL).catch(()=>{});
+    }
+  }catch(e){}
+}
+
 // =================== MARKDOWN RENDERER (ORIGINAL) ===================
+let _curThinkMs = null; // يُضبط مؤقتاً قبل نداء md() لحقن مدة التفكير بالميلي ثانية
 function md(raw){
   if(!raw) return '';
   const blk={}, tblk={};
@@ -707,7 +805,8 @@ function md(raw){
   });
   s=s.replace(/<think>([\s\S]*?)<\/think>/g,(_,c)=>{
     const k='\x01T'+ti+'\x01';
-    tblk[k]=`<div class="think"><div class="think-h" onclick="tglThink(this)">💭 تفكير <span>▼</span></div><div class="think-b">${esc(c.trim())}</div></div>`;
+    const msLabel = _curThinkMs!=null ? `<span class="think-ms">${_curThinkMs}ms</span>` : '';
+    tblk[k]=`<div class="think"><div class="think-h" onclick="tglThink(this)"><span>💭 تفكير ${msLabel}</span><span>▼</span></div><div class="think-b">${esc(c.trim())}</div></div>`;
     ti++; return k;
   });
   s=s.replace(/(\|[^\n]+\|\n\|[-| :]+\|\n(?:\|[^\n]+\|\n?)+)/g,tblMatch=>{
@@ -991,7 +1090,7 @@ async function streamSSE(resp, onChunk){
   return full;
 }
 
-async function callAPI(prov, model, msgs, onStream){
+async function callAPI(prov, model, msgs, onStream, _retry){
   const p=PROVIDERS.find(x=>x.id===prov);
   if(!p) throw new Error('مزود غير معروف');
   const key=getKey(p);
@@ -1012,14 +1111,16 @@ async function callAPI(prov, model, msgs, onStream){
   }
   if(p.headers) Object.assign(headers,p.headers);
 
-  // حدود آمنة لكل مزود
-  let safeTemp = G.temp;
-  if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
+  // ✅ حدود آمنة تلقائية لكل نموذج (تعتمد على الكشف التلقائي للحرارة/التوكنز)
   const mCfg = p.models.find(x=>x.id===model);
-  let safeTok = G.maxTok;
-  if(mCfg?.maxTok)       safeTok = Math.min(safeTok, mCfg.maxTok);
+  const det = autoDetectParams(p, mCfg || {tags:[]});
+  let safeTemp = Math.min(G.temp, 2);
+  if(['mistral','huggingface'].includes(prov)) safeTemp = Math.min(safeTemp, 1.0);
+  let safeTok = det ? det.maxTok : G.maxTok;
+  if(mCfg?.maxTok)         safeTok = Math.min(safeTok, mCfg.maxTok);
   else if(prov==='nvidia') safeTok = Math.min(safeTok, 1024);
   else if(prov==='groq')   safeTok = Math.min(safeTok, 8192);
+  safeTok = Math.max(safeTok, 64);
 
   const body={model,messages:allMsgs,temperature:safeTemp,stream:useStream,max_tokens:safeTok};
 
@@ -1032,6 +1133,17 @@ async function callAPI(prov, model, msgs, onStream){
   }
 
   if(!resp.ok){
+    // ✅ 429 (تجاوز حد الطلبات) أو 500/502/503/504 (ضغط مؤقت على المزود) — إعادة محاولة واحدة تلقائياً
+    if(resp.status===429 && !_retry){
+      const ra = parseFloat(resp.headers.get('retry-after'));
+      await new Promise(r=>setTimeout(r, (isFinite(ra)&&ra>0 ? Math.min(ra,6) : 1.5)*1000));
+      return callAPI(prov, model, msgs, onStream, true);
+    }
+    if([500,502,503,504].includes(resp.status) && !_retry){
+      await new Promise(r=>setTimeout(r, 900));
+      return callAPI(prov, model, msgs, onStream, true);
+    }
+
     // ✅ تحديث حالة المزود بناءً على الاستجابة الفعلية
     if(resp.status===401||resp.status===403){
       G.provStatus[prov]='fail';
@@ -1040,7 +1152,14 @@ async function callAPI(prov, model, msgs, onStream){
     let e='';
     try{const j=await resp.json(); e=j.error?.message||j.message||JSON.stringify(j).slice(0,120);}
     catch{e=await resp.text().catch(()=>resp.statusText);}
-    throw new Error(`${p.name} ${resp.status}: ${String(e).slice(0,120)}`);
+
+    let hint='';
+    if(resp.status===429) hint=' — تجاوز حد الطلبات (RPM)، جرّب مزوداً آخر أو انتظر قليلاً';
+    else if(resp.status===400) hint=' — طلب غير صالح (غالباً الحرارة/التوكنز خارج نطاق هذا النموذج، سيُضبط تلقائياً عند اختياره من جديد)';
+    else if([500,502,503,504].includes(resp.status)) hint=' — المزود يعاني من ضغط مؤقت، جرّب لاحقاً أو مزوداً آخر';
+    else if(resp.status===404) hint=' — النموذج غير موجود لدى المزود، حدّث قائمة النماذج';
+
+    throw new Error(`${p.name} ${resp.status}: ${String(e).slice(0,120)}${hint}`);
   }
 
   // ✅ نجاح حقيقي → تحديث الحالة للأخضر
@@ -1066,7 +1185,8 @@ async function callWithFallback(msgs, onStream){
       callAPI(p.id,p.models[0].id,msgs,null)
         .then(res=>({text:res,prov:p.id,model:p.models[0].id,fb:false}))
     );
-    return await Promise.any(promises);
+    try{ return await Promise.any(promises); }
+    catch(e){ throw buildArenaError(e); }
   }
   if(G.mode==='arena_provider'){
     const p = getP();
@@ -1079,11 +1199,22 @@ async function callWithFallback(msgs, onStream){
         .then(res=>({text:res,prov:p.id,model:m.id,fb:false}))
     );
     if(!promises.length) throw new Error('لا نماذج متاحة لهذا المزود');
-    return await Promise.any(promises);
+    try{ return await Promise.any(promises); }
+    catch(e){ throw buildArenaError(e); }
   }
   // الوضع العادي
   const text=await callAPI(G.prov,G.model,msgs,onStream);
   return {text,prov:G.prov,model:G.model,fb:false};
+}
+
+// يبني رسالة خطأ واضحة بدل "All promises were rejected" الغامضة، تلخّص سبب فشل كل محاولة
+function buildArenaError(e){
+  if(e && Array.isArray(e.errors) && e.errors.length){
+    const msgs = e.errors.map(x=>String(x?.message||x).slice(0,90));
+    const uniq = [...new Set(msgs)].slice(0,4);
+    return new Error(`فشلت كل المحاولات (${e.errors.length}): ${uniq.join(' | ')}`);
+  }
+  return e instanceof Error ? e : new Error('فشلت كل المحاولات لسبب غير معروف');
 }
 
 // =================== CHAT UI ===================
@@ -1099,7 +1230,27 @@ function appendLoad(id){
 }
 function updLoad(id,txt){
   const b=$('bub_'+id);
-  if(b){ b.innerHTML=md(txt)+'<span class="scursor">▋</span>'; scrollB(); }
+  if(!b) return;
+  const openIdx=txt.lastIndexOf('<think>'), closeIdx=txt.lastIndexOf('</think>');
+  if(openIdx>-1 && closeIdx<openIdx){
+    // ما زال داخل التفكير — نعرض مؤشر تفكير حي شفاف صغير مع عداد الميلي ثانية
+    if(!G.thinkT[id]) G.thinkT[id]=Date.now();
+    const before=txt.slice(0,openIdx);
+    const live=txt.slice(openIdx+7);
+    const ms=Date.now()-G.thinkT[id];
+    b.innerHTML = md(before) +
+      `<div class="think live"><div class="think-h"><span><span class="think-live-dot"></span> يفكّر... <span class="think-ms">${ms}ms</span></span></div>
+       <div class="think-b">${esc(live.trim())}</div></div>` +
+      '<span class="scursor">▋</span>';
+  } else {
+    if(closeIdx>-1 && G.thinkT[id] && G.thinkDone[id]===undefined){
+      G.thinkDone[id]=Date.now()-G.thinkT[id];
+    }
+    _curThinkMs = G.thinkDone[id]!==undefined ? G.thinkDone[id] : null;
+    b.innerHTML=md(txt)+'<span class="scursor">▋</span>';
+    _curThinkMs=null;
+  }
+  scrollB();
 }
 function finalMsg(id,txt,prov,model,fb,reason){
   const b=$('bub_'+id); if(!b) return;
@@ -1107,11 +1258,14 @@ function finalMsg(id,txt,prov,model,fb,reason){
   const fbBadge = G.mode==='arena_all' ? `<span class="mfallback">🌐 الفائز بتنافس كل المزودين</span>`
     : G.mode==='arena_provider' ? `<span class="mfallback">⚔️ الفائز بتنافس ${p?.name||''}</span>`
     : '';
+  _curThinkMs = G.thinkDone[id]!==undefined ? G.thinkDone[id] : null;
   b.innerHTML=md(txt)+`<div class="mmeta">${fbBadge}
     <span class="mprov">${p?.icon||''} ${m?.name||model}</span>
     <span>${new Date().toLocaleTimeString('ar')}</span>
     <button class="mbtn" onclick="cpText(this)" data-txt="${esc(txt).replace(/"/g,'&quot;')}">نسخ</button>
   </div>`; scrollB();
+  _curThinkMs=null;
+  delete G.thinkT[id]; delete G.thinkDone[id];
 }
 function rmLoad(id){ $('msg_'+id)?.remove(); }
 function appendErr(txt){
@@ -1141,8 +1295,11 @@ async function doSend(){
 
   let content;
   if(G.files.length){
-    content=[{type:'text',text:txt||'صف هذه الصورة بالتفصيل'}];
-    G.files.forEach(f=>content.push({type:'image_url',image_url:{url:`data:${f.type};base64,${f.b64}`}}));
+    const nonImgNote = G.files.filter(f=>!f.type.startsWith('image/'))
+      .map(f=>`📎 ملف مرفق: ${f.name} (${f.type||'غير معروف'}, ${(f.size/1024).toFixed(0)}KB)`).join('\n');
+    const fullTxt=[txt||'صف هذه المرفقات بالتفصيل', nonImgNote].filter(Boolean).join('\n');
+    content=[{type:'text',text:fullTxt}];
+    G.files.filter(f=>f.type.startsWith('image/')).forEach(f=>content.push({type:'image_url',image_url:{url:`data:${f.type};base64,${f.b64}`}}));
     G.files=[]; renderFP();
   } else { content=txt; }
   
@@ -1186,81 +1343,199 @@ function setBusy(b){
 }
 
 // =================== IMAGE & VIDEO GEN ===================
+function updateMediaProviderOptions(){
+  const type=$('mediaType').value;
+  const opts=MEDIA_PROVIDERS[type]||[];
+  $('mediaProvider').innerHTML=opts.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
+}
+
+// ===== شريط التقدم: نسبة مئوية حقيقية عند توفر حجم التنزيل، وإلا محاكاة سلسة + عداد ميلي ثانية حقيقي =====
+let _genProgTimer=null, _genStartTime=0;
+function genProgStart(){
+  $('genProgWrap').style.display='block';
+  _genStartTime=Date.now();
+  let simulated=0;
+  clearInterval(_genProgTimer);
+  genProgSet(0);
+  _genProgTimer=setInterval(()=>{
+    simulated = Math.min(simulated + (100-simulated)*0.05, 92);
+    genProgSet(simulated);
+  },250);
+}
+function genProgSet(pct){
+  const bar=$('genProgBar'), pc=$('genProgPct'), ms=$('genProgMs');
+  if(bar) bar.style.width=Math.round(pct)+'%';
+  if(pc) pc.textContent=Math.round(pct)+'%';
+  if(ms) ms.textContent=(Date.now()-_genStartTime)+'ms';
+}
+function genProgDone(ok){
+  clearInterval(_genProgTimer);
+  genProgSet(ok?100:0);
+  setTimeout(()=>{ const w=$('genProgWrap'); if(w) w.style.display='none'; },1200);
+}
+// تنزيل مع تتبع تقدّم حقيقي (بايت/بايت) عند توفر content-length
+async function fetchWithProgress(url, opts){
+  const res=await fetch(url, opts||{});
+  if(!res.ok){
+    let msg=res.statusText;
+    try{ const j=await res.clone().json(); msg=j.error||j.message||msg; }catch{}
+    throw new Error(`HTTP ${res.status}: ${msg}`);
+  }
+  const total=parseInt(res.headers.get('content-length')||'0');
+  if(!total || !res.body || !res.body.getReader){ return await res.blob(); }
+  const reader=res.body.getReader();
+  let received=0; const chunks=[];
+  while(true){
+    const {done,value}=await reader.read();
+    if(done) break;
+    chunks.push(value); received+=value.length;
+    genProgSet(Math.min(received/total*100, 99));
+  }
+  return new Blob(chunks);
+}
+function blobToDataURL(blob){
+  return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(blob); });
+}
+function showGenResult(kind, src, label){
+  const prev=$('imgPrev'), promptTxt=$('imgPrm').value.trim();
+  if(kind==='image'){
+    prev.innerHTML=`<img src="${src}" class="gimg">`;
+    appendUser('[توليد صورة] '+promptTxt);
+    const el=document.createElement('div'); el.className='msg';
+    el.innerHTML=`<div class="av ai">🎨</div><div class="bub ai"><img src="${src}" class="gimg" onclick="window.open(this.src)"><div class="mmeta">${label}</div></div>`;
+    $('msgs').appendChild(el); scrollB();
+  } else {
+    prev.innerHTML=`<video src="${src}" class="gvid" controls autoplay></video>`;
+    appendUser('[توليد فيديو] '+promptTxt);
+    const el=document.createElement('div'); el.className='msg';
+    el.innerHTML=`<div class="av ai">🎬</div><div class="bub ai"><video src="${src}" class="gvid" controls loop></video><div class="mmeta">${label}</div></div>`;
+    $('msgs').appendChild(el); scrollB();
+  }
+  closeOv('imggen');
+}
+
 async function doGenMedia(){
   const prm=$('imgPrm').value.trim();
   const type=$('mediaType').value;
+  const provId=$('mediaProvider').value;
   if(!prm){toast('أدخل وصفاً للميديا','er'); return;}
-  
+
   const prev=$('imgPrev'), btn=$('imgBtn');
-  btn.disabled=true; btn.textContent='⏳';
-  
+  btn.disabled=true; btn.textContent='⏳'; prev.innerHTML='';
+  genProgStart();
+
   try {
-      if(type === 'image') {
-          const hfKey = localStorage.getItem('k_hf');
-          if(!hfKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح HuggingFace أولاً 🔑'); }
-          
-          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الصورة (10-30 ثانية)...</span>';
-          
-          const response = await fetch("https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell", {
-              headers: { Authorization: `Bearer ${hfKey}`, "Content-Type": "application/json" },
-              method: "POST", body: JSON.stringify({ inputs: prm }),
-          });
-          
-          if(!response.ok) throw new Error('فشل التوليد، تأكد من المفتاح.');
-          
-          const blob = await response.blob();
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onloadend = function() {
-              prev.innerHTML=`<img src="${reader.result}" class="gimg">`;
-              appendUser('[توليد صورة] '+prm);
-              const el=document.createElement('div'); el.className='msg'; 
-              el.innerHTML=`<div class="av ai">🎨</div><div class="bub ai"><img src="${reader.result}" class="gimg" onclick="window.open(this.src)"><div class="mmeta">🤗 FLUX Image</div></div>`;
-              $('msgs').appendChild(el); scrollB();
-              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
-          }
-      } else {
-          const amKey = localStorage.getItem('k_am');
-          if(!amKey) { closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح AI/ML API للفيديو 🔑'); }
-          
-          prev.innerHTML='<span style="color:var(--t2);font-size:10px">⏳ جارٍ توليد الفيديو السينمائي (قد يستغرق دقائق)...</span>';
-          
-          const response = await fetch("https://api.aimlapi.com/v1/images/generations", {
-              headers: { Authorization: `Bearer ${amKey}`, "Content-Type": "application/json" },
-              method: "POST", 
-              body: JSON.stringify({ prompt: prm, model: "minimax/video-01" })
-          });
-          
-          const data = await response.json();
-          if(data.data && data.data[0].url) {
-              prev.innerHTML=`<video src="${data.data[0].url}" class="gvid" controls autoplay></video>`;
-              appendUser('[توليد فيديو] '+prm);
-              const el=document.createElement('div'); el.className='msg'; 
-              el.innerHTML=`<div class="av ai">🎬</div><div class="bub ai"><video src="${data.data[0].url}" class="gvid" controls loop></video><div class="mmeta">🎬 Minimax Video</div></div>`;
-              $('msgs').appendChild(el); scrollB();
-              closeOv('imggen'); btn.disabled=false; btn.textContent='🎬 توليد';
-          } else {
-              throw new Error('فشل توليد الفيديو.');
-          }
+    if(provId==='pollinations'){
+      // 🌸 مجاني بالكامل — بدون مفتاح API
+      const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prm)}?width=1024&height=1024&nologo=true&seed=${Date.now()%100000}`;
+      const blob=await fetchWithProgress(url);
+      const dataUrl=await blobToDataURL(blob);
+      genProgDone(true);
+      showGenResult('image', dataUrl, '🌸 Pollinations (مجاني)');
+
+    } else if(provId==='huggingface'){
+      const hfKey=localStorage.getItem('k_hf');
+      if(!hfKey){ closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح HuggingFace أولاً 🔑'); }
+      const blob=await fetchWithProgress("https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell", {
+        method:'POST', headers:{Authorization:`Bearer ${hfKey}`,'Content-Type':'application/json'}, body:JSON.stringify({inputs:prm})
+      });
+      const dataUrl=await blobToDataURL(blob);
+      genProgDone(true);
+      showGenResult('image', dataUrl, '🤗 HuggingFace FLUX');
+
+    } else if(provId==='replicate' && type==='image'){
+      const rpKey=localStorage.getItem('k_rp');
+      if(!rpKey){ closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح Replicate أولاً 🔑 (مجاني عبر replicate.com)'); }
+      const res=await fetch('https://api.replicate.com/v1/models/black-forest-labs/flux-schnell/predictions',{
+        method:'POST', headers:{Authorization:`Bearer ${rpKey}`,'Content-Type':'application/json','Prefer':'wait'},
+        body:JSON.stringify({input:{prompt:prm}})
+      });
+      const data=await res.json();
+      if(!res.ok) throw new Error(data?.detail||'فشل التوليد عبر Replicate');
+      const out=Array.isArray(data.output)?data.output[0]:data.output;
+      if(!out) throw new Error('لم يُرجع Replicate أي صورة (قد يحتاج وقتاً أطول)');
+      genProgDone(true);
+      showGenResult('image', out, '🔮 Replicate FLUX');
+
+    } else if(provId==='replicate' && type==='video'){
+      const rpKey=localStorage.getItem('k_rp');
+      if(!rpKey){ closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح Replicate أولاً 🔑 (مجاني عبر replicate.com)'); }
+      const create=await fetch('https://api.replicate.com/v1/models/minimax/video-01/predictions',{
+        method:'POST', headers:{Authorization:`Bearer ${rpKey}`,'Content-Type':'application/json'},
+        body:JSON.stringify({input:{prompt:prm}})
+      });
+      let pred=await create.json();
+      if(!create.ok) throw new Error(pred?.detail||'فشل بدء توليد الفيديو');
+      const getUrl=pred.urls?.get;
+      let tries=0;
+      while((pred.status==='starting'||pred.status==='processing') && tries<120){
+        await new Promise(r=>setTimeout(r,2500)); tries++;
+        const poll=await fetch(getUrl,{headers:{Authorization:`Bearer ${rpKey}`}});
+        pred=await poll.json();
+        genProgSet(Math.min(15+tries*3, 92));
       }
-  } catch(e) {
-      prev.innerHTML=`<span style="color:var(--r);font-size:10px">❌ ${e.message}</span>`;
-      btn.disabled=false; btn.textContent='🎬 توليد';
+      if(pred.status!=='succeeded') throw new Error('فشل توليد الفيديو: '+(pred.error||pred.status||'انتهت المهلة'));
+      const out=Array.isArray(pred.output)?pred.output[0]:pred.output;
+      genProgDone(true);
+      showGenResult('video', out, '🔮 Replicate Video');
+
+    } else {
+      // 🎬 AI/ML API Minimax (الأصلي)
+      const amKey=localStorage.getItem('k_am');
+      if(!amKey){ closeOv('imggen'); openOv('keys'); throw new Error('يرجى إضافة مفتاح AI/ML API للفيديو 🔑'); }
+      const response=await fetch("https://api.aimlapi.com/v1/images/generations", {
+        headers:{Authorization:`Bearer ${amKey}`,'Content-Type':'application/json'},
+        method:'POST', body:JSON.stringify({prompt:prm, model:'minimax/video-01'})
+      });
+      const data=await response.json();
+      if(!(data.data && data.data[0]?.url)) throw new Error('فشل توليد الفيديو.');
+      genProgDone(true);
+      showGenResult('video', data.data[0].url, '🎬 Minimax Video');
+    }
+    btn.disabled=false; btn.textContent='🎬 توليد';
+  } catch(e){
+    genProgDone(false);
+    prev.innerHTML=`<span style="color:var(--r);font-size:10px">❌ ${e.message}</span>`;
+    btn.disabled=false; btn.textContent='🎬 توليد';
   }
 }
 
 // =================== FILE ATTACHMENT ===================
+// يقرأ أي نوع ملف (صور، فيديوهات، PDF، مستندات...) بدون قيود على النوع.
+// ⚠️ الصور فقط تُرسل كـ image_url داخل الرسالة لأن معظم مزودي الدردشة النصية
+// لا يقبلون فيديو/ملفات خام ضمن API الدردشة القياسي — بقية الأنواع تُرفق وتُذكر
+// للنموذج باسمها ونوعها ضمن النص حتى يعرف بوجودها.
 function onFile(e){
-  const file=e.target.files[0]; if(!file) return;
-  if(!file.type.startsWith('image/')){ toast('يدعم الصور فقط','er'); return; }
-  const reader=new FileReader();
-  reader.onload=ev=>{ G.files.push({name:file.name,type:file.type,b64:ev.target.result.split(',')[1]}); renderFP(); toast('✓ صورة مرفقة','ok'); };
-  reader.readAsDataURL(file); e.target.value='';
+  const files=Array.from(e.target.files||[]); if(!files.length) return;
+  files.forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      G.files.push({name:file.name,type:file.type||'application/octet-stream',size:file.size,b64:ev.target.result.split(',')[1]});
+      renderFP();
+      toast(`✓ أُرفق: ${file.name}`,'ok');
+    };
+    reader.onerror=()=>toast(`⚠️ تعذّرت قراءة: ${file.name}`,'er');
+    reader.readAsDataURL(file);
+  });
+  e.target.value='';
+}
+function fileIcon(type){
+  if(type.startsWith('video/')) return '🎞️';
+  if(type.startsWith('audio/')) return '🎵';
+  if(type==='application/pdf') return '📕';
+  if(type.includes('zip')||type.includes('rar')||type.includes('7z')) return '🗜️';
+  if(type.startsWith('text/')) return '📄';
+  return '📎';
 }
 function renderFP(){
-  $('fprev').innerHTML=G.files.map((f,i)=>`
-    <div class="fchip"><img src="data:${f.type};base64,${f.b64}" alt=""><span class="fn">${esc(f.name)}</span>
-      <button class="frm" onclick="G.files.splice(${i},1);renderFP()">✕</button></div>`).join('');
+  $('fprev').innerHTML=G.files.map((f,i)=>{
+    let media;
+    if(f.type.startsWith('image/')) media=`<img src="data:${f.type};base64,${f.b64}" alt="">`;
+    else if(f.type.startsWith('video/')) media=`<video src="data:${f.type};base64,${f.b64}" muted></video>`;
+    else media=`<div class="fico">${fileIcon(f.type)}</div>`;
+    return `<div class="fchip">${media}<span class="fn">${esc(f.name)}</span>
+      <button class="frm" onclick="G.files.splice(${i},1);renderFP()">✕</button></div>`;
+  }).join('');
 }
 
 // =================== INPUT CONTROLS ===================
@@ -1298,7 +1573,8 @@ function loadConv(id){
       el.innerHTML=`<div class="av ai">🤖</div><div class="bub ai">${md(m.content)}<div class="mmeta"><span class="mprov">${p?.icon||''} ${p?.name||c.prov}</span></div></div>`;
       msgsEl.appendChild(el);
     }
-  }); scrollB(); renderCL(); updS();
+  }); scrollB(); renderCL(); updS(); applyAutoParams(getP(), getM());
+  closeOv('sessions');
 }
 function delConv(id,e){
   e.stopPropagation(); G.convs=G.convs.filter(c=>c.id!==id);
@@ -1307,7 +1583,10 @@ function delConv(id,e){
   renderCL(); toast('حُذفت','in');
 }
 function renderCL(){
-  $('convlist').innerHTML=G.convs.map(c=>`<div class="citem${c.id===G.cid?' on':''}" onclick="loadConv('${c.id}')">${esc(c.title||'محادثة')}<span class="cdel" onclick="delConv('${c.id}',event)">✕</span></div>`).join('');
+  const html=G.convs.map(c=>`<div class="citem${c.id===G.cid?' on':''}" onclick="loadConv('${c.id}')">${esc(c.title||'محادثة')}<span class="cdel" onclick="delConv('${c.id}',event)">✕</span></div>`).join('')
+    || `<div style="padding:10px;color:var(--t2);font-size:9px;text-align:center">لا توجد جلسات محفوظة بعد</div>`;
+  const l1=$('convlist'); if(l1) l1.innerHTML=html;
+  const l2=$('convlistM'); if(l2) l2.innerHTML=html;
 }
 function newChat(){
   if(G.msgs.length) saveConv();
@@ -1318,11 +1597,21 @@ function newChat(){
 }
 
 // =================== MODALS & SETTINGS ===================
-function openOv(id){ $(`${id}-ov`).classList.add('on'); if(id==='keys') loadKM(); if(id==='sys') $('sysTA').value=G.sys; }
-function closeOv(id){ $(`${id}-ov`).classList.remove('on'); }
-function loadKM(){ PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(el) el.value=localStorage.getItem(p.keyId)||''; }); }
+function openOv(id){
+  $(`${id}-ov`).classList.add('on');
+  if(id==='keys') loadKM();
+  if(id==='sys') $('sysTA').value=G.sys;
+  if(id==='imggen') updateMediaProviderOptions();
+  if(id==='sessions') renderCL();
+}
+function closeOv(id){ $(`${id}-ov`)?.classList.remove('on'); }
+function loadKM(){
+  PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(el) el.value=localStorage.getItem(p.keyId)||''; });
+  MEDIA_KEY_IDS.forEach(kid=>{ const el=$(kid); if(el) el.value=localStorage.getItem(kid)||''; });
+}
 async function saveKeys(){
   PROVIDERS.filter(p=>p.keyId).forEach(p=>{ const el=$(p.keyId); if(!el) return; const v=el.value.trim(); if(v) localStorage.setItem(p.keyId,v); else localStorage.removeItem(p.keyId); });
+  MEDIA_KEY_IDS.forEach(kid=>{ const el=$(kid); if(!el) return; const v=el.value.trim(); if(v) localStorage.setItem(kid,v); else localStorage.removeItem(kid); });
   closeOv('keys');
   toast('🔄 جاري فحص المفاتيح وتحديث النماذج تلقائياً...','in',3000);
   await testAllKeys();
@@ -1364,6 +1653,7 @@ function init(){
   loadSettings(); loadConvs(); updTokUI();
   renderPBar(); renderMBar(); updS();
   applyAutoParams(getP(), getM());
+  setupPWA();
 
   // ✅ فحص المفاتيح وجلب النماذج في الخلفية — لا يحجب الواجهة
   setTimeout(()=> testAllKeys().then(()=> fetchDynamicModels(G.prov)).then(()=>{ renderMBar(); applyAutoParams(getP(), getM()); }), 300);
